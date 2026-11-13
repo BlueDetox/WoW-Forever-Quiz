@@ -111,7 +111,7 @@ const INFO = {"Arms": {"cls": "Warrior", "type": "Melee", "desc": "One big two-h
 const REASONS = [["fight up close", "fight from far away", "either distance is fine"], ["an animal pet", "a demon helper", "no helper", "a helper either way"], ["fast, quick hits", "slow, huge hits", "damage that drains over time", "explosive magic"], ["the holy knight", "the sneaky assassin", "animals / nature", "dark magic", "element magic", "the bow hunter / sniper", "a huge weapon and no magic"], ["freezing enemies in place", "healing / surviving anything", "turning into an animal", "traps / totems", "poisons", "bleeding wounds", "building up power, then releasing it", "a speed rush"], ["damage only, no extra job", "totems that make the group stronger", "damage that heals the group a little", "healing yourself", "a pet taking hits for the group"], ["one huge two-handed weapon", "two fast weapons", "daggers / claws", "a bow or a gun", "spells only"], ["fire magic", "ice magic", "lightning", "dark / drain magic", "nature / star magic", "no spells at all", "build-up magic power"]];
 const MAXP = {};
 Object.keys(INFO).forEach(k => { MAXP[k] = 0; QUIZ.forEach(q => { let m = 0; q.options.forEach(o => { if (o.points[k]) m = Math.max(m, o.points[k]); }); MAXP[k] += m; }); });
-let lastPct = 0;
+let lastPct = 0, lastSecondPct = 0;
 function pctOf(k, score){ return Math.round(100 * score[k] / MAXP[k]); }
 function whyFor(k){
   const hits = [];
@@ -150,6 +150,7 @@ function finish(){
   document.getElementById('r2Name').textContent = s.cls + ' — ' + s.display + '  (' + pctOf(resultSecond, score) + '%)';
   document.getElementById('r2Desc').textContent = s.desc;
   lastPct = pctOf(resultTop, score);
+  lastSecondPct = pctOf(resultSecond, score);
   document.getElementById('rPct').textContent = lastPct + '%';
   document.getElementById('rWhy').innerHTML = whyFor(resultTop);
   document.getElementById('r2Why').innerHTML = whyFor(resultSecond);
@@ -196,8 +197,8 @@ function showMixed(score){
   box.classList.remove('hidden');
 }
 function copyResult(){
-  const t = INFO[resultTop];
-  const text = '⚔️ WoW Forever quiz — my damage character is ' + t.cls.toUpperCase() + ' ' + t.display + ' (' + t.type + ', ' + lastPct + '% match)! ' + t.desc;
+  const t = INFO[resultTop], s = INFO[resultSecond];
+  const text = '⚔️ WoW Forever quiz — my damage character is ' + t.cls.toUpperCase() + ' ' + t.display + ' (' + t.type + ', ' + lastPct + '% match)! ' + t.desc + ' My second-best choice is ' + s.cls.toUpperCase() + ' ' + s.display + ' (' + s.type + ', ' + lastSecondPct + '% match).';
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(text).then(() => { document.getElementById('copyBtn').textContent = '✅ Copied — paste it in Discord!'; });
   } else {
