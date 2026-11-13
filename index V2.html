@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WoW Forever — Which Damage Character Are You?</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background:#15171c; color:#f2f3f5; font-family:'Segoe UI',system-ui,-apple-system,sans-serif; min-height:100vh; min-height:100dvh; display:flex; flex-direction:column; padding:18px 14px 40px; }
+  .wrap { width:100%; max-width:640px; margin:auto; }
+  .card { background:#1e2128; border:1px solid #3a3f4a; border-radius:18px; padding:26px 22px; }
+  h1 { color:#ffc137; font-size:30px; line-height:1.15; }
+  .sub { color:#ffd980; font-size:17px; margin-top:6px; font-weight:600; }
+  .intro { color:#c9ced8; font-size:16px; line-height:1.5; margin-top:12px; }
+  .progress { color:#8b919e; font-size:14px; margin-bottom:10px; font-weight:600; letter-spacing:.4px; }
+  .bar { height:8px; background:#2c303a; border-radius:99px; overflow:hidden; margin-bottom:20px; }
+  .bar > div { height:100%; background:#ffc137; border-radius:99px; transition:width .25s; }
+  .q { font-size:22px; font-weight:700; line-height:1.3; margin-bottom:16px; }
+  .opt { display:block; width:100%; text-align:left; background:#262a33; color:#f2f3f5; border:2px solid #3a3f4a; border-radius:13px; padding:15px 16px; font-size:17px; margin-bottom:10px; cursor:pointer; font-family:inherit; }
+  .opt:active, .opt:hover { border-color:#ffc137; background:#2e333f; }
+  .back { background:none; border:none; color:#8b919e; font-size:15px; cursor:pointer; padding:8px 2px; font-family:inherit; }
+  .hidden { display:none; }
+  .resultCls { color:#ffc137; font-size:15px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; }
+  .resultName { font-size:36px; font-weight:800; line-height:1.15; margin:4px 0 12px; }
+  .pills { margin-bottom:14px; }
+  .pill { display:inline-block; border:2px solid #57c785; color:#57c785; border-radius:99px; padding:4px 13px; font-weight:700; font-size:14px; margin-right:8px; }
+  .pill.type { border-color:#8b919e; color:#c9ced8; }
+  .pill.med { border-color:#ffc137; color:#ffc137; }
+  .pill.hard { border-color:#ff6e6e; color:#ff6e6e; }
+  .desc { font-size:18px; line-height:1.55; color:#e6e9ee; }
+  .mixed { margin-top:14px; background:#2c2a20; border:2px solid #ffc137; border-radius:13px; padding:15px 16px; }
+  .mixed h3 { font-size:14px; color:#ffc137; letter-spacing:.6px; text-transform:uppercase; margin-bottom:6px; }
+  .mixed p, .mixed li { color:#e6e9ee; font-size:15px; line-height:1.5; }
+  .mixed ul { margin:8px 0 0 18px; }
+  .mixed li { margin-bottom:5px; }
+  .also { margin-top:20px; background:#262a33; border-radius:13px; padding:15px 16px; }
+  .also h3 { font-size:14px; color:#8b919e; letter-spacing:.6px; text-transform:uppercase; margin-bottom:6px; }
+  .also .n { font-size:18px; font-weight:700; }
+  .also .d { color:#c9ced8; font-size:15px; line-height:1.45; margin-top:3px; }
+  .bigbtn { display:block; width:100%; background:#ffc137; color:#1a1405; border:none; border-radius:13px; padding:16px; font-size:18px; font-weight:800; cursor:pointer; margin-top:18px; font-family:inherit; }
+  .ghostbtn { display:block; width:100%; background:none; color:#c9ced8; border:2px solid #3a3f4a; border-radius:13px; padding:13px; font-size:16px; font-weight:600; cursor:pointer; margin-top:10px; font-family:inherit; }
+  .pctBig { font-size:44px; font-weight:800; color:#57c785; line-height:1; }
+  .pctLabel { color:#8b919e; font-size:13px; font-weight:700; letter-spacing:.6px; text-transform:uppercase; margin-bottom:12px; }
+  .why { margin-top:12px; color:#c9ced8; font-size:15px; line-height:1.5; }
+  .why b { color:#ffd980; }
+  .allHead { font-size:20px; font-weight:800; margin:26px 0 4px; }
+  .allSub { color:#8b919e; font-size:14px; line-height:1.5; margin-bottom:14px; }
+  .match { background:#262a33; border-radius:13px; padding:14px 16px; margin-bottom:10px; }
+  .match.top { border:2px solid #ffc137; }
+  .matchHead { display:flex; justify-content:space-between; align-items:baseline; gap:10px; }
+  .matchName { font-size:17px; font-weight:700; }
+  .matchRank { color:#8b919e; font-weight:700; margin-right:7px; }
+  .matchPct { font-size:20px; font-weight:800; color:#57c785; white-space:nowrap; }
+  .matchBar { height:7px; background:#1e2128; border-radius:99px; overflow:hidden; margin:9px 0; }
+  .matchBar > div { height:100%; background:#57c785; border-radius:99px; }
+  .matchMeta { color:#8b919e; font-size:13px; font-weight:600; margin-bottom:5px; }
+  .matchDesc { color:#e6e9ee; font-size:15px; line-height:1.45; }
+  .matchWhy { color:#c9ced8; font-size:14px; line-height:1.5; margin-top:6px; }
+  .matchWhy b { color:#ffd980; }
+  .foot { color:#6d7280; font-size:13px; text-align:center; margin-top:16px; line-height:1.5; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card" id="startCard">
+    <h1>WoW FOREVER</h1>
+    <div class="sub">Which Damage Character Are You?</div>
+    <p class="intro">8 quick questions about how you like to fight. No WoW knowledge needed — just pick what sounds fun. At the end you'll get your #1 recommended damage character, AND a full ranked list of all 20 characters showing how well your choices align with each one — a compatibility % and the reasons why, for every single character.</p>
+    <button class="bigbtn" onclick="start()">▶ Start the quiz</button>
+    <p class="foot">Melee = fight up close &nbsp;•&nbsp; Ranged = fight from far away &nbsp;•&nbsp; Pet = an animal/demon that helps you fight</p>
+  </div>
+
+  <div class="card hidden" id="quizCard">
+    <div class="progress" id="progressText"></div>
+    <div class="bar"><div id="progressBar" style="width:0%"></div></div>
+    <div class="q" id="qText"></div>
+    <div id="options"></div>
+    <button class="back" id="backBtn" onclick="goBack()">← Back</button>
+  </div>
+
+  <div class="card hidden" id="resultCard">
+    <div class="resultCls" id="rCls"></div>
+    <div class="resultName" id="rName"></div>
+    <div class="pctBig" id="rPct"></div>
+    <div class="pctLabel">compatibility with your picks</div>
+    <div class="pills" id="rPills"></div>
+    <p class="desc" id="rDesc"></p>
+    <p class="why" id="rWhy"></p>
+    <div class="also">
+      <h3>Also a close match</h3>
+      <div class="n" id="r2Name"></div>
+      <div class="d" id="r2Desc"></div>
+      <p class="why" id="r2Why"></p>
+    </div>
+    <div class="mixed hidden" id="mixedBox">
+      <h3>⚠️ Some of your picks can't combine</h3>
+      <p>No single character does everything you picked — no character mixes, for example, a holy knight with ice magic. Your result follows your strongest pattern. Here's what got left out:</p>
+      <ul id="mixedList"></ul>
+    </div>
+    <div class="allHead">All 20 matches — ranked</div>
+    <p class="allSub">Compatibility % = how much of that character's ideal answers you picked. 100% means you picked everything that character would pick. The list is ranked by how many of your picks each character matched — and because every % is measured against that character's own ideal, a lower rank can sometimes show a higher %.</p>
+    <div id="allMatches"></div>
+    <button class="bigbtn" id="copyBtn" onclick="copyResult()">📋 Copy my result for Discord</button>
+    <button class="ghostbtn" onclick="restart()">↺ Retake the quiz</button>
+    <p class="foot">First-timer rating is a recommendation for brand-new players, not a score from the game.</p>
+  </div>
+</div>
+<script>
+const QUIZ = [{"q": "Where do you want to stand in a fight?", "options": [{"text": "\u2694\ufe0f Up close, right in the enemy's face", "points": {"Arms": 3, "Fury": 3, "Retribution": 3, "Survival": 3, "Assassination": 3, "Combat": 3, "Subtlety": 3, "Enhancement": 3, "Feral": 3}}, {"text": "\ud83c\udff9 Far away, safe at a distance", "points": {"Beast Mastery": 3, "Marksmanship": 3, "Shadow": 3, "Elemental": 3, "Arcane": 3, "Fire": 3, "Frost": 3, "Affliction": 3, "Demonology": 3, "Destruction": 3, "Balance": 3}}, {"text": "\ud83e\udd37 Either is fine", "points": {"Arms": 1, "Fury": 1, "Retribution": 1, "Beast Mastery": 1, "Marksmanship": 1, "Survival": 1, "Assassination": 1, "Combat": 1, "Subtlety": 1, "Shadow": 1, "Elemental": 1, "Enhancement": 1, "Arcane": 1, "Fire": 1, "Frost": 1, "Affliction": 1, "Demonology": 1, "Destruction": 1, "Balance": 1, "Feral": 1}}]}, {"q": "Do you want a helper fighting with you?", "options": [{"text": "\ud83d\udc3a Yes \u2014 an animal pet", "points": {"Beast Mastery": 5, "Marksmanship": 3, "Survival": 3}}, {"text": "\ud83d\ude08 Yes \u2014 a demon", "points": {"Demonology": 5, "Affliction": 3, "Destruction": 3}}, {"text": "\ud83d\udeb6 No helper \u2014 just me", "points": {"Arms": 2, "Fury": 2, "Retribution": 2, "Marksmanship": 6, "Assassination": 2, "Combat": 2, "Subtlety": 2, "Shadow": 2, "Elemental": 2, "Enhancement": 2, "Arcane": 2, "Fire": 2, "Frost": 2, "Balance": 2, "Feral": 2}}, {"text": "\ud83e\udd37 Don't care", "points": {"Arms": 1, "Fury": 1, "Retribution": 1, "Beast Mastery": 1, "Marksmanship": 1, "Survival": 1, "Assassination": 1, "Combat": 1, "Subtlety": 1, "Shadow": 1, "Elemental": 1, "Enhancement": 1, "Arcane": 1, "Fire": 1, "Frost": 1, "Affliction": 1, "Demonology": 1, "Destruction": 1, "Balance": 1, "Feral": 1}}]}, {"q": "How should your damage feel?", "options": [{"text": "\ud83d\udca8 Fast \u2014 lots of quick hits", "points": {"Fury": 3, "Combat": 3, "Feral": 3, "Enhancement": 3, "Assassination": 3}}, {"text": "\ud83d\udca5 Slow \u2014 a few HUGE hits", "points": {"Arms": 3, "Retribution": 3, "Marksmanship": 3, "Destruction": 3, "Fire": 2}}, {"text": "\ud83e\ude78 Slow drain \u2014 the enemy's health keeps dropping over time", "points": {"Affliction": 3, "Shadow": 3, "Subtlety": 3, "Assassination": 3, "Arms": 3, "Feral": 3}}, {"text": "\u2728 Explosive magic spells", "points": {"Fire": 3, "Elemental": 3, "Destruction": 3, "Arcane": 3, "Balance": 3}}]}, {"q": "Pick the character fantasy you like most:", "options": [{"text": "\ud83d\udee1\ufe0f Holy knight with a big weapon", "points": {"Retribution": 5, "Arms": 1, "Fury": 1}}, {"text": "\ud83d\udde1\ufe0f Sneaky assassin", "points": {"Subtlety": 4, "Assassination": 4, "Combat": 2, "Feral": 2}}, {"text": "\ud83d\udc3b Animals, nature and shapeshifting", "points": {"Feral": 4, "Balance": 4, "Beast Mastery": 2, "Survival": 2}}, {"text": "\ud83d\udc80 Dark magic user", "points": {"Affliction": 3, "Demonology": 3, "Destruction": 3, "Shadow": 4}}, {"text": "\u26a1 Wizard of the elements \u2014 fire, ice, lightning", "points": {"Elemental": 4, "Enhancement": 4, "Arcane": 2, "Fire": 2, "Frost": 2}}, {"text": "\ud83c\udff9 Bow hunter / sniper", "points": {"Beast Mastery": 4, "Marksmanship": 4, "Survival": 4}}, {"text": "\ud83e\ude93 Just me and a huge weapon \u2014 no magic, no sneaking", "points": {"Arms": 5, "Fury": 4}}]}, {"q": "Pick your coolest trick:", "options": [{"text": "\u2744\ufe0f Freeze enemies in place so they can't reach me", "points": {"Frost": 5}}, {"text": "\ud83d\udc9a Heal myself and survive almost anything", "points": {"Retribution": 4, "Shadow": 2}}, {"text": "\ud83d\udc31 Turn into an animal", "points": {"Feral": 5, "Balance": 3}}, {"text": "\ud83e\udea4 Set traps / place totems that help my group", "points": {"Survival": 4, "Elemental": 4, "Enhancement": 2}}, {"text": "\u2620\ufe0f Poisons that keep hurting the enemy", "points": {"Assassination": 5}}, {"text": "\ud83e\ude78 Wounds that keep bleeding", "points": {"Subtlety": 3, "Feral": 3, "Arms": 3}}, {"text": "\ud83d\udd0b Build up power first, then release it all", "points": {"Arcane": 5, "Fire": 2}}, {"text": "\ud83d\ude80 A speed rush \u2014 attack much faster for a while", "points": {"Combat": 5, "Fury": 3, "Enhancement": 3}}]}, {"q": "In a group, do you want an extra job besides damage?", "options": [{"text": "\ud83c\udfaf No \u2014 damage only, keep it simple", "points": {"Beast Mastery": 2, "Marksmanship": 2, "Survival": 2, "Assassination": 2, "Combat": 2, "Subtlety": 2, "Arcane": 2, "Fire": 2, "Frost": 2, "Affliction": 2, "Demonology": 2, "Destruction": 2}}, {"text": "\ud83d\uddff Totems that make my whole group stronger", "points": {"Elemental": 5, "Enhancement": 5}}, {"text": "\ud83d\udc9a My damage heals my group a little", "points": {"Shadow": 5, "Balance": 1}}, {"text": "\ud83d\udee1\ufe0f Heal myself, so nobody has to look after me", "points": {"Retribution": 4}}, {"text": "\ud83d\udc3a My pet takes hits that would have hit my group", "points": {"Beast Mastery": 4, "Demonology": 2, "Survival": 2}}]}, {"q": "What do you want in your hands?", "options": [{"text": "\ud83e\ude93 One huge two-handed weapon", "points": {"Arms": 4, "Retribution": 4}}, {"text": "\u2694\ufe0f Two fast weapons, one in each hand", "points": {"Fury": 4, "Combat": 3, "Survival": 3, "Assassination": 2}}, {"text": "\ud83d\udde1\ufe0f Daggers / claws \u2014 quick and sharp", "points": {"Assassination": 3, "Subtlety": 3, "Feral": 4}}, {"text": "\ud83c\udff9 A bow or a gun", "points": {"Beast Mastery": 4, "Marksmanship": 4}}, {"text": "\ud83d\udd2e Nothing \u2014 spells only", "points": {"Arcane": 3, "Fire": 3, "Frost": 3, "Affliction": 3, "Demonology": 3, "Destruction": 3, "Shadow": 3, "Elemental": 3, "Balance": 3}}]}, {"q": "Last one \u2014 pick a spell flavour (or skip the magic):", "options": [{"text": "\ud83d\udd25 Fire \u2014 huge fireballs", "points": {"Fire": 5, "Destruction": 4, "Elemental": 1}}, {"text": "\u2744\ufe0f Ice \u2014 freeze and slow everything", "points": {"Frost": 5}}, {"text": "\u26a1 Lightning", "points": {"Elemental": 5, "Enhancement": 3}}, {"text": "\ud83d\udc80 Dark \u2014 drain and shadow spells", "points": {"Affliction": 4, "Shadow": 4, "Demonology": 2}}, {"text": "\ud83c\udf19 Nature and stars", "points": {"Balance": 5, "Feral": 1}}, {"text": "\ud83d\udeab I'm not a spell caster", "points": {"Arms": 2, "Fury": 2, "Retribution": 2, "Survival": 2, "Assassination": 2, "Combat": 2, "Subtlety": 2, "Enhancement": 2, "Feral": 2}}, {"text": "\ud83d\udd0b Pure magic power that builds up", "points": {"Arcane": 5}}]}];
+const INFO = {"Arms": {"cls": "Warrior", "type": "Melee", "desc": "One big two-handed weapon. Slow heavy hits + wounds that bleed over time.", "level": "Medium", "display": "Arms"}, "Fury": {"cls": "Warrior", "type": "Melee", "desc": "Two weapons, fast non-stop hits. Spin attack hits enemies around you.", "level": "Medium", "display": "Fury"}, "Retribution": {"cls": "Paladin", "type": "Melee", "desc": "Holy knight, big weapon. Can heal itself + a bubble makes it immune briefly.", "level": "Easy", "display": "Retribution"}, "Beast Mastery": {"cls": "Hunter", "type": "Ranged + Pet", "desc": "Your pet takes the hits for you while you shoot from far away. Easiest alone.", "level": "Easy", "display": "Beast Mastery"}, "Marksmanship": {"cls": "Hunter", "type": "Ranged", "desc": "A sniper. Slow, big shots from far away. Can play with no pet for +20% damage.", "level": "Easy", "display": "Marksmanship"}, "Survival": {"cls": "Hunter", "type": "Melee + Pet", "desc": "Fights up close next to its pet. Sets traps that hold or hurt enemies.", "level": "Medium", "display": "Survival"}, "Assassination": {"cls": "Rogue", "type": "Melee", "desc": "Stabs with daggers. Poisons keep damaging the enemy over time.", "level": "Medium", "display": "Assassination"}, "Combat": {"cls": "Rogue", "type": "Melee", "desc": "More head-on than other rogues, less sneaking. Steady sword / axe attacks.", "level": "Medium", "display": "Combat"}, "Subtlety": {"cls": "Rogue", "type": "Melee", "desc": "Sneaks unseen and strikes from hiding. Wounds keep bleeding over time.", "level": "Harder", "display": "Subtlety"}, "Shadow": {"cls": "Priest", "type": "Ranged", "desc": "Dark spells hurt over time. Shadow form boosts them, damage heals group a bit.", "level": "Medium", "display": "Shadow"}, "Elemental": {"cls": "Shaman", "type": "Ranged", "desc": "Lightning from far away + fire that keeps burning. Totems make your group stronger.", "level": "Easy", "display": "Elemental"}, "Enhancement": {"cls": "Shaman", "type": "Melee", "desc": "Weapon can hit extra times for free. Melee hits power up instant lightning.", "level": "Medium", "display": "Enhancement"}, "Arcane": {"cls": "Mage", "type": "Ranged", "desc": "Each magic blast makes you stronger, but costs more mana (your spell energy).", "level": "Medium", "display": "Arcane"}, "Fire": {"cls": "Mage", "type": "Ranged", "desc": "Crits (extra-strong hits) speed up your next huge fireball, Pyroblast.", "level": "Medium", "display": "Fire"}, "Frost": {"cls": "Mage", "type": "Ranged", "desc": "Freezes enemies in place + slows them. Safest mage, good against groups.", "level": "Easy", "display": "Frost"}, "Affliction": {"cls": "Warlock", "type": "Ranged", "desc": "Loads enemies with many slow damage spells. Their health drains over time.", "level": "Easy", "display": "Affliction"}, "Demonology": {"cls": "Warlock", "type": "Ranged + Pet", "desc": "Fights with a demon pet you power up. The demon is a big part of your damage.", "level": "Easy", "display": "Demonology"}, "Destruction": {"cls": "Warlock", "type": "Ranged", "desc": "Direct fire spells, one big hit at a time. Like an evil fire mage.", "level": "Easy", "display": "Destruction"}, "Balance": {"cls": "Druid", "type": "Ranged", "desc": "Moonkin form (big owl). Casts nature + star spells, swapping between them.", "level": "Medium", "display": "Balance"}, "Feral": {"cls": "Druid", "type": "Melee", "desc": "Turns into a cat. Sneaks, hits fast, wounds bleed over time.", "level": "Harder", "display": "Feral (Cat)"}};
+const REASONS = [["fight up close", "fight from far away", "either distance is fine"], ["an animal pet", "a demon helper", "no helper", "a helper either way"], ["fast, quick hits", "slow, huge hits", "damage that drains over time", "explosive magic"], ["the holy knight", "the sneaky assassin", "animals / nature", "dark magic", "element magic", "the bow hunter / sniper", "a huge weapon and no magic"], ["freezing enemies in place", "healing / surviving anything", "turning into an animal", "traps / totems", "poisons", "bleeding wounds", "building up power, then releasing it", "a speed rush"], ["damage only, no extra job", "totems that make the group stronger", "damage that heals the group a little", "healing yourself", "a pet taking hits for the group"], ["one huge two-handed weapon", "two fast weapons", "daggers / claws", "a bow or a gun", "spells only"], ["fire magic", "ice magic", "lightning", "dark / drain magic", "nature / star magic", "no spells at all", "build-up magic power"]];
+const MAXP = {};
+Object.keys(INFO).forEach(k => { MAXP[k] = 0; QUIZ.forEach(q => { let m = 0; q.options.forEach(o => { if (o.points[k]) m = Math.max(m, o.points[k]); }); MAXP[k] += m; }); });
+let lastPct = 0;
+function pctOf(k, score){ return Math.round(100 * score[k] / MAXP[k]); }
+function whyFor(k){
+  const hits = [];
+  answers.forEach((ai, qi) => { const v = QUIZ[qi].options[ai].points[k] || 0; if (v >= 2) hits.push({ v: v, text: REASONS[qi][ai] }); });
+  hits.sort((a,b) => b.v - a.v);
+  const top = hits.slice(0, 4).map(h => h.text);
+  if (top.length === 0) return 'No strong single match — small bits of many of your picks.';
+  return 'Matched because you picked: <b>' + top.join('</b> • <b>') + '</b>.';
+}
+let step = 0, answers = [], resultTop = null, resultSecond = null;
+function start(){ document.getElementById('startCard').classList.add('hidden'); document.getElementById('quizCard').classList.remove('hidden'); show(); }
+function show(){
+  const q = QUIZ[step];
+  document.getElementById('progressText').textContent = 'Question ' + (step+1) + ' of ' + QUIZ.length;
+  document.getElementById('progressBar').style.width = (step/QUIZ.length*100) + '%';
+  document.getElementById('qText').textContent = q.q;
+  document.getElementById('backBtn').style.visibility = step === 0 ? 'hidden' : 'visible';
+  const box = document.getElementById('options'); box.innerHTML = '';
+  q.options.forEach((o, i) => { const b = document.createElement('button'); b.className='opt'; b.textContent=o.text; b.onclick=() => pick(i); box.appendChild(b); });
+}
+function pick(i){ answers[step] = i; step++; if(step < QUIZ.length){ show(); } else { finish(); } }
+function goBack(){ if(step > 0){ step--; show(); } }
+function finish(){
+  const score = {}; Object.keys(INFO).forEach(k => score[k]=0);
+  answers.forEach((ai, qi) => { const p = QUIZ[qi].options[ai].points; Object.keys(p).forEach(k => score[k]+=p[k]); });
+  const ranked = Object.keys(score).sort((a,b) => score[b]-score[a]);
+  resultTop = ranked[0]; resultSecond = ranked[1];
+  const t = INFO[resultTop], s = INFO[resultSecond];
+  document.getElementById('quizCard').classList.add('hidden');
+  document.getElementById('resultCard').classList.remove('hidden');
+  document.getElementById('rCls').textContent = t.cls + ' — damage character';
+  document.getElementById('rName').textContent = t.display;
+  const lvlClass = t.level==='Easy' ? '' : (t.level==='Medium' ? ' med' : ' hard');
+  document.getElementById('rPills').innerHTML = '<span class="pill type">' + t.type + '</span><span class="pill' + lvlClass + '">First-timer: ' + t.level + '</span>';
+  document.getElementById('rDesc').textContent = t.desc;
+  document.getElementById('r2Name').textContent = s.cls + ' — ' + s.display + '  (' + pctOf(resultSecond, score) + '%)';
+  document.getElementById('r2Desc').textContent = s.desc;
+  lastPct = pctOf(resultTop, score);
+  document.getElementById('rPct').textContent = lastPct + '%';
+  document.getElementById('rWhy').innerHTML = whyFor(resultTop);
+  document.getElementById('r2Why').innerHTML = whyFor(resultSecond);
+  showMixed(score);
+  renderAll(score, ranked);
+}
+function renderAll(score, ranked){
+  const box = document.getElementById('allMatches'); box.innerHTML = '';
+  ranked.forEach((k, i) => {
+    const inf = INFO[k], p = pctOf(k, score);
+    const div = document.createElement('div');
+    div.className = 'match' + (i === 0 ? ' top' : '');
+    div.innerHTML = '<div class="matchHead"><div class="matchName"><span class="matchRank">#' + (i+1) + '</span>' + inf.cls + ' — ' + inf.display + '</div><div class="matchPct">' + p + '%</div></div>'
+      + '<div class="matchBar"><div style="width:' + p + '%"></div></div>'
+      + '<div class="matchMeta">' + inf.type + '  •  First-timer: ' + inf.level + '</div>'
+      + '<div class="matchDesc">' + inf.desc + '</div>'
+      + '<div class="matchWhy">' + whyFor(k) + '</div>';
+    box.appendChild(div);
+  });
+}
+const SIGNALS = [
+  { q: 3, label: ['the holy knight','the sneaky assassin','animals / nature','dark magic','element magic','the bow hunter / sniper','the huge-weapon warrior'],
+    sets: [['Retribution'],['Subtlety','Assassination','Combat','Feral'],['Feral','Balance','Beast Mastery','Survival'],['Affliction','Demonology','Destruction','Shadow'],['Elemental','Enhancement','Arcane','Fire','Frost'],['Beast Mastery','Marksmanship','Survival'],['Arms','Fury']] },
+  { q: 4, label: ['freezing enemies in place','healing / surviving anything','turning into an animal','traps / totems','poisons','bleeding wounds','building up power','a speed rush'],
+    sets: [['Frost'],['Retribution','Shadow'],['Feral','Balance'],['Survival','Beast Mastery','Marksmanship','Elemental','Enhancement'],['Assassination'],['Subtlety','Feral','Arms'],['Arcane','Fire'],['Combat','Fury','Enhancement']] },
+  { q: 7, label: ['fire magic','ice magic','lightning','dark magic','nature / star magic','no spells at all','build-up magic power'],
+    sets: [['Fire','Destruction','Elemental'],['Frost'],['Elemental','Enhancement'],['Affliction','Shadow','Demonology'],['Balance','Feral'],['Arms','Fury','Retribution','Survival','Assassination','Combat','Subtlety','Enhancement','Feral','Beast Mastery','Marksmanship'],['Arcane']] }
+];
+function showMixed(score){
+  const top = resultTop, t = INFO[top];
+  const lines = [];
+  SIGNALS.forEach(sig => {
+    const ai = answers[sig.q];
+    if (ai === undefined) return;
+    const set = sig.sets[ai];
+    if (set.includes(top)) return;
+    const alt = set.slice().sort((a,b) => score[b]-score[a])[0];
+    const a = INFO[alt];
+    lines.push('You picked <b>' + sig.label[ai] + '</b> — ' + t.display + ' (' + t.cls + ') doesn\'t do that. The character that does is <b>' + a.display + ' (' + a.cls + ')</b>.');
+  });
+  const box = document.getElementById('mixedBox');
+  if (lines.length === 0) { box.classList.add('hidden'); return; }
+  document.getElementById('mixedList').innerHTML = lines.map(l => '<li>' + l + '</li>').join('');
+  box.classList.remove('hidden');
+}
+function copyResult(){
+  const t = INFO[resultTop];
+  const text = '⚔️ WoW Forever quiz — my damage character is ' + t.cls.toUpperCase() + ' ' + t.display + ' (' + t.type + ', ' + lastPct + '% match)! ' + t.desc;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(() => { document.getElementById('copyBtn').textContent = '✅ Copied — paste it in Discord!'; });
+  } else {
+    const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); document.getElementById('copyBtn').textContent = '✅ Copied — paste it in Discord!'; } catch(e) {}
+    document.body.removeChild(ta);
+  }
+}
+function restart(){ step = 0; answers = []; document.getElementById('resultCard').classList.add('hidden'); document.getElementById('quizCard').classList.remove('hidden'); document.getElementById('copyBtn').textContent = '📋 Copy my result for Discord'; show(); }
+</script>
+</body>
+</html>
