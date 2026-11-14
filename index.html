@@ -39,6 +39,9 @@
   .also .d { color:#c9ced8; font-size:15px; line-height:1.45; margin-top:3px; }
   .bigbtn { display:block; width:100%; background:#ffc137; color:#1a1405; border:none; border-radius:13px; padding:16px; font-size:18px; font-weight:800; cursor:pointer; margin-top:18px; font-family:inherit; }
   .ghostbtn { display:block; width:100%; background:none; color:#c9ced8; border:2px solid #3a3f4a; border-radius:13px; padding:13px; font-size:16px; font-weight:600; cursor:pointer; margin-top:10px; font-family:inherit; }
+  .guidebtn { display:block; width:100%; text-align:center; text-decoration:none; background:none; color:#ffc137; border:2px solid #ffc137; border-radius:13px; padding:14px; font-size:17px; font-weight:800; margin-top:16px; font-family:inherit; }
+  .guidelink { display:block; text-align:center; color:#ffc137; font-weight:700; text-decoration:none; margin-top:14px; font-size:15.5px; }
+  .rowguide { color:#ffc137; font-weight:700; text-decoration:none; }
   .pctBig { font-size:44px; font-weight:800; color:#57c785; line-height:1; }
   .pctLabel { color:#8b919e; font-size:13px; font-weight:700; letter-spacing:.6px; text-transform:uppercase; margin-bottom:12px; }
   .why { margin-top:12px; color:#c9ced8; font-size:15px; line-height:1.5; }
@@ -58,6 +61,30 @@
   .matchWhy { color:#c9ced8; font-size:14px; line-height:1.5; margin-top:6px; }
   .matchWhy b { color:#ffd980; }
   .foot { color:#6d7280; font-size:13px; text-align:center; margin-top:16px; line-height:1.5; }
+
+  .g-h1 { font-size:27px; line-height:1.25; margin-top:8px; text-align:left; }
+  .g-h1 .gold { color:#ffc137; }
+  .g-sub { color:#a7adb9; font-size:15px; line-height:1.55; margin:10px 0 16px; text-align:left; }
+  .g-card { background:#262a33; border-radius:16px; padding:20px; margin-bottom:16px; scroll-margin-top:14px; text-align:left; }
+  .g-card h2 { font-size:19px; margin-bottom:10px; color:#eef1f6; }
+  .g-card h3 { font-size:15px; color:#ffc137; margin:16px 0 7px; text-transform:uppercase; letter-spacing:.5px; }
+  .g-card p, .g-card li { color:#c9ced8; font-size:15px; line-height:1.55; }
+  .g-card ul, .g-card ol { padding-left:21px; }
+  .g-card li { margin-bottom:6px; }
+  .g-card li b, .g-card p b { color:#eef1f6; }
+  .g-chips { display:flex; flex-wrap:wrap; gap:7px; margin:4px 0 18px; }
+  .g-chip { background:#31363f; color:#c9ced8; border-radius:999px; padding:7px 12px; font-size:13.5px; font-weight:600; text-decoration:none; }
+  .g-chip:active { background:#ffc137; color:#1a1405; }
+  .g-pill { display:inline-block; border-radius:999px; padding:4px 11px; font-size:12.5px; font-weight:700; background:#1d4d33; color:#7be2a8; margin-right:6px; }
+  .g-pill.med { background:#57451a; color:#ffd980; }
+  .g-pill.hard { background:#5c2323; color:#ff9d9d; }
+  .g-pill.type { background:#31363f; color:#c9ced8; }
+  .g-desc { color:#eef1f6; font-size:15.5px; line-height:1.5; margin-top:10px; }
+  .g-cls { font-size:21px; font-weight:800; margin:26px 0 10px; color:#ffc137; text-align:left; }
+  .g-back { display:inline-block; color:#ffc137; font-weight:700; text-decoration:none; margin-bottom:6px; font-size:16px; }
+  .g-foot { color:#8b919e; font-size:13px; line-height:1.5; margin-top:22px; text-align:left; }
+  .g-watch li { color:#e8c9c9; }
+
 </style>
 </head>
 <body>
@@ -67,6 +94,7 @@
     <div class="sub">Which Damage Character Are You?</div>
     <p class="intro">8 quick questions about how you like to fight. No WoW knowledge needed — just pick what sounds fun. At the end you'll get your #1 recommended damage character, AND a full ranked list of all 20 characters showing how well your choices align with each one — a compatibility % and the reasons why, for every single character.</p>
     <button class="bigbtn" onclick="start()">▶ Start the quiz</button>
+    <a class="guidelink" href="#" onclick="openGuides(); return false;">📖 New to WoW? Read the starter guides →</a>
     <p class="foot">Melee = fight up close &nbsp;•&nbsp; Ranged = fight from far away &nbsp;•&nbsp; Pet = an animal/demon that helps you fight</p>
   </div>
 
@@ -86,6 +114,7 @@
     <div class="pills" id="rPills"></div>
     <p class="desc" id="rDesc"></p>
     <p class="why" id="rWhy"></p>
+    <a class="guidebtn" id="guideBtn" href="#" data-target="" onclick="openGuides(this.getAttribute('data-target')); return false;">📖 Read your starter guide</a>
     <div class="also">
       <h3>Also a close match</h3>
       <div class="n" id="r2Name"></div>
@@ -104,6 +133,675 @@
     <button class="ghostbtn" onclick="restart()">↺ Retake the quiz</button>
     <p class="foot">First-timer rating is a recommendation for brand-new players, not a score from the game.</p>
   </div>
+
+  <div id="guidesView" class="hidden">
+<a class="g-back" href="index.html" onclick="if (typeof closeGuides === 'function') { closeGuides(); return false; }">← Back to the quiz</a>
+  <h1 class="g-h1">⚔️ WoW Forever <span class="gold">Starter Guides</span></h1>
+  <p class="g-sub">One short guide for every damage character — the first buttons to press, what to know in your first hour, leveling tips, and the mistake that kills new players. Written for people who have never played WoW.</p>
+
+  <div class="g-card">
+    <h2>Before you start — the basics</h2>
+    <p style="margin-bottom:9px"><b>Play together.</b> WoW Forever has no realm list — you pick a ruleset (start on Normal), and everyone on that ruleset shares one world. To group up you must be on the same ruleset AND the same faction (Alliance or Horde) as your friends. Decide together before anyone creates a character.</p>
+    <p style="margin-bottom:9px"><b>Talents start at level 10.</b> You earn talent points as you level — 51 by level 60 — and spend them in your class&#x27;s three trees. Your &#x27;spec&#x27; is simply the tree you spend the most in. A class trainer in any major city can reset them, and at level 40 you unlock a second talent set you can swap to.</p>
+    <p style="margin-bottom:9px"><b>The leveling loop.</b> Quest, kill one enemy at a time at first, loot everything, and sell junk to vendors. Quest rewards are your main gear upgrades — for melee and hunters, a weapon upgrade beats everything else.</p>
+    <p style="margin-bottom:9px"><b>Staying alive.</b> Eat food and drink water between fights to refill health and mana — everyone does, it&#x27;s not a weakness. Pulling one extra enemy is the #1 cause of death for new players. Pull small until a fight feels boring.</p>
+    <p style="margin-bottom:9px"><b>In a dungeon group.</b> Five players: one tank (holds the enemies&#x27; attention), one healer, three damage. Your job as damage: let the tank pull first, then attack the same enemy the tank is fighting. Don&#x27;t run ahead, and don&#x27;t hit enemies nobody else is fighting.</p>
+    <p style="margin-bottom:9px"><b>How to use these guides.</b> Find your character below — if you took the quiz, your result screen links straight to your guide. &#x27;First buttons&#x27; is the order to learn things in, not a strict rotation: while leveling, using the right button late beats never using it.</p>
+  </div>
+
+  <div class="g-cls">How WoW actually works — the stuff the game never explains</div>
+  <div class="g-card">
+    <h2>Stopping enemy spells — interrupts</h2>
+    <p style="margin-bottom:9px"><b>Casting and cast bars.</b> When an enemy uses a big spell, a bar appears and fills up. If it finishes, the spell happens. While it fills, the enemy can be stopped.</p>
+    <p style="margin-bottom:9px"><b>Interrupt.</b> An ability that cancels the spell being cast AND locks that kind of spell for a few seconds. Yours: Rogue — Kick. Warrior — Pummel. Mage — Counterspell. Shaman — Earth Shock. A warlock&#x27;s Felhunter pet has one too (Spell Lock). Shadow priests can take the Silence talent. Hunters, druids and paladins have NO true interrupt — read the next line.</p>
+    <p style="margin-bottom:9px"><b>Stuns and silences.</b> The backup plan: a stunned or silenced enemy can&#x27;t cast either. Paladin — Hammer of Justice. Rogue — Cheap Shot / Kidney Shot. Druid — Bash (in Bear Form). Hunter — Intimidation (Beast Mastery pet stun) or Scatter Shot (Marksmanship). If your class can&#x27;t interrupt, stunning and killing the caster fast is your job.</p>
+    <p style="margin-bottom:9px"><b>What to interrupt first.</b> Enemy HEALS — an interrupted heal is a dead enemy. Then fears and mind controls (they turn your own side against you), then big damage spells aimed at your tank. A normal small spell usually isn&#x27;t worth it.</p>
+    <p style="margin-bottom:9px"><b>If nobody interrupts.</b> Healers heal forever, summoners summon friends, and fear casters scatter your group. In dungeons, &#x27;we died because nothing got interrupted&#x27; is one of the most common wipe causes there is.</p>
+  </div>
+  <div class="g-card">
+    <h2>Aggro — who the enemy attacks</h2>
+    <p style="margin-bottom:9px"><b>Threat (aggro).</b> Every enemy keeps a mental list of who has annoyed it most — damage and healing both count. Whoever is on top gets attacked. &#x27;Having aggro&#x27; means it&#x27;s coming for you.</p>
+    <p style="margin-bottom:9px"><b>The tank&#x27;s job.</b> Staying on top of that list on purpose, with armor and a shield to survive it. One player tanks, everyone else&#x27;s job includes NOT climbing above them.</p>
+    <p style="margin-bottom:9px"><b>Taunt.</b> The tank&#x27;s rescue button: forces an enemy to attack the tank for a few seconds, no matter what the list said. If something runs past the tank at your healer, the tank taunts it back.</p>
+    <p style="margin-bottom:9px"><b>Your rules as damage.</b> Let the tank hit the enemy a few times BEFORE you go all-out. Attack the same enemy the tank is attacking. If an enemy does chase you, run TOWARD the tank (so they can take it off you) — never away, and never keep hitting it.</p>
+    <p style="margin-bottom:9px"><b>Pet tanks.</b> Same rules with a pet: let your pet hit first and build its lead, then shoot. If you open with your biggest shot, the enemy skips the pet and comes straight for you.</p>
+  </div>
+  <div class="g-card">
+    <h2>Crowd control — taking enemies out of the fight</h2>
+    <p style="margin-bottom:9px"><b>Crowd control (CC).</b> Abilities that disable an enemy without killing it, so your group fights one enemy at a time instead of four: a mage&#x27;s Polymorph turns one into a sheep, a rogue&#x27;s Sap knocks one out before the fight, a hunter&#x27;s Freezing Trap freezes one, roots pin one in place, fear sends one running.</p>
+    <p style="margin-bottom:9px"><b>CC breaks.</b> Sheep, traps and Sap BREAK the moment that enemy takes damage. One careless area spell can wake everything up at once. Never hit a disabled enemy, and don&#x27;t use area attacks near one.</p>
+    <p style="margin-bottom:9px"><b>Target marks.</b> Group leaders stick icons on enemies. Skull almost always means &#x27;kill this one first&#x27;. Moon usually means &#x27;mage, sheep this one&#x27;. If you&#x27;re not sure what a mark means in your group, ask — it&#x27;s a normal question.</p>
+    <p style="margin-bottom:9px"><b>Focus fire.</b> The flip side of CC: everyone attacks the SAME awake enemy until it&#x27;s dead. Five half-dead enemies hit just as hard as five healthy ones — kills shrink the danger, damage spread everywhere doesn&#x27;t.</p>
+  </div>
+  <div class="g-card">
+    <h2>Your other buttons — staying alive</h2>
+    <p style="margin-bottom:9px"><b>Defensive cooldowns.</b> Every class has one or two &#x27;oh no&#x27; buttons (a paladin&#x27;s bubble, a mage&#x27;s Ice Block, a rogue&#x27;s Vanish, a warrior&#x27;s Shield Wall). Use them when a fight suddenly goes wrong or you&#x27;re near 30% health. A defensive you never press saves nobody — they recharge.</p>
+    <p style="margin-bottom:9px"><b>Potions and bandages.</b> Health potions are instant and work mid-fight. Bandages (from the First Aid skill) heal a lot but break if you&#x27;re hit — bandage when nothing is attacking you. Carry both; vendors and other players sell them.</p>
+    <p style="margin-bottom:9px"><b>Cooldowns.</b> Your strongest abilities can&#x27;t be spammed — they recharge over seconds or minutes (that&#x27;s the &#x27;cooldown&#x27;). Big cooldowns are for big moments: hard enemies, extra pulls, bosses. Using one on a normal enemy then facing a boss without it is the classic trade-off.</p>
+    <p style="margin-bottom:9px"><b>Food, drink and buffs.</b> Eat and drink between fights — full health and mana, faster starts. Some food and spells give &#x27;buffs&#x27;: temporary stat boosts. In a group, share yours; someone will share theirs.</p>
+  </div>
+  <div class="g-card">
+    <h2>Where you stand — positioning</h2>
+    <p style="margin-bottom:9px"><b>Don&#x27;t stand in it.</b> Fire on the ground, poison pools, glowing circles: if it&#x27;s under your feet and you didn&#x27;t put it there, move. Most avoidable deaths in the game are just standing still in something bad.</p>
+    <p style="margin-bottom:9px"><b>Front and back.</b> Enemies mostly hit what&#x27;s in front of them. Rogues and cat druids literally do more damage from BEHIND. When someone else has the enemy&#x27;s attention, stand behind it — safer and stronger.</p>
+    <p style="margin-bottom:9px"><b>Line of sight.</b> Enemy casters can&#x27;t cast through walls. Pull them around a corner and they have to walk to you — straight into your group. Tanks do this on purpose; don&#x27;t stand out in the open undoing it.</p>
+    <p style="margin-bottom:9px"><b>Runners.</b> Many enemies try to flee at low health — and they run TO their friends, bringing them back. Slow them, stun them, or finish them fast. A runner nobody stopped is how a 2-enemy fight becomes a 6-enemy fight.</p>
+  </div>
+  <div class="g-card">
+    <h2>Words you&#x27;ll hear — quick translations</h2>
+    <p style="margin-bottom:9px"><b>Mob.</b> Any computer-controlled enemy. (From old game slang — it&#x27;s just &#x27;a monster&#x27;.)</p>
+    <p style="margin-bottom:9px"><b>Pull.</b> Starting a fight with an enemy or group, usually one pack at a time.</p>
+    <p style="margin-bottom:9px"><b>Add.</b> An extra enemy that joins a fight already in progress. Usually bad news.</p>
+    <p style="margin-bottom:9px"><b>Elite.</b> A much stronger enemy with a gold dragon around its portrait. Elites are built for groups — solo players should walk around them.</p>
+    <p style="margin-bottom:9px"><b>Buff / debuff.</b> A helpful temporary effect on you (buff) or a harmful one on you or an enemy (debuff). Curses, poisons and diseases are debuffs some classes can remove (&#x27;dispel&#x27; / &#x27;cleanse&#x27;).</p>
+    <p style="margin-bottom:9px"><b>DoT / HoT.</b> Damage over Time / Healing over Time — effects that keep ticking after one button press.</p>
+    <p style="margin-bottom:9px"><b>Proc.</b> A random bonus effect triggering — &#x27;it procced&#x27; means the lucky thing happened.</p>
+    <p style="margin-bottom:9px"><b>Crit.</b> A critical hit: an extra-strong hit (usually double damage) that happens by chance.</p>
+    <p style="margin-bottom:9px"><b>Spec.</b> Your specialisation — the talent tree you put most points in. &#x27;What&#x27;s your spec?&#x27; means &#x27;which of the three versions of your class are you?&#x27;</p>
+    <p style="margin-bottom:9px"><b>Wipe.</b> The whole group died. Everyone runs back together and tries again — normal, not a disaster.</p>
+    <p style="margin-bottom:9px"><b>NPC.</b> Any computer-controlled character — quest givers, vendors, trainers. Yellow name = neutral, red = will attack, green = friendly.</p>
+  </div>
+  <div class="g-card">
+    <h2>Out in the world — Forever systems</h2>
+    <p style="margin-bottom:9px"><b>Hearthstone.</b> A stone in your bag that teleports you back to one chosen inn (10-second cast, 1-hour cooldown). Talk to the innkeeper in each new quest town and set it there — it&#x27;s your &#x27;go home&#x27; button.</p>
+    <p style="margin-bottom:9px"><b>Rested experience.</b> Logging out inside an inn or a capital city builds up rested XP (a little every few hours, up to about a level and a half). While you have it, kills give DOUBLE experience. Log out in inns — it&#x27;s free progress while you sleep.</p>
+    <p style="margin-bottom:9px"><b>Campfires.</b> A new WoW Forever system: around level 5 a quest teaches you Basic Campfire (from Cooking). Camps and campfires out in the world give rested XP and useful buffs, and other players can add to your fire. Worth learning early.</p>
+    <p style="margin-bottom:9px"><b>Dying.</b> You turn into a ghost and run back to your body to revive where you fell. A Spirit Healer can revive you instantly instead, but it damages your gear and — above level 10 — leaves you weak (resurrection sickness) for up to 10 minutes. Running back is almost always better.</p>
+    <p style="margin-bottom:9px"><b>Repairs.</b> Your gear wears out as you fight and especially when you die. Vendors repair it for coins — repair before dungeon runs, or your armor quietly breaks mid-fight.</p>
+    <p style="margin-bottom:9px"><b>Trainers.</b> New abilities aren&#x27;t automatic: every couple of levels, visit your class trainer in a town or city and BUY your new spells and their stronger ranks. Forgetting this is why some new players feel mysteriously weak.</p>
+    <p style="margin-bottom:9px"><b>Getting a group.</b> There&#x27;s no automatic dungeon queue in WoW Forever: groups form through the listing tool and chat, and you walk to the dungeon entrance together. Slow, but it&#x27;s how you&#x27;ll meet people.</p>
+    <p style="margin-bottom:9px"><b>Your first mount.</b> At level 40 you can learn riding and buy your first mount (about 100 gold) — much faster travel. It&#x27;s the big purchase of your leveling life: don&#x27;t blow all your gold at level 30.</p>
+  </div>
+
+  <div class="g-cls">The 20 damage characters — starter guides</div>
+  <div class="g-chips">
+    <a class="g-chip" href="#arms">Warrior — Arms</a>
+    <a class="g-chip" href="#fury">Warrior — Fury</a>
+    <a class="g-chip" href="#retribution">Paladin — Retribution</a>
+    <a class="g-chip" href="#beast-mastery">Hunter — Beast Mastery</a>
+    <a class="g-chip" href="#marksmanship">Hunter — Marksmanship</a>
+    <a class="g-chip" href="#survival">Hunter — Survival</a>
+    <a class="g-chip" href="#assassination">Rogue — Assassination</a>
+    <a class="g-chip" href="#combat">Rogue — Combat</a>
+    <a class="g-chip" href="#subtlety">Rogue — Subtlety</a>
+    <a class="g-chip" href="#shadow">Priest — Shadow</a>
+    <a class="g-chip" href="#elemental">Shaman — Elemental</a>
+    <a class="g-chip" href="#enhancement">Shaman — Enhancement</a>
+    <a class="g-chip" href="#arcane">Mage — Arcane</a>
+    <a class="g-chip" href="#fire">Mage — Fire</a>
+    <a class="g-chip" href="#frost">Mage — Frost</a>
+    <a class="g-chip" href="#affliction">Warlock — Affliction</a>
+    <a class="g-chip" href="#demonology">Warlock — Demonology</a>
+    <a class="g-chip" href="#destruction">Warlock — Destruction</a>
+    <a class="g-chip" href="#balance">Druid — Balance</a>
+    <a class="g-chip" href="#feral-cat">Druid — Feral (Cat)</a>
+  </div>
+
+  <div class="g-cls">Warrior</div>
+  <div class="g-card" id="arms">
+    <h2>Warrior — Arms</h2>
+    <span class="g-pill type">Melee</span><span class="g-pill med">First-timer: Medium</span>
+    <p class="g-desc">One big two-handed weapon. Slow heavy hits + wounds that bleed over time.</p>
+    <h3>Your first buttons — in order</h3>
+    <ol>
+        <li><b>Rend.</b> Open with this — a wound that keeps bleeding over time.</li>
+        <li><b>Heroic Strike.</b> Your filler hit when you have spare rage (rage is the energy you build up by hitting enemies and being hit).</li>
+        <li><b>Overpower.</b> Use it whenever it lights up — it triggers when an enemy dodges you.</li>
+        <li><b>Victory Rush.</b> From level 20: use it right after a kill — it gives you health back.</li>
+        <li><b>Mortal Strike.</b> At level 40 this becomes your biggest hit. It also cuts the enemy&#x27;s healing in half for a short time.</li>
+    </ol>
+    <h3>Good to know in your first hour</h3>
+    <ul>
+        <li>Battle Stance is your home while leveling — stay in it.</li>
+        <li>Sweeping Strikes (level 30) makes your hits splash onto a second nearby enemy, so two-enemy fights get much easier.</li>
+    </ul>
+    <h3>Leveling tips</h3>
+    <ul>
+        <li>Your weapon IS your character: a better two-handed weapon is a bigger upgrade than any armor piece. Take weapon quest rewards first.</li>
+        <li>On gear, look for Strength first, then Stamina. Eat food between fights — you have almost no self-healing.</li>
+    </ul>
+    <h3>Watch out</h3>
+    <ul class="g-watch">
+        <li>Pulling two or three enemies at once is how new warriors die. Pull one, finish it, eat, repeat.</li>
+        <li>Don&#x27;t open every fight at full sprint — walking in with no rage means a slow start. It builds as the fight goes.</li>
+    </ul>
+  </div>
+  <div class="g-card" id="fury">
+    <h2>Warrior — Fury</h2>
+    <span class="g-pill type">Melee</span><span class="g-pill med">First-timer: Medium</span>
+    <p class="g-desc">Two weapons, fast non-stop hits. Spin attack hits enemies around you.</p>
+    <h3>Your first buttons — in order</h3>
+    <ol>
+        <li><b>Battle Shout.</b> Keep this buff on yourself — it raises your attack power.</li>
+        <li><b>Bloodthirst.</b> Your main hit. Use it every time it&#x27;s ready.</li>
+        <li><b>Whirlwind.</b> Spin and hit every enemy around you — great when two enemies are on you.</li>
+        <li><b>Heroic Strike.</b> Burns your extra rage on a harder hit.</li>
+        <li><b>Execute.</b> Only works on enemies under 20% health — it&#x27;s your finisher. Save it for the end of a fight.</li>
+    </ol>
+    <h3>Good to know in your first hour</h3>
+    <ul>
+        <li>Two weapons means more hits, which means more rage — Fury fights speed up as they go.</li>
+        <li>Expect to miss more than an Arms warrior early on. Two-weapon fighting starts inaccurate and gets better with gear.</li>
+    </ul>
+    <h3>Leveling tips</h3>
+    <ul>
+        <li>Keep BOTH weapons upgraded, not just one — a weak off-hand weapon drags the whole build down.</li>
+        <li>On gear: Strength and Agility. Agility also gives you critical hits, which Fury loves.</li>
+    </ul>
+    <h3>Watch out</h3>
+    <ul class="g-watch">
+        <li>You still have no real self-healing. If a fight goes bad, run early — don&#x27;t wait until you&#x27;re almost dead.</li>
+        <li>Whirlwind feels great and pulls extra enemies by accident. Check what&#x27;s standing near your target before you spin.</li>
+    </ul>
+  </div>
+  <div class="g-cls">Paladin</div>
+  <div class="g-card" id="retribution">
+    <h2>Paladin — Retribution</h2>
+    <span class="g-pill type">Melee</span><span class="g-pill">First-timer: Easy</span>
+    <p class="g-desc">Holy knight, big weapon. Can heal itself + a bubble makes it immune briefly.</p>
+    <h3>Your first buttons — in order</h3>
+    <ol>
+        <li><b>Keep a Seal active.</b> A Seal adds holy damage to every swing. Once you learn Seal of Command, that&#x27;s your main one.</li>
+        <li><b>Holy Strike.</b> From level 6 — a holy melee hit. One of your first real buttons.</li>
+        <li><b>Judgement.</b> Spends your Seal&#x27;s power on a burst of holy damage. In WoW Forever your Seal stays up afterwards, so judge freely.</li>
+        <li><b>Consecration.</b> From level 20 — lays holy fire on the ground. Use it when enemies stand grouped together.</li>
+        <li><b>Hammer of Wrath.</b> A ranged holy hammer that only works on enemies under 20% health — your finisher.</li>
+    </ol>
+    <h3>Good to know in your first hour</h3>
+    <ul>
+        <li>Seal of Fury (level 10) adds holy damage to your swings and gives you a small damage shield on top.</li>
+        <li>Your bubble (Divine Shield) makes you immune for a few seconds. It&#x27;s your panic button — hit it, heal, then keep fighting.</li>
+        <li>You can heal yourself with your holy spells between fights. That&#x27;s your big solo advantage over a warrior.</li>
+    </ul>
+    <h3>Leveling tips</h3>
+    <ul>
+        <li>Use a slow, heavy two-handed weapon — Seal of Command hits much harder with slow weapons.</li>
+        <li>On gear: Strength and Stamina first, with some Intellect so you have mana to heal.</li>
+    </ul>
+    <h3>Watch out</h3>
+    <ul class="g-watch">
+        <li>You have no interrupt and no slow: enemy casters will finish their spells, and runners will run. Finish runners with Hammer of Wrath or Judgement.</li>
+        <li>Don&#x27;t spend all your mana healing in the middle of a fight — an empty paladin can&#x27;t fight back. Heal between fights instead.</li>
+    </ul>
+  </div>
+  <div class="g-cls">Hunter</div>
+  <div class="g-card" id="beast-mastery">
+    <h2>Hunter — Beast Mastery</h2>
+    <span class="g-pill type">Ranged + Pet</span><span class="g-pill">First-timer: Easy</span>
+    <p class="g-desc">Your pet takes the hits for you while you shoot from far away. Easiest alone.</p>
+    <h3>Your first buttons — in order</h3>
+    <ol>
+        <li><b>Hunter&#x27;s Mark.</b> Put this on the enemy first — it takes extra damage from you.</li>
+        <li><b>Send your pet in.</b> Your pet attacks first and uses Growl, which forces the enemy to fight the pet instead of you.</li>
+        <li><b>Serpent Sting.</b> A poison shot that keeps hurting over time. Put it on and leave it.</li>
+        <li><b>Arcane Shot.</b> Instant damage, no waiting. Your main shot while leveling.</li>
+        <li><b>Bestial Wrath.</b> A talent later in the tree: your pet rages for 18 seconds, dealing 50% more damage and impossible to stop. Save it for hard fights.</li>
+    </ol>
+    <h3>Good to know in your first hour</h3>
+    <ul>
+        <li>You tame your first real pet at level 10 — and in WoW Forever you can tame beasts up to 2 levels higher than you. Visit a pet trainer to teach it Growl and other skills.</li>
+        <li>Your pet gets stronger from YOUR gear, so your upgrades are its upgrades too.</li>
+        <li>At level 20 all hunters learn Aimed Shot. It shares a cooldown with Multi-Shot, so pick one per situation.</li>
+        <li>If you take the Summon Hawk talent, it shares a cooldown with Arcane Shot — one or the other each time.</li>
+    </ul>
+    <h3>Leveling tips</h3>
+    <ul>
+        <li>On gear: Agility above everything — it powers you and your pet.</li>
+        <li>Traps work during combat in WoW Forever. A Freezing Trap can park one extra enemy while your pet handles another.</li>
+    </ul>
+    <h3>Watch out</h3>
+    <ul class="g-watch">
+        <li>If your pet dies, everything runs straight at a lightly-armored you. Heal it with Mend Pet during hard fights, and let it get the enemy&#x27;s attention before you start shooting.</li>
+    </ul>
+  </div>
+  <div class="g-card" id="marksmanship">
+    <h2>Hunter — Marksmanship</h2>
+    <span class="g-pill type">Ranged</span><span class="g-pill">First-timer: Easy</span>
+    <p class="g-desc">A sniper. Slow, big shots from far away. Can play with no pet for +20% damage.</p>
+    <h3>Your first buttons — in order</h3>
+    <ol>
+        <li><b>Hunter&#x27;s Mark.</b> Always first — marked enemies take more damage from you.</li>
+        <li><b>Aimed Shot.</b> From level 20: your huge shot. It takes 2 seconds to fire and you must stand still — open fights with it.</li>
+        <li><b>Arcane Shot.</b> Instant filler damage between bigger shots.</li>
+        <li><b>Multi-Shot.</b> Hits up to 3 nearby enemies. It shares a cooldown with Aimed Shot: Multi-Shot for groups, Aimed Shot for one target.</li>
+        <li><b>Auto Shot.</b> Your bow or gun keeps firing on its own — as long as you keep your distance and give it a moment standing still to fire.</li>
+    </ol>
+    <h3>Good to know in your first hour</h3>
+    <ul>
+        <li>The Lone Wolf talent gives you +20% damage with NO pet at all. It&#x27;s strong, but nothing holds enemies off you — only take it once keeping your distance feels easy.</li>
+        <li>Sniper Shot, at 31 points in the tree, is this spec&#x27;s long-range finisher talent.</li>
+    </ul>
+    <h3>Leveling tips</h3>
+    <ul>
+        <li>On gear: Agility first. A slower bow or gun with bigger damage numbers usually beats a fast, weak one.</li>
+        <li>Fight at maximum range. Distance is your armor.</li>
+    </ul>
+    <h3>Watch out</h3>
+    <ul class="g-watch">
+        <li>In WoW Forever your Auto Shot needs a brief stand-still before it fires — constant stutter-stepping quietly kills your damage. Plant your feet, shoot, then move.</li>
+        <li>If an enemy reaches you, your shots get interrupted. Slow it (Concussive Shot), back up, and reset your range.</li>
+    </ul>
+  </div>
+  <div class="g-card" id="survival">
+    <h2>Hunter — Survival</h2>
+    <span class="g-pill type">Melee + Pet</span><span class="g-pill med">First-timer: Medium</span>
+    <p class="g-desc">Fights up close next to its pet. Sets traps that hold or hurt enemies.</p>
+    <h3>Your first buttons — in order</h3>
+    <ol>
+        <li><b>Open from range.</b> Start with your shots the way every hunter does — then stay in close and keep fighting.</li>
+        <li><b>Raptor Strike.</b> A hard melee hit. One of your main close-range buttons.</li>
+        <li><b>Mongoose Bite.</b> A counter-hit that becomes available in melee. With the Lacerating Strikes talent, it also makes the enemy bleed.</li>
+        <li><b>Wing Clip.</b> Slows an enemy&#x27;s movement — use it on anything trying to run, or to buy yourself space.</li>
+        <li><b>Your traps.</b> Freezing Trap parks an enemy in ice; Immolation Trap sets one on fire. In WoW Forever traps work in combat, and they&#x27;re real weapons for you.</li>
+    </ol>
+    <h3>Good to know in your first hour</h3>
+    <ul>
+        <li>Expose Prey (talent) can set up Mongoose Bite without waiting for a dodge — the tree is built around that combo.</li>
+        <li>You&#x27;re the only hunter who wants to be in melee. Your pet still matters: it holds one enemy while you duel another.</li>
+    </ul>
+    <h3>Leveling tips</h3>
+    <ul>
+        <li>You need TWO good weapons: your bow/gun and your melee weapon. Don&#x27;t let either one fall behind.</li>
+        <li>On gear: Agility and Stamina — you take more hits than other hunters.</li>
+    </ul>
+    <h3>Watch out</h3>
+    <ul class="g-watch">
+        <li>You wear hunter armor, not warrior armor. Duelling two enemies at once in melee is a loss — trap one first, then fight the other.</li>
+    </ul>
+  </div>
+  <div class="g-cls">Rogue</div>
+  <div class="g-card" id="assassination">
+    <h2>Rogue — Assassination</h2>
+    <span class="g-pill type">Melee</span><span class="g-pill med">First-timer: Medium</span>
+    <p class="g-desc">Stabs with daggers. Poisons keep damaging the enemy over time.</p>
+    <h3>Your first buttons — in order</h3>
+    <ol>
+        <li><b>Stealth opener.</b> Start fights hidden. Ambush for a huge first hit, or Garrote to start a bleed.</li>
+        <li><b>Sinister Strike.</b> Your builder: each hit adds a combo point on the enemy (up to 5).</li>
+        <li><b>Keep poisons on.</b> Coat your weapons with poison and re-apply it when it wears off — a steady share of your damage comes from poison.</li>
+        <li><b>Slice and Dice.</b> Spend a couple of combo points on this early — you attack faster while it&#x27;s running.</li>
+        <li><b>Eviscerate.</b> Spend 4–5 combo points on this finisher for your biggest hit.</li>
+    </ol>
+    <h3>Good to know in your first hour</h3>
+    <ul>
+        <li>Combo points are the rogue engine: builders add points, finishers spend them, and more points means a stronger finisher.</li>
+        <li>Your energy bar refills on its own over a few seconds. Starting a fight at full energy matters more than any single button.</li>
+    </ul>
+    <h3>Leveling tips</h3>
+    <ul>
+        <li>On gear: Agility first, then Strength. Keep your main-hand weapon sharp and current — most of your damage starts there.</li>
+        <li>Sap one enemy before fighting a group — it sleeps through the whole fight if nobody hits it.</li>
+    </ul>
+    <h3>Watch out</h3>
+    <ul class="g-watch">
+        <li>You have no self-healing at all. Eat between fights, and if a pull goes wrong, Vanish and walk away instead of dying bravely.</li>
+    </ul>
+  </div>
+  <div class="g-card" id="combat">
+    <h2>Rogue — Combat</h2>
+    <span class="g-pill type">Melee</span><span class="g-pill med">First-timer: Medium</span>
+    <p class="g-desc">More head-on than other rogues, less sneaking. Steady sword / axe attacks.</p>
+    <h3>Your first buttons — in order</h3>
+    <ol>
+        <li><b>Sinister Strike.</b> Your builder — adds combo points. This is most of your button presses.</li>
+        <li><b>Slice and Dice.</b> Spend your first few combo points here: attacking faster means more of everything.</li>
+        <li><b>Eviscerate.</b> Your finisher at 4–5 combo points.</li>
+        <li><b>Blade Flurry.</b> For two-enemy fights: your attacks also hit a second nearby enemy.</li>
+        <li><b>Adrenaline Rush.</b> The tree&#x27;s big talent: your energy floods back for a short burst window. Save it for hard fights.</li>
+    </ol>
+    <h3>Good to know in your first hour</h3>
+    <ul>
+        <li>In WoW Forever, poisons and sharpening stones work TOGETHER instead of replacing each other — use both.</li>
+        <li>One-handed axes are rogue weapons here too, so swords, maces and axes are all fair game.</li>
+        <li>You stay in Stealth after using Sap in WoW Forever — sap, then pick your real target.</li>
+    </ul>
+    <h3>Leveling tips</h3>
+    <ul>
+        <li>A slow main-hand weapon makes each Sinister Strike hit harder. On gear: Agility and Strength.</li>
+        <li>This is the head-on rogue — of the three, it spends the least time worrying about stealth.</li>
+    </ul>
+    <h3>Watch out</h3>
+    <ul class="g-watch">
+        <li>Melee only and no self-heals, so eat between pulls. Two enemies at once without Blade Flurry ready is a bad trade.</li>
+    </ul>
+  </div>
+  <div class="g-card" id="subtlety">
+    <h2>Rogue — Subtlety</h2>
+    <span class="g-pill type">Melee</span><span class="g-pill hard">First-timer: Harder</span>
+    <p class="g-desc">Sneaks unseen and strikes from hiding. Wounds keep bleeding over time.</p>
+    <h3>Your first buttons — in order</h3>
+    <ol>
+        <li><b>Stealth opener.</b> Cheap Shot stuns the enemy as you open; Ambush is the huge-damage option with a dagger. Pick per fight.</li>
+        <li><b>Hemorrhage.</b> Your main attack out in the open — it wounds the enemy so it keeps suffering from your hits.</li>
+        <li><b>Backstab.</b> Only works from behind the enemy — and it&#x27;s one of your hardest hits. Get behind whenever you can.</li>
+        <li><b>Kidney Shot.</b> Spends combo points to stun. Use it to stop a caster or to breathe mid-fight.</li>
+        <li><b>Eviscerate.</b> Your damage finisher at 4–5 combo points.</li>
+    </ol>
+    <h3>Good to know in your first hour</h3>
+    <ul>
+        <li>Preparation (talent) instantly refreshes your other cooldowns — that&#x27;s a second Vanish and a second Blind in one fight. It&#x27;s your reset button.</li>
+        <li>Elusiveness (talent) cuts the cooldowns of Vanish and Blind, so your escapes come back faster than other rogues&#x27;.</li>
+    </ul>
+    <h3>Leveling tips</h3>
+    <ul>
+        <li>Positioning is damage: behind the enemy is where this spec lives. Circle as you fight.</li>
+        <li>Daggers make your stealth openers and Backstab hit their hardest. On gear: Agility first.</li>
+    </ul>
+    <h3>Watch out</h3>
+    <ul class="g-watch">
+        <li>Your whole plan starts in stealth. If an enemy sees you first, the opener is gone and the fight is twice as hard — approach pulls slowly and from the side.</li>
+    </ul>
+  </div>
+  <div class="g-cls">Priest</div>
+  <div class="g-card" id="shadow">
+    <h2>Priest — Shadow</h2>
+    <span class="g-pill type">Ranged</span><span class="g-pill med">First-timer: Medium</span>
+    <p class="g-desc">Dark spells hurt over time. Shadow form boosts them, damage heals group a bit.</p>
+    <h3>Your first buttons — in order</h3>
+    <ol>
+        <li><b>Shadow Word: Pain.</b> Always first — shadow damage that keeps ticking over time.</li>
+        <li><b>Mind Blast.</b> Your direct shadow hit. Use it whenever it&#x27;s ready.</li>
+        <li><b>Mind Flay.</b> A channelled shadow beam that also slows the enemy&#x27;s movement — good while it walks toward you.</li>
+        <li><b>Shoot (your wand).</b> Between spells, your wand does real damage. In WoW Forever you need to stand still for wand shots to fire.</li>
+        <li><b>Shadow Word: Death.</b> From level 32: a heavy finisher — use it to end fights.</li>
+    </ol>
+    <h3>Good to know in your first hour</h3>
+    <ul>
+        <li>Shadowform, the tree&#x27;s form, makes your shadow spells cheaper in WoW Forever, so long fights strain your mana less.</li>
+        <li>Your damage trickle-heals your group a little while you fight (that&#x27;s from your shadow talents) — in a group, you quietly patch everyone.</li>
+        <li>At level 20 every priest gets Devouring Plague (another damage-over-time spell) and Fear Ward (protection against being feared).</li>
+        <li>The Spirit Tap talent gives you mana back after kills — it&#x27;s what keeps shadow leveling moving.</li>
+    </ul>
+    <h3>Leveling tips</h3>
+    <ul>
+        <li>On gear: Intellect and Spirit. And treat your wand like a real weapon — upgrade it whenever you can.</li>
+        <li>Shield yourself with Power Word: Shield BEFORE the pull starts, not in a panic during it.</li>
+    </ul>
+    <h3>Watch out</h3>
+    <ul class="g-watch">
+        <li>You wear cloth — the lightest armor in the game. If two enemies reach you, you&#x27;re in trouble: fear one away (Psychic Scream) and finish the other.</li>
+    </ul>
+  </div>
+  <div class="g-cls">Shaman</div>
+  <div class="g-card" id="elemental">
+    <h2>Shaman — Elemental</h2>
+    <span class="g-pill type">Ranged</span><span class="g-pill">First-timer: Easy</span>
+    <p class="g-desc">Lightning from far away + fire that keeps burning. Totems make your group stronger.</p>
+    <h3>Your first buttons — in order</h3>
+    <ol>
+        <li><b>Flame Shock.</b> Sets the enemy burning over time. Open with it.</li>
+        <li><b>Lightning Bolt.</b> Your main cast — most of your damage comes from this.</li>
+        <li><b>Chain Lightning.</b> When 2 or more enemies stand together, this jumps between them.</li>
+        <li><b>Earth Shock.</b> Instant damage — and it interrupts an enemy&#x27;s spell cast. Save it for when you see an enemy casting something nasty.</li>
+        <li><b>Lightning Shield.</b> Keep this buff on yourself: attackers get zapped when they hit you.</li>
+    </ol>
+    <h3>Good to know in your first hour</h3>
+    <ul>
+        <li>There&#x27;s no Lava Burst in WoW Forever — this tree&#x27;s big talent is Call of Thunder, which supercharges your lightning instead.</li>
+        <li>Totems are placeable helpers that last a short while. Searing Totem adds fire damage; others strengthen your whole group. Drop them when a fight will last, not for a 5-second kill.</li>
+    </ul>
+    <h3>Leveling tips</h3>
+    <ul>
+        <li>On gear: Intellect and Spirit. Drink between pulls to refill mana.</li>
+        <li>You wear mail armor — tougher than cloth casters — but you&#x27;re still a caster. Keep your distance.</li>
+    </ul>
+    <h3>Watch out</h3>
+    <ul class="g-watch">
+        <li>Getting hit pushes your casts back and slows them down. If an enemy reaches you, Frost Shock slows it — step away, then cast.</li>
+    </ul>
+  </div>
+  <div class="g-card" id="enhancement">
+    <h2>Shaman — Enhancement</h2>
+    <span class="g-pill type">Melee</span><span class="g-pill med">First-timer: Medium</span>
+    <p class="g-desc">Weapon can hit extra times for free. Melee hits power up instant lightning.</p>
+    <h3>Your first buttons — in order</h3>
+    <ol>
+        <li><b>Keep your weapon imbue up.</b> Rockbiter Weapon early on; from level 30, Windfury Weapon — the one that makes your weapon hit extra times for free.</li>
+        <li><b>Stormstrike.</b> Once you learn it, this is your biggest weapon hit. Use it on cooldown.</li>
+        <li><b>Flame Shock.</b> A burn over time — cheap and always worth having on the enemy.</li>
+        <li><b>Lightning Bolt.</b> Your melee hits build up a talent (Maelstrom Weapon) that makes Lightning Bolt instant. When it&#x27;s ready, fire it off — free damage.</li>
+        <li><b>Earth Shock.</b> Instant damage that also interrupts enemy spell casts. Shocks share one cooldown, so pick the right shock for the moment.</li>
+    </ol>
+    <h3>Good to know in your first hour</h3>
+    <ul>
+        <li>In WoW Forever your weapon imbues work alongside sharpening stones — use both.</li>
+        <li>Totem presets (level 20) let you drop your usual totems much faster.</li>
+        <li>Two-handed axes and maces are yours by default here — a slow two-hander with Windfury is the classic leveling route.</li>
+    </ul>
+    <h3>Leveling tips</h3>
+    <ul>
+        <li>A slow weapon wins with Windfury: fewer, bigger swings mean bigger free extra hits. On gear: Strength and Agility.</li>
+        <li>Your melee hits power your spells and your spells support your melee — if you&#x27;re only doing one half, you&#x27;re playing half the spec.</li>
+    </ul>
+    <h3>Watch out</h3>
+    <ul class="g-watch">
+        <li>Healing mid-fight empties the mana you need for shocks and costs you damage. Top yourself up AFTER the fight, and keep a totem down when fights will last.</li>
+    </ul>
+  </div>
+  <div class="g-cls">Mage</div>
+  <div class="g-card" id="arcane">
+    <h2>Mage — Arcane</h2>
+    <span class="g-pill type">Ranged</span><span class="g-pill med">First-timer: Medium</span>
+    <p class="g-desc">Each magic blast makes you stronger, but costs more mana (your spell energy).</p>
+    <h3>Your first buttons — in order</h3>
+    <ol>
+        <li><b>Arcane Blast.</b> Your main nuke. Each cast makes the NEXT Arcane Blast stronger — but also costs more mana. That&#x27;s the whole spec in one button.</li>
+        <li><b>Arcane Missiles.</b> A channelled stream of missiles. Steady, reliable damage when you need to mind your mana.</li>
+        <li><b>Frostbolt.</b> A cheap, safe filler — and it slows the enemy walking at you.</li>
+        <li><b>Evocation.</b> Channel to refill a big chunk of mana. Use it between fights or when you&#x27;re safely out of reach.</li>
+    </ol>
+    <h3>Good to know in your first hour</h3>
+    <ul>
+        <li>Mana is your real health bar. Blast stacks feel amazing and drain you in seconds — the skill is knowing when to stop stacking and coast.</li>
+        <li>Conjure your own water and drink often. Running dry mid-fight means standing there doing nothing.</li>
+    </ul>
+    <h3>Leveling tips</h3>
+    <ul>
+        <li>On gear: Intellect above all — a bigger mana pool means more Arcane Blasts before you&#x27;re empty.</li>
+        <li>A good rhythm while learning: a few Arcane Blasts, then Missiles until your mana looks healthy again.</li>
+    </ul>
+    <h3>Watch out</h3>
+    <ul class="g-watch">
+        <li>Going all-out on every normal enemy leaves you drinking after every fight — or dead when an extra enemy joins. Pace the blasts: small fights get small spending.</li>
+    </ul>
+  </div>
+  <div class="g-card" id="fire">
+    <h2>Mage — Fire</h2>
+    <span class="g-pill type">Ranged</span><span class="g-pill med">First-timer: Medium</span>
+    <p class="g-desc">Crits (extra-strong hits) speed up your next huge fireball, Pyroblast.</p>
+    <h3>Your first buttons — in order</h3>
+    <ol>
+        <li><b>Fireball.</b> Your main cast — big, slow, dependable fire damage.</li>
+        <li><b>Scorch.</b> A fast, cheap fire cast. Good for finishing enemies and while you&#x27;re learning.</li>
+        <li><b>Fire Blast.</b> Instant — no cast time. Use it while moving or to finish something now.</li>
+        <li><b>Pyroblast.</b> Your huge fireball. Critical hits build Heating Up, which stacks and makes Pyroblast cast faster and faster — launch it when it&#x27;s charged up.</li>
+        <li><b>Flamestrike.</b> For big groups: fire rains on an area. Only worth it on 3+ enemies.</li>
+    </ol>
+    <h3>Good to know in your first hour</h3>
+    <ul>
+        <li>Crits are your engine: every critical hit feeds Heating Up, and Heating Up feeds Pyroblast. The spec snowballs — the more crit you have, the more often the big one flies.</li>
+    </ul>
+    <h3>Leveling tips</h3>
+    <ul>
+        <li>On gear: Intellect first, and take critical-hit gear when you see it — it literally makes your best button happen more.</li>
+        <li>Drink between fights. Fire is thirsty.</li>
+    </ul>
+    <h3>Watch out</h3>
+    <ul class="g-watch">
+        <li>Long cast times plus cloth armor: if an enemy reaches you, stop casting, Frost Nova it in place (yes, fire mages have Frost Nova), step back, and restart.</li>
+    </ul>
+  </div>
+  <div class="g-card" id="frost">
+    <h2>Mage — Frost</h2>
+    <span class="g-pill type">Ranged</span><span class="g-pill">First-timer: Easy</span>
+    <p class="g-desc">Freezes enemies in place + slows them. Safest mage, good against groups.</p>
+    <h3>Your first buttons — in order</h3>
+    <ol>
+        <li><b>Frostbolt.</b> Your main cast — and it slows the enemy, so they take longer to reach you.</li>
+        <li><b>Frost Nova.</b> Freezes enemies around you in place. Cast it, then STEP BACK before you keep casting.</li>
+        <li><b>Cone of Cold.</b> Instant frost in a cone in front of you — good damage and a strong slow.</li>
+        <li><b>Blizzard.</b> For groups: ice rains on an area and slows everything in it (40% with the Improved Blizzard talent).</li>
+        <li><b>Fire Blast.</b> Instant finisher for enemies that almost died — every mage has it, frost included.</li>
+    </ol>
+    <h3>Good to know in your first hour</h3>
+    <ul>
+        <li>Fingers of Frost (talent): frozen enemies give your spells a big crit chance — when something is frozen, hit it with your hardest spell.</li>
+        <li>Freezes can break early when the frozen enemy takes damage, and bosses can&#x27;t be frozen at all — in boss fights, your slows and Fingers of Frost do the work instead.</li>
+    </ul>
+    <h3>Leveling tips</h3>
+    <ul>
+        <li>On gear: Intellect and Spirit. Polymorph is your best friend on multi-enemy pulls: turn one enemy into a sheep, fight the others, come back for it.</li>
+        <li>This is the safest mage, not the fastest — fights take a little longer and you almost never die. That&#x27;s the trade, and it&#x27;s a good one for a first character.</li>
+    </ul>
+    <h3>Watch out</h3>
+    <ul class="g-watch">
+        <li>Don&#x27;t stand still in melee range trading hits — your whole kit is built on distance. If something reaches you: Frost Nova, step back, keep casting.</li>
+    </ul>
+  </div>
+  <div class="g-cls">Warlock</div>
+  <div class="g-card" id="affliction">
+    <h2>Warlock — Affliction</h2>
+    <span class="g-pill type">Ranged</span><span class="g-pill">First-timer: Easy</span>
+    <p class="g-desc">Loads enemies with many slow damage spells. Their health drains over time.</p>
+    <h3>Your first buttons — in order</h3>
+    <ol>
+        <li><b>Agony.</b> Your strongest damage-over-time spell — it grows stronger the longer it stays on. In WoW Forever Agony is a &#x27;Bane&#x27;, which means it no longer blocks your Curses: you can run a Bane AND a Curse at the same time.</li>
+        <li><b>Corruption.</b> A second damage-over-time spell. Load it on right after Agony.</li>
+        <li><b>Shadow Bolt.</b> Your filler while the drains do their work.</li>
+        <li><b>Drain Life.</b> Channels health out of the enemy and into you — damage and healing in one button.</li>
+        <li><b>Siphon Life.</b> A talent: another drain that quietly heals you every few seconds while it ticks.</li>
+    </ol>
+    <h3>Good to know in your first hour</h3>
+    <ul>
+        <li>In WoW Forever your damage-over-time spells can land critical hits — your drains hit harder than classic players remember.</li>
+        <li>Wrack is this tree&#x27;s key talent, built around your Agony. The whole spec is: load drains, keep them rolling, stay alive.</li>
+        <li>Life Tap turns your health into mana, and your drains turn it back. That loop is why this warlock almost never has to stop.</li>
+    </ul>
+    <h3>Leveling tips</h3>
+    <ul>
+        <li>On gear: Intellect and Stamina — stamina is fuel for Life Tap, not just health.</li>
+        <li>Fear is your crowd control: one enemy runs away scared while you finish another. Practice it before you need it.</li>
+    </ul>
+    <h3>Watch out</h3>
+    <ul class="g-watch">
+        <li>Drains kill slowly at the start of a fight. Don&#x27;t pull three enemies at once until your drains are strong — one extra pull is how affliction warlocks die.</li>
+    </ul>
+  </div>
+  <div class="g-card" id="demonology">
+    <h2>Warlock — Demonology</h2>
+    <span class="g-pill type">Ranged + Pet</span><span class="g-pill">First-timer: Easy</span>
+    <p class="g-desc">Fights with a demon pet you power up. The demon is a big part of your damage.</p>
+    <h3>Your first buttons — in order</h3>
+    <ol>
+        <li><b>Send your demon in first.</b> Your Voidwalker holds the enemy&#x27;s attention. Let it arrive before you cast anything.</li>
+        <li><b>Corruption and Agony.</b> Load your damage-over-time spells once the demon has the enemy.</li>
+        <li><b>Shadow Bolt.</b> Your filler damage between refreshes.</li>
+        <li><b>Health Funnel.</b> Channels your health into your demon to heal it mid-fight — cheaper than resummoning.</li>
+        <li><b>Drain Life.</b> When you&#x27;re the one taking hits, drain health back.</li>
+    </ol>
+    <h3>Good to know in your first hour</h3>
+    <ul>
+        <li>Soul Link is the tree&#x27;s core: 30% of the damage YOU take is moved onto your demon instead. You&#x27;re far tougher than you look.</li>
+        <li>Demonic Embrace (talent) adds 15% Stamina — take health gear seriously, it protects you twice.</li>
+        <li>Demon sacrifice works differently in WoW Forever: sacrificing a demon gives you a long-lasting buff, and with Demonic Pact you keep that buff even after summoning a different demon to fight beside you.</li>
+    </ul>
+    <h3>Leveling tips</h3>
+    <ul>
+        <li>On gear: Stamina and Intellect. Your demon scales with your stats, so your gear is its gear.</li>
+        <li>Keep Soul Shards stocked — summoning demons costs them.</li>
+    </ul>
+    <h3>Watch out</h3>
+    <ul class="g-watch">
+        <li>Your demon is tough, not immortal — pet durability was specifically tuned at launch. If it dies, everything turns on you: Fear the enemy, resummon, or run.</li>
+    </ul>
+  </div>
+  <div class="g-card" id="destruction">
+    <h2>Warlock — Destruction</h2>
+    <span class="g-pill type">Ranged</span><span class="g-pill">First-timer: Easy</span>
+    <p class="g-desc">Direct fire spells, one big hit at a time. Like an evil fire mage.</p>
+    <h3>Your first buttons — in order</h3>
+    <ol>
+        <li><b>Immolate.</b> Sets the enemy burning over time. Keep it on — your other fire feeds off it.</li>
+        <li><b>Incinerate.</b> Your main fire cast once you learn it. Before that, Shadow Bolt fills this spot.</li>
+        <li><b>Conflagrate.</b> A talent: consumes your Immolate&#x27;s burn for a burst of damage right now. Use it to finish enemies or on cooldown for damage.</li>
+        <li><b>Shadowburn.</b> Instant finisher for enemies at low health.</li>
+        <li><b>Rain of Fire.</b> For groups: fire rains on an area. Only worth it on 3+ enemies.</li>
+    </ol>
+    <h3>Good to know in your first hour</h3>
+    <ul>
+        <li>You&#x27;re the direct-damage warlock — where Affliction loads drains and waits, you hit things now. Think &#x27;evil fire mage with a demon&#x27;.</li>
+        <li>Your tree&#x27;s talents (Agonizing Flames, Fire and Brimstone) feed your fire spells and their critical hits — fire crits are your payoff.</li>
+    </ul>
+    <h3>Leveling tips</h3>
+    <ul>
+        <li>On gear: Intellect first, critical-hit gear when you can get it.</li>
+        <li>Your Imp is the usual companion here: it adds damage from range but won&#x27;t hold enemies like a Voidwalker.</li>
+    </ul>
+    <h3>Watch out</h3>
+    <ul class="g-watch">
+        <li>Big fire casts make enemies angry fast. In a group, let the tank hit the enemy first — if you open at full blast, everything runs at the cloth-wearing you.</li>
+    </ul>
+  </div>
+  <div class="g-cls">Druid</div>
+  <div class="g-card" id="balance">
+    <h2>Druid — Balance</h2>
+    <span class="g-pill type">Ranged</span><span class="g-pill med">First-timer: Medium</span>
+    <p class="g-desc">Moonkin form (big owl). Casts nature + star spells, swapping between them.</p>
+    <h3>Your first buttons — in order</h3>
+    <ol>
+        <li><b>Moonfire.</b> Instant nature damage over time — open with it, and re-apply as it fades.</li>
+        <li><b>Wrath.</b> Your fast nature cast. The cheap, quick option.</li>
+        <li><b>Starfire.</b> Your slow, huge star-magic cast. Alternate between Wrath and Starfire — your talents keep pushing you from one to the other, and that swapping is the spec&#x27;s rhythm.</li>
+        <li><b>Entangling Roots.</b> Roots an enemy in place (works best outdoors). Root a melee enemy, step back, and cast freely.</li>
+        <li><b>Hurricane.</b> Later: a channelled storm over an area, for groups of enemies.</li>
+    </ol>
+    <h3>Good to know in your first hour</h3>
+    <ul>
+        <li>Moonkin Form — the big owl — is your caster form: tougher than a normal caster and built for star-and-nature spells.</li>
+        <li>You can leave form and heal yourself at any time. That self-heal is the druid advantage: slower fights, almost no deaths.</li>
+    </ul>
+    <h3>Leveling tips</h3>
+    <ul>
+        <li>On gear: Intellect and Spirit. Root-and-cast is your safest pattern: root, back up, Starfire.</li>
+        <li>Carry drinks — Balance is mana-hungry, and shapeshifting itself costs mana too.</li>
+    </ul>
+    <h3>Watch out</h3>
+    <ul class="g-watch">
+        <li>If a fight goes wrong, don&#x27;t die in owl form: shift to Bear Form for the armor, or Travel/Cat speed to run, THEN recover. New balance druids forget their forms are escape buttons.</li>
+    </ul>
+  </div>
+  <div class="g-card" id="feral-cat">
+    <h2>Druid — Feral (Cat)</h2>
+    <span class="g-pill type">Melee</span><span class="g-pill hard">First-timer: Harder</span>
+    <p class="g-desc">Turns into a cat. Sneaks, hits fast, wounds bleed over time.</p>
+    <h3>Your first buttons — in order</h3>
+    <ol>
+        <li><b>Prowl, then open.</b> Your stealth. Pounce stuns the enemy as you open; Ravage is the big-damage opener. Pick per fight.</li>
+        <li><b>Claw.</b> Your builder in cat form: spends energy, adds a combo point (up to 5, shown on the enemy).</li>
+        <li><b>Shred.</b> Your hardest builder — but only from BEHIND the enemy. Get behind whenever you can.</li>
+        <li><b>Rip.</b> Spend combo points on this finisher: a bleed that ticks over time. More points = a longer bleed. This is your best damage per energy.</li>
+        <li><b>Ferocious Bite.</b> The other finisher: instant burst. Use it when Rip is already ticking or to finish an enemy off.</li>
+    </ol>
+    <h3>Good to know in your first hour</h3>
+    <ul>
+        <li>Cat form runs on energy and combo points, like a rogue — builders add points, finishers spend them, and waiting a beat for energy is normal, not a mistake.</li>
+        <li>Bear Form is your emergency button: huge armor and health. Frenzied Regeneration in bear form can turn rage into a massive heal.</li>
+        <li>Leader of the Pack (talent) raises your whole group&#x27;s critical-hit chance — in a group, people are glad you&#x27;re there.</li>
+    </ul>
+    <h3>Leveling tips</h3>
+    <ul>
+        <li>On gear: Agility first — it powers cat damage and your dodging in bear too.</li>
+        <li>Bleed first, bite second: a fight that opens Rip → Shred → Ferocious Bite beats button-mashing every time.</li>
+    </ul>
+    <h3>Watch out</h3>
+    <ul class="g-watch">
+        <li>Dumping all your energy the second you have it leaves you standing there auto-attacking. Pool your energy, spend it in bursts — and if you pull too much, Bear Form and run.</li>
+    </ul>
+  </div>
+
+  <p class="g-foot">First-timer ratings are a recommendation for brand-new players, not a score from the game. Guides are starter-level on purpose: they teach the first buttons and habits, not endgame optimisation.</p>
+  <a class="g-back" href="index.html" onclick="if (typeof closeGuides === 'function') { closeGuides(); return false; }">← Back to the quiz</a>
+  </div>
 </div>
 <script>
 const QUIZ = [{"q": "Where do you want to stand in a fight?", "options": [{"text": "\u2694\ufe0f Up close, right in the enemy's face", "points": {"Arms": 3, "Fury": 3, "Retribution": 3, "Survival": 3, "Assassination": 3, "Combat": 3, "Subtlety": 3, "Enhancement": 3, "Feral": 3}}, {"text": "\ud83c\udff9 Far away, safe at a distance", "points": {"Beast Mastery": 3, "Marksmanship": 3, "Shadow": 3, "Elemental": 3, "Arcane": 3, "Fire": 3, "Frost": 3, "Affliction": 3, "Demonology": 3, "Destruction": 3, "Balance": 3}}, {"text": "\ud83e\udd37 Either is fine", "points": {"Arms": 1, "Fury": 1, "Retribution": 1, "Beast Mastery": 1, "Marksmanship": 1, "Survival": 1, "Assassination": 1, "Combat": 1, "Subtlety": 1, "Shadow": 1, "Elemental": 1, "Enhancement": 1, "Arcane": 1, "Fire": 1, "Frost": 1, "Affliction": 1, "Demonology": 1, "Destruction": 1, "Balance": 1, "Feral": 1}}]}, {"q": "Do you want a helper fighting with you?", "options": [{"text": "\ud83d\udc3a Yes \u2014 an animal pet", "points": {"Beast Mastery": 5, "Marksmanship": 3, "Survival": 3}}, {"text": "\ud83d\ude08 Yes \u2014 a demon", "points": {"Demonology": 5, "Affliction": 3, "Destruction": 3}}, {"text": "\ud83d\udeb6 No helper \u2014 just me", "points": {"Arms": 2, "Fury": 2, "Retribution": 2, "Marksmanship": 6, "Assassination": 2, "Combat": 2, "Subtlety": 2, "Shadow": 2, "Elemental": 2, "Enhancement": 2, "Arcane": 2, "Fire": 2, "Frost": 2, "Balance": 2, "Feral": 2}}, {"text": "\ud83e\udd37 Don't care", "points": {"Arms": 1, "Fury": 1, "Retribution": 1, "Beast Mastery": 1, "Marksmanship": 1, "Survival": 1, "Assassination": 1, "Combat": 1, "Subtlety": 1, "Shadow": 1, "Elemental": 1, "Enhancement": 1, "Arcane": 1, "Fire": 1, "Frost": 1, "Affliction": 1, "Demonology": 1, "Destruction": 1, "Balance": 1, "Feral": 1}}]}, {"q": "How should your damage feel?", "options": [{"text": "\ud83d\udca8 Fast \u2014 lots of quick hits", "points": {"Fury": 3, "Combat": 3, "Feral": 3, "Enhancement": 3, "Assassination": 3}}, {"text": "\ud83d\udca5 Slow \u2014 a few HUGE hits", "points": {"Arms": 3, "Retribution": 3, "Marksmanship": 3, "Destruction": 3, "Fire": 2}}, {"text": "\ud83e\ude78 Slow drain \u2014 the enemy's health keeps dropping over time", "points": {"Affliction": 3, "Shadow": 3, "Subtlety": 3, "Assassination": 3, "Arms": 3, "Feral": 3}}, {"text": "\u2728 Explosive magic spells", "points": {"Fire": 3, "Elemental": 3, "Destruction": 3, "Arcane": 3, "Balance": 3}}]}, {"q": "Pick the character fantasy you like most:", "options": [{"text": "\ud83d\udee1\ufe0f Holy knight with a big weapon", "points": {"Retribution": 5, "Arms": 1, "Fury": 1}}, {"text": "\ud83d\udde1\ufe0f Sneaky assassin", "points": {"Subtlety": 4, "Assassination": 4, "Combat": 2, "Feral": 2}}, {"text": "\ud83d\udc3b Animals, nature and shapeshifting", "points": {"Feral": 4, "Balance": 4, "Beast Mastery": 2, "Survival": 2}}, {"text": "\ud83d\udc80 Dark magic user", "points": {"Affliction": 3, "Demonology": 3, "Destruction": 3, "Shadow": 4}}, {"text": "\u26a1 Wizard of the elements \u2014 fire, ice, lightning", "points": {"Elemental": 4, "Enhancement": 4, "Arcane": 2, "Fire": 2, "Frost": 2}}, {"text": "\ud83c\udff9 Bow hunter / sniper", "points": {"Beast Mastery": 4, "Marksmanship": 4, "Survival": 4}}, {"text": "\ud83e\ude93 Just me and a huge weapon \u2014 no magic, no sneaking", "points": {"Arms": 5, "Fury": 4}}]}, {"q": "Pick your coolest trick:", "options": [{"text": "\u2744\ufe0f Freeze enemies in place so they can't reach me", "points": {"Frost": 5}}, {"text": "\ud83d\udc9a Heal myself and survive almost anything", "points": {"Retribution": 4, "Shadow": 2}}, {"text": "\ud83d\udc31 Turn into an animal", "points": {"Feral": 5, "Balance": 3}}, {"text": "\ud83e\udea4 Set traps / place totems that help my group", "points": {"Survival": 4, "Elemental": 4, "Enhancement": 2}}, {"text": "\u2620\ufe0f Poisons that keep hurting the enemy", "points": {"Assassination": 5}}, {"text": "\ud83e\ude78 Wounds that keep bleeding", "points": {"Subtlety": 3, "Feral": 3, "Arms": 3}}, {"text": "\ud83d\udd0b Build up power first, then release it all", "points": {"Arcane": 5, "Fire": 2}}, {"text": "\ud83d\ude80 A speed rush \u2014 attack much faster for a while", "points": {"Combat": 5, "Fury": 3, "Enhancement": 3}}]}, {"q": "In a group, do you want an extra job besides damage?", "options": [{"text": "\ud83c\udfaf No \u2014 damage only, keep it simple", "points": {"Beast Mastery": 2, "Marksmanship": 2, "Survival": 2, "Assassination": 2, "Combat": 2, "Subtlety": 2, "Arcane": 2, "Fire": 2, "Frost": 2, "Affliction": 2, "Demonology": 2, "Destruction": 2}}, {"text": "\ud83d\uddff Totems that make my whole group stronger", "points": {"Elemental": 5, "Enhancement": 5}}, {"text": "\ud83d\udc9a My damage heals my group a little", "points": {"Shadow": 5, "Balance": 1}}, {"text": "\ud83d\udee1\ufe0f Heal myself, so nobody has to look after me", "points": {"Retribution": 4}}, {"text": "\ud83d\udc3a My pet takes hits that would have hit my group", "points": {"Beast Mastery": 4, "Demonology": 2, "Survival": 2}}]}, {"q": "What do you want in your hands?", "options": [{"text": "\ud83e\ude93 One huge two-handed weapon", "points": {"Arms": 4, "Retribution": 4}}, {"text": "\u2694\ufe0f Two fast weapons, one in each hand", "points": {"Fury": 4, "Combat": 3, "Survival": 3, "Assassination": 2}}, {"text": "\ud83d\udde1\ufe0f Daggers / claws \u2014 quick and sharp", "points": {"Assassination": 3, "Subtlety": 3, "Feral": 4}}, {"text": "\ud83c\udff9 A bow or a gun", "points": {"Beast Mastery": 4, "Marksmanship": 4}}, {"text": "\ud83d\udd2e Nothing \u2014 spells only", "points": {"Arcane": 3, "Fire": 3, "Frost": 3, "Affliction": 3, "Demonology": 3, "Destruction": 3, "Shadow": 3, "Elemental": 3, "Balance": 3}}]}, {"q": "Last one \u2014 pick a spell flavour (or skip the magic):", "options": [{"text": "\ud83d\udd25 Fire \u2014 huge fireballs", "points": {"Fire": 5, "Destruction": 4, "Elemental": 1}}, {"text": "\u2744\ufe0f Ice \u2014 freeze and slow everything", "points": {"Frost": 5}}, {"text": "\u26a1 Lightning", "points": {"Elemental": 5, "Enhancement": 3}}, {"text": "\ud83d\udc80 Dark \u2014 drain and shadow spells", "points": {"Affliction": 4, "Shadow": 4, "Demonology": 2}}, {"text": "\ud83c\udf19 Nature and stars", "points": {"Balance": 5, "Feral": 1}}, {"text": "\ud83d\udeab I'm not a spell caster", "points": {"Arms": 2, "Fury": 2, "Retribution": 2, "Survival": 2, "Assassination": 2, "Combat": 2, "Subtlety": 2, "Enhancement": 2, "Feral": 2}}, {"text": "\ud83d\udd0b Pure magic power that builds up", "points": {"Arcane": 5}}]}];
@@ -113,6 +811,19 @@ let lastPct = 0, lastSecondPct = 0;
 function pctOf(k, score){
   const topScore = Math.max.apply(null, Object.values(score));
   return topScore > 0 ? Math.round(100 * score[k] / topScore) : 0;
+}
+function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); }
+let prevView = 'startCard';
+function openGuides(anchor){
+  ['startCard','quizCard','resultCard'].forEach(id => { const el = document.getElementById(id); if (!el.classList.contains('hidden')) prevView = id; el.classList.add('hidden'); });
+  document.getElementById('guidesView').classList.remove('hidden');
+  if (anchor) { const t = document.getElementById(anchor); if (t) setTimeout(() => t.scrollIntoView(), 30); }
+  else window.scrollTo(0, 0);
+}
+function closeGuides(){
+  document.getElementById('guidesView').classList.add('hidden');
+  document.getElementById(prevView).classList.remove('hidden');
+  window.scrollTo(0, 0);
 }
 function whyFor(k){
   const hits = [];
@@ -154,6 +865,9 @@ function finish(){
   lastSecondPct = pctOf(resultSecond, score);
   document.getElementById('rPct').textContent = lastPct + '%';
   document.getElementById('rWhy').innerHTML = whyFor(resultTop);
+  const gb = document.getElementById('guideBtn');
+  gb.setAttribute('data-target', slug(t.display));
+  gb.textContent = '📖 Read your ' + t.display + ' starter guide';
   document.getElementById('r2Why').innerHTML = whyFor(resultSecond);
   showMixed(score);
   renderAll(score, ranked);
@@ -166,7 +880,7 @@ function renderAll(score, ranked){
     div.className = 'match' + (i === 0 ? ' top' : '');
     div.innerHTML = '<div class="matchHead"><div class="matchName"><span class="matchRank">#' + (i+1) + '</span>' + inf.cls + ' — ' + inf.display + '</div><div class="matchPct">' + p + '%</div></div>'
       + '<div class="matchBar"><div style="width:' + p + '%"></div></div>'
-      + '<div class="matchMeta">' + inf.type + '  •  First-timer: ' + inf.level + '</div>'
+      + '<div class="matchMeta">' + inf.type + '  •  First-timer: ' + inf.level + '  •  <a class="rowguide" href="#" data-g="' + slug(inf.display) + '" onclick="openGuides(this.dataset.g); return false;">Starter guide →</a></div>'
       + '<div class="matchDesc">' + inf.desc + '</div>'
       + '<div class="matchWhy">' + whyFor(k) + '</div>';
     box.appendChild(div);
