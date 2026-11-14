@@ -66,6 +66,16 @@
   .g-h1 .gold { color:#ffc137; }
   .g-sub { color:#a7adb9; font-size:15px; line-height:1.55; margin:10px 0 16px; text-align:left; }
   .g-card { background:#262a33; border-radius:16px; padding:20px; margin-bottom:16px; scroll-margin-top:14px; text-align:left; }
+  details.g-card { padding:0; overflow:hidden; }
+  .g-summary { cursor:pointer; list-style:none; padding:20px; display:flex; align-items:flex-start; gap:14px; -webkit-tap-highlight-color:transparent; }
+  .g-summary::-webkit-details-marker { display:none; }
+  .g-summary-main { flex:1; min-width:0; }
+  .g-summary-title { display:block; font-size:19px; font-weight:800; line-height:1.3; color:#eef1f6; }
+  .g-summary-hint { display:block; color:#ffc137; font-size:13px; font-weight:700; margin-top:7px; }
+  .g-chevron { color:#ffc137; font-size:20px; font-weight:800; line-height:1.2; transition:transform .18s ease; flex:0 0 auto; }
+  details.g-card[open ] .g-chevron { transform:rotate(180deg); }
+  .g-body { border-top:1px solid #31363f; padding:2px 20px 20px; }
+  .g-body > h3:first-child { margin-top:14px; }
   .g-card h2 { font-size:19px; margin-bottom:10px; color:#eef1f6; }
   .g-card h3 { font-size:15px; color:#ffc137; margin:16px 0 7px; text-transform:uppercase; letter-spacing:.5px; }
   .g-card p, .g-card li { color:#c9ced8; font-size:15px; line-height:1.55; }
@@ -80,6 +90,7 @@
   .g-pill.hard { background:#5c2323; color:#ff9d9d; }
   .g-pill.type { background:#31363f; color:#c9ced8; }
   .g-desc { color:#eef1f6; font-size:15.5px; line-height:1.5; margin-top:10px; }
+  .g-summary .g-desc { display:block; }
   .g-cls { font-size:21px; font-weight:800; margin:26px 0 10px; color:#ffc137; text-align:left; }
   .g-back { display:inline-block; color:#ffc137; font-weight:700; text-decoration:none; margin-bottom:6px; font-size:16px; }
   .g-foot { color:#8b919e; font-size:13px; line-height:1.5; margin-top:22px; text-align:left; }
@@ -137,58 +148,71 @@
   <div id="guidesView" class="hidden">
 <a class="g-back" href="index.html" onclick="if (typeof closeGuides === 'function') { closeGuides(); return false; }">← Back to the quiz</a>
   <h1 class="g-h1">⚔️ WoW Forever <span class="gold">Starter Guides</span></h1>
-  <p class="g-sub">One short guide for every damage character — the first buttons to press, what to know in your first hour, leveling tips, and the mistake that kills new players. Written for people who have never played WoW.</p>
+  <p class="g-sub">One short guide for every damage character — the first buttons to press, what to know in your first hour, leveling tips, and the mistake that kills new players. Written for people who have never played WoW. <b>Tap any card to open it — only one opens at a time, so the page stays short.</b></p>
 
-  <div class="g-card">
-    <h2>Before you start — the basics</h2>
+  <details class="g-card" id="before-you-start">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Before you start — the basics</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
     <p style="margin-bottom:9px"><b>Play together.</b> WoW Forever has no realm list — you pick a ruleset (start on Normal), and everyone on that ruleset shares one world. To group up you must be on the same ruleset AND the same faction (Alliance or Horde) as your friends. Decide together before anyone creates a character.</p>
     <p style="margin-bottom:9px"><b>Talents start at level 10.</b> You earn talent points as you level — 51 by level 60 — and spend them in your class&#x27;s three trees. Your &#x27;spec&#x27; is simply the tree you spend the most in. A class trainer in any major city can reset them, and at level 40 you unlock a second talent set you can swap to.</p>
     <p style="margin-bottom:9px"><b>The leveling loop.</b> Quest, kill one enemy at a time at first, loot everything, and sell junk to vendors. Quest rewards are your main gear upgrades — for melee and hunters, a weapon upgrade beats everything else.</p>
     <p style="margin-bottom:9px"><b>Staying alive.</b> Eat food and drink water between fights to refill health and mana — everyone does, it&#x27;s not a weakness. Pulling one extra enemy is the #1 cause of death for new players. Pull small until a fight feels boring.</p>
     <p style="margin-bottom:9px"><b>In a dungeon group.</b> Five players: one tank (holds the enemies&#x27; attention), one healer, three damage. Your job as damage: let the tank pull first, then attack the same enemy the tank is fighting. Don&#x27;t run ahead, and don&#x27;t hit enemies nobody else is fighting.</p>
     <p style="margin-bottom:9px"><b>How to use these guides.</b> Find your character below — if you took the quiz, your result screen links straight to your guide. &#x27;First buttons&#x27; is the order to learn things in, not a strict rotation: while leveling, using the right button late beats never using it.</p>
-  </div>
+    </div>
+  </details>
 
   <div class="g-cls">How WoW actually works — the stuff the game never explains</div>
-  <div class="g-card">
-    <h2>Stopping enemy spells — interrupts</h2>
+  <details class="g-card" id="mechanics-1">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Stopping enemy spells — interrupts</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
     <p style="margin-bottom:9px"><b>Casting and cast bars.</b> When an enemy uses a big spell, a bar appears and fills up. If it finishes, the spell happens. While it fills, the enemy can be stopped.</p>
     <p style="margin-bottom:9px"><b>Interrupt.</b> An ability that cancels the spell being cast AND locks that kind of spell for a few seconds. Yours: Rogue — Kick. Warrior — Pummel. Mage — Counterspell. Shaman — Earth Shock. A warlock&#x27;s Felhunter pet has one too (Spell Lock). Shadow priests can take the Silence talent. Hunters, druids and paladins have NO true interrupt — read the next line.</p>
     <p style="margin-bottom:9px"><b>Stuns and silences.</b> The backup plan: a stunned or silenced enemy can&#x27;t cast either. Paladin — Hammer of Justice. Rogue — Cheap Shot / Kidney Shot. Druid — Bash (in Bear Form). Hunter — Intimidation (Beast Mastery pet stun) or Scatter Shot (Marksmanship). If your class can&#x27;t interrupt, stunning and killing the caster fast is your job.</p>
     <p style="margin-bottom:9px"><b>What to interrupt first.</b> Enemy HEALS — an interrupted heal is a dead enemy. Then fears and mind controls (they turn your own side against you), then big damage spells aimed at your tank. A normal small spell usually isn&#x27;t worth it.</p>
     <p style="margin-bottom:9px"><b>If nobody interrupts.</b> Healers heal forever, summoners summon friends, and fear casters scatter your group. In dungeons, &#x27;we died because nothing got interrupted&#x27; is one of the most common wipe causes there is.</p>
-  </div>
-  <div class="g-card">
-    <h2>Aggro — who the enemy attacks</h2>
+    </div>
+  </details>
+  <details class="g-card" id="mechanics-2">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Aggro — who the enemy attacks</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
     <p style="margin-bottom:9px"><b>Threat (aggro).</b> Every enemy keeps a mental list of who has annoyed it most — damage and healing both count. Whoever is on top gets attacked. &#x27;Having aggro&#x27; means it&#x27;s coming for you.</p>
     <p style="margin-bottom:9px"><b>The tank&#x27;s job.</b> Staying on top of that list on purpose, with armor and a shield to survive it. One player tanks, everyone else&#x27;s job includes NOT climbing above them.</p>
     <p style="margin-bottom:9px"><b>Taunt.</b> The tank&#x27;s rescue button: forces an enemy to attack the tank for a few seconds, no matter what the list said. If something runs past the tank at your healer, the tank taunts it back.</p>
     <p style="margin-bottom:9px"><b>Your rules as damage.</b> Let the tank hit the enemy a few times BEFORE you go all-out. Attack the same enemy the tank is attacking. If an enemy does chase you, run TOWARD the tank (so they can take it off you) — never away, and never keep hitting it.</p>
     <p style="margin-bottom:9px"><b>Pet tanks.</b> Same rules with a pet: let your pet hit first and build its lead, then shoot. If you open with your biggest shot, the enemy skips the pet and comes straight for you.</p>
-  </div>
-  <div class="g-card">
-    <h2>Crowd control — taking enemies out of the fight</h2>
+    </div>
+  </details>
+  <details class="g-card" id="mechanics-3">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Crowd control — taking enemies out of the fight</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
     <p style="margin-bottom:9px"><b>Crowd control (CC).</b> Abilities that disable an enemy without killing it, so your group fights one enemy at a time instead of four: a mage&#x27;s Polymorph turns one into a sheep, a rogue&#x27;s Sap knocks one out before the fight, a hunter&#x27;s Freezing Trap freezes one, roots pin one in place, fear sends one running.</p>
     <p style="margin-bottom:9px"><b>CC breaks.</b> Sheep, traps and Sap BREAK the moment that enemy takes damage. One careless area spell can wake everything up at once. Never hit a disabled enemy, and don&#x27;t use area attacks near one.</p>
     <p style="margin-bottom:9px"><b>Target marks.</b> Group leaders stick icons on enemies. Skull almost always means &#x27;kill this one first&#x27;. Moon usually means &#x27;mage, sheep this one&#x27;. If you&#x27;re not sure what a mark means in your group, ask — it&#x27;s a normal question.</p>
     <p style="margin-bottom:9px"><b>Focus fire.</b> The flip side of CC: everyone attacks the SAME awake enemy until it&#x27;s dead. Five half-dead enemies hit just as hard as five healthy ones — kills shrink the danger, damage spread everywhere doesn&#x27;t.</p>
-  </div>
-  <div class="g-card">
-    <h2>Your other buttons — staying alive</h2>
+    </div>
+  </details>
+  <details class="g-card" id="mechanics-4">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Your other buttons — staying alive</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
     <p style="margin-bottom:9px"><b>Defensive cooldowns.</b> Every class has one or two &#x27;oh no&#x27; buttons (a paladin&#x27;s bubble, a mage&#x27;s Ice Block, a rogue&#x27;s Vanish, a warrior&#x27;s Shield Wall). Use them when a fight suddenly goes wrong or you&#x27;re near 30% health. A defensive you never press saves nobody — they recharge.</p>
     <p style="margin-bottom:9px"><b>Potions and bandages.</b> Health potions are instant and work mid-fight. Bandages (from the First Aid skill) heal a lot but break if you&#x27;re hit — bandage when nothing is attacking you. Carry both; vendors and other players sell them.</p>
     <p style="margin-bottom:9px"><b>Cooldowns.</b> Your strongest abilities can&#x27;t be spammed — they recharge over seconds or minutes (that&#x27;s the &#x27;cooldown&#x27;). Big cooldowns are for big moments: hard enemies, extra pulls, bosses. Using one on a normal enemy then facing a boss without it is the classic trade-off.</p>
     <p style="margin-bottom:9px"><b>Food, drink and buffs.</b> Eat and drink between fights — full health and mana, faster starts. Some food and spells give &#x27;buffs&#x27;: temporary stat boosts. In a group, share yours; someone will share theirs.</p>
-  </div>
-  <div class="g-card">
-    <h2>Where you stand — positioning</h2>
+    </div>
+  </details>
+  <details class="g-card" id="mechanics-5">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Where you stand — positioning</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
     <p style="margin-bottom:9px"><b>Don&#x27;t stand in it.</b> Fire on the ground, poison pools, glowing circles: if it&#x27;s under your feet and you didn&#x27;t put it there, move. Most avoidable deaths in the game are just standing still in something bad.</p>
     <p style="margin-bottom:9px"><b>Front and back.</b> Enemies mostly hit what&#x27;s in front of them. Rogues and cat druids literally do more damage from BEHIND. When someone else has the enemy&#x27;s attention, stand behind it — safer and stronger.</p>
     <p style="margin-bottom:9px"><b>Line of sight.</b> Enemy casters can&#x27;t cast through walls. Pull them around a corner and they have to walk to you — straight into your group. Tanks do this on purpose; don&#x27;t stand out in the open undoing it.</p>
     <p style="margin-bottom:9px"><b>Runners.</b> Many enemies try to flee at low health — and they run TO their friends, bringing them back. Slow them, stun them, or finish them fast. A runner nobody stopped is how a 2-enemy fight becomes a 6-enemy fight.</p>
-  </div>
-  <div class="g-card">
-    <h2>Words you&#x27;ll hear — quick translations</h2>
+    </div>
+  </details>
+  <details class="g-card" id="mechanics-6">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Words you&#x27;ll hear — quick translations</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
     <p style="margin-bottom:9px"><b>Mob.</b> Any computer-controlled enemy. (From old game slang — it&#x27;s just &#x27;a monster&#x27;.)</p>
     <p style="margin-bottom:9px"><b>Pull.</b> Starting a fight with an enemy or group, usually one pack at a time.</p>
     <p style="margin-bottom:9px"><b>Add.</b> An extra enemy that joins a fight already in progress. Usually bad news.</p>
@@ -200,9 +224,11 @@
     <p style="margin-bottom:9px"><b>Spec.</b> Your specialisation — the talent tree you put most points in. &#x27;What&#x27;s your spec?&#x27; means &#x27;which of the three versions of your class are you?&#x27;</p>
     <p style="margin-bottom:9px"><b>Wipe.</b> The whole group died. Everyone runs back together and tries again — normal, not a disaster.</p>
     <p style="margin-bottom:9px"><b>NPC.</b> Any computer-controlled character — quest givers, vendors, trainers. Yellow name = neutral, red = will attack, green = friendly.</p>
-  </div>
-  <div class="g-card">
-    <h2>Out in the world — Forever systems</h2>
+    </div>
+  </details>
+  <details class="g-card" id="mechanics-7">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Out in the world — Forever systems</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
     <p style="margin-bottom:9px"><b>Hearthstone.</b> A stone in your bag that teleports you back to one chosen inn (10-second cast, 1-hour cooldown). Talk to the innkeeper in each new quest town and set it there — it&#x27;s your &#x27;go home&#x27; button.</p>
     <p style="margin-bottom:9px"><b>Rested experience.</b> Logging out inside an inn or a capital city builds up rested XP (a little every few hours, up to about a level and a half). While you have it, kills give DOUBLE experience. Log out in inns — it&#x27;s free progress while you sleep.</p>
     <p style="margin-bottom:9px"><b>Campfires.</b> A new WoW Forever system: around level 5 a quest teaches you Basic Campfire (from Cooking). Camps and campfires out in the world give rested XP and useful buffs, and other players can add to your fire. Worth learning early.</p>
@@ -211,37 +237,37 @@
     <p style="margin-bottom:9px"><b>Trainers.</b> New abilities aren&#x27;t automatic: every couple of levels, visit your class trainer in a town or city and BUY your new spells and their stronger ranks. Forgetting this is why some new players feel mysteriously weak.</p>
     <p style="margin-bottom:9px"><b>Getting a group.</b> There&#x27;s no automatic dungeon queue in WoW Forever: groups form through the listing tool and chat, and you walk to the dungeon entrance together. Slow, but it&#x27;s how you&#x27;ll meet people.</p>
     <p style="margin-bottom:9px"><b>Your first mount.</b> At level 40 you can learn riding and buy your first mount (about 100 gold) — much faster travel. It&#x27;s the big purchase of your leveling life: don&#x27;t blow all your gold at level 30.</p>
-  </div>
+    </div>
+  </details>
 
   <div class="g-cls">The 20 damage characters — starter guides</div>
   <div class="g-chips">
-    <a class="g-chip" href="#arms">Warrior — Arms</a>
-    <a class="g-chip" href="#fury">Warrior — Fury</a>
-    <a class="g-chip" href="#retribution">Paladin — Retribution</a>
-    <a class="g-chip" href="#beast-mastery">Hunter — Beast Mastery</a>
-    <a class="g-chip" href="#marksmanship">Hunter — Marksmanship</a>
-    <a class="g-chip" href="#survival">Hunter — Survival</a>
-    <a class="g-chip" href="#assassination">Rogue — Assassination</a>
-    <a class="g-chip" href="#combat">Rogue — Combat</a>
-    <a class="g-chip" href="#subtlety">Rogue — Subtlety</a>
-    <a class="g-chip" href="#shadow">Priest — Shadow</a>
-    <a class="g-chip" href="#elemental">Shaman — Elemental</a>
-    <a class="g-chip" href="#enhancement">Shaman — Enhancement</a>
-    <a class="g-chip" href="#arcane">Mage — Arcane</a>
-    <a class="g-chip" href="#fire">Mage — Fire</a>
-    <a class="g-chip" href="#frost">Mage — Frost</a>
-    <a class="g-chip" href="#affliction">Warlock — Affliction</a>
-    <a class="g-chip" href="#demonology">Warlock — Demonology</a>
-    <a class="g-chip" href="#destruction">Warlock — Destruction</a>
-    <a class="g-chip" href="#balance">Druid — Balance</a>
-    <a class="g-chip" href="#feral-cat">Druid — Feral (Cat)</a>
+    <a class="g-chip" href="#arms" onclick="if (typeof expandGuide === 'function') { expandGuide('arms'); return false; } var t = document.getElementById('arms'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Warrior — Arms</a>
+    <a class="g-chip" href="#fury" onclick="if (typeof expandGuide === 'function') { expandGuide('fury'); return false; } var t = document.getElementById('fury'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Warrior — Fury</a>
+    <a class="g-chip" href="#retribution" onclick="if (typeof expandGuide === 'function') { expandGuide('retribution'); return false; } var t = document.getElementById('retribution'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Paladin — Retribution</a>
+    <a class="g-chip" href="#beast-mastery" onclick="if (typeof expandGuide === 'function') { expandGuide('beast-mastery'); return false; } var t = document.getElementById('beast-mastery'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Hunter — Beast Mastery</a>
+    <a class="g-chip" href="#marksmanship" onclick="if (typeof expandGuide === 'function') { expandGuide('marksmanship'); return false; } var t = document.getElementById('marksmanship'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Hunter — Marksmanship</a>
+    <a class="g-chip" href="#survival" onclick="if (typeof expandGuide === 'function') { expandGuide('survival'); return false; } var t = document.getElementById('survival'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Hunter — Survival</a>
+    <a class="g-chip" href="#assassination" onclick="if (typeof expandGuide === 'function') { expandGuide('assassination'); return false; } var t = document.getElementById('assassination'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Rogue — Assassination</a>
+    <a class="g-chip" href="#combat" onclick="if (typeof expandGuide === 'function') { expandGuide('combat'); return false; } var t = document.getElementById('combat'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Rogue — Combat</a>
+    <a class="g-chip" href="#subtlety" onclick="if (typeof expandGuide === 'function') { expandGuide('subtlety'); return false; } var t = document.getElementById('subtlety'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Rogue — Subtlety</a>
+    <a class="g-chip" href="#shadow" onclick="if (typeof expandGuide === 'function') { expandGuide('shadow'); return false; } var t = document.getElementById('shadow'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Priest — Shadow</a>
+    <a class="g-chip" href="#elemental" onclick="if (typeof expandGuide === 'function') { expandGuide('elemental'); return false; } var t = document.getElementById('elemental'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Shaman — Elemental</a>
+    <a class="g-chip" href="#enhancement" onclick="if (typeof expandGuide === 'function') { expandGuide('enhancement'); return false; } var t = document.getElementById('enhancement'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Shaman — Enhancement</a>
+    <a class="g-chip" href="#arcane" onclick="if (typeof expandGuide === 'function') { expandGuide('arcane'); return false; } var t = document.getElementById('arcane'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Mage — Arcane</a>
+    <a class="g-chip" href="#fire" onclick="if (typeof expandGuide === 'function') { expandGuide('fire'); return false; } var t = document.getElementById('fire'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Mage — Fire</a>
+    <a class="g-chip" href="#frost" onclick="if (typeof expandGuide === 'function') { expandGuide('frost'); return false; } var t = document.getElementById('frost'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Mage — Frost</a>
+    <a class="g-chip" href="#affliction" onclick="if (typeof expandGuide === 'function') { expandGuide('affliction'); return false; } var t = document.getElementById('affliction'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Warlock — Affliction</a>
+    <a class="g-chip" href="#demonology" onclick="if (typeof expandGuide === 'function') { expandGuide('demonology'); return false; } var t = document.getElementById('demonology'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Warlock — Demonology</a>
+    <a class="g-chip" href="#destruction" onclick="if (typeof expandGuide === 'function') { expandGuide('destruction'); return false; } var t = document.getElementById('destruction'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Warlock — Destruction</a>
+    <a class="g-chip" href="#balance" onclick="if (typeof expandGuide === 'function') { expandGuide('balance'); return false; } var t = document.getElementById('balance'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Druid — Balance</a>
+    <a class="g-chip" href="#feral-cat" onclick="if (typeof expandGuide === 'function') { expandGuide('feral-cat'); return false; } var t = document.getElementById('feral-cat'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Druid — Feral (Cat)</a>
   </div>
 
   <div class="g-cls">Warrior</div>
-  <div class="g-card" id="arms">
-    <h2>Warrior — Arms</h2>
-    <span class="g-pill type">Melee</span><span class="g-pill med">First-timer: Medium</span>
-    <p class="g-desc">One big two-handed weapon. Slow heavy hits + wounds that bleed over time.</p>
+  <details class="g-card" id="arms">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Warrior — Arms</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">One big two-handed weapon. Slow heavy hits + wounds that bleed over time.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
         <li><b>Rend.</b> Open with this — a wound that keeps bleeding over time.</li>
@@ -265,11 +291,11 @@
         <li>Pulling two or three enemies at once is how new warriors die. Pull one, finish it, eat, repeat.</li>
         <li>Don&#x27;t open every fight at full sprint — walking in with no rage means a slow start. It builds as the fight goes.</li>
     </ul>
-  </div>
-  <div class="g-card" id="fury">
-    <h2>Warrior — Fury</h2>
-    <span class="g-pill type">Melee</span><span class="g-pill med">First-timer: Medium</span>
-    <p class="g-desc">Two weapons, fast non-stop hits. Spin attack hits enemies around you.</p>
+    </div>
+  </details>
+  <details class="g-card" id="fury">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Warrior — Fury</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">Two weapons, fast non-stop hits. Spin attack hits enemies around you.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
         <li><b>Battle Shout.</b> Keep this buff on yourself — it raises your attack power.</li>
@@ -293,12 +319,12 @@
         <li>You still have no real self-healing. If a fight goes bad, run early — don&#x27;t wait until you&#x27;re almost dead.</li>
         <li>Whirlwind feels great and pulls extra enemies by accident. Check what&#x27;s standing near your target before you spin.</li>
     </ul>
-  </div>
+    </div>
+  </details>
   <div class="g-cls">Paladin</div>
-  <div class="g-card" id="retribution">
-    <h2>Paladin — Retribution</h2>
-    <span class="g-pill type">Melee</span><span class="g-pill">First-timer: Easy</span>
-    <p class="g-desc">Holy knight, big weapon. Can heal itself + a bubble makes it immune briefly.</p>
+  <details class="g-card" id="retribution">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Paladin — Retribution</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee</span><span class="g-pill">First-timer: Easy</span></span><span class="g-desc">Holy knight, big weapon. Can heal itself + a bubble makes it immune briefly.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
         <li><b>Keep a Seal active.</b> A Seal adds holy damage to every swing. Once you learn Seal of Command, that&#x27;s your main one.</li>
@@ -323,12 +349,12 @@
         <li>You have no interrupt and no slow: enemy casters will finish their spells, and runners will run. Finish runners with Hammer of Wrath or Judgement.</li>
         <li>Don&#x27;t spend all your mana healing in the middle of a fight — an empty paladin can&#x27;t fight back. Heal between fights instead.</li>
     </ul>
-  </div>
+    </div>
+  </details>
   <div class="g-cls">Hunter</div>
-  <div class="g-card" id="beast-mastery">
-    <h2>Hunter — Beast Mastery</h2>
-    <span class="g-pill type">Ranged + Pet</span><span class="g-pill">First-timer: Easy</span>
-    <p class="g-desc">Your pet takes the hits for you while you shoot from far away. Easiest alone.</p>
+  <details class="g-card" id="beast-mastery">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Hunter — Beast Mastery</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged + Pet</span><span class="g-pill">First-timer: Easy</span></span><span class="g-desc">Your pet takes the hits for you while you shoot from far away. Easiest alone.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
         <li><b>Hunter&#x27;s Mark.</b> Put this on the enemy first — it takes extra damage from you.</li>
@@ -353,11 +379,11 @@
     <ul class="g-watch">
         <li>If your pet dies, everything runs straight at a lightly-armored you. Heal it with Mend Pet during hard fights, and let it get the enemy&#x27;s attention before you start shooting.</li>
     </ul>
-  </div>
-  <div class="g-card" id="marksmanship">
-    <h2>Hunter — Marksmanship</h2>
-    <span class="g-pill type">Ranged</span><span class="g-pill">First-timer: Easy</span>
-    <p class="g-desc">A sniper. Slow, big shots from far away. Can play with no pet for +20% damage.</p>
+    </div>
+  </details>
+  <details class="g-card" id="marksmanship">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Hunter — Marksmanship</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill">First-timer: Easy</span></span><span class="g-desc">A sniper. Slow, big shots from far away. Can play with no pet for +20% damage.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
         <li><b>Hunter&#x27;s Mark.</b> Always first — marked enemies take more damage from you.</li>
@@ -381,11 +407,11 @@
         <li>In WoW Forever your Auto Shot needs a brief stand-still before it fires — constant stutter-stepping quietly kills your damage. Plant your feet, shoot, then move.</li>
         <li>If an enemy reaches you, your shots get interrupted. Slow it (Concussive Shot), back up, and reset your range.</li>
     </ul>
-  </div>
-  <div class="g-card" id="survival">
-    <h2>Hunter — Survival</h2>
-    <span class="g-pill type">Melee + Pet</span><span class="g-pill med">First-timer: Medium</span>
-    <p class="g-desc">Fights up close next to its pet. Sets traps that hold or hurt enemies.</p>
+    </div>
+  </details>
+  <details class="g-card" id="survival">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Hunter — Survival</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee + Pet</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">Fights up close next to its pet. Sets traps that hold or hurt enemies.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
         <li><b>Open from range.</b> Start with your shots the way every hunter does — then stay in close and keep fighting.</li>
@@ -408,12 +434,12 @@
     <ul class="g-watch">
         <li>You wear hunter armor, not warrior armor. Duelling two enemies at once in melee is a loss — trap one first, then fight the other.</li>
     </ul>
-  </div>
+    </div>
+  </details>
   <div class="g-cls">Rogue</div>
-  <div class="g-card" id="assassination">
-    <h2>Rogue — Assassination</h2>
-    <span class="g-pill type">Melee</span><span class="g-pill med">First-timer: Medium</span>
-    <p class="g-desc">Stabs with daggers. Poisons keep damaging the enemy over time.</p>
+  <details class="g-card" id="assassination">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Rogue — Assassination</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">Stabs with daggers. Poisons keep damaging the enemy over time.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
         <li><b>Stealth opener.</b> Start fights hidden. Ambush for a huge first hit, or Garrote to start a bleed.</li>
@@ -436,11 +462,11 @@
     <ul class="g-watch">
         <li>You have no self-healing at all. Eat between fights, and if a pull goes wrong, Vanish and walk away instead of dying bravely.</li>
     </ul>
-  </div>
-  <div class="g-card" id="combat">
-    <h2>Rogue — Combat</h2>
-    <span class="g-pill type">Melee</span><span class="g-pill med">First-timer: Medium</span>
-    <p class="g-desc">More head-on than other rogues, less sneaking. Steady sword / axe attacks.</p>
+    </div>
+  </details>
+  <details class="g-card" id="combat">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Rogue — Combat</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">More head-on than other rogues, less sneaking. Steady sword / axe attacks.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
         <li><b>Sinister Strike.</b> Your builder — adds combo points. This is most of your button presses.</li>
@@ -464,11 +490,11 @@
     <ul class="g-watch">
         <li>Melee only and no self-heals, so eat between pulls. Two enemies at once without Blade Flurry ready is a bad trade.</li>
     </ul>
-  </div>
-  <div class="g-card" id="subtlety">
-    <h2>Rogue — Subtlety</h2>
-    <span class="g-pill type">Melee</span><span class="g-pill hard">First-timer: Harder</span>
-    <p class="g-desc">Sneaks unseen and strikes from hiding. Wounds keep bleeding over time.</p>
+    </div>
+  </details>
+  <details class="g-card" id="subtlety">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Rogue — Subtlety</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee</span><span class="g-pill hard">First-timer: Harder</span></span><span class="g-desc">Sneaks unseen and strikes from hiding. Wounds keep bleeding over time.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
         <li><b>Stealth opener.</b> Cheap Shot stuns the enemy as you open; Ambush is the huge-damage option with a dagger. Pick per fight.</li>
@@ -491,12 +517,12 @@
     <ul class="g-watch">
         <li>Your whole plan starts in stealth. If an enemy sees you first, the opener is gone and the fight is twice as hard — approach pulls slowly and from the side.</li>
     </ul>
-  </div>
+    </div>
+  </details>
   <div class="g-cls">Priest</div>
-  <div class="g-card" id="shadow">
-    <h2>Priest — Shadow</h2>
-    <span class="g-pill type">Ranged</span><span class="g-pill med">First-timer: Medium</span>
-    <p class="g-desc">Dark spells hurt over time. Shadow form boosts them, damage heals group a bit.</p>
+  <details class="g-card" id="shadow">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Priest — Shadow</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">Dark spells hurt over time. Shadow form boosts them, damage heals group a bit.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
         <li><b>Shadow Word: Pain.</b> Always first — shadow damage that keeps ticking over time.</li>
@@ -521,12 +547,12 @@
     <ul class="g-watch">
         <li>You wear cloth — the lightest armor in the game. If two enemies reach you, you&#x27;re in trouble: fear one away (Psychic Scream) and finish the other.</li>
     </ul>
-  </div>
+    </div>
+  </details>
   <div class="g-cls">Shaman</div>
-  <div class="g-card" id="elemental">
-    <h2>Shaman — Elemental</h2>
-    <span class="g-pill type">Ranged</span><span class="g-pill">First-timer: Easy</span>
-    <p class="g-desc">Lightning from far away + fire that keeps burning. Totems make your group stronger.</p>
+  <details class="g-card" id="elemental">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Shaman — Elemental</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill">First-timer: Easy</span></span><span class="g-desc">Lightning from far away + fire that keeps burning. Totems make your group stronger.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
         <li><b>Flame Shock.</b> Sets the enemy burning over time. Open with it.</li>
@@ -549,11 +575,11 @@
     <ul class="g-watch">
         <li>Getting hit pushes your casts back and slows them down. If an enemy reaches you, Frost Shock slows it — step away, then cast.</li>
     </ul>
-  </div>
-  <div class="g-card" id="enhancement">
-    <h2>Shaman — Enhancement</h2>
-    <span class="g-pill type">Melee</span><span class="g-pill med">First-timer: Medium</span>
-    <p class="g-desc">Weapon can hit extra times for free. Melee hits power up instant lightning.</p>
+    </div>
+  </details>
+  <details class="g-card" id="enhancement">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Shaman — Enhancement</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">Weapon can hit extra times for free. Melee hits power up instant lightning.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
         <li><b>Keep your weapon imbue up.</b> Rockbiter Weapon early on; from level 30, Windfury Weapon — the one that makes your weapon hit extra times for free.</li>
@@ -577,12 +603,12 @@
     <ul class="g-watch">
         <li>Healing mid-fight empties the mana you need for shocks and costs you damage. Top yourself up AFTER the fight, and keep a totem down when fights will last.</li>
     </ul>
-  </div>
+    </div>
+  </details>
   <div class="g-cls">Mage</div>
-  <div class="g-card" id="arcane">
-    <h2>Mage — Arcane</h2>
-    <span class="g-pill type">Ranged</span><span class="g-pill med">First-timer: Medium</span>
-    <p class="g-desc">Each magic blast makes you stronger, but costs more mana (your spell energy).</p>
+  <details class="g-card" id="arcane">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Mage — Arcane</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">Each magic blast makes you stronger, but costs more mana (your spell energy).</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
         <li><b>Arcane Blast.</b> Your main nuke. Each cast makes the NEXT Arcane Blast stronger — but also costs more mana. That&#x27;s the whole spec in one button.</li>
@@ -604,11 +630,11 @@
     <ul class="g-watch">
         <li>Going all-out on every normal enemy leaves you drinking after every fight — or dead when an extra enemy joins. Pace the blasts: small fights get small spending.</li>
     </ul>
-  </div>
-  <div class="g-card" id="fire">
-    <h2>Mage — Fire</h2>
-    <span class="g-pill type">Ranged</span><span class="g-pill med">First-timer: Medium</span>
-    <p class="g-desc">Crits (extra-strong hits) speed up your next huge fireball, Pyroblast.</p>
+    </div>
+  </details>
+  <details class="g-card" id="fire">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Mage — Fire</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">Crits (extra-strong hits) speed up your next huge fireball, Pyroblast.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
         <li><b>Fireball.</b> Your main cast — big, slow, dependable fire damage.</li>
@@ -630,11 +656,11 @@
     <ul class="g-watch">
         <li>Long cast times plus cloth armor: if an enemy reaches you, stop casting, Frost Nova it in place (yes, fire mages have Frost Nova), step back, and restart.</li>
     </ul>
-  </div>
-  <div class="g-card" id="frost">
-    <h2>Mage — Frost</h2>
-    <span class="g-pill type">Ranged</span><span class="g-pill">First-timer: Easy</span>
-    <p class="g-desc">Freezes enemies in place + slows them. Safest mage, good against groups.</p>
+    </div>
+  </details>
+  <details class="g-card" id="frost">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Mage — Frost</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill">First-timer: Easy</span></span><span class="g-desc">Freezes enemies in place + slows them. Safest mage, good against groups.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
         <li><b>Frostbolt.</b> Your main cast — and it slows the enemy, so they take longer to reach you.</li>
@@ -657,12 +683,12 @@
     <ul class="g-watch">
         <li>Don&#x27;t stand still in melee range trading hits — your whole kit is built on distance. If something reaches you: Frost Nova, step back, keep casting.</li>
     </ul>
-  </div>
+    </div>
+  </details>
   <div class="g-cls">Warlock</div>
-  <div class="g-card" id="affliction">
-    <h2>Warlock — Affliction</h2>
-    <span class="g-pill type">Ranged</span><span class="g-pill">First-timer: Easy</span>
-    <p class="g-desc">Loads enemies with many slow damage spells. Their health drains over time.</p>
+  <details class="g-card" id="affliction">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Warlock — Affliction</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill">First-timer: Easy</span></span><span class="g-desc">Loads enemies with many slow damage spells. Their health drains over time.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
         <li><b>Agony.</b> Your strongest damage-over-time spell — it grows stronger the longer it stays on. In WoW Forever Agony is a &#x27;Bane&#x27;, which means it no longer blocks your Curses: you can run a Bane AND a Curse at the same time.</li>
@@ -686,11 +712,11 @@
     <ul class="g-watch">
         <li>Drains kill slowly at the start of a fight. Don&#x27;t pull three enemies at once until your drains are strong — one extra pull is how affliction warlocks die.</li>
     </ul>
-  </div>
-  <div class="g-card" id="demonology">
-    <h2>Warlock — Demonology</h2>
-    <span class="g-pill type">Ranged + Pet</span><span class="g-pill">First-timer: Easy</span>
-    <p class="g-desc">Fights with a demon pet you power up. The demon is a big part of your damage.</p>
+    </div>
+  </details>
+  <details class="g-card" id="demonology">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Warlock — Demonology</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged + Pet</span><span class="g-pill">First-timer: Easy</span></span><span class="g-desc">Fights with a demon pet you power up. The demon is a big part of your damage.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
         <li><b>Send your demon in first.</b> Your Voidwalker holds the enemy&#x27;s attention. Let it arrive before you cast anything.</li>
@@ -714,11 +740,11 @@
     <ul class="g-watch">
         <li>Your demon is tough, not immortal — pet durability was specifically tuned at launch. If it dies, everything turns on you: Fear the enemy, resummon, or run.</li>
     </ul>
-  </div>
-  <div class="g-card" id="destruction">
-    <h2>Warlock — Destruction</h2>
-    <span class="g-pill type">Ranged</span><span class="g-pill">First-timer: Easy</span>
-    <p class="g-desc">Direct fire spells, one big hit at a time. Like an evil fire mage.</p>
+    </div>
+  </details>
+  <details class="g-card" id="destruction">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Warlock — Destruction</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill">First-timer: Easy</span></span><span class="g-desc">Direct fire spells, one big hit at a time. Like an evil fire mage.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
         <li><b>Immolate.</b> Sets the enemy burning over time. Keep it on — your other fire feeds off it.</li>
@@ -741,12 +767,12 @@
     <ul class="g-watch">
         <li>Big fire casts make enemies angry fast. In a group, let the tank hit the enemy first — if you open at full blast, everything runs at the cloth-wearing you.</li>
     </ul>
-  </div>
+    </div>
+  </details>
   <div class="g-cls">Druid</div>
-  <div class="g-card" id="balance">
-    <h2>Druid — Balance</h2>
-    <span class="g-pill type">Ranged</span><span class="g-pill med">First-timer: Medium</span>
-    <p class="g-desc">Moonkin form (big owl). Casts nature + star spells, swapping between them.</p>
+  <details class="g-card" id="balance">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Druid — Balance</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">Moonkin form (big owl). Casts nature + star spells, swapping between them.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
         <li><b>Moonfire.</b> Instant nature damage over time — open with it, and re-apply as it fades.</li>
@@ -769,11 +795,11 @@
     <ul class="g-watch">
         <li>If a fight goes wrong, don&#x27;t die in owl form: shift to Bear Form for the armor, or Travel/Cat speed to run, THEN recover. New balance druids forget their forms are escape buttons.</li>
     </ul>
-  </div>
-  <div class="g-card" id="feral-cat">
-    <h2>Druid — Feral (Cat)</h2>
-    <span class="g-pill type">Melee</span><span class="g-pill hard">First-timer: Harder</span>
-    <p class="g-desc">Turns into a cat. Sneaks, hits fast, wounds bleed over time.</p>
+    </div>
+  </details>
+  <details class="g-card" id="feral-cat">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Druid — Feral (Cat)</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee</span><span class="g-pill hard">First-timer: Harder</span></span><span class="g-desc">Turns into a cat. Sneaks, hits fast, wounds bleed over time.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
         <li><b>Prowl, then open.</b> Your stealth. Pounce stuns the enemy as you open; Ravage is the big-damage opener. Pick per fight.</li>
@@ -797,7 +823,8 @@
     <ul class="g-watch">
         <li>Dumping all your energy the second you have it leaves you standing there auto-attacking. Pool your energy, spend it in bursts — and if you pull too much, Bear Form and run.</li>
     </ul>
-  </div>
+    </div>
+  </details>
 
   <p class="g-foot">First-timer ratings are a recommendation for brand-new players, not a score from the game. Guides are starter-level on purpose: they teach the first buttons and habits, not endgame optimisation.</p>
   <a class="g-back" href="index.html" onclick="if (typeof closeGuides === 'function') { closeGuides(); return false; }">← Back to the quiz</a>
@@ -814,11 +841,27 @@ function pctOf(k, score){
 }
 function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); }
 let prevView = 'startCard';
+function collapseGuides(except){
+  if (!document.querySelectorAll) return;
+  document.querySelectorAll('#guidesView details.g-card').forEach(d => { if (d !== except) d.open = false; });
+}
+function expandGuide(anchor){
+  const t = document.getElementById(anchor);
+  if (!t) return;
+  collapseGuides(t);
+  t.open = true;
+  setTimeout(() => t.scrollIntoView(), 30);
+}
 function openGuides(anchor){
   ['startCard','quizCard','resultCard'].forEach(id => { const el = document.getElementById(id); if (!el.classList.contains('hidden')) prevView = id; el.classList.add('hidden'); });
   document.getElementById('guidesView').classList.remove('hidden');
-  if (anchor) { const t = document.getElementById(anchor); if (t) setTimeout(() => t.scrollIntoView(), 30); }
-  else window.scrollTo(0, 0);
+  if (anchor) expandGuide(anchor);
+  else { collapseGuides(null); window.scrollTo(0, 0); }
+}
+if (document.querySelectorAll) {
+  document.querySelectorAll('#guidesView details.g-card > summary').forEach(s => {
+    s.addEventListener('click', () => collapseGuides(s.parentElement));
+  });
 }
 function closeGuides(){
   document.getElementById('guidesView').classList.add('hidden');
