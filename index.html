@@ -122,7 +122,7 @@
   <div class="tabbar">
     <button class="tab active" id="tabQuiz" onclick="tabGo('quiz')">🎯 Quiz</button>
     <button class="tab" id="tabGuides" onclick="tabGo('guides')">📖 Starter Guides</button>
-    <button class="tab soon" disabled>🧭 General Info<span class="soonTag">Soon</span></button>
+    <button class="tab" id="tabGeneral" onclick="tabGo('general')">🧭 General Info</button>
     <button class="tab soon" disabled>🏰 Dungeons<span class="soonTag">Soon</span></button>
     <button class="tab soon" disabled>🛠️ Professions<span class="soonTag">Soon</span></button>
     <button class="tab soon" disabled>🏆 Tier Lists<span class="soonTag">Soon</span></button>
@@ -179,93 +179,16 @@
   <h1 class="g-h1">⚔️ WoW Forever <span class="gold">Starter Guides</span></h1>
   <p class="g-sub">One short guide for every damage character — the first buttons to press, what to know in your first hour, leveling tips, and the mistake that kills new players. Written for people who have never played WoW. <b>Characters are grouped by class — tap a class to drop down its options, then tap an option to open its guide. Only one guide opens at a time, so the page stays short.</b></p>
 
-  <details class="g-card" id="before-you-start">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Before you start — the basics</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
-    <div class="g-body">
-    <p style="margin-bottom:9px"><b>Play together.</b> WoW Forever has no realm list — you pick a ruleset (start on Normal), and everyone on that ruleset shares one world. To group up you must be on the same ruleset AND the same faction (Alliance or Horde) as your friends. Decide together before anyone creates a character.</p>
-    <p style="margin-bottom:9px"><b>Talents start at level 10.</b> You earn talent points as you level — 51 by level 60 — and spend them in your class&#x27;s three trees. Your &#x27;spec&#x27; is simply the tree you spend the most in. A class trainer in any major city can reset them, and at level 40 you unlock a second talent set you can swap to.</p>
-    <p style="margin-bottom:9px"><b>The leveling loop.</b> Quest, kill one enemy at a time at first, loot everything, and sell junk to vendors. Quest rewards are your main gear upgrades — for melee and hunters, a weapon upgrade beats everything else.</p>
-    <p style="margin-bottom:9px"><b>Staying alive.</b> Eat food and drink water between fights to refill health and mana — everyone does, it&#x27;s not a weakness. Pulling one extra enemy is the #1 cause of death for new players. Pull small until a fight feels boring.</p>
-    <p style="margin-bottom:9px"><b>In a dungeon group.</b> Five players: one tank (holds the enemies&#x27; attention), one healer, three damage. Your job as damage: let the tank pull first, then attack the same enemy the tank is fighting. Don&#x27;t run ahead, and don&#x27;t hit enemies nobody else is fighting.</p>
-    <p style="margin-bottom:9px"><b>How to use these guides.</b> Find your character below — if you took the quiz, your result screen links straight to your guide. &#x27;First buttons&#x27; is the order to learn things in, not a strict rotation: while leveling, using the right button late beats never using it.</p>
-    </div>
-  </details>
+  <div class="g-card" style="border:2px solid #ffc137">
+    <h2>Brand new to WoW?</h2>
+    <p>The beginner basics — playing together, stats, gear, travel, money, and how combat actually works — now live in the <b>General Info</b> tab.</p>
+    <p style="margin-top:10px"><a class="g-chip" href="#general" onclick="if (typeof tabGo === 'function') { tabGo('general'); return false; }">🧭 Go to General Info →</a></p>
+  </div>
 
-  <div class="g-cls">How WoW actually works — the stuff the game never explains</div>
-  <details class="g-card" id="mechanics-1">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Stopping enemy spells — interrupts</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-card" id="how-to-use">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">How to use these guides</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
-    <p style="margin-bottom:9px"><b>Casting and cast bars.</b> When an enemy uses a big spell, a bar appears and fills up. If it finishes, the spell happens. While it fills, the enemy can be stopped.</p>
-    <p style="margin-bottom:9px"><b>Interrupt.</b> An ability that cancels the spell being cast AND locks that kind of spell for a few seconds. Yours: Rogue — Kick. Warrior — Pummel. Mage — Counterspell. Shaman — Earth Shock. A warlock&#x27;s Felhunter pet has one too (Spell Lock). Shadow priests can take the Silence talent. Hunters, druids and paladins have NO true interrupt — read the next line.</p>
-    <p style="margin-bottom:9px"><b>Stuns and silences.</b> The backup plan: a stunned or silenced enemy can&#x27;t cast either. Paladin — Hammer of Justice. Rogue — Cheap Shot / Kidney Shot. Druid — Bash (in Bear Form). Hunter — Intimidation (Beast Mastery pet stun) or Scatter Shot (Marksmanship). If your class can&#x27;t interrupt, stunning and killing the caster fast is your job.</p>
-    <p style="margin-bottom:9px"><b>What to interrupt first.</b> Enemy HEALS — an interrupted heal is a dead enemy. Then fears and mind controls (they turn your own side against you), then big damage spells aimed at your tank. A normal small spell usually isn&#x27;t worth it.</p>
-    <p style="margin-bottom:9px"><b>If nobody interrupts.</b> Healers heal forever, summoners summon friends, and fear casters scatter your group. In dungeons, &#x27;we died because nothing got interrupted&#x27; is one of the most common wipe causes there is.</p>
-    </div>
-  </details>
-  <details class="g-card" id="mechanics-2">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Aggro — who the enemy attacks</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
-    <div class="g-body">
-    <p style="margin-bottom:9px"><b>Threat (aggro).</b> Every enemy keeps a mental list of who has annoyed it most — damage and healing both count. Whoever is on top gets attacked. &#x27;Having aggro&#x27; means it&#x27;s coming for you.</p>
-    <p style="margin-bottom:9px"><b>The tank&#x27;s job.</b> Staying on top of that list on purpose, with armor and a shield to survive it. One player tanks, everyone else&#x27;s job includes NOT climbing above them.</p>
-    <p style="margin-bottom:9px"><b>Taunt.</b> The tank&#x27;s rescue button: forces an enemy to attack the tank for a few seconds, no matter what the list said. If something runs past the tank at your healer, the tank taunts it back.</p>
-    <p style="margin-bottom:9px"><b>Your rules as damage.</b> Let the tank hit the enemy a few times BEFORE you go all-out. Attack the same enemy the tank is attacking. If an enemy does chase you, run TOWARD the tank (so they can take it off you) — never away, and never keep hitting it.</p>
-    <p style="margin-bottom:9px"><b>Pet tanks.</b> Same rules with a pet: let your pet hit first and build its lead, then shoot. If you open with your biggest shot, the enemy skips the pet and comes straight for you.</p>
-    </div>
-  </details>
-  <details class="g-card" id="mechanics-3">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Crowd control — taking enemies out of the fight</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
-    <div class="g-body">
-    <p style="margin-bottom:9px"><b>Crowd control (CC).</b> Abilities that disable an enemy without killing it, so your group fights one enemy at a time instead of four: a mage&#x27;s Polymorph turns one into a sheep, a rogue&#x27;s Sap knocks one out before the fight, a hunter&#x27;s Freezing Trap freezes one, roots pin one in place, fear sends one running.</p>
-    <p style="margin-bottom:9px"><b>CC breaks.</b> Sheep, traps and Sap BREAK the moment that enemy takes damage. One careless area spell can wake everything up at once. Never hit a disabled enemy, and don&#x27;t use area attacks near one.</p>
-    <p style="margin-bottom:9px"><b>Target marks.</b> Group leaders stick icons on enemies. Skull almost always means &#x27;kill this one first&#x27;. Moon usually means &#x27;mage, sheep this one&#x27;. If you&#x27;re not sure what a mark means in your group, ask — it&#x27;s a normal question.</p>
-    <p style="margin-bottom:9px"><b>Focus fire.</b> The flip side of CC: everyone attacks the SAME awake enemy until it&#x27;s dead. Five half-dead enemies hit just as hard as five healthy ones — kills shrink the danger, damage spread everywhere doesn&#x27;t.</p>
-    </div>
-  </details>
-  <details class="g-card" id="mechanics-4">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Your other buttons — staying alive</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
-    <div class="g-body">
-    <p style="margin-bottom:9px"><b>Defensive cooldowns.</b> Every class has one or two &#x27;oh no&#x27; buttons (a paladin&#x27;s bubble, a mage&#x27;s Ice Block, a rogue&#x27;s Vanish, a warrior&#x27;s Shield Wall). Use them when a fight suddenly goes wrong or you&#x27;re near 30% health. A defensive you never press saves nobody — they recharge.</p>
-    <p style="margin-bottom:9px"><b>Potions and bandages.</b> Health potions are instant and work mid-fight. Bandages (from the First Aid skill) heal a lot but break if you&#x27;re hit — bandage when nothing is attacking you. Carry both; vendors and other players sell them.</p>
-    <p style="margin-bottom:9px"><b>Cooldowns.</b> Your strongest abilities can&#x27;t be spammed — they recharge over seconds or minutes (that&#x27;s the &#x27;cooldown&#x27;). Big cooldowns are for big moments: hard enemies, extra pulls, bosses. Using one on a normal enemy then facing a boss without it is the classic trade-off.</p>
-    <p style="margin-bottom:9px"><b>Food, drink and buffs.</b> Eat and drink between fights — full health and mana, faster starts. Some food and spells give &#x27;buffs&#x27;: temporary stat boosts. In a group, share yours; someone will share theirs.</p>
-    </div>
-  </details>
-  <details class="g-card" id="mechanics-5">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Where you stand — positioning</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
-    <div class="g-body">
-    <p style="margin-bottom:9px"><b>Don&#x27;t stand in it.</b> Fire on the ground, poison pools, glowing circles: if it&#x27;s under your feet and you didn&#x27;t put it there, move. Most avoidable deaths in the game are just standing still in something bad.</p>
-    <p style="margin-bottom:9px"><b>Front and back.</b> Enemies mostly hit what&#x27;s in front of them. Rogues and cat druids literally do more damage from BEHIND. When someone else has the enemy&#x27;s attention, stand behind it — safer and stronger.</p>
-    <p style="margin-bottom:9px"><b>Line of sight.</b> Enemy casters can&#x27;t cast through walls. Pull them around a corner and they have to walk to you — straight into your group. Tanks do this on purpose; don&#x27;t stand out in the open undoing it.</p>
-    <p style="margin-bottom:9px"><b>Runners.</b> Many enemies try to flee at low health — and they run TO their friends, bringing them back. Slow them, stun them, or finish them fast. A runner nobody stopped is how a 2-enemy fight becomes a 6-enemy fight.</p>
-    </div>
-  </details>
-  <details class="g-card" id="mechanics-6">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Words you&#x27;ll hear — quick translations</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
-    <div class="g-body">
-    <p style="margin-bottom:9px"><b>Mob.</b> Any computer-controlled enemy. (From old game slang — it&#x27;s just &#x27;a monster&#x27;.)</p>
-    <p style="margin-bottom:9px"><b>Pull.</b> Starting a fight with an enemy or group, usually one pack at a time.</p>
-    <p style="margin-bottom:9px"><b>Add.</b> An extra enemy that joins a fight already in progress. Usually bad news.</p>
-    <p style="margin-bottom:9px"><b>Elite.</b> A much stronger enemy with a gold dragon around its portrait. Elites are built for groups — solo players should walk around them.</p>
-    <p style="margin-bottom:9px"><b>Buff / debuff.</b> A helpful temporary effect on you (buff) or a harmful one on you or an enemy (debuff). Curses, poisons and diseases are debuffs some classes can remove (&#x27;dispel&#x27; / &#x27;cleanse&#x27;).</p>
-    <p style="margin-bottom:9px"><b>DoT / HoT.</b> Damage over Time / Healing over Time — effects that keep ticking after one button press.</p>
-    <p style="margin-bottom:9px"><b>Proc.</b> A random bonus effect triggering — &#x27;it procced&#x27; means the lucky thing happened.</p>
-    <p style="margin-bottom:9px"><b>Crit.</b> A critical hit: an extra-strong hit (usually double damage) that happens by chance.</p>
-    <p style="margin-bottom:9px"><b>Spec.</b> Your specialisation — the talent tree you put most points in. &#x27;What&#x27;s your spec?&#x27; means &#x27;which of the three versions of your class are you?&#x27;</p>
-    <p style="margin-bottom:9px"><b>Wipe.</b> The whole group died. Everyone runs back together and tries again — normal, not a disaster.</p>
-    <p style="margin-bottom:9px"><b>NPC.</b> Any computer-controlled character — quest givers, vendors, trainers. Yellow name = neutral, red = will attack, green = friendly.</p>
-    </div>
-  </details>
-  <details class="g-card" id="mechanics-7">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Out in the world — Forever systems</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
-    <div class="g-body">
-    <p style="margin-bottom:9px"><b>Hearthstone.</b> A stone in your bag that teleports you back to one chosen inn (10-second cast, 1-hour cooldown). Talk to the innkeeper in each new quest town and set it there — it&#x27;s your &#x27;go home&#x27; button.</p>
-    <p style="margin-bottom:9px"><b>Rested experience.</b> Logging out inside an inn or a capital city builds up rested XP (a little every few hours, up to about a level and a half). While you have it, kills give DOUBLE experience. Log out in inns — it&#x27;s free progress while you sleep.</p>
-    <p style="margin-bottom:9px"><b>Campfires.</b> A new WoW Forever system: around level 5 a quest teaches you Basic Campfire (from Cooking). Camps and campfires out in the world give rested XP and useful buffs, and other players can add to your fire. Worth learning early.</p>
-    <p style="margin-bottom:9px"><b>Dying.</b> You turn into a ghost and run back to your body to revive where you fell. A Spirit Healer can revive you instantly instead, but it damages your gear and — above level 10 — leaves you weak (resurrection sickness) for up to 10 minutes. Running back is almost always better.</p>
-    <p style="margin-bottom:9px"><b>Repairs.</b> Your gear wears out as you fight and especially when you die. Vendors repair it for coins — repair before dungeon runs, or your armor quietly breaks mid-fight.</p>
-    <p style="margin-bottom:9px"><b>Trainers.</b> New abilities aren&#x27;t automatic: every couple of levels, visit your class trainer in a town or city and BUY your new spells and their stronger ranks. Forgetting this is why some new players feel mysteriously weak.</p>
-    <p style="margin-bottom:9px"><b>Getting a group.</b> There&#x27;s no automatic dungeon queue in WoW Forever: groups form through the listing tool and chat, and you walk to the dungeon entrance together. Slow, but it&#x27;s how you&#x27;ll meet people.</p>
-    <p style="margin-bottom:9px"><b>Your first mount.</b> At level 40 you can learn riding and buy your first mount (about 100 gold) — much faster travel. It&#x27;s the big purchase of your leveling life: don&#x27;t blow all your gold at level 30.</p>
+    <p>Find your character below — if you took the quiz, your result screen links straight to your guide. &#x27;First buttons&#x27; is the order to learn things in, not a strict rotation: while leveling, using the right button late beats never using it.</p>
     </div>
   </details>
 
@@ -894,6 +817,240 @@
   <p class="g-foot">First-timer ratings are a recommendation for brand-new players, not a score from the game. Guides are starter-level on purpose: they teach the first buttons and habits, not endgame optimisation.</p>
   <a class="g-back" href="index.html" onclick="if (typeof closeGuides === 'function') { closeGuides(); return false; }">← Back to the quiz</a>
   </div>
+
+  <div id="generalView" class="hidden">
+<a class="g-back" href="index.html" onclick="if (typeof closeGeneral === 'function') { closeGeneral(); return false; }">← Back to the quiz</a>
+  <h1 class="g-h1">🧭 WoW Forever <span class="gold">General Info</span></h1>
+  <p class="g-sub">Everything a brand-new player needs that isn't about one specific character — playing together, your stats and gear, how combat actually works, travel, money, and group manners. Tap a section, then tap a card. Checked against WoW Forever launch info — Nov 15, 2026.</p>
+
+  <details class="g-group" id="gen-start">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Start playing together</span><span class="g-group-names">Play together · Making your first character · Playing together from level 1 — tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
+  <details class="g-card" id="gen-play-together">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Play together</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px">WoW Forever has no realm list — you pick a ruleset (start on Normal), and everyone on that ruleset shares one world. To group up you must be on the same ruleset AND the same faction (Alliance or Horde) as your friends. Decide together before anyone creates a character.</p>
+    </div>
+  </details>
+  <details class="g-card" id="gen-first-character">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Making your first character</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px">Your race decides your faction. Alliance races: Human, Dwarf, Night Elf, Gnome. Horde races: Orc, Troll, Tauren, Undead (a human who died and came back — they&#x27;re on the Horde side here). You can only group with your own faction, so this is the choice to make together.</p>
+    <p style="margin-bottom:9px">Race is the small choice: each race gets a couple of minor special abilities, and that&#x27;s mostly it. Class is the big choice — it decides how you fight for the entire game. If you&#x27;re stuck between two races, pick the one you like looking at. You&#x27;ll be staring at this character for a long time.</p>
+    <p style="margin-bottom:9px">Your name has to be unique on your ruleset. Pick something you won&#x27;t be embarrassed to see in chat for the next year.</p>
+    </div>
+  </details>
+  <details class="g-card" id="gen-playing-together">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Playing together from level 1</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px">Invite your friends into a party (a group of up to 5). Party members who are near each other share credit for quest kills — if your friend kills the wolf the quest sent you after, it counts for you too.</p>
+    <p style="margin-bottom:9px">Gathering quests are the exception: if the quest wants 8 wolf pelts, each of you needs your own 8 drops. Expect gathering quests to take the group a little longer — that&#x27;s normal, not a bug.</p>
+    <p style="margin-bottom:9px">Each race starts in its own starting zone, so a Human and a Night Elf begin on opposite sides of the world. Don&#x27;t panic: by around level 10–12 the starting zones feed into shared areas, and meeting up gets easy. Until then, everyone levels in their own zone.</p>
+    <p style="margin-bottom:9px">You can share most quests from your quest log with party members who are eligible — when you pick up a new quest, share it before you set off.</p>
+    </div>
+  </details>
+    </div>
+  </details>
+  <details class="g-group" id="gen-character">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Your character</span><span class="g-group-names">Talents start at level 10 · Stats in plain language · Gear — colours, weapons, and armor · Trainers — your abilities aren&#x27;t automatic — tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
+  <details class="g-card" id="gen-talents">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Talents start at level 10</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px">You earn talent points as you level — 51 by level 60 — and spend them in your class&#x27;s three trees. Your &#x27;spec&#x27; is simply the tree you spend the most in. A class trainer in any major city can reset them, and at level 40 you unlock a second talent set you can swap to.</p>
+    </div>
+  </details>
+  <details class="g-card" id="gen-stats">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Stats in plain language</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px">Strength — makes melee hits harder. The main stat for warriors and paladins, useful for anyone who swings a weapon.</p>
+    <p style="margin-bottom:9px">Agility — faster critical hits (extra-strong hits), more dodging, a little armor. The main stat for hunters and rogues, and for druids in cat form.</p>
+    <p style="margin-bottom:9px">Intellect — a bigger mana pool (mana is your spell energy), and your spells land critical hits slightly more often. The main stat for mages, priests, and warlocks.</p>
+    <p style="margin-bottom:9px">Spirit — faster health and mana regeneration when you&#x27;re NOT in combat. It shortens your eating and drinking breaks, which quietly speeds up leveling.</p>
+    <p style="margin-bottom:9px">Stamina — more health. Everyone wants some; it&#x27;s what keeps a bad pull from killing you.</p>
+    <p style="margin-bottom:9px">You don&#x27;t need to memorise this for every class: each starter guide names the two stats that matter for that character. Gear whose main stat isn&#x27;t yours is sell-it gear, no matter how shiny it looks.</p>
+    </div>
+  </details>
+  <details class="g-card" id="gen-gear">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Gear — colours, weapons, and armor</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px">Item names come in colours. Grey = junk, sell it to any vendor. White = plain but usable. Green = has bonus stats, your normal leveling gear. Blue = rare, a real upgrade. Purple = epic, the best tier — you won&#x27;t see much of it while leveling, and that&#x27;s fine.</p>
+    <p style="margin-bottom:9px">Two words on gear matter. &#x27;Binds on pickup&#x27; means once you pick it up, it&#x27;s yours forever — you can never trade or sell it to another player. &#x27;Binds on equip&#x27; means you can trade or sell it until the moment you wear it.</p>
+    <p style="margin-bottom:9px">For melee classes and hunters, a better weapon is a bigger upgrade than any armor piece — your damage numbers come straight from it. Take weapon quest rewards first.</p>
+    <p style="margin-bottom:9px">Armor comes in four weights: cloth (lightest), leather, mail, plate (heaviest). Wear the heaviest type your class can use — warriors and paladins start in mail, hunters and shamans in leather, and at level 40 those classes can train the next weight up.</p>
+    </div>
+  </details>
+  <details class="g-card" id="gen-trainers">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Trainers — your abilities aren&#x27;t automatic</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px">Leveling up does NOT hand you your new spells. Every couple of levels, visit your class trainer in a town or capital city and BUY your new abilities — and the stronger ranks of the ones you already have. Forgetting this is the #1 reason new players feel mysteriously weak at level 15.</p>
+    <p style="margin-bottom:9px">The same trainer can reset your talent points if you want to change your build. It costs gold, and the price goes up each time you do it, so experiment early while it&#x27;s cheap.</p>
+    <p style="margin-bottom:9px">Professions have trainers too — you learn each job, and its recipes and patterns, from them. Your class trainer is usually near other trainers in the same city district.</p>
+    </div>
+  </details>
+    </div>
+  </details>
+  <details class="g-group" id="gen-combat">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Combat foundations — how WoW actually works</span><span class="g-group-names">Stopping enemy spells — interrupts · Aggro — who the enemy attacks · Crowd control — taking enemies out of the fight · Your other buttons — staying alive · Where you stand — positioning · Words you&#x27;ll hear — quick translations · Out in the world — Forever systems — tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
+  <details class="g-card" id="mechanics-1">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Stopping enemy spells — interrupts</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Casting and cast bars.</b> When an enemy uses a big spell, a bar appears and fills up. If it finishes, the spell happens. While it fills, the enemy can be stopped.</p>
+    <p style="margin-bottom:9px"><b>Interrupt.</b> An ability that cancels the spell being cast AND locks that kind of spell for a few seconds. Yours: Rogue — Kick. Warrior — Pummel. Mage — Counterspell. Shaman — Earth Shock. A warlock&#x27;s Felhunter pet has one too (Spell Lock). Shadow priests can take the Silence talent. Hunters, druids and paladins have NO true interrupt — read the next line.</p>
+    <p style="margin-bottom:9px"><b>Stuns and silences.</b> The backup plan: a stunned or silenced enemy can&#x27;t cast either. Paladin — Hammer of Justice. Rogue — Cheap Shot / Kidney Shot. Druid — Bash (in Bear Form). Hunter — Intimidation (Beast Mastery pet stun) or Scatter Shot (Marksmanship). If your class can&#x27;t interrupt, stunning and killing the caster fast is your job.</p>
+    <p style="margin-bottom:9px"><b>What to interrupt first.</b> Enemy HEALS — an interrupted heal is a dead enemy. Then fears and mind controls (they turn your own side against you), then big damage spells aimed at your tank. A normal small spell usually isn&#x27;t worth it.</p>
+    <p style="margin-bottom:9px"><b>If nobody interrupts.</b> Healers heal forever, summoners summon friends, and fear casters scatter your group. In dungeons, &#x27;we died because nothing got interrupted&#x27; is one of the most common wipe causes there is.</p>
+    </div>
+  </details>
+  <details class="g-card" id="mechanics-2">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Aggro — who the enemy attacks</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Threat (aggro).</b> Every enemy keeps a mental list of who has annoyed it most — damage and healing both count. Whoever is on top gets attacked. &#x27;Having aggro&#x27; means it&#x27;s coming for you.</p>
+    <p style="margin-bottom:9px"><b>The tank&#x27;s job.</b> Staying on top of that list on purpose, with armor and a shield to survive it. One player tanks, everyone else&#x27;s job includes NOT climbing above them.</p>
+    <p style="margin-bottom:9px"><b>Taunt.</b> The tank&#x27;s rescue button: forces an enemy to attack the tank for a few seconds, no matter what the list said. If something runs past the tank at your healer, the tank taunts it back.</p>
+    <p style="margin-bottom:9px"><b>Your rules as damage.</b> Let the tank hit the enemy a few times BEFORE you go all-out. Attack the same enemy the tank is attacking. If an enemy does chase you, run TOWARD the tank (so they can take it off you) — never away, and never keep hitting it.</p>
+    <p style="margin-bottom:9px"><b>Pet tanks.</b> Same rules with a pet: let your pet hit first and build its lead, then shoot. If you open with your biggest shot, the enemy skips the pet and comes straight for you.</p>
+    </div>
+  </details>
+  <details class="g-card" id="mechanics-3">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Crowd control — taking enemies out of the fight</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Crowd control (CC).</b> Abilities that disable an enemy without killing it, so your group fights one enemy at a time instead of four: a mage&#x27;s Polymorph turns one into a sheep, a rogue&#x27;s Sap knocks one out before the fight, a hunter&#x27;s Freezing Trap freezes one, roots pin one in place, fear sends one running.</p>
+    <p style="margin-bottom:9px"><b>CC breaks.</b> Sheep, traps and Sap BREAK the moment that enemy takes damage. One careless area spell can wake everything up at once. Never hit a disabled enemy, and don&#x27;t use area attacks near one.</p>
+    <p style="margin-bottom:9px"><b>Target marks.</b> Group leaders stick icons on enemies. Skull almost always means &#x27;kill this one first&#x27;. Moon usually means &#x27;mage, sheep this one&#x27;. If you&#x27;re not sure what a mark means in your group, ask — it&#x27;s a normal question.</p>
+    <p style="margin-bottom:9px"><b>Focus fire.</b> The flip side of CC: everyone attacks the SAME awake enemy until it&#x27;s dead. Five half-dead enemies hit just as hard as five healthy ones — kills shrink the danger, damage spread everywhere doesn&#x27;t.</p>
+    </div>
+  </details>
+  <details class="g-card" id="mechanics-4">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Your other buttons — staying alive</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Defensive cooldowns.</b> Every class has one or two &#x27;oh no&#x27; buttons (a paladin&#x27;s bubble, a mage&#x27;s Ice Block, a rogue&#x27;s Vanish, a warrior&#x27;s Shield Wall). Use them when a fight suddenly goes wrong or you&#x27;re near 30% health. A defensive you never press saves nobody — they recharge.</p>
+    <p style="margin-bottom:9px"><b>Potions and bandages.</b> Health potions are instant and work mid-fight. Bandages (from the First Aid skill) heal a lot but break if you&#x27;re hit — bandage when nothing is attacking you. Carry both; vendors and other players sell them.</p>
+    <p style="margin-bottom:9px"><b>Cooldowns.</b> Your strongest abilities can&#x27;t be spammed — they recharge over seconds or minutes (that&#x27;s the &#x27;cooldown&#x27;). Big cooldowns are for big moments: hard enemies, extra pulls, bosses. Using one on a normal enemy then facing a boss without it is the classic trade-off.</p>
+    <p style="margin-bottom:9px"><b>Food, drink and buffs.</b> Eat and drink between fights — full health and mana, faster starts. Some food and spells give &#x27;buffs&#x27;: temporary stat boosts. In a group, share yours; someone will share theirs.</p>
+    </div>
+  </details>
+  <details class="g-card" id="mechanics-5">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Where you stand — positioning</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Don&#x27;t stand in it.</b> Fire on the ground, poison pools, glowing circles: if it&#x27;s under your feet and you didn&#x27;t put it there, move. Most avoidable deaths in the game are just standing still in something bad.</p>
+    <p style="margin-bottom:9px"><b>Front and back.</b> Enemies mostly hit what&#x27;s in front of them. Rogues and cat druids literally do more damage from BEHIND. When someone else has the enemy&#x27;s attention, stand behind it — safer and stronger.</p>
+    <p style="margin-bottom:9px"><b>Line of sight.</b> Enemy casters can&#x27;t cast through walls. Pull them around a corner and they have to walk to you — straight into your group. Tanks do this on purpose; don&#x27;t stand out in the open undoing it.</p>
+    <p style="margin-bottom:9px"><b>Runners.</b> Many enemies try to flee at low health — and they run TO their friends, bringing them back. Slow them, stun them, or finish them fast. A runner nobody stopped is how a 2-enemy fight becomes a 6-enemy fight.</p>
+    </div>
+  </details>
+  <details class="g-card" id="mechanics-6">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Words you&#x27;ll hear — quick translations</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Mob.</b> Any computer-controlled enemy. (From old game slang — it&#x27;s just &#x27;a monster&#x27;.)</p>
+    <p style="margin-bottom:9px"><b>Pull.</b> Starting a fight with an enemy or group, usually one pack at a time.</p>
+    <p style="margin-bottom:9px"><b>Add.</b> An extra enemy that joins a fight already in progress. Usually bad news.</p>
+    <p style="margin-bottom:9px"><b>Elite.</b> A much stronger enemy with a gold dragon around its portrait. Elites are built for groups — solo players should walk around them.</p>
+    <p style="margin-bottom:9px"><b>Buff / debuff.</b> A helpful temporary effect on you (buff) or a harmful one on you or an enemy (debuff). Curses, poisons and diseases are debuffs some classes can remove (&#x27;dispel&#x27; / &#x27;cleanse&#x27;).</p>
+    <p style="margin-bottom:9px"><b>DoT / HoT.</b> Damage over Time / Healing over Time — effects that keep ticking after one button press.</p>
+    <p style="margin-bottom:9px"><b>Proc.</b> A random bonus effect triggering — &#x27;it procced&#x27; means the lucky thing happened.</p>
+    <p style="margin-bottom:9px"><b>Crit.</b> A critical hit: an extra-strong hit (usually double damage) that happens by chance.</p>
+    <p style="margin-bottom:9px"><b>Spec.</b> Your specialisation — the talent tree you put most points in. &#x27;What&#x27;s your spec?&#x27; means &#x27;which of the three versions of your class are you?&#x27;</p>
+    <p style="margin-bottom:9px"><b>Wipe.</b> The whole group died. Everyone runs back together and tries again — normal, not a disaster.</p>
+    <p style="margin-bottom:9px"><b>NPC.</b> Any computer-controlled character — quest givers, vendors, trainers. Yellow name = neutral, red = will attack, green = friendly.</p>
+    </div>
+  </details>
+  <details class="g-card" id="mechanics-7">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Out in the world — Forever systems</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Hearthstone.</b> A stone in your bag that teleports you back to one chosen inn (10-second cast, 1-hour cooldown). Talk to the innkeeper in each new quest town and set it there — it&#x27;s your &#x27;go home&#x27; button.</p>
+    <p style="margin-bottom:9px"><b>Rested experience.</b> Logging out inside an inn or a capital city builds up rested XP (a little every few hours, up to about a level and a half). While you have it, kills give DOUBLE experience. Log out in inns — it&#x27;s free progress while you sleep.</p>
+    <p style="margin-bottom:9px"><b>Campfires.</b> A new WoW Forever system: around level 5 a quest teaches you Basic Campfire (from Cooking). Camps and campfires out in the world give rested XP and useful buffs, and other players can add to your fire. Worth learning early.</p>
+    <p style="margin-bottom:9px"><b>Dying.</b> You turn into a ghost and run back to your body to revive where you fell. A Spirit Healer can revive you instantly instead, but it damages your gear and — above level 10 — leaves you weak (resurrection sickness) for up to 10 minutes. Running back is almost always better.</p>
+    <p style="margin-bottom:9px"><b>Repairs.</b> Your gear wears out as you fight and especially when you die. Vendors repair it for coins — repair before dungeon runs, or your armor quietly breaks mid-fight.</p>
+    <p style="margin-bottom:9px"><b>Trainers.</b> New abilities aren&#x27;t automatic: every couple of levels, visit your class trainer in a town or city and BUY your new spells and their stronger ranks. Forgetting this is why some new players feel mysteriously weak.</p>
+    <p style="margin-bottom:9px"><b>Getting a group.</b> There&#x27;s no automatic dungeon queue in WoW Forever: groups form through the listing tool and chat, and you walk to the dungeon entrance together. Slow, but it&#x27;s how you&#x27;ll meet people.</p>
+    <p style="margin-bottom:9px"><b>Your first mount.</b> At level 40 you can learn riding and buy your first mount (about 100 gold) — much faster travel. It&#x27;s the big purchase of your leveling life: don&#x27;t blow all your gold at level 30.</p>
+    </div>
+  </details>
+    </div>
+  </details>
+  <details class="g-group" id="gen-leveling">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Leveling &amp; the world</span><span class="g-group-names">The leveling loop · Staying alive · Hearthstone, rested XP, and campfires · Travel — and your first mount at 40 · Money basics · Dying — and getting back — tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
+  <details class="g-card" id="gen-leveling-loop">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">The leveling loop</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px">Quest, kill one enemy at a time at first, loot everything, and sell junk to vendors. Quest rewards are your main gear upgrades — for melee and hunters, a weapon upgrade beats everything else.</p>
+    </div>
+  </details>
+  <details class="g-card" id="gen-staying-alive">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Staying alive</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px">Eat food and drink water between fights to refill health and mana — everyone does, it&#x27;s not a weakness. Pulling one extra enemy is the #1 cause of death for new players. Pull small until a fight feels boring.</p>
+    </div>
+  </details>
+  <details class="g-card" id="gen-hearth-rested">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Hearthstone, rested XP, and campfires</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px">Your Hearthstone is a stone in your bag that teleports you back to one chosen inn (10-second cast, then a 1-hour cooldown before you can use it again). Talk to the innkeeper in every new quest town and set your Hearthstone there — it&#x27;s your &#x27;go home&#x27; button at the end of a session.</p>
+    <p style="margin-bottom:9px">Logging out inside an inn or a capital city builds up rested XP — a bonus that makes kills worth DOUBLE experience until it runs out. It builds a little every few hours, up to about a level and a half. Logging out in an inn is free progress while you sleep.</p>
+    <p style="margin-bottom:9px">Campfires are new in WoW Forever: around level 5 a quest teaches you Basic Campfire, from the Cooking skill. Camps and campfires out in the world also give rested XP and useful buffs, and other players can add to your fire — worth learning early.</p>
+    </div>
+  </details>
+  <details class="g-card" id="gen-travel-mount">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Travel — and your first mount at 40</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px">At the start, you walk. Everywhere. That&#x27;s normal — the world is built for it, and quests chain from town to town so you&#x27;re rarely walking without a purpose.</p>
+    <p style="margin-bottom:9px">Flight paths are your fast travel: talk to the flight master in each new town to unlock that stop, and from then on you can pay a few coins to fly between any two stops you&#x27;ve unlocked. Unlock every flight master you pass — future you says thanks.</p>
+    <p style="margin-bottom:9px">Boats (Alliance) and zeppelins (Horde) connect the continents and are free — just stand on board and wait for the ride. Ask a city guard for directions to the docks or the zeppelin tower.</p>
+    <p style="margin-bottom:9px">At level 40 you can learn riding and buy your first mount — about 100 gold all-in — and travel speed jumps for good. It&#x27;s the big purchase of your leveling life: start saving in your 30s. A much faster epic mount exists at level 60, at around 1,000 gold — that&#x27;s a long-term goal, not something to stress about now.</p>
+    </div>
+  </details>
+  <details class="g-card" id="gen-money">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Money basics</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px">Loot everything and sell the grey junk to any vendor. It feels like pennies because it is — but pennies are exactly how the level-40 mount gets paid for.</p>
+    <p style="margin-bottom:9px">Don&#x27;t buy gear from vendors. Vendor weapons and armor are overpriced and weak; quest rewards and enemy drops are your gear. The one early purchase that IS worth it: bigger bags. More bag space means fewer town trips and less loot left behind.</p>
+    <p style="margin-bottom:9px">Capital cities have an Auction House, where players buy and sell from each other. While leveling, your main use for it is selling — materials you gather (ore, herbs, leather, cloth) are worth real money to other players, often more than you&#x27;d expect.</p>
+    <p style="margin-bottom:9px">Repair your gear at vendors before it breaks, and keep a small gold cushion. Running completely dry is the only real money trap at low levels.</p>
+    </div>
+  </details>
+  <details class="g-card" id="gen-death">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Dying — and getting back</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px">When you die, you become a ghost at the nearest graveyard, and you run back to your body to come back to life where you fell. The run is annoying on purpose — it&#x27;s the game&#x27;s main punishment for dying — but it costs you nothing but time.</p>
+    <p style="margin-bottom:9px">A Spirit Healer at the graveyard can revive you instantly instead, but it damages your gear and — above level 10 — leaves you weakened (resurrection sickness: your stats and damage drop hard) for up to 10 minutes. Running back is almost always the better deal.</p>
+    <p style="margin-bottom:9px">Your gear also takes a little damage every time you die, so deaths quietly cost repair money too. One more reason the guides keep saying it: pull one enemy at a time.</p>
+    </div>
+  </details>
+    </div>
+  </details>
+  <details class="g-group" id="gen-groups">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Groups &amp; dungeons</span><span class="g-group-names">In a dungeon group · Loot manners — Need, Greed, Pass — tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
+  <details class="g-card" id="gen-dungeon-group">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">In a dungeon group</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px">Five players: one tank (holds the enemies&#x27; attention), one healer, three damage. Your job as damage: let the tank pull first, then attack the same enemy the tank is fighting. Don&#x27;t run ahead, and don&#x27;t hit enemies nobody else is fighting.</p>
+    </div>
+  </details>
+  <details class="g-card" id="gen-loot">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Loot manners — Need, Greed, Pass</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px">When something good drops in a group, a window pops up and everyone picks one: Need, Greed, or Pass. Players who pick Need roll first; if nobody needs it, the Greed players roll; Pass means &#x27;not for me.&#x27;</p>
+    <p style="margin-bottom:9px">Need = it&#x27;s an upgrade for the character you&#x27;re playing right now, and you&#x27;ll equip it. Greed = you&#x27;d sell it, use it on a different character, or just want the money. Pass = you don&#x27;t want it at all.</p>
+    <p style="margin-bottom:9px">The one rule that keeps groups friendly: only Need on gear for the spec you&#x27;re playing in that run. If you want something for a different build, say so in chat and ask — most groups say yes, and asking costs you nothing.</p>
+    <p style="margin-bottom:9px">Not sure? Greed is always safe. Nobody ever got kicked for greeding; people absolutely get remembered for needing everything.</p>
+    </div>
+  </details>
+    </div>
+  </details>
+
+  <div class="g-card" style="border:2px solid #ffc137">
+    <h2>Coming next: the Dungeons tab</h2>
+    <p>Every dungeon, boss by boss — where it is, what to interrupt, and what wipes new groups. Until it lands, the Combat foundations cards above are exactly the skills dungeons test: interrupts, aggro, and crowd control.</p>
+  </div>
+
+  <p class="g-foot">General Info is starter-level on purpose: the habits that keep you alive and solvent to level 60, not endgame optimisation.</p>
+  <a class="g-back" href="index.html" onclick="if (typeof closeGeneral === 'function') { closeGeneral(); return false; }">← Back to the quiz</a>
+  </div>
 </div>
 <script>
 const QUIZ = [{"q": "Where do you want to stand in a fight?", "options": [{"text": "\u2694\ufe0f Up close, right in the enemy's face", "points": {"Arms": 3, "Fury": 3, "Retribution": 3, "Survival": 3, "Assassination": 3, "Combat": 3, "Subtlety": 3, "Enhancement": 3, "Feral": 3}}, {"text": "\ud83c\udff9 Far away, safe at a distance", "points": {"Beast Mastery": 3, "Marksmanship": 3, "Shadow": 3, "Elemental": 3, "Arcane": 3, "Fire": 3, "Frost": 3, "Affliction": 3, "Demonology": 3, "Destruction": 3, "Balance": 3}}, {"text": "\ud83e\udd37 Either is fine", "points": {"Arms": 1, "Fury": 1, "Retribution": 1, "Beast Mastery": 1, "Marksmanship": 1, "Survival": 1, "Assassination": 1, "Combat": 1, "Subtlety": 1, "Shadow": 1, "Elemental": 1, "Enhancement": 1, "Arcane": 1, "Fire": 1, "Frost": 1, "Affliction": 1, "Demonology": 1, "Destruction": 1, "Balance": 1, "Feral": 1}}]}, {"q": "Do you want a helper fighting with you?", "options": [{"text": "\ud83d\udc3a Yes \u2014 an animal pet", "points": {"Beast Mastery": 5, "Marksmanship": 3, "Survival": 3}}, {"text": "\ud83d\ude08 Yes \u2014 a demon", "points": {"Demonology": 5, "Affliction": 3, "Destruction": 3}}, {"text": "\ud83d\udeb6 No helper \u2014 just me", "points": {"Arms": 2, "Fury": 2, "Retribution": 2, "Marksmanship": 6, "Assassination": 2, "Combat": 2, "Subtlety": 2, "Shadow": 2, "Elemental": 2, "Enhancement": 2, "Arcane": 2, "Fire": 2, "Frost": 2, "Balance": 2, "Feral": 2}}, {"text": "\ud83e\udd37 Don't care", "points": {"Arms": 1, "Fury": 1, "Retribution": 1, "Beast Mastery": 1, "Marksmanship": 1, "Survival": 1, "Assassination": 1, "Combat": 1, "Subtlety": 1, "Shadow": 1, "Elemental": 1, "Enhancement": 1, "Arcane": 1, "Fire": 1, "Frost": 1, "Affliction": 1, "Demonology": 1, "Destruction": 1, "Balance": 1, "Feral": 1}}]}, {"q": "How should your damage feel?", "options": [{"text": "\ud83d\udca8 Fast \u2014 lots of quick hits", "points": {"Fury": 3, "Combat": 3, "Feral": 3, "Enhancement": 3, "Assassination": 3}}, {"text": "\ud83d\udca5 Slow \u2014 a few HUGE hits", "points": {"Arms": 3, "Retribution": 3, "Marksmanship": 3, "Destruction": 3, "Fire": 2}}, {"text": "\ud83e\ude78 Slow drain \u2014 the enemy's health keeps dropping over time", "points": {"Affliction": 3, "Shadow": 3, "Subtlety": 3, "Assassination": 3, "Arms": 3, "Feral": 3}}, {"text": "\u2728 Explosive magic spells", "points": {"Fire": 3, "Elemental": 3, "Destruction": 3, "Arcane": 3, "Balance": 3}}]}, {"q": "Pick the character fantasy you like most:", "options": [{"text": "\ud83d\udee1\ufe0f Holy knight with a big weapon", "points": {"Retribution": 5, "Arms": 1, "Fury": 1}}, {"text": "\ud83d\udde1\ufe0f Sneaky assassin", "points": {"Subtlety": 4, "Assassination": 4, "Combat": 2, "Feral": 2}}, {"text": "\ud83d\udc3b Animals, nature and shapeshifting", "points": {"Feral": 4, "Balance": 4, "Beast Mastery": 2, "Survival": 2}}, {"text": "\ud83d\udc80 Dark magic user", "points": {"Affliction": 3, "Demonology": 3, "Destruction": 3, "Shadow": 4}}, {"text": "\u26a1 Wizard of the elements \u2014 fire, ice, lightning", "points": {"Elemental": 4, "Enhancement": 4, "Arcane": 2, "Fire": 2, "Frost": 2}}, {"text": "\ud83c\udff9 Bow hunter / sniper", "points": {"Beast Mastery": 4, "Marksmanship": 4, "Survival": 4}}, {"text": "\ud83e\ude93 Just me and a huge weapon \u2014 no magic, no sneaking", "points": {"Arms": 5, "Fury": 4}}]}, {"q": "Pick your coolest trick:", "options": [{"text": "\u2744\ufe0f Freeze enemies in place so they can't reach me", "points": {"Frost": 5}}, {"text": "\ud83d\udc9a Heal myself and survive almost anything", "points": {"Retribution": 4, "Shadow": 2}}, {"text": "\ud83d\udc31 Turn into an animal", "points": {"Feral": 5, "Balance": 3}}, {"text": "\ud83e\udea4 Set traps / place totems that help my group", "points": {"Survival": 4, "Elemental": 4, "Enhancement": 2}}, {"text": "\u2620\ufe0f Poisons that keep hurting the enemy", "points": {"Assassination": 5}}, {"text": "\ud83e\ude78 Wounds that keep bleeding", "points": {"Subtlety": 3, "Feral": 3, "Arms": 3}}, {"text": "\ud83d\udd0b Build up power first, then release it all", "points": {"Arcane": 5, "Fire": 2}}, {"text": "\ud83d\ude80 A speed rush \u2014 attack much faster for a while", "points": {"Combat": 5, "Fury": 3, "Enhancement": 3}}]}, {"q": "In a group, do you want an extra job besides damage?", "options": [{"text": "\ud83c\udfaf No \u2014 damage only, keep it simple", "points": {"Beast Mastery": 2, "Marksmanship": 2, "Survival": 2, "Assassination": 2, "Combat": 2, "Subtlety": 2, "Arcane": 2, "Fire": 2, "Frost": 2, "Affliction": 2, "Demonology": 2, "Destruction": 2}}, {"text": "\ud83d\uddff Totems that make my whole group stronger", "points": {"Elemental": 5, "Enhancement": 5}}, {"text": "\ud83d\udc9a My damage heals my group a little", "points": {"Shadow": 5, "Balance": 1}}, {"text": "\ud83d\udee1\ufe0f Heal myself, so nobody has to look after me", "points": {"Retribution": 4}}, {"text": "\ud83d\udc3a My pet takes hits that would have hit my group", "points": {"Beast Mastery": 4, "Demonology": 2, "Survival": 2}}]}, {"q": "What do you want in your hands?", "options": [{"text": "\ud83e\ude93 One huge two-handed weapon", "points": {"Arms": 4, "Retribution": 4}}, {"text": "\u2694\ufe0f Two fast weapons, one in each hand", "points": {"Fury": 4, "Combat": 3, "Survival": 3, "Assassination": 2}}, {"text": "\ud83d\udde1\ufe0f Daggers / claws \u2014 quick and sharp", "points": {"Assassination": 3, "Subtlety": 3, "Feral": 4}}, {"text": "\ud83c\udff9 A bow or a gun", "points": {"Beast Mastery": 4, "Marksmanship": 4}}, {"text": "\ud83d\udd2e Nothing \u2014 spells only", "points": {"Arcane": 3, "Fire": 3, "Frost": 3, "Affliction": 3, "Demonology": 3, "Destruction": 3, "Shadow": 3, "Elemental": 3, "Balance": 3}}]}, {"q": "Last one \u2014 pick a spell flavour (or skip the magic):", "options": [{"text": "\ud83d\udd25 Fire \u2014 huge fireballs", "points": {"Fire": 5, "Destruction": 4, "Elemental": 1}}, {"text": "\u2744\ufe0f Ice \u2014 freeze and slow everything", "points": {"Frost": 5}}, {"text": "\u26a1 Lightning", "points": {"Elemental": 5, "Enhancement": 3}}, {"text": "\ud83d\udc80 Dark \u2014 drain and shadow spells", "points": {"Affliction": 4, "Shadow": 4, "Demonology": 2}}, {"text": "\ud83c\udf19 Nature and stars", "points": {"Balance": 5, "Feral": 1}}, {"text": "\ud83d\udeab I'm not a spell caster", "points": {"Arms": 2, "Fury": 2, "Retribution": 2, "Survival": 2, "Assassination": 2, "Combat": 2, "Subtlety": 2, "Enhancement": 2, "Feral": 2}}, {"text": "\ud83d\udd0b Pure magic power that builds up", "points": {"Arcane": 5}}]}];
@@ -906,15 +1063,21 @@ function pctOf(k, score){
 }
 function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); }
 let prevView = 'startCard';
-function collapseGuides(except){
+function collapseIn(rootSel, except){
   if (!document.querySelectorAll) return;
-  document.querySelectorAll('#guidesView details.g-card').forEach(d => { if (d !== except) d.open = false; });
-  document.querySelectorAll('#guidesView details.g-group').forEach(d => { if (!except || !d.contains(except)) d.open = false; });
+  document.querySelectorAll(rootSel + ' details.g-card').forEach(d => { if (d !== except) d.open = false; });
+  document.querySelectorAll(rootSel + ' details.g-group').forEach(d => { if (!except || !d.contains(except)) d.open = false; });
 }
+function collapseGuides(except){ collapseIn('#guidesView', except); }
+function collapseGeneral(except){ collapseIn('#generalView', except); }
 function expandGuide(anchor){
   const t = document.getElementById(anchor);
   if (!t) return;
-  collapseGuides(t);
+  let root = t;
+  while (root && root.id !== 'guidesView' && root.id !== 'generalView') root = root.parentElement;
+  const inGeneral = !!(root && root.id === 'generalView');
+  setView(inGeneral ? 'general' : 'guides', false);
+  if (inGeneral) collapseGeneral(t); else collapseGuides(t);
   t.open = true;
   let p = t.parentElement;
   while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; }
@@ -923,21 +1086,25 @@ function expandGuide(anchor){
 let currentView = 'quiz';
 function setView(v, push){
   currentView = v;
-  const qv = document.getElementById('quizView'), gv = document.getElementById('guidesView');
-  if (v === 'guides') { qv.classList.add('hidden'); gv.classList.remove('hidden'); }
-  else { gv.classList.add('hidden'); qv.classList.remove('hidden'); }
-  const tq = document.getElementById('tabQuiz'), tg = document.getElementById('tabGuides');
-  if (tq && tg) { tq.classList.toggle('active', v !== 'guides'); tg.classList.toggle('active', v === 'guides'); }
+  const qv = document.getElementById('quizView'), gv = document.getElementById('guidesView'), nv = document.getElementById('generalView');
+  if (v === 'guides') { qv.classList.add('hidden'); gv.classList.remove('hidden'); if (nv) nv.classList.add('hidden'); }
+  else if (v === 'general') { qv.classList.add('hidden'); gv.classList.add('hidden'); if (nv) nv.classList.remove('hidden'); }
+  else { gv.classList.add('hidden'); if (nv) nv.classList.add('hidden'); qv.classList.remove('hidden'); }
+  const tq = document.getElementById('tabQuiz'), tg = document.getElementById('tabGuides'), tn = document.getElementById('tabGeneral');
+  if (tq && tg) { tq.classList.toggle('active', v === 'quiz'); tg.classList.toggle('active', v === 'guides'); }
+  if (tn) tn.classList.toggle('active', v === 'general');
   if (push) { try { if (location.hash !== '#' + v) location.hash = v; } catch(e) {} }
 }
 function tabGo(v){
   if (v === 'guides') openGuides();
+  else if (v === 'general') openGeneral();
   else { setView('quiz', true); window.scrollTo(0, 0); }
 }
 function viewFromHash(){
   try {
     const h = (location.hash || '').replace('#', '');
     if (h === 'guides') { setView('guides', false); return; }
+    if (h === 'general') { setView('general', false); return; }
     if (h === 'quiz') { setView('quiz', false); return; }
     if (h) { const t = document.getElementById(h); if (t && t.tagName === 'DETAILS') { setView('guides', false); expandGuide(h); } }
   } catch(e) {}
@@ -950,18 +1117,29 @@ function openGuides(anchor){
   else { collapseGuides(null); window.scrollTo(0, 0); }
 }
 if (document.querySelectorAll) {
-  document.querySelectorAll('#guidesView details.g-card > summary').forEach(s => {
-    s.addEventListener('click', () => collapseGuides(s.parentElement));
-  });
-  document.querySelectorAll('#guidesView details.g-group > summary').forEach(s => {
-    s.addEventListener('click', () => {
-      document.querySelectorAll('#guidesView details.g-group').forEach(g => {
-        if (g !== s.parentElement) { g.open = false; g.querySelectorAll('details.g-card').forEach(d => { d.open = false; }); }
+  [['#guidesView', collapseGuides], ['#generalView', collapseGeneral]].forEach(([rootSel, collapseFn]) => {
+    document.querySelectorAll(rootSel + ' details.g-card > summary').forEach(s => {
+      s.addEventListener('click', () => collapseFn(s.parentElement));
+    });
+    document.querySelectorAll(rootSel + ' details.g-group > summary').forEach(s => {
+      s.addEventListener('click', () => {
+        document.querySelectorAll(rootSel + ' details.g-group').forEach(g => {
+          if (g !== s.parentElement) { g.open = false; g.querySelectorAll('details.g-card').forEach(d => { d.open = false; }); }
+        });
       });
     });
   });
 }
 function closeGuides(){
+  setView('quiz', true);
+  window.scrollTo(0, 0);
+}
+function openGeneral(anchor){
+  setView('general', true);
+  if (anchor) expandGuide(anchor);
+  else { collapseGeneral(null); window.scrollTo(0, 0); }
+}
+function closeGeneral(){
   setView('quiz', true);
   window.scrollTo(0, 0);
 }
@@ -1075,6 +1253,6 @@ function restart(){ step = 0; answers = []; try { localStorage.removeItem('wowQu
 })();
 viewFromHash();
 </script>
-<p style="text-align:center;color:#8a7a5a;font-size:12px;margin:18px 0 8px">WoW Forever Quiz · build 2026-11-15 · WOWTAB-20261115</p>
+<p style="text-align:center;color:#8a7a5a;font-size:12px;margin:18px 0 8px">WoW Forever Quiz · build 2026-11-15 · WOWP1-20261115</p>
 </body>
 </html>
