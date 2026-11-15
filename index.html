@@ -20,6 +20,12 @@
   .opt:active, .opt:hover { border-color:#ffc137; background:#2e333f; }
   .back { background:none; border:none; color:#8b919e; font-size:15px; cursor:pointer; padding:8px 2px; font-family:inherit; }
   .hidden { display:none; }
+  .tabbar { position:sticky; top:8px; z-index:50; display:flex; gap:8px; overflow-x:auto; padding:8px; margin-bottom:14px; background:rgba(21,23,28,.94); border:1px solid #3a3f4a; border-radius:14px; scrollbar-width:none; }
+  .tabbar::-webkit-scrollbar { display:none; }
+  .tab { flex:0 0 auto; background:#262a33; color:#c9ced8; border:2px solid #3a3f4a; border-radius:999px; padding:9px 15px; font-size:15px; font-weight:700; cursor:pointer; font-family:inherit; }
+  .tab.active { background:#ffc137; border-color:#ffc137; color:#1a1405; }
+  .tab.soon { opacity:.45; cursor:default; }
+  .soonTag { font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.5px; background:#1e2128; color:#8b919e; border-radius:99px; padding:2px 7px; margin-left:5px; }
   .resultCls { color:#ffc137; font-size:15px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; }
   .resultName { font-size:36px; font-weight:800; line-height:1.15; margin:4px 0 12px; }
   .pills { margin-bottom:14px; }
@@ -65,7 +71,15 @@
   .g-h1 { font-size:27px; line-height:1.25; margin-top:8px; text-align:left; }
   .g-h1 .gold { color:#ffc137; }
   .g-sub { color:#a7adb9; font-size:15px; line-height:1.55; margin:10px 0 16px; text-align:left; }
-  .g-card { background:#262a33; border-radius:16px; padding:20px; margin-bottom:16px; scroll-margin-top:14px; text-align:left; }
+  .g-card { background:#262a33; border-radius:16px; padding:20px; margin-bottom:16px; scroll-margin-top:84px; text-align:left; }
+  .g-group { background:#20242d; border:1px solid #31363f; border-radius:16px; margin-bottom:14px; scroll-margin-top:84px; text-align:left; overflow:hidden; }
+  .g-group-summary { cursor:pointer; list-style:none; padding:18px 20px; display:flex; align-items:flex-start; gap:14px; -webkit-tap-highlight-color:transparent; }
+  .g-group-summary::-webkit-details-marker { display:none; }
+  .g-group-title { display:block; font-size:20px; font-weight:800; color:#ffc137; }
+  .g-group-names { display:block; color:#a7adb9; font-size:14px; margin-top:5px; line-height:1.45; }
+  .g-group-body { padding:2px 12px 12px; }
+  .g-group-body .g-card { margin-bottom:10px; }
+  details.g-group[open ] > .g-group-summary .g-chevron { transform:rotate(180deg); }
   details.g-card { padding:0; overflow:hidden; }
   .g-summary { cursor:pointer; list-style:none; padding:20px; display:flex; align-items:flex-start; gap:14px; -webkit-tap-highlight-color:transparent; }
   .g-summary::-webkit-details-marker { display:none; }
@@ -100,6 +114,15 @@
 </head>
 <body>
 <div class="wrap">
+  <div class="tabbar">
+    <button class="tab active" id="tabQuiz" onclick="tabGo('quiz')">🎯 Quiz</button>
+    <button class="tab" id="tabGuides" onclick="tabGo('guides')">📖 Starter Guides</button>
+    <button class="tab soon" disabled>🧭 General Info<span class="soonTag">Soon</span></button>
+    <button class="tab soon" disabled>🏰 Dungeons<span class="soonTag">Soon</span></button>
+    <button class="tab soon" disabled>🛠️ Professions<span class="soonTag">Soon</span></button>
+    <button class="tab soon" disabled>🏆 Tier Lists<span class="soonTag">Soon</span></button>
+  </div>
+  <div id="quizView">
   <div class="card" id="startCard">
     <h1>WoW FOREVER</h1>
     <div class="sub">Which Damage Character Are You?</div>
@@ -144,11 +167,12 @@
     <button class="ghostbtn" onclick="restart()">↺ Retake the quiz</button>
     <p class="foot">First-timer rating is a recommendation for brand-new players, not a score from the game.</p>
   </div>
+  </div>
 
   <div id="guidesView" class="hidden">
 <a class="g-back" href="index.html" onclick="if (typeof closeGuides === 'function') { closeGuides(); return false; }">← Back to the quiz</a>
   <h1 class="g-h1">⚔️ WoW Forever <span class="gold">Starter Guides</span></h1>
-  <p class="g-sub">One short guide for every damage character — the first buttons to press, what to know in your first hour, leveling tips, and the mistake that kills new players. Written for people who have never played WoW. <b>Tap any card to open it — only one opens at a time, so the page stays short.</b></p>
+  <p class="g-sub">One short guide for every damage character — the first buttons to press, what to know in your first hour, leveling tips, and the mistake that kills new players. Written for people who have never played WoW. <b>Characters are grouped by class — tap a class to drop down its options, then tap an option to open its guide. Only one guide opens at a time, so the page stays short.</b></p>
 
   <details class="g-card" id="before-you-start">
     <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Before you start — the basics</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
@@ -242,29 +266,31 @@
 
   <div class="g-cls">The 20 damage characters — starter guides</div>
   <div class="g-chips">
-    <a class="g-chip" href="#arms" onclick="if (typeof expandGuide === 'function') { expandGuide('arms'); return false; } var t = document.getElementById('arms'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Warrior — Arms</a>
-    <a class="g-chip" href="#fury" onclick="if (typeof expandGuide === 'function') { expandGuide('fury'); return false; } var t = document.getElementById('fury'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Warrior — Fury</a>
-    <a class="g-chip" href="#retribution" onclick="if (typeof expandGuide === 'function') { expandGuide('retribution'); return false; } var t = document.getElementById('retribution'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Paladin — Retribution</a>
-    <a class="g-chip" href="#beast-mastery" onclick="if (typeof expandGuide === 'function') { expandGuide('beast-mastery'); return false; } var t = document.getElementById('beast-mastery'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Hunter — Beast Mastery</a>
-    <a class="g-chip" href="#marksmanship" onclick="if (typeof expandGuide === 'function') { expandGuide('marksmanship'); return false; } var t = document.getElementById('marksmanship'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Hunter — Marksmanship</a>
-    <a class="g-chip" href="#survival" onclick="if (typeof expandGuide === 'function') { expandGuide('survival'); return false; } var t = document.getElementById('survival'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Hunter — Survival</a>
-    <a class="g-chip" href="#assassination" onclick="if (typeof expandGuide === 'function') { expandGuide('assassination'); return false; } var t = document.getElementById('assassination'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Rogue — Assassination</a>
-    <a class="g-chip" href="#combat" onclick="if (typeof expandGuide === 'function') { expandGuide('combat'); return false; } var t = document.getElementById('combat'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Rogue — Combat</a>
-    <a class="g-chip" href="#subtlety" onclick="if (typeof expandGuide === 'function') { expandGuide('subtlety'); return false; } var t = document.getElementById('subtlety'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Rogue — Subtlety</a>
-    <a class="g-chip" href="#shadow" onclick="if (typeof expandGuide === 'function') { expandGuide('shadow'); return false; } var t = document.getElementById('shadow'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Priest — Shadow</a>
-    <a class="g-chip" href="#elemental" onclick="if (typeof expandGuide === 'function') { expandGuide('elemental'); return false; } var t = document.getElementById('elemental'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Shaman — Elemental</a>
-    <a class="g-chip" href="#enhancement" onclick="if (typeof expandGuide === 'function') { expandGuide('enhancement'); return false; } var t = document.getElementById('enhancement'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Shaman — Enhancement</a>
-    <a class="g-chip" href="#arcane" onclick="if (typeof expandGuide === 'function') { expandGuide('arcane'); return false; } var t = document.getElementById('arcane'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Mage — Arcane</a>
-    <a class="g-chip" href="#fire" onclick="if (typeof expandGuide === 'function') { expandGuide('fire'); return false; } var t = document.getElementById('fire'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Mage — Fire</a>
-    <a class="g-chip" href="#frost" onclick="if (typeof expandGuide === 'function') { expandGuide('frost'); return false; } var t = document.getElementById('frost'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Mage — Frost</a>
-    <a class="g-chip" href="#affliction" onclick="if (typeof expandGuide === 'function') { expandGuide('affliction'); return false; } var t = document.getElementById('affliction'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Warlock — Affliction</a>
-    <a class="g-chip" href="#demonology" onclick="if (typeof expandGuide === 'function') { expandGuide('demonology'); return false; } var t = document.getElementById('demonology'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Warlock — Demonology</a>
-    <a class="g-chip" href="#destruction" onclick="if (typeof expandGuide === 'function') { expandGuide('destruction'); return false; } var t = document.getElementById('destruction'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Warlock — Destruction</a>
-    <a class="g-chip" href="#balance" onclick="if (typeof expandGuide === 'function') { expandGuide('balance'); return false; } var t = document.getElementById('balance'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Druid — Balance</a>
-    <a class="g-chip" href="#feral-cat" onclick="if (typeof expandGuide === 'function') { expandGuide('feral-cat'); return false; } var t = document.getElementById('feral-cat'); if (t) { t.open = true; t.scrollIntoView(); } return false;">Druid — Feral (Cat)</a>
+    <a class="g-chip" href="#arms" onclick="if (typeof expandGuide === 'function') { expandGuide('arms'); return false; } var t = document.getElementById('arms'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Warrior — Arms</a>
+    <a class="g-chip" href="#fury" onclick="if (typeof expandGuide === 'function') { expandGuide('fury'); return false; } var t = document.getElementById('fury'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Warrior — Fury</a>
+    <a class="g-chip" href="#retribution" onclick="if (typeof expandGuide === 'function') { expandGuide('retribution'); return false; } var t = document.getElementById('retribution'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Paladin — Retribution</a>
+    <a class="g-chip" href="#beast-mastery" onclick="if (typeof expandGuide === 'function') { expandGuide('beast-mastery'); return false; } var t = document.getElementById('beast-mastery'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Hunter — Beast Mastery</a>
+    <a class="g-chip" href="#marksmanship" onclick="if (typeof expandGuide === 'function') { expandGuide('marksmanship'); return false; } var t = document.getElementById('marksmanship'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Hunter — Marksmanship</a>
+    <a class="g-chip" href="#survival" onclick="if (typeof expandGuide === 'function') { expandGuide('survival'); return false; } var t = document.getElementById('survival'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Hunter — Survival</a>
+    <a class="g-chip" href="#assassination" onclick="if (typeof expandGuide === 'function') { expandGuide('assassination'); return false; } var t = document.getElementById('assassination'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Rogue — Assassination</a>
+    <a class="g-chip" href="#combat" onclick="if (typeof expandGuide === 'function') { expandGuide('combat'); return false; } var t = document.getElementById('combat'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Rogue — Combat</a>
+    <a class="g-chip" href="#subtlety" onclick="if (typeof expandGuide === 'function') { expandGuide('subtlety'); return false; } var t = document.getElementById('subtlety'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Rogue — Subtlety</a>
+    <a class="g-chip" href="#shadow" onclick="if (typeof expandGuide === 'function') { expandGuide('shadow'); return false; } var t = document.getElementById('shadow'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Priest — Shadow</a>
+    <a class="g-chip" href="#elemental" onclick="if (typeof expandGuide === 'function') { expandGuide('elemental'); return false; } var t = document.getElementById('elemental'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Shaman — Elemental</a>
+    <a class="g-chip" href="#enhancement" onclick="if (typeof expandGuide === 'function') { expandGuide('enhancement'); return false; } var t = document.getElementById('enhancement'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Shaman — Enhancement</a>
+    <a class="g-chip" href="#arcane" onclick="if (typeof expandGuide === 'function') { expandGuide('arcane'); return false; } var t = document.getElementById('arcane'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Mage — Arcane</a>
+    <a class="g-chip" href="#fire" onclick="if (typeof expandGuide === 'function') { expandGuide('fire'); return false; } var t = document.getElementById('fire'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Mage — Fire</a>
+    <a class="g-chip" href="#frost" onclick="if (typeof expandGuide === 'function') { expandGuide('frost'); return false; } var t = document.getElementById('frost'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Mage — Frost</a>
+    <a class="g-chip" href="#affliction" onclick="if (typeof expandGuide === 'function') { expandGuide('affliction'); return false; } var t = document.getElementById('affliction'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Warlock — Affliction</a>
+    <a class="g-chip" href="#demonology" onclick="if (typeof expandGuide === 'function') { expandGuide('demonology'); return false; } var t = document.getElementById('demonology'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Warlock — Demonology</a>
+    <a class="g-chip" href="#destruction" onclick="if (typeof expandGuide === 'function') { expandGuide('destruction'); return false; } var t = document.getElementById('destruction'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Warlock — Destruction</a>
+    <a class="g-chip" href="#balance" onclick="if (typeof expandGuide === 'function') { expandGuide('balance'); return false; } var t = document.getElementById('balance'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Druid — Balance</a>
+    <a class="g-chip" href="#feral-cat" onclick="if (typeof expandGuide === 'function') { expandGuide('feral-cat'); return false; } var t = document.getElementById('feral-cat'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Druid — Feral (Cat)</a>
   </div>
 
-  <div class="g-cls">Warrior</div>
+  <details class="g-group" id="class-warrior">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Warrior</span><span class="g-group-names">Arms · Fury — 2 damage options, tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
   <details class="g-card" id="arms">
     <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Warrior — Arms</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">One big two-handed weapon. Slow heavy hits + wounds that bleed over time.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
@@ -321,7 +347,11 @@
     </ul>
     </div>
   </details>
-  <div class="g-cls">Paladin</div>
+    </div>
+  </details>
+  <details class="g-group" id="class-paladin">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Paladin</span><span class="g-group-names">Retribution — 1 damage option, tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
   <details class="g-card" id="retribution">
     <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Paladin — Retribution</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee</span><span class="g-pill">First-timer: Easy</span></span><span class="g-desc">Holy knight, big weapon. Can heal itself + a bubble makes it immune briefly.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
@@ -351,7 +381,11 @@
     </ul>
     </div>
   </details>
-  <div class="g-cls">Hunter</div>
+    </div>
+  </details>
+  <details class="g-group" id="class-hunter">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Hunter</span><span class="g-group-names">Beast Mastery · Marksmanship · Survival — 3 damage options, tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
   <details class="g-card" id="beast-mastery">
     <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Hunter — Beast Mastery</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged + Pet</span><span class="g-pill">First-timer: Easy</span></span><span class="g-desc">Your pet takes the hits for you while you shoot from far away. Easiest alone.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
@@ -436,7 +470,11 @@
     </ul>
     </div>
   </details>
-  <div class="g-cls">Rogue</div>
+    </div>
+  </details>
+  <details class="g-group" id="class-rogue">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Rogue</span><span class="g-group-names">Assassination · Combat · Subtlety — 3 damage options, tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
   <details class="g-card" id="assassination">
     <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Rogue — Assassination</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">Stabs with daggers. Poisons keep damaging the enemy over time.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
@@ -519,7 +557,11 @@
     </ul>
     </div>
   </details>
-  <div class="g-cls">Priest</div>
+    </div>
+  </details>
+  <details class="g-group" id="class-priest">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Priest</span><span class="g-group-names">Shadow — 1 damage option, tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
   <details class="g-card" id="shadow">
     <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Priest — Shadow</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">Dark spells hurt over time. Shadow form boosts them, damage heals group a bit.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
@@ -549,7 +591,11 @@
     </ul>
     </div>
   </details>
-  <div class="g-cls">Shaman</div>
+    </div>
+  </details>
+  <details class="g-group" id="class-shaman">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Shaman</span><span class="g-group-names">Elemental · Enhancement — 2 damage options, tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
   <details class="g-card" id="elemental">
     <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Shaman — Elemental</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill">First-timer: Easy</span></span><span class="g-desc">Lightning from far away + fire that keeps burning. Totems make your group stronger.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
@@ -605,7 +651,11 @@
     </ul>
     </div>
   </details>
-  <div class="g-cls">Mage</div>
+    </div>
+  </details>
+  <details class="g-group" id="class-mage">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Mage</span><span class="g-group-names">Arcane · Fire · Frost — 3 damage options, tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
   <details class="g-card" id="arcane">
     <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Mage — Arcane</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">Each magic blast makes you stronger, but costs more mana (your spell energy).</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
@@ -685,7 +735,11 @@
     </ul>
     </div>
   </details>
-  <div class="g-cls">Warlock</div>
+    </div>
+  </details>
+  <details class="g-group" id="class-warlock">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Warlock</span><span class="g-group-names">Affliction · Demonology · Destruction — 3 damage options, tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
   <details class="g-card" id="affliction">
     <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Warlock — Affliction</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill">First-timer: Easy</span></span><span class="g-desc">Loads enemies with many slow damage spells. Their health drains over time.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
@@ -769,7 +823,11 @@
     </ul>
     </div>
   </details>
-  <div class="g-cls">Druid</div>
+    </div>
+  </details>
+  <details class="g-group" id="class-druid">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Druid</span><span class="g-group-names">Balance · Feral (Cat) — 2 damage options, tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
   <details class="g-card" id="balance">
     <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Druid — Balance</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">Moonkin form (big owl). Casts nature + star spells, swapping between them.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
@@ -825,6 +883,8 @@
     </ul>
     </div>
   </details>
+    </div>
+  </details>
 
   <p class="g-foot">First-timer ratings are a recommendation for brand-new players, not a score from the game. Guides are starter-level on purpose: they teach the first buttons and habits, not endgame optimisation.</p>
   <a class="g-back" href="index.html" onclick="if (typeof closeGuides === 'function') { closeGuides(); return false; }">← Back to the quiz</a>
@@ -844,17 +904,43 @@ let prevView = 'startCard';
 function collapseGuides(except){
   if (!document.querySelectorAll) return;
   document.querySelectorAll('#guidesView details.g-card').forEach(d => { if (d !== except) d.open = false; });
+  document.querySelectorAll('#guidesView details.g-group').forEach(d => { if (!except || !d.contains(except)) d.open = false; });
 }
 function expandGuide(anchor){
   const t = document.getElementById(anchor);
   if (!t) return;
   collapseGuides(t);
   t.open = true;
+  let p = t.parentElement;
+  while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; }
   setTimeout(() => t.scrollIntoView(), 30);
 }
+let currentView = 'quiz';
+function setView(v, push){
+  currentView = v;
+  const qv = document.getElementById('quizView'), gv = document.getElementById('guidesView');
+  if (v === 'guides') { qv.classList.add('hidden'); gv.classList.remove('hidden'); }
+  else { gv.classList.add('hidden'); qv.classList.remove('hidden'); }
+  const tq = document.getElementById('tabQuiz'), tg = document.getElementById('tabGuides');
+  if (tq && tg) { tq.classList.toggle('active', v !== 'guides'); tg.classList.toggle('active', v === 'guides'); }
+  if (push) { try { if (location.hash !== '#' + v) location.hash = v; } catch(e) {} }
+}
+function tabGo(v){
+  if (v === 'guides') openGuides();
+  else { setView('quiz', true); window.scrollTo(0, 0); }
+}
+function viewFromHash(){
+  try {
+    const h = (location.hash || '').replace('#', '');
+    if (h === 'guides') { setView('guides', false); return; }
+    if (h === 'quiz') { setView('quiz', false); return; }
+    if (h) { const t = document.getElementById(h); if (t && t.tagName === 'DETAILS') { setView('guides', false); expandGuide(h); } }
+  } catch(e) {}
+}
+if (window.addEventListener) window.addEventListener('hashchange', viewFromHash);
 function openGuides(anchor){
-  ['startCard','quizCard','resultCard'].forEach(id => { const el = document.getElementById(id); if (!el.classList.contains('hidden')) prevView = id; el.classList.add('hidden'); });
-  document.getElementById('guidesView').classList.remove('hidden');
+  ['startCard','quizCard','resultCard'].forEach(id => { const el = document.getElementById(id); if (!el.classList.contains('hidden')) prevView = id; });
+  setView('guides', true);
   if (anchor) expandGuide(anchor);
   else { collapseGuides(null); window.scrollTo(0, 0); }
 }
@@ -862,10 +948,16 @@ if (document.querySelectorAll) {
   document.querySelectorAll('#guidesView details.g-card > summary').forEach(s => {
     s.addEventListener('click', () => collapseGuides(s.parentElement));
   });
+  document.querySelectorAll('#guidesView details.g-group > summary').forEach(s => {
+    s.addEventListener('click', () => {
+      document.querySelectorAll('#guidesView details.g-group').forEach(g => {
+        if (g !== s.parentElement) { g.open = false; g.querySelectorAll('details.g-card').forEach(d => { d.open = false; }); }
+      });
+    });
+  });
 }
 function closeGuides(){
-  document.getElementById('guidesView').classList.add('hidden');
-  document.getElementById(prevView).classList.remove('hidden');
+  setView('quiz', true);
   window.scrollTo(0, 0);
 }
 function whyFor(k){
@@ -887,7 +979,7 @@ function show(){
   const box = document.getElementById('options'); box.innerHTML = '';
   q.options.forEach((o, i) => { const b = document.createElement('button'); b.className='opt'; b.textContent=o.text; b.onclick=() => pick(i); box.appendChild(b); });
 }
-function pick(i){ answers[step] = i; step++; if(step < QUIZ.length){ show(); } else { finish(); } }
+function pick(i){ answers[step] = i; try { localStorage.setItem('wowQuizAnswersV1', JSON.stringify(answers)); } catch(e) {} step++; if(step < QUIZ.length){ show(); } else { finish(); } }
 function goBack(){ if(step > 0){ step--; show(); } }
 function finish(){
   const score = {}; Object.keys(INFO).forEach(k => score[k]=0);
@@ -965,7 +1057,19 @@ function copyResult(){
     document.body.removeChild(ta);
   }
 }
-function restart(){ step = 0; answers = []; document.getElementById('resultCard').classList.add('hidden'); document.getElementById('quizCard').classList.remove('hidden'); document.getElementById('copyBtn').textContent = '📋 Copy my result for Discord'; show(); }
+function restart(){ step = 0; answers = []; try { localStorage.removeItem('wowQuizAnswersV1'); } catch(e) {} document.getElementById('resultCard').classList.add('hidden'); document.getElementById('quizCard').classList.remove('hidden'); document.getElementById('copyBtn').textContent = '📋 Copy my result for Discord'; show(); }
+(function restoreResult(){
+  try {
+    const saved = JSON.parse(localStorage.getItem('wowQuizAnswersV1') || 'null');
+    if (saved && saved.length === QUIZ.length && saved.every(a => Number.isInteger(a))) {
+      answers = saved; step = QUIZ.length;
+      document.getElementById('startCard').classList.add('hidden');
+      finish();
+    }
+  } catch(e) {}
+})();
+viewFromHash();
 </script>
+<p style="text-align:center;color:#8a7a5a;font-size:12px;margin:18px 0 8px">WoW Forever Quiz · build 2026-11-15 · WOWP0G-20261115</p>
 </body>
 </html>
