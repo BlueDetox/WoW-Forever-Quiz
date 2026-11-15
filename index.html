@@ -25,6 +25,8 @@
   .tab { flex:0 0 auto; background:#262a33; color:#c9ced8; border:2px solid #3a3f4a; border-radius:999px; padding:9px 15px; font-size:15px; font-weight:700; cursor:pointer; font-family:inherit; }
   .tab.active { background:#ffc137; border-color:#ffc137; color:#1a1405; }
   .tab.soon { opacity:.45; cursor:default; }
+  .profSel { width:100%; padding:12px; margin:6px 0 12px; background:#262a33; color:#e8e4da; border:2px solid #3a3f4a; border-radius:10px; font-size:16px; font-family:inherit; }
+  .profBtn { background:#ffc137; color:#14161c; border:none; border-radius:10px; padding:12px 20px; font-size:16px; font-weight:800; cursor:pointer; font-family:inherit; }
   @media (min-width:700px) {
     .tabbar { flex-wrap:wrap; overflow-x:visible; justify-content:center; }
     .tab { flex:1 1 170px; text-align:center; }
@@ -124,7 +126,7 @@
     <button class="tab" id="tabGuides" onclick="tabGo('guides')">📖 Starter Guides</button>
     <button class="tab" id="tabGeneral" onclick="tabGo('general')">🧭 General Info</button>
     <button class="tab soon" disabled>🏰 Dungeons<span class="soonTag">Soon</span></button>
-    <button class="tab soon" disabled>🛠️ Professions<span class="soonTag">Soon</span></button>
+    <button class="tab" id="tabProf" onclick="tabGo('professions')">🛠️ Professions</button>
     <button class="tab soon" disabled>🏆 Tier Lists<span class="soonTag">Soon</span></button>
   </div>
   <div id="quizView">
@@ -1051,6 +1053,248 @@
   <p class="g-foot">General Info is starter-level on purpose: the habits that keep you alive and solvent to level 60, not endgame optimisation.</p>
   <a class="g-back" href="index.html" onclick="if (typeof closeGeneral === 'function') { closeGeneral(); return false; }">← Back to the quiz</a>
   </div>
+
+  <div id="professionsView" class="hidden">
+<a class="g-back" href="index.html" onclick="if (typeof closeProfessions === 'function') { closeProfessions(); return false; }">← Back to the quiz</a>
+  <h1 class="g-h1">🛠️ WoW Forever <span class="gold">Professions</span></h1>
+  <p class="g-sub">Jobs your character learns alongside fighting: gathering raw materials, crafting gear and potions, and three side skills everyone gets. You pick TWO primary professions — this section helps you pick well. Checked against WoW Forever launch info — Nov 15, 2026.</p>
+
+  <details class="g-group" id="prof-basics">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Start here</span><span class="g-group-names">How professions work — read this first · The beginner default — if you don&#x27;t want to think about it — tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
+  <details class="g-card" id="prof-how">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">How professions work — read this first</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>The two-slot rule.</b> Every character can learn TWO primary professions (any mix of gathering and crafting) AND all three secondary professions (Cooking, First Aid, Fishing). Secondary ones never use a primary slot — learn all three, always.</p>
+    <p style="margin-bottom:9px"><b>Skill and ranks.</b> Each profession runs from skill 1 to 300. Trainers promote you through four ranks as you grow: Apprentice (to 75), Journeyman (to 150), Expert (to 225), Artisan (to 300). Recipes show in colours: orange recipes almost always raise your skill, yellow usually, green sometimes, grey never.</p>
+    <p style="margin-bottom:9px"><b>Learning and unlearning.</b> You learn professions — and most recipes — from trainers in towns and capital cities. You can drop a profession at any time to make room for another, but its skill resets to zero: if you ever relearn it, you start over. Choose like you mean it.</p>
+    <p style="margin-bottom:9px"><b>A head start.</b> Each starting zone hides an early quest item that teaches you one gathering profession (Herbalism, Mining, or Skinning) — watch your bags in your first levels.</p>
+    <p style="margin-bottom:9px"><b>New in Forever.</b> Professions got bigger here: 600+ new recipes, advanced Blueprint recipes that drop from dungeon bosses, crafted food with an XP bonus, and the Camping system — from skill 20, most professions can place a Camp Feature at a campfire that buffs everyone sitting there. Crafting professions also earn account-wide Legacy Points at skill 150, 225, and 300 — one more reason gathering-only characters eventually want a craft.</p>
+    </div>
+  </details>
+  <details class="g-card" id="prof-default">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">The beginner default — if you don&#x27;t want to think about it</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>The answer.</b> Take Skinning + Herbalism (or Mining) while you level. Sell everything you gather on the Auction House. Decide on crafting later, when you&#x27;re rich or level 60.</p>
+    <p style="margin-bottom:9px"><b>Why it works.</b> Gathering costs nothing — no recipes, no materials, no trainer bills — and launch economies pay top prices for raw materials because every crafter needs them. Your two gathering professions quietly pay for your level-40 mount, which is the purchase that actually matters.</p>
+    <p style="margin-bottom:9px"><b>When to switch.</b> At 60 (or once the mount is bought), drop one gathering profession for the craft that fits your class — Alchemy for potions, your armor craft to gear yourself — and keep the gathering profession that feeds it. Dropping is free; only the dropped skill is lost.</p>
+    <p style="margin-bottom:9px"><b>The one exception.</b> Cloth casters (Mage, Priest, Warlock): Tailoring is so cheap to level — your materials drop from normal enemies — that Tailoring + one gathering profession is an equally good default for you.</p>
+    </div>
+  </details>
+    </div>
+  </details>
+  <details class="g-group" id="prof-gathering">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Gathering — free materials, sell or feed a craft</span><span class="g-group-names">Herbalism · Mining · Skinning — tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
+  <details class="g-card" id="prof-herbalism">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Herbalism</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>What it is.</b> You pick herbs growing in the wild — flowers and plants shown on your mini-map once you turn on Find Herbs. Herbs are the main ingredient for Alchemy, and some feed First Aid&#x27;s potions.</p>
+    <p style="margin-bottom:9px"><b>What you actually get.</b> A steady stream of sellable herbs, plus the herbs to power an Alchemist friend (or yourself). At a campfire, Herbalism&#x27;s Camp Feature is the Incense Candle, which raises Intellect for campers.</p>
+    <p style="margin-bottom:9px"><b>Cost &amp; effort.</b> Costs nothing — no tools, no recipes to buy. You gather while you quest, so it levels itself. One of the two easiest professions in the game.</p>
+    <p style="margin-bottom:9px"><b>Pairs with.</b> Alchemy (it eats your herbs), or Skinning/Mining for a double-gathering money setup.</p>
+    <p style="margin-bottom:9px"><b>Take it if.</b> You want income with zero effort, or anyone in your group is an Alchemist.</p>
+    <p style="margin-bottom:9px"><b>Beginner verdict.</b> Top-tier first pick. Take it and never regret it.</p>
+    </div>
+  </details>
+  <details class="g-card" id="prof-mining">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Mining</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>What it is.</b> You dig ore, stone, and the occasional gem out of rock veins, using a Mining Pick. You can also smelt ore into metal bars, which is how Blacksmithing and Engineering actually consume it.</p>
+    <p style="margin-bottom:9px"><b>What you actually get.</b> Ore and bars that always sell — smiths and engineers need a constant supply — plus stone used for sharpening stones and explosives.</p>
+    <p style="margin-bottom:9px"><b>Cost &amp; effort.</b> Costs nothing but the pick. Veins cluster around hills, caves, and zone edges, so it takes slightly more detouring than Herbalism.</p>
+    <p style="margin-bottom:9px"><b>Pairs with.</b> Blacksmithing or Engineering (both eat bars), or Herbalism for the classic double-gathering money pair.</p>
+    <p style="margin-bottom:9px"><b>Take it if.</b> You want the most reliable Auction House income, or you&#x27;re feeding a smith/engineer.</p>
+    <p style="margin-bottom:9px"><b>Beginner verdict.</b> Top-tier first pick, tied with Herbalism. Mining + Herbalism is the launch money standard.</p>
+    </div>
+  </details>
+  <details class="g-card" id="prof-skinning">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Skinning</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>What it is.</b> After a beast dies, you skin its corpse with a Skinning Knife and take its leather and hide. Leather feeds Leatherworking; everything also sells.</p>
+    <p style="margin-bottom:9px"><b>What you actually get.</b> Leather from the animals you&#x27;re already killing for quests — income that happens by itself, with no nodes to hunt down.</p>
+    <p style="margin-bottom:9px"><b>Cost &amp; effort.</b> Costs nothing but the knife. The only catch: it only works on beasts, so it shines in beast-heavy zones and does nothing in, say, an undead crypt.</p>
+    <p style="margin-bottom:9px"><b>Pairs with.</b> Leatherworking (it eats your leather), or Herbalism/Mining for double gathering.</p>
+    <p style="margin-bottom:9px"><b>Take it if.</b> Your class wears leather (Rogue, Druid) or you just want the laziest money in the game.</p>
+    <p style="margin-bottom:9px"><b>Beginner verdict.</b> The easiest money profession while leveling. Skin everything you kill.</p>
+    </div>
+  </details>
+    </div>
+  </details>
+  <details class="g-group" id="prof-crafting">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Crafting — turn materials into gear and power</span><span class="g-group-names">Alchemy · Blacksmithing · Enchanting · Engineering · Leatherworking · Tailoring — tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
+  <details class="g-card" id="prof-alchemy">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Alchemy</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>What it is.</b> You brew herbs into potions (instant effects — healing, mana, invisibility), elixirs (stat boosts that last through a fight), and at high skill, flasks (powerful boosts that persist through death) and transmutations (turning one material into another, on a cooldown). Note: in Forever, the standard Healing Potions moved to First Aid — Alchemy&#x27;s strength is buffs, mana, and utility.</p>
+    <p style="margin-bottom:9px"><b>What you actually get.</b> The consumables every dungeon and raid group burns through constantly — which means permanent demand for what you make. At a campfire, Alchemy&#x27;s Camp Feature is the Mana Well, restoring mana to campers.</p>
+    <p style="margin-bottom:9px"><b>Cost &amp; effort.</b> Moderate: recipes from trainers plus some rare ones from vendors and drops. Needs a constant herb supply — bring Herbalism or a Herbalist friend.</p>
+    <p style="margin-bottom:9px"><b>Pairs with.</b> Herbalism. This is the most natural pair in the game.</p>
+    <p style="margin-bottom:9px"><b>Take it if.</b> You want to be the group&#x27;s potion supply, or you like steady Auction House income from things people consume and rebuy.</p>
+    <p style="margin-bottom:9px"><b>Beginner verdict.</b> The most group-friendly crafting profession, and the safest crafting pick for a new player.</p>
+    </div>
+  </details>
+  <details class="g-card" id="prof-blacksmithing">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Blacksmithing</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>What it is.</b> You forge metal bars into mail and plate armor and most melee weapons, plus sharpening stones and weightstones that temporarily boost a weapon. You&#x27;ll need an anvil (found in every town) for most recipes.</p>
+    <p style="margin-bottom:9px"><b>What you actually get.</b> Gear for warriors and paladins — the two classes that can&#x27;t easily gear themselves any other way — including some of the best pre-raid weapons and armor at 60.</p>
+    <p style="margin-bottom:9px"><b>Cost &amp; effort.</b> Expensive in materials: it eats ore and bars constantly. Without Mining (or a rich alt), you&#x27;ll buy your materials and feel it.</p>
+    <p style="margin-bottom:9px"><b>Pairs with.</b> Mining. Non-negotiable for a first character.</p>
+    <p style="margin-bottom:9px"><b>Take it if.</b> You&#x27;re a Warrior or Paladin who wants to wear your own work, or your group&#x27;s plate wearers need a smith.</p>
+    <p style="margin-bottom:9px"><b>Beginner verdict.</b> Great on a Warrior/Paladin with Mining. Painful without the gathering half.</p>
+    </div>
+  </details>
+  <details class="g-card" id="prof-enchanting">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Enchanting</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>What it is.</b> Two jobs in one: you DISENCHANT magic items (green quality or better) and break them down into dusts, essences, and shards — then you spend those materials putting permanent stat boosts (enchants) on weapons and armor: yours, your group&#x27;s, anyone&#x27;s.</p>
+    <p style="margin-bottom:9px"><b>What you actually get.</b> The only way to upgrade gear you already own, and a service other players pay well for at 60. Every enchant you do consumes materials you got by destroying items.</p>
+    <p style="margin-bottom:9px"><b>Cost &amp; effort.</b> The most expensive profession to level: every skill point comes from items you could have sold. New players feel this one in the wallet.</p>
+    <p style="margin-bottom:9px"><b>Pairs with.</b> Tailoring — the classic self-sufficient duo: tailors craft green items from dropped cloth, and you disenchant them for materials. No gathering needed.</p>
+    <p style="margin-bottom:9px"><b>Take it if.</b> You like being useful to everyone at 60 and don&#x27;t mind a slower, pricier road getting there.</p>
+    <p style="margin-bottom:9px"><b>Beginner verdict.</b> Powerful but pricey. On a first character, consider taking it as your SECOND character&#x27;s job — or pair it with Tailoring and be patient.</p>
+    </div>
+  </details>
+  <details class="g-card" id="prof-engineering">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Engineering</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>What it is.</b> You build gadgets: bombs and grenades, target dummies, scopes for guns and bows, jumper cables that can restart a dead player&#x27;s heart (sometimes), and goggles only engineers can wear. Many items only work for engineers.</p>
+    <p style="margin-bottom:9px"><b>What you actually get.</b> Fun and power that no other profession gives — extra stuns, burst damage, and utility that shines in PvP and saves dungeon runs. Also the game&#x27;s best toys.</p>
+    <p style="margin-bottom:9px"><b>Cost &amp; effort.</b> Expensive and gloriously impractical: it eats ore, stone, and odd parts, and most of what you make can&#x27;t be sold to non-engineers. You do this one for yourself.</p>
+    <p style="margin-bottom:9px"><b>Pairs with.</b> Mining — it feeds on bars and stone.</p>
+    <p style="margin-bottom:9px"><b>Take it if.</b> You want your character to feel different from everyone else&#x27;s, and you accept that it&#x27;s a gold sink, not a gold source.</p>
+    <p style="margin-bottom:9px"><b>Beginner verdict.</b> The fun pick, not the rich pick. Wonderful second profession once your mount is paid for.</p>
+    </div>
+  </details>
+  <details class="g-card" id="prof-leatherworking">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Leatherworking</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>What it is.</b> You turn leather and hides into leather armor (Rogues, Druids) and mail armor (Hunters, Shamans), plus armor kits that add a small permanent armor boost to a piece of gear.</p>
+    <p style="margin-bottom:9px"><b>What you actually get.</b> A full self-gearing path for four classes, and armor kits everyone can use. Forever massively expanded its recipe list — it&#x27;s a deeper profession here than it was in old Classic.</p>
+    <p style="margin-bottom:9px"><b>Cost &amp; effort.</b> Moderate: leather is cheap if you skin it yourself, pricey if you don&#x27;t. Some recipes also want thread and dyes from vendors.</p>
+    <p style="margin-bottom:9px"><b>Pairs with.</b> Skinning. Leather is the whole diet.</p>
+    <p style="margin-bottom:9px"><b>Take it if.</b> You play Rogue, Druid, Hunter, or Shaman and want to wear what you make.</p>
+    <p style="margin-bottom:9px"><b>Beginner verdict.</b> Solid with Skinning on the right class. Skip it on cloth and plate classes.</p>
+    </div>
+  </details>
+  <details class="g-card" id="prof-tailoring">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Tailoring</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>What it is.</b> You sew cloth — which drops from humanoid enemies everywhere — into cloth armor for Mages, Priests, and Warlocks, shirts, and BAGS. Bags are the headline: bigger bags are every player&#x27;s first real purchase, and tailors make them.</p>
+    <p style="margin-bottom:9px"><b>What you actually get.</b> Gear for your cloth caster with NO gathering profession needed (the world drops your materials), plus a product — bags — that sells at every level, forever.</p>
+    <p style="margin-bottom:9px"><b>Cost &amp; effort.</b> The cheapest crafting profession to level, because cloth falls out of normal questing. Some high-end patterns drop from enemies or come from vendors.</p>
+    <p style="margin-bottom:9px"><b>Pairs with.</b> Enchanting (make greens, disenchant them) — or any gathering profession, since Tailoring doesn&#x27;t need the slot.</p>
+    <p style="margin-bottom:9px"><b>Take it if.</b> You&#x27;re a Mage, Priest, or Warlock — or you just want the bag business.</p>
+    <p style="margin-bottom:9px"><b>Beginner verdict.</b> The friendliest crafting profession for a first character. Cloth class? Take it.</p>
+    </div>
+  </details>
+    </div>
+  </details>
+  <details class="g-group" id="prof-secondary">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Secondary — everyone learns all three</span><span class="g-group-names">Cooking · First Aid · Fishing — tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
+  <details class="g-card" id="prof-cooking">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Cooking</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>What it is.</b> You cook raw meat and fish into food that restores health faster — and good food adds a &#x27;Well Fed&#x27; stat buff for 15+ minutes. In Forever, crafted food also grants a small XP bonus, so eating before a quest run literally levels you faster.</p>
+    <p style="margin-bottom:9px"><b>What you actually get.</b> Cheaper, stronger recovery than vendor food, real stat buffs, and the campfire itself: Cooking&#x27;s Basic Campfire is what creates a campsite where everyone&#x27;s Camp Features work.</p>
+    <p style="margin-bottom:9px"><b>Cost &amp; effort.</b> Nearly free: your materials are the meat from beasts you already kill. Learn it at level 5-ish and keep it current — it&#x27;s the first profession a new Forever player touches.</p>
+    <p style="margin-bottom:9px"><b>Pairs with.</b> Fishing (fish are prime cooking ingredients) and every beast you ever kill.</p>
+    <p style="margin-bottom:9px"><b>Take it if.</b> Everyone. It&#x27;s secondary — it doesn&#x27;t use one of your two primary slots. There is no reason not to.</p>
+    <p style="margin-bottom:9px"><b>Beginner verdict.</b> Mandatory. Learn it on day one.</p>
+    </div>
+  </details>
+  <details class="g-card" id="prof-first-aid">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">First Aid</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>What it is.</b> You turn cloth into bandages that heal you mid-adventure without mana or a healer — bandage between fights, or even during a fight if nothing is hitting you. Forever expanded it: First Aid now also crafts the standard Healing Potions and cures for poison and disease.</p>
+    <p style="margin-bottom:9px"><b>What you actually get.</b> Self-healing for the classes that have none (Warrior, Rogue, Hunter, Mage) and an emergency heal for everyone else. In dungeons, a bandage can save a run when the healer is out of mana.</p>
+    <p style="margin-bottom:9px"><b>Cost &amp; effort.</b> Nearly free: cloth is everywhere. It competes with Tailoring for cloth — if you&#x27;re both, bandages for leveling, sewing for selling.</p>
+    <p style="margin-bottom:9px"><b>Pairs with.</b> Everything. It&#x27;s secondary — no primary slot used.</p>
+    <p style="margin-bottom:9px"><b>Take it if.</b> Everyone, but it&#x27;s life-changing for Warriors and Rogues especially.</p>
+    <p style="margin-bottom:9px"><b>Beginner verdict.</b> Mandatory. The closest thing professions have to a cheat code for staying alive.</p>
+    </div>
+  </details>
+  <details class="g-card" id="prof-fishing">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Fishing</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>What it is.</b> You cast a line into any water with a Fishing Pole and catch fish — ingredients for Cooking and Alchemy — plus the occasional locked box, useful item, or junk you&#x27;ll laugh at.</p>
+    <p style="margin-bottom:9px"><b>What you actually get.</b> Cooking ingredients you&#x27;d otherwise buy, some fish that Alchemists pay well for, and the most relaxing money in the game. At a campfire, Fishing&#x27;s Camp Feature is the Fishing Bowl.</p>
+    <p style="margin-bottom:9px"><b>Cost &amp; effort.</b> Free, slow, and proud of it. Skill rises by catching, and higher-level waters need higher skill (and sometimes a lure).</p>
+    <p style="margin-bottom:9px"><b>Pairs with.</b> Cooking — catch it, cook it, eat the buff.</p>
+    <p style="margin-bottom:9px"><b>Take it if.</b> You like a calm grind, or your Cooking keeps running out of fish.</p>
+    <p style="margin-bottom:9px"><b>Beginner verdict.</b> Optional but charming. Learn it when you want a break from killing things.</p>
+    </div>
+  </details>
+    </div>
+  </details>
+  <details class="g-group" id="prof-pairs">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Choosing your two</span><span class="g-group-names">The classic pairings — and why they work · Pick my two — the 30-second helper · Playing as a group of 3? Split the jobs — tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
+  <details class="g-card" id="prof-matrix">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">The classic pairings — and why they work</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Herbalism + Alchemy.</b> The feeder pair: your herbs become your potions. The group&#x27;s supplier setup.</p>
+    <p style="margin-bottom:9px"><b>Mining + Blacksmithing.</b> Your ore becomes your armor and weapons. The Warrior/Paladin self-gearing setup.</p>
+    <p style="margin-bottom:9px"><b>Mining + Engineering.</b> Your ore and stone become gadgets and bombs. The fun setup.</p>
+    <p style="margin-bottom:9px"><b>Skinning + Leatherworking.</b> Your leather becomes your armor. The Rogue/Druid/Hunter/Shaman setup.</p>
+    <p style="margin-bottom:9px"><b>Tailoring + Enchanting.</b> The self-sufficient duo: sew green items from dropped cloth, disenchant them for enchanting materials. No gathering profession needed at all.</p>
+    <p style="margin-bottom:9px"><b>Mining + Herbalism.</b> Double gathering: two income streams, zero costs, everything sells. The launch money setup.</p>
+    <p style="margin-bottom:9px"><b>Skinning + Herbalism (or Mining).</b> Double gathering with zero detours: skin what you kill, pick what you pass. The leveling money setup.</p>
+    <p style="margin-bottom:9px"><b>Any craft + its feeder.</b> The rule underneath all of these: a crafting profession without its gathering partner means buying materials. On a first character, always pair them.</p>
+    </div>
+  </details>
+  <details class="g-card" id="prof-picker">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Pick my two — the 30-second helper</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px">Answer two questions and get a pair that fits. It's the matrix above, automated — the reasoning is the same you'd do by hand.</p>
+    <label for="profGoal" style="font-weight:700">What do you want from professions?</label>
+    <select id="profGoal" class="profSel">
+      <option value="money">Make money while I level</option>
+      <option value="gear">Gear myself up</option>
+      <option value="group">Help my group</option>
+      <option value="easy">The easiest possible setup</option>
+    </select>
+    <label for="profClass" style="font-weight:700">Your class</label>
+    <select id="profClass" class="profSel">
+      <option>Warrior</option><option>Paladin</option><option>Hunter</option><option>Rogue</option>
+      <option>Priest</option><option>Shaman</option><option>Mage</option><option>Warlock</option><option>Druid</option>
+    </select>
+    <button class="profBtn" onclick="profPick()">Show my two →</button>
+    <div id="profPickOut" style="margin-top:12px"></div>
+    </div>
+  </details>
+  <details class="g-card" id="prof-planner">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Playing as a group of 3? Split the jobs</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px">Pick your three classes and the planner assigns professions so the group covers the important bases without two people wasting slots on the same job.</p>
+    <label for="profP1" style="font-weight:700">Player 1</label>
+    <select id="profP1" class="profSel">
+      <option>Warrior</option><option>Paladin</option><option>Hunter</option><option>Rogue</option>
+      <option>Priest</option><option>Shaman</option><option>Mage</option><option>Warlock</option><option>Druid</option>
+    </select>
+    <label for="profP2" style="font-weight:700">Player 2</label>
+    <select id="profP2" class="profSel">
+      <option>Warrior</option><option>Paladin</option><option>Hunter</option><option>Rogue</option>
+      <option selected>Priest</option><option>Shaman</option><option>Mage</option><option>Warlock</option><option>Druid</option>
+    </select>
+    <label for="profP3" style="font-weight:700">Player 3</label>
+    <select id="profP3" class="profSel">
+      <option>Warrior</option><option>Paladin</option><option selected>Hunter</option><option>Rogue</option>
+      <option>Priest</option><option>Shaman</option><option>Mage</option><option>Warlock</option><option>Druid</option>
+    </select>
+    <button class="profBtn" onclick="profPlan()">Plan our professions →</button>
+    <div id="profPlanOut" style="margin-top:12px"></div>
+    </div>
+  </details>
+    </div>
+  </details>
+
+  <p class="g-foot">Deliberately not here yet: full 1–300 leveling routes for each profession. Overview first, routes later — ask in Discord if you're stuck mid-level and we'll add yours.</p>
+  <a class="g-back" href="index.html" onclick="if (typeof closeProfessions === 'function') { closeProfessions(); return false; }">← Back to the quiz</a>
+  </div>
 </div>
 <script>
 const QUIZ = [{"q": "Where do you want to stand in a fight?", "options": [{"text": "\u2694\ufe0f Up close, right in the enemy's face", "points": {"Arms": 3, "Fury": 3, "Retribution": 3, "Survival": 3, "Assassination": 3, "Combat": 3, "Subtlety": 3, "Enhancement": 3, "Feral": 3}}, {"text": "\ud83c\udff9 Far away, safe at a distance", "points": {"Beast Mastery": 3, "Marksmanship": 3, "Shadow": 3, "Elemental": 3, "Arcane": 3, "Fire": 3, "Frost": 3, "Affliction": 3, "Demonology": 3, "Destruction": 3, "Balance": 3}}, {"text": "\ud83e\udd37 Either is fine", "points": {"Arms": 1, "Fury": 1, "Retribution": 1, "Beast Mastery": 1, "Marksmanship": 1, "Survival": 1, "Assassination": 1, "Combat": 1, "Subtlety": 1, "Shadow": 1, "Elemental": 1, "Enhancement": 1, "Arcane": 1, "Fire": 1, "Frost": 1, "Affliction": 1, "Demonology": 1, "Destruction": 1, "Balance": 1, "Feral": 1}}]}, {"q": "Do you want a helper fighting with you?", "options": [{"text": "\ud83d\udc3a Yes \u2014 an animal pet", "points": {"Beast Mastery": 5, "Marksmanship": 3, "Survival": 3}}, {"text": "\ud83d\ude08 Yes \u2014 a demon", "points": {"Demonology": 5, "Affliction": 3, "Destruction": 3}}, {"text": "\ud83d\udeb6 No helper \u2014 just me", "points": {"Arms": 2, "Fury": 2, "Retribution": 2, "Marksmanship": 6, "Assassination": 2, "Combat": 2, "Subtlety": 2, "Shadow": 2, "Elemental": 2, "Enhancement": 2, "Arcane": 2, "Fire": 2, "Frost": 2, "Balance": 2, "Feral": 2}}, {"text": "\ud83e\udd37 Don't care", "points": {"Arms": 1, "Fury": 1, "Retribution": 1, "Beast Mastery": 1, "Marksmanship": 1, "Survival": 1, "Assassination": 1, "Combat": 1, "Subtlety": 1, "Shadow": 1, "Elemental": 1, "Enhancement": 1, "Arcane": 1, "Fire": 1, "Frost": 1, "Affliction": 1, "Demonology": 1, "Destruction": 1, "Balance": 1, "Feral": 1}}]}, {"q": "How should your damage feel?", "options": [{"text": "\ud83d\udca8 Fast \u2014 lots of quick hits", "points": {"Fury": 3, "Combat": 3, "Feral": 3, "Enhancement": 3, "Assassination": 3}}, {"text": "\ud83d\udca5 Slow \u2014 a few HUGE hits", "points": {"Arms": 3, "Retribution": 3, "Marksmanship": 3, "Destruction": 3, "Fire": 2}}, {"text": "\ud83e\ude78 Slow drain \u2014 the enemy's health keeps dropping over time", "points": {"Affliction": 3, "Shadow": 3, "Subtlety": 3, "Assassination": 3, "Arms": 3, "Feral": 3}}, {"text": "\u2728 Explosive magic spells", "points": {"Fire": 3, "Elemental": 3, "Destruction": 3, "Arcane": 3, "Balance": 3}}]}, {"q": "Pick the character fantasy you like most:", "options": [{"text": "\ud83d\udee1\ufe0f Holy knight with a big weapon", "points": {"Retribution": 5, "Arms": 1, "Fury": 1}}, {"text": "\ud83d\udde1\ufe0f Sneaky assassin", "points": {"Subtlety": 4, "Assassination": 4, "Combat": 2, "Feral": 2}}, {"text": "\ud83d\udc3b Animals, nature and shapeshifting", "points": {"Feral": 4, "Balance": 4, "Beast Mastery": 2, "Survival": 2}}, {"text": "\ud83d\udc80 Dark magic user", "points": {"Affliction": 3, "Demonology": 3, "Destruction": 3, "Shadow": 4}}, {"text": "\u26a1 Wizard of the elements \u2014 fire, ice, lightning", "points": {"Elemental": 4, "Enhancement": 4, "Arcane": 2, "Fire": 2, "Frost": 2}}, {"text": "\ud83c\udff9 Bow hunter / sniper", "points": {"Beast Mastery": 4, "Marksmanship": 4, "Survival": 4}}, {"text": "\ud83e\ude93 Just me and a huge weapon \u2014 no magic, no sneaking", "points": {"Arms": 5, "Fury": 4}}]}, {"q": "Pick your coolest trick:", "options": [{"text": "\u2744\ufe0f Freeze enemies in place so they can't reach me", "points": {"Frost": 5}}, {"text": "\ud83d\udc9a Heal myself and survive almost anything", "points": {"Retribution": 4, "Shadow": 2}}, {"text": "\ud83d\udc31 Turn into an animal", "points": {"Feral": 5, "Balance": 3}}, {"text": "\ud83e\udea4 Set traps / place totems that help my group", "points": {"Survival": 4, "Elemental": 4, "Enhancement": 2}}, {"text": "\u2620\ufe0f Poisons that keep hurting the enemy", "points": {"Assassination": 5}}, {"text": "\ud83e\ude78 Wounds that keep bleeding", "points": {"Subtlety": 3, "Feral": 3, "Arms": 3}}, {"text": "\ud83d\udd0b Build up power first, then release it all", "points": {"Arcane": 5, "Fire": 2}}, {"text": "\ud83d\ude80 A speed rush \u2014 attack much faster for a while", "points": {"Combat": 5, "Fury": 3, "Enhancement": 3}}]}, {"q": "In a group, do you want an extra job besides damage?", "options": [{"text": "\ud83c\udfaf No \u2014 damage only, keep it simple", "points": {"Beast Mastery": 2, "Marksmanship": 2, "Survival": 2, "Assassination": 2, "Combat": 2, "Subtlety": 2, "Arcane": 2, "Fire": 2, "Frost": 2, "Affliction": 2, "Demonology": 2, "Destruction": 2}}, {"text": "\ud83d\uddff Totems that make my whole group stronger", "points": {"Elemental": 5, "Enhancement": 5}}, {"text": "\ud83d\udc9a My damage heals my group a little", "points": {"Shadow": 5, "Balance": 1}}, {"text": "\ud83d\udee1\ufe0f Heal myself, so nobody has to look after me", "points": {"Retribution": 4}}, {"text": "\ud83d\udc3a My pet takes hits that would have hit my group", "points": {"Beast Mastery": 4, "Demonology": 2, "Survival": 2}}]}, {"q": "What do you want in your hands?", "options": [{"text": "\ud83e\ude93 One huge two-handed weapon", "points": {"Arms": 4, "Retribution": 4}}, {"text": "\u2694\ufe0f Two fast weapons, one in each hand", "points": {"Fury": 4, "Combat": 3, "Survival": 3, "Assassination": 2}}, {"text": "\ud83d\udde1\ufe0f Daggers / claws \u2014 quick and sharp", "points": {"Assassination": 3, "Subtlety": 3, "Feral": 4}}, {"text": "\ud83c\udff9 A bow or a gun", "points": {"Beast Mastery": 4, "Marksmanship": 4}}, {"text": "\ud83d\udd2e Nothing \u2014 spells only", "points": {"Arcane": 3, "Fire": 3, "Frost": 3, "Affliction": 3, "Demonology": 3, "Destruction": 3, "Shadow": 3, "Elemental": 3, "Balance": 3}}]}, {"q": "Last one \u2014 pick a spell flavour (or skip the magic):", "options": [{"text": "\ud83d\udd25 Fire \u2014 huge fireballs", "points": {"Fire": 5, "Destruction": 4, "Elemental": 1}}, {"text": "\u2744\ufe0f Ice \u2014 freeze and slow everything", "points": {"Frost": 5}}, {"text": "\u26a1 Lightning", "points": {"Elemental": 5, "Enhancement": 3}}, {"text": "\ud83d\udc80 Dark \u2014 drain and shadow spells", "points": {"Affliction": 4, "Shadow": 4, "Demonology": 2}}, {"text": "\ud83c\udf19 Nature and stars", "points": {"Balance": 5, "Feral": 1}}, {"text": "\ud83d\udeab I'm not a spell caster", "points": {"Arms": 2, "Fury": 2, "Retribution": 2, "Survival": 2, "Assassination": 2, "Combat": 2, "Subtlety": 2, "Enhancement": 2, "Feral": 2}}, {"text": "\ud83d\udd0b Pure magic power that builds up", "points": {"Arcane": 5}}]}];
@@ -1070,14 +1314,19 @@ function collapseIn(rootSel, except){
 }
 function collapseGuides(except){ collapseIn('#guidesView', except); }
 function collapseGeneral(except){ collapseIn('#generalView', except); }
+function collapseProfessions(except){ collapseIn('#professionsView', except); }
 function expandGuide(anchor){
   const t = document.getElementById(anchor);
   if (!t) return;
   let root = t;
-  while (root && root.id !== 'guidesView' && root.id !== 'generalView') root = root.parentElement;
-  const inGeneral = !!(root && root.id === 'generalView');
-  setView(inGeneral ? 'general' : 'guides', false);
-  if (inGeneral) collapseGeneral(t); else collapseGuides(t);
+  while (root && root.id !== 'guidesView' && root.id !== 'generalView' && root.id !== 'professionsView') root = root.parentElement;
+  let view = 'guides';
+  if (root && root.id === 'generalView') view = 'general';
+  else if (root && root.id === 'professionsView') view = 'professions';
+  setView(view, false);
+  if (view === 'general') collapseGeneral(t);
+  else if (view === 'professions') collapseProfessions(t);
+  else collapseGuides(t);
   t.open = true;
   let p = t.parentElement;
   while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; }
@@ -1086,18 +1335,16 @@ function expandGuide(anchor){
 let currentView = 'quiz';
 function setView(v, push){
   currentView = v;
-  const qv = document.getElementById('quizView'), gv = document.getElementById('guidesView'), nv = document.getElementById('generalView');
-  if (v === 'guides') { qv.classList.add('hidden'); gv.classList.remove('hidden'); if (nv) nv.classList.add('hidden'); }
-  else if (v === 'general') { qv.classList.add('hidden'); gv.classList.add('hidden'); if (nv) nv.classList.remove('hidden'); }
-  else { gv.classList.add('hidden'); if (nv) nv.classList.add('hidden'); qv.classList.remove('hidden'); }
-  const tq = document.getElementById('tabQuiz'), tg = document.getElementById('tabGuides'), tn = document.getElementById('tabGeneral');
-  if (tq && tg) { tq.classList.toggle('active', v === 'quiz'); tg.classList.toggle('active', v === 'guides'); }
-  if (tn) tn.classList.toggle('active', v === 'general');
+  const views = { quiz: document.getElementById('quizView'), guides: document.getElementById('guidesView'), general: document.getElementById('generalView'), professions: document.getElementById('professionsView') };
+  Object.keys(views).forEach(k => { if (views[k]) views[k].classList.toggle('hidden', k !== v); });
+  const tabs = { quiz: document.getElementById('tabQuiz'), guides: document.getElementById('tabGuides'), general: document.getElementById('tabGeneral'), professions: document.getElementById('tabProf') };
+  Object.keys(tabs).forEach(k => { if (tabs[k]) tabs[k].classList.toggle('active', k === v); });
   if (push) { try { if (location.hash !== '#' + v) location.hash = v; } catch(e) {} }
 }
 function tabGo(v){
   if (v === 'guides') openGuides();
   else if (v === 'general') openGeneral();
+  else if (v === 'professions') openProfessions();
   else { setView('quiz', true); window.scrollTo(0, 0); }
 }
 function viewFromHash(){
@@ -1105,6 +1352,7 @@ function viewFromHash(){
     const h = (location.hash || '').replace('#', '');
     if (h === 'guides') { setView('guides', false); return; }
     if (h === 'general') { setView('general', false); return; }
+    if (h === 'professions') { setView('professions', false); return; }
     if (h === 'quiz') { setView('quiz', false); return; }
     if (h) { const t = document.getElementById(h); if (t && t.tagName === 'DETAILS') { setView('guides', false); expandGuide(h); } }
   } catch(e) {}
@@ -1117,7 +1365,7 @@ function openGuides(anchor){
   else { collapseGuides(null); window.scrollTo(0, 0); }
 }
 if (document.querySelectorAll) {
-  [['#guidesView', collapseGuides], ['#generalView', collapseGeneral]].forEach(([rootSel, collapseFn]) => {
+  [['#guidesView', collapseGuides], ['#generalView', collapseGeneral], ['#professionsView', collapseProfessions]].forEach(([rootSel, collapseFn]) => {
     document.querySelectorAll(rootSel + ' details.g-card > summary').forEach(s => {
       s.addEventListener('click', () => collapseFn(s.parentElement));
     });
@@ -1142,6 +1390,48 @@ function openGeneral(anchor){
 function closeGeneral(){
   setView('quiz', true);
   window.scrollTo(0, 0);
+}
+function openProfessions(anchor){
+  setView('professions', true);
+  if (anchor) expandGuide(anchor);
+  else { collapseProfessions(null); window.scrollTo(0, 0); }
+}
+function closeProfessions(){
+  setView('quiz', true);
+  window.scrollTo(0, 0);
+}
+const PROF_PAIR = { Warrior:['Mining','Blacksmithing'], Paladin:['Mining','Blacksmithing'], Hunter:['Skinning','Leatherworking'], Rogue:['Skinning','Leatherworking'], Priest:['Tailoring','Enchanting'], Shaman:['Skinning','Leatherworking'], Mage:['Tailoring','Enchanting'], Warlock:['Tailoring','Enchanting'], Druid:['Herbalism','Skinning'] };
+function profPick(){
+  const goal = document.getElementById('profGoal').value;
+  const cls = document.getElementById('profClass').value;
+  let pair, why;
+  if (goal === 'money') { pair = ['Mining','Herbalism']; why = 'Two gathering professions, zero costs — ore and herbs are what every crafter is buying at launch. Skinning is a fine swap for Herbalism if your questing is mostly beasts.'; }
+  else if (goal === 'easy') { pair = ['Skinning','Herbalism']; why = 'Skin what you kill, pick what you walk past. No recipes, no materials to buy, no thinking required — it just pays you while you level.'; }
+  else if (goal === 'group') { pair = ['Herbalism','Alchemy']; why = 'Potions and elixirs are the one thing every group always needs more of. Your herbs feed your brews, and your brews carry dungeon nights.'; }
+  else {
+    pair = PROF_PAIR[cls];
+    if (cls === 'Warrior' || cls === 'Paladin') why = 'Your ore becomes your own plate armor and weapons — the self-gearing setup for your class.';
+    else if (cls === 'Mage' || cls === 'Priest' || cls === 'Warlock') why = 'Cloth drops from enemies, so no gathering profession is needed: sew your own robes and bags, and disenchant the spares for materials.';
+    else if (cls === 'Druid') why = 'Herbs for income (and any Alchemist friends), leather from everything you kill — the flexible Druid setup.';
+    else why = 'Your leather becomes your own armor — the self-gearing setup for your class.';
+  }
+  document.getElementById('profPickOut').innerHTML = '<p><b>Your two: ' + pair.join(' + ') + '</b></p><p>' + why + '</p><p>Plus all three secondary professions — Cooking, First Aid, Fishing. They use free slots; take them on day one.</p>';
+}
+function profPlan(){
+  const classes = ['profP1','profP2','profP3'].map(id => document.getElementById(id).value);
+  const taken = new Set();
+  const FALLBACK = ['Alchemy','Herbalism','Mining','Skinning','Enchanting','Engineering','Tailoring','Leatherworking','Blacksmithing'];
+  const AREAS = { Alchemy:'Potions & elixirs', Enchanting:'Enchants for everyone’s gear', Blacksmithing:'Plate/mail gear & weapons', Leatherworking:'Leather/mail gear', Tailoring:'Cloth gear & bags', Engineering:'Gadgets & bombs', Herbalism:'Herbs for Alchemy', Mining:'Ore for smiths & engineers', Skinning:'Leather for Leatherworking' };
+  const lines = classes.map((cls, i) => {
+    const got = PROF_PAIR[cls].map(p => {
+      if (!taken.has(p)) { taken.add(p); return p; }
+      const sub = FALLBACK.find(f => !taken.has(f)); taken.add(sub); return sub;
+    });
+    return '<p><b>Player ' + (i+1) + ' (' + cls + '):</b> ' + got.join(' + ') + '</p>';
+  });
+  const covered = [...taken].map(p => AREAS[p]);
+  const missing = Object.keys(AREAS).filter(p => !taken.has(p)).map(p => AREAS[p]);
+  document.getElementById('profPlanOut').innerHTML = lines.join('') + '<p style="margin-top:9px"><b>Your group covers:</b> ' + covered.join(' · ') + '</p>' + (missing.length ? '<p><b>Nobody covers:</b> ' + missing.join(' · ') + ' — not a problem while leveling; it only matters at 60, and someone can re-train then.</p>' : '<p><b>Full coverage</b> — every base is covered.</p>');
 }
 function whyFor(k){
   const hits = [];
@@ -1253,6 +1543,6 @@ function restart(){ step = 0; answers = []; try { localStorage.removeItem('wowQu
 })();
 viewFromHash();
 </script>
-<p style="text-align:center;color:#8a7a5a;font-size:12px;margin:18px 0 8px">WoW Forever Quiz · build 2026-11-15 · WOWP1-20261115</p>
+<p style="text-align:center;color:#8a7a5a;font-size:12px;margin:18px 0 8px">WoW Forever Quiz · build 2026-11-15 · WOWP2-20261115</p>
 </body>
 </html>
