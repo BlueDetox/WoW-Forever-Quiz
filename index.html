@@ -125,7 +125,7 @@
     <button class="tab active" id="tabQuiz" onclick="tabGo('quiz')">🎯 Quiz</button>
     <button class="tab" id="tabGuides" onclick="tabGo('guides')">📖 Starter Guides</button>
     <button class="tab" id="tabGeneral" onclick="tabGo('general')">🧭 General Info</button>
-    <button class="tab soon" disabled>🏰 Dungeons<span class="soonTag">Soon</span></button>
+    <button class="tab" id="tabDung" onclick="tabGo('dungeons')">🏰 Dungeons</button>
     <button class="tab" id="tabProf" onclick="tabGo('professions')">🛠️ Professions</button>
     <button class="tab soon" disabled>🏆 Tier Lists<span class="soonTag">Soon</span></button>
   </div>
@@ -1308,6 +1308,390 @@
   <p class="g-foot">Deliberately not here yet: full 1–300 leveling routes for each profession. Overview first, routes later — ask in Discord if you're stuck mid-level and we'll add yours.</p>
   <a class="g-back" href="index.html" onclick="if (typeof closeProfessions === 'function') { closeProfessions(); return false; }">← Back to the quiz</a>
   </div>
+
+  <div id="dungeonsView" class="hidden">
+<a class="g-back" href="index.html" onclick="if (typeof closeDungeons === 'function') { closeDungeons(); return false; }">← Back to the quiz</a>
+  <h1 class="g-h1">🏰 WoW Forever <span class="gold">Dungeons</span></h1>
+  <p class="g-sub">Every five-player dungeon, grouped by level: where it is, what to grab before you go, and the bosses in plain language. Forever added nine brand-new dungeons to the classic set — they're marked NEW, and where Blizzard hasn't published boss lists yet, the card says so instead of guessing. Checked against WoW Forever launch info — Nov 15, 2026.</p>
+
+  <details class="g-group" id="dung-start">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Start here</span><span class="g-group-names">How dungeons work here — read this first · Which dungeons can we run? — the level checker — tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
+  <details class="g-card" id="dung-how">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">How dungeons work here — read this first</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Five players, three jobs.</b> A dungeon group is a party of five: one tank, one healer, three damage dealers. If those words are new, the General Info tab explains them (Groups &amp; dungeons, and the Combat foundations cards — interrupts and aggro are the two skills dungeons test most).</p>
+    <p style="margin-bottom:9px"><b>No dungeon finder.</b> There is no automatic queue in Forever. You form a group yourselves (friends, guild, or the LookingForGroup chat channel), then you all TRAVEL to the dungeon&#x27;s entrance and walk in. The trip is part of the game — go together, especially through enemy territory.</p>
+    <p style="margin-bottom:9px"><b>Quests are the real reward.</b> Forever deliberately moved dungeon experience INTO the quests: monster XP is the smaller share (a launch hotfix raised it somewhat), quest XP is the big payout. The golden rule: collect ALL of a dungeon&#x27;s quests, run it once, hand them all in. Running a dungeon with no quests is doing it the slow way.</p>
+    <p style="margin-bottom:9px"><b>Boss loot got better.</b> In Forever, every dungeon boss drops rare (blue) quality gear, and much of it belongs to sets (like the Defias Leather set in the Deadmines) that give bonuses when you wear several pieces. Dungeon gear is a real gearing path now, not a side trip.</p>
+    <p style="margin-bottom:9px"><b>Stay in the level range.</b> A hotfix rule: if the enemies are grey (far below) ANY group member, the whole party earns no experience from them. Group with people near your level and run dungeons in their range.</p>
+    <p style="margin-bottom:9px"><b>Blueprints.</b> Dungeon bosses can drop Blueprint recipes for crafting professions — one more reason your group&#x27;s crafter wants to come along (see the Professions tab).</p>
+    </div>
+  </details>
+  <details class="g-card" id="dung-checker">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Which dungeons can we run? — the level checker</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px">Type your group's level (use the LOWEST level in the group — they set the pace) and your faction, and get your list.</p>
+    <label for="dungLevel" style="font-weight:700">Your group's level</label>
+    <input id="dungLevel" class="profSel" type="number" min="1" max="60" placeholder="e.g. 18">
+    <label for="dungFaction" style="font-weight:700">Your faction</label>
+    <select id="dungFaction" class="profSel">
+      <option value="Both">Either / show everything</option>
+      <option value="Alliance">Alliance</option>
+      <option value="Horde">Horde</option>
+    </select>
+    <button class="profBtn" onclick="dungeonCheck()">Show our dungeons →</button>
+    <div id="dungOut" style="margin-top:12px"></div>
+    </div>
+  </details>
+    </div>
+  </details>
+  <details class="g-group" id="dung-10-20">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Levels 10–20 — your first dungeons</span><span class="g-group-names">Ragefire Chasm · Hall of Thanes — NEW in Forever · Ruins of Lordaeron — NEW in Forever · Wailing Caverns · The Deadmines — tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
+  <details class="g-card" id="ragefire-chasm">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Ragefire Chasm</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Where.</b> Inside Orgrimmar itself — the entrance is in the Cleft of Shadow, in the Horde capital. No travel, no danger getting there (for Horde).</p>
+    <p style="margin-bottom:9px"><b>Levels &amp; size.</b> 13–18, five players, about 30 minutes. The Horde&#x27;s first dungeon and the gentlest introduction to group play in the game.</p>
+    <p style="margin-bottom:9px"><b>Before you go.</b> Pick up the quests inside Orgrimmar (they&#x27;re all nearby). Bring food and water; there&#x27;s nothing else to prepare — this one is the tutorial.</p>
+    <p style="margin-bottom:9px"><b>Oggleflint.</b> A big trogg. Tank him facing away from the group; nothing fancy.</p>
+    <p style="margin-bottom:9px"><b>Taragaman the Hungerer.</b> A fire demon. Spread out a little so his fire nova doesn&#x27;t catch everyone, and burn him down.</p>
+    <p style="margin-bottom:9px"><b>Jergosh the Invoker &amp; Bazzalan.</b> Warlock-type bosses with helper imps and cultists — kill the adds first, interrupt their casts when you can.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> Lava crawlers patrol; pull them alone. Otherwise this dungeon is forgiving by design.</p>
+    </div>
+  </details>
+  <details class="g-card" id="hall-of-thanes">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Hall of Thanes — NEW in Forever</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Where.</b> Beneath Ironforge in Dun Morogh — the Alliance&#x27;s home dungeon, Forever&#x27;s mirror to Ragefire Chasm. Horde groups must travel deep into Alliance territory to reach it.</p>
+    <p style="margin-bottom:9px"><b>Levels &amp; size.</b> 13–18, five players. One of the two first dungeons in the game, and the Alliance&#x27;s starter.</p>
+    <p style="margin-bottom:9px"><b>Before you go.</b> Grab the dungeon quests in Ironforge and Dun Morogh first — in Forever, the quests are where most of a run&#x27;s experience lives.</p>
+    <p style="margin-bottom:9px"><b>Bosses — brand new, no official list yet.</b> Blizzard hasn&#x27;t published a boss list for this dungeon, and it&#x27;s new in Forever — nobody has a settled guide yet. Go in with the Combat foundations from General Info (interrupts, aggro, crowd control) and learn it together; that&#x27;s genuinely how the first groups are doing it. Theme to expect: a dwarven hall of heroes — expect proud dwarven defenders and the relics they guard.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> Horde visitors: the trip in is the dangerous part on a PvP ruleset, not the dungeon.</p>
+    </div>
+  </details>
+  <details class="g-card" id="ruins-of-lordaeron">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Ruins of Lordaeron — NEW in Forever</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Where.</b> In the ruined human capital ABOVE the Undercity, in Tirisfal Glades — the Horde&#x27;s second early dungeon. Alliance groups must cross into Horde territory.</p>
+    <p style="margin-bottom:9px"><b>Levels &amp; size.</b> 15–20, five players. All of its quests open at level 15.</p>
+    <p style="margin-bottom:9px"><b>Before you go.</b> Collect the quests in Tirisfal Glades and the Undercity before entering; stack them all into one run.</p>
+    <p style="margin-bottom:9px"><b>Bosses — brand new, no official list yet.</b> Blizzard hasn&#x27;t published a boss list for this dungeon, and it&#x27;s new in Forever — nobody has a settled guide yet. Go in with the Combat foundations from General Info (interrupts, aggro, crowd control) and learn it together; that&#x27;s genuinely how the first groups are doing it. Theme to expect: a necromancer raising the dead of the old capital — expect undead and dark casters; bring interrupts for their spells.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> Undead casters hurt at this level. Pull one pack at a time and stop their casts (see the interrupts card in General Info).</p>
+    </div>
+  </details>
+  <details class="g-card" id="wailing-caverns">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Wailing Caverns</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Where.</b> In the Barrens, in an oasis cave south-west of the Crossroads. The entrance cave itself has enemies — fight your way to the glowing portal.</p>
+    <p style="margin-bottom:9px"><b>Levels &amp; size.</b> 15–24, five players, and LONG — budget 1 to 1.5 hours. A maze of caverns full of druids gone wrong.</p>
+    <p style="margin-bottom:9px"><b>Before you go.</b> It has around 7 quests (mostly Horde, from the Crossroads, Ratchet, and Thunder Bluff; Alliance get fewer). Stack them all — one full clear with every quest is a level or more of experience. Bring water; casters drink a lot here.</p>
+    <p style="margin-bottom:9px"><b>The four Lords of the Fang.</b> Lady Anacondra, Lord Cobrahn, Lord Pythas, and Lord Serpentis — corrupted druid bosses spread through the maze. All four must die to unlock the ending. Interrupt their lightning and healing when you can.</p>
+    <p style="margin-bottom:9px"><b>Kresh &amp; Skum.</b> A giant turtle and a thunder lizard — simple tank-and-kill fights on the way.</p>
+    <p style="margin-bottom:9px"><b>Verdan the Everliving.</b> A huge elemental who hits the tank VERY hard for this level. The healer&#x27;s whole job is this fight; everyone else just burns him.</p>
+    <p style="margin-bottom:9px"><b>Mutanus the Devourer.</b> The final boss, and he doesn&#x27;t exist until you finish: after the four Lords die, talk to the Disciple of Naralex at the entrance and escort him to the back — survive the waves, then Mutanus rises.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> It&#x27;s easy to get lost — stay together and mark your tank. Deviate beasts sleep and fear; pull carefully. The Embrace of the Viper gear set drops here and is worth wearing.</p>
+    </div>
+  </details>
+  <details class="g-card" id="the-deadmines">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">The Deadmines</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Where.</b> In Westfall — enter through the barn in Moonbrook and fight through the mine tunnels to the portal. The Alliance&#x27;s signature first dungeon.</p>
+    <p style="margin-bottom:9px"><b>Levels &amp; size.</b> 17–26, five players, about an hour. A pirate-brotherhood stronghold that ends on a ship.</p>
+    <p style="margin-bottom:9px"><b>Before you go.</b> Do the Westfall Defias quest chain first — it unlocks the dungeon&#x27;s main quests (about 7 in total, worth a huge chunk of XP in Forever). Kill miners on the way in; they drop a powder used for a door later.</p>
+    <p style="margin-bottom:9px"><b>Rhahk&#x27;Zor.</b> An ogre foreman with two helpers — kill the helpers, then him.</p>
+    <p style="margin-bottom:9px"><b>Sneed.</b> A goblin in a giant shredder machine. Destroy the shredder, then Sneed himself hops out — finish him.</p>
+    <p style="margin-bottom:9px"><b>Gilnid &amp; Captain Greenskin.</b> The smelter boss and the ship&#x27;s first mate — straightforward fights; Greenskin poisons, so the healer watches the tank.</p>
+    <p style="margin-bottom:9px"><b>Mr. Smite.</b> The ship&#x27;s tauren guard. Twice during the fight he STUNS the whole group and runs to his chest for a bigger weapon. You can&#x27;t stop it — just survive the stun and keep going. He hits much harder each time.</p>
+    <p style="margin-bottom:9px"><b>Edwin VanCleef.</b> The final boss on the ship&#x27;s top deck, leader of the Defias. Near the end he calls two bodyguards — kill them, then finish him. The Defias Leather set drops in here.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> Patrols walk the tunnels BEHIND you after you pass. Clear as you go and don&#x27;t run back alone.</p>
+    </div>
+  </details>
+    </div>
+  </details>
+  <details class="g-group" id="dung-20-30">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Levels 20–30</span><span class="g-group-names">Shadowfang Keep · Blackfathom Deeps · The Stockade · Excavation Site — NEW in Forever · Scarlet Monastery · City of Dalaran — NEW in Forever · Gnomeregan · Razorfen Kraul — tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
+  <details class="g-card" id="shadowfang-keep">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Shadowfang Keep</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Where.</b> In Silverpine Forest, on a cliff west of the Sepulcher — a haunted castle full of worgen (werewolves).</p>
+    <p style="margin-bottom:9px"><b>Levels &amp; size.</b> 22–30, five players, about 45 minutes. Spooky, compact, and a favourite.</p>
+    <p style="margin-bottom:9px"><b>Before you go.</b> Horde get the main quests from the Undercity/Sepulcher; Alliance have a couple too. Bring someone who can cure curses if you have one — the ghosts love cursing.</p>
+    <p style="margin-bottom:9px"><b>Commander Springvale.</b> A ghost knight with two guards. Kill the guards first; his holy spells hurt.</p>
+    <p style="margin-bottom:9px"><b>Odo the Blindwatcher &amp; Fenrus.</b> A bat-handler and a huge wolf. Fenrus hits hard and fast — the tank&#x27;s fight, everyone else burns.</p>
+    <p style="margin-bottom:9px"><b>Archmage Arugal.</b> The final boss and the man who cursed this place. He teleports around his tower, blasts the group with shadow, and can briefly turn one of you into a worgen. Keep pressure on him wherever he appears and heal through it.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> The courtyard and stable packs link together — pull back into cleared space instead of charging in.</p>
+    </div>
+  </details>
+  <details class="g-card" id="blackfathom-deeps">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Blackfathom Deeps</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Where.</b> On the coast of Ashenvale — you swim down through a flooded temple entrance to reach the portal. Yes, you swim; don&#x27;t panic.</p>
+    <p style="margin-bottom:9px"><b>Levels &amp; size.</b> 24–32, five players, about an hour. An underwater temple of naga and Twilight cultists.</p>
+    <p style="margin-bottom:9px"><b>Before you go.</b> Quests from Ashenvale and (for Horde) the Stonetalon foothills. Light the braziers as you go — the dungeon&#x27;s torch puzzle opens the way forward.</p>
+    <p style="margin-bottom:9px"><b>Ghamoo-ra.</b> A giant turtle in a pool. Simple, but his shell makes him slow to kill — patience.</p>
+    <p style="margin-bottom:9px"><b>Twilight Lord Kelris.</b> The dangerous one: he puts the tank (or whoever he chooses) to SLEEP mid-fight. Whoever isn&#x27;t asleep keeps fighting; the sleeper wakes after a few seconds. Kill his cultist adds first.</p>
+    <p style="margin-bottom:9px"><b>Aku&#x27;mai.</b> A three-headed hydra in the final pool — the tank holds it at the pool&#x27;s edge and everyone burns it down.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> Murlocs. They flee at low health and bring friends. Kill runners fast, or crowd-control them.</p>
+    </div>
+  </details>
+  <details class="g-card" id="the-stockade">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">The Stockade</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Where.</b> Inside Stormwind itself — a prison in the Canals district. Alliance home dungeon; Horde would have to invade the capital, so it&#x27;s Alliance-only in practice.</p>
+    <p style="margin-bottom:9px"><b>Levels &amp; size.</b> 24–32, five players, and SHORT — about 30 minutes. Three wings of rioting prisoners.</p>
+    <p style="margin-bottom:9px"><b>Before you go.</b> The quests come from Stormwind and the Redridge/Westfall chains (the riot&#x27;s backstory). This dungeon&#x27;s loot is thin — you run it for the quest XP, which in Forever is the point.</p>
+    <p style="margin-bottom:9px"><b>Kam Deepfury, Targorr the Dread, Dextren Ward.</b> The three wing bosses — all simple tank-and-kill fights. Hamhock, an ogre at the back of one wing, is the only one who hits notably hard.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> Prisoners run at low health and pull the next cell. Fight in doorways and finish runners.</p>
+    </div>
+  </details>
+  <details class="g-card" id="excavation-site">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Excavation Site — NEW in Forever</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Where.</b> In the Wetlands, at the excavation near Thelgen Rock and Dun Algaz — a dwarven dig that dug up something it shouldn&#x27;t have.</p>
+    <p style="margin-bottom:9px"><b>Levels &amp; size.</b> 24–29, five players. One of Forever&#x27;s new dungeons, sitting between Blackfathom Deeps and Scarlet Monastery in the leveling path.</p>
+    <p style="margin-bottom:9px"><b>Before you go.</b> Grab the Wetlands quests for the dig site first. As with every Forever dungeon: quests first, then run it once, fully.</p>
+    <p style="margin-bottom:9px"><b>Bosses — brand new, no official list yet.</b> Blizzard hasn&#x27;t published a boss list for this dungeon, and it&#x27;s new in Forever — nobody has a settled guide yet. Go in with the Combat foundations from General Info (interrupts, aggro, crowd control) and learn it together; that&#x27;s genuinely how the first groups are doing it. Theme to expect: an archaeological dig gone wrong — expect whatever the excavators unearthed, plus the troggs and raptors that infest every Wetlands dig.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> New dungeon etiquette: pull slowly until your group learns the packs. Nobody will judge you — nobody knows it yet either.</p>
+    </div>
+  </details>
+  <details class="g-card" id="scarlet-monastery">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Scarlet Monastery</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Where.</b> In Tirisfal Glades, north-east of the Undercity — a monastery of fanatical Scarlet Crusade humans. It has FOUR separate wings, each its own dungeon.</p>
+    <p style="margin-bottom:9px"><b>Levels &amp; size.</b> 26–45 across the wings: Graveyard 26–36, Library 29–39, Armory 32–42, Cathedral 35–45. Five players, 30–45 minutes per wing. You&#x27;ll return here across many levels.</p>
+    <p style="margin-bottom:9px"><b>Before you go.</b> Horde get the key quests from the Undercity; the Library drops the Scarlet Key that opens the Armory and Cathedral doors. Do the wings in order: Graveyard → Library → Armory → Cathedral.</p>
+    <p style="margin-bottom:9px"><b>Bloodmage Thalnos (Graveyard).</b> An undead caster who raises skeletons and rains fire. Kill the raised adds, interrupt his fire when you can.</p>
+    <p style="margin-bottom:9px"><b>Arcanist Doan (Library).</b> A mage who, at half health, casts a huge Arcane Explosion — when he starts casting it, EVERYONE runs away from him, then runs back in.</p>
+    <p style="margin-bottom:9px"><b>Herod (Armory).</b> The famous one. He periodically spins in a whirlwind (&#x27;Blades of Light&#x27;) — melee step OUT while he spins, step back in when he stops. At the end he enrages; burn him.</p>
+    <p style="margin-bottom:9px"><b>Mograine &amp; Whitemane (Cathedral).</b> Kill Commander Mograine first. When he falls, High Inquisitor Whitemane sleeps your whole group and RESURRECTS him — wake up, kill Mograine again, then kill her. She also heals, so interrupt her when possible.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> Scarlet runners flee and bring whole rooms. In the Cathedral, clear the entire hall before pulling the bosses, or the whole room joins the fight.</p>
+    </div>
+  </details>
+  <details class="g-card" id="city-of-dalaran">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">City of Dalaran — NEW in Forever</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Where.</b> The floating city&#x27;s ground level in the Alterac Mountains — you enter through the SEWERS. Getting in is a quest, not a walk-up: this dungeon has an attunement.</p>
+    <p style="margin-bottom:9px"><b>Levels &amp; size.</b> 28–33, five players. The magic city of Dalaran, from underneath.</p>
+    <p style="margin-bottom:9px"><b>Before you go.</b> ATTUNEMENT REQUIRED: start the entry quest chain first — Alliance start in Southshore, Horde in Tarren Mill. Do not travel there without it. Then stack the dungeon&#x27;s quests as usual.</p>
+    <p style="margin-bottom:9px"><b>Bosses — brand new, no official list yet.</b> Blizzard hasn&#x27;t published a boss list for this dungeon, and it&#x27;s new in Forever — nobody has a settled guide yet. Go in with the Combat foundations from General Info (interrupts, aggro, crowd control) and learn it together; that&#x27;s genuinely how the first groups are doing it. Theme to expect: the sewers and underbelly of the mages&#x27; city — expect arcane guardians, escaped experiments, and things the mages of Dalaran kept locked below.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> Because of the attunement, groups form more slowly for this one — plan it with your regular group rather than hoping for a pickup.</p>
+    </div>
+  </details>
+  <details class="g-card" id="gnomeregan">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Gnomeregan</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Where.</b> In Dun Morogh, west of Ironforge — the fallen gnome capital, a vast irradiated techno-city. Horde can teleport in: a quest chain from the goblin engineers in Orgrimmar sends you to Booty Bay for a transponder.</p>
+    <p style="margin-bottom:9px"><b>Levels &amp; size.</b> 29–38, five players, and the LONGEST low-level dungeon — budget 1.5–2 hours or split it into two visits.</p>
+    <p style="margin-bottom:9px"><b>Before you go.</b> Many quests (mostly Alliance). There&#x27;s a back door (the Workshop entrance) once you&#x27;ve been through once. Bring bags — this place drops a mountain of vendor loot.</p>
+    <p style="margin-bottom:9px"><b>Viscous Fallout.</b> A giant toxic ooze. Spread out; the little oozes it spawns die fast if everyone hits them.</p>
+    <p style="margin-bottom:9px"><b>Electrocutioner 6000 &amp; Crowd Pummeler 9-60.</b> Robot bosses — tank-and-kill, but the Pummeler knocks the tank flying; tank with your back to a wall.</p>
+    <p style="margin-bottom:9px"><b>Mekgineer Thermaplugg.</b> The final boss, the traitor who irradiated the city. He activates bomb bots that walk toward the group — kill the bots before they arrive, and use the glowing buttons to shut off their hatches.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> ALARM BOTS: little robots that summon a flood of enemies if they finish casting. Kill them the instant you see one. Also: don&#x27;t fall off the walkways.</p>
+    </div>
+  </details>
+  <details class="g-card" id="razorfen-kraul">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Razorfen Kraul</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Where.</b> In the southern Barrens, inside a giant thorn-maze grown over an ancient quilboar (pig-man) city.</p>
+    <p style="margin-bottom:9px"><b>Levels &amp; size.</b> 29–38, five players, about an hour.</p>
+    <p style="margin-bottom:9px"><b>Before you go.</b> Quests from Ratchet, the Crossroads, and Thousand Needles (and a couple for Alliance from Theramore&#x27;s side). A bat boss near the end needs a escort-style event — read the &#x27;Watch out&#x27;.</p>
+    <p style="margin-bottom:9px"><b>Charlga Razorflank.</b> The final boss, an old quilboar crone. She chain-lightnings the group — spread out so it doesn&#x27;t bounce — and heals; interrupt her heal when you can.</p>
+    <p style="margin-bottom:9px"><b>Agathelos the Raging.</b> A huge boar in a pit partway through — pure tank-and-burn, and a good check that your group is ready for the rest.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> Quilboar thornweavers hex players into animals briefly — annoying, not deadly. Near the end you protect a goblin while he works; keep the waves off him.</p>
+    </div>
+  </details>
+    </div>
+  </details>
+  <details class="g-group" id="dung-30-40">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Levels 30–40</span><span class="g-group-names">The Drowned City — NEW in Forever · Razorfen Downs — tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
+  <details class="g-card" id="the-drowned-city">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">The Drowned City — NEW in Forever</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Where.</b> Off the coast of Stranglethorn Vale, west of Grom&#x27;gol — the entrance is UNDERWATER. You swim down to a sunken city.</p>
+    <p style="margin-bottom:9px"><b>Levels &amp; size.</b> 35–40, five players. One of Forever&#x27;s new dungeons and the first underwater one — it was the showpiece dungeon at BlizzCon.</p>
+    <p style="margin-bottom:9px"><b>Before you go.</b> Water breathing matters here: a Warlock&#x27;s Unending Breath, Shaman&#x27;s Water Breathing, or Elixirs of Water Breathing from an Alchemist all help if any part requires long swims. Ask before you go.</p>
+    <p style="margin-bottom:9px"><b>Bosses — brand new, no official list yet.</b> Blizzard hasn&#x27;t published a boss list for this dungeon, and it&#x27;s new in Forever — nobody has a settled guide yet. Go in with the Combat foundations from General Info (interrupts, aggro, crowd control) and learn it together; that&#x27;s genuinely how the first groups are doing it. Theme to expect: a city that sank beneath the waves — expect its drowned former residents and whatever sea creatures moved in after.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> Underwater movement is slower and 3D — enemies can come from above and below. Stay close together; it&#x27;s easy to separate.</p>
+    </div>
+  </details>
+  <details class="g-card" id="razorfen-downs">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Razorfen Downs</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Where.</b> Also in the southern Barrens, east of Razorfen Kraul — a quilboar burial ground taken over by the undead Scourge.</p>
+    <p style="margin-bottom:9px"><b>Levels &amp; size.</b> 37–46, five players, about an hour. Undead everywhere: priests and paladins shine (Turn Undead, Exorcism).</p>
+    <p style="margin-bottom:9px"><b>Before you go.</b> Quests from the Barrens and Thousand Needles. Someone should bring the ability to cure diseases — the ghouls spread them.</p>
+    <p style="margin-bottom:9px"><b>Tuten&#x27;kash.</b> A giant spider behind a gong. Hitting the gong starts waves of spiders before she comes herself — let the tank hit the gong, group up, and burn the waves together.</p>
+    <p style="margin-bottom:9px"><b>Amnennar the Coldbringer.</b> The final boss, a lich on the burial mound. He summons skeletons and chills the group — kill the summons, keep the healer&#x27;s mana for him.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> The spiral mound at the end is one long linked fight if you rush it. Pull it in slices.</p>
+    </div>
+  </details>
+    </div>
+  </details>
+  <details class="g-group" id="dung-40-50">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Levels 40–50</span><span class="g-group-names">Krol&#x27;dok Stronghold — NEW in Forever · Uldaman · Zul&#x27;Farrak · Maraudon · Alcaz Prison — NEW in Forever — tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
+  <details class="g-card" id="kroldok-stronghold">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Krol&#x27;dok Stronghold — NEW in Forever</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Where.</b> In Riverglades — a stronghold dungeon from Forever&#x27;s new set, bridging the gap between Razorfen Downs and Uldaman.</p>
+    <p style="margin-bottom:9px"><b>Levels &amp; size.</b> 40–45, five players.</p>
+    <p style="margin-bottom:9px"><b>Before you go.</b> Collect its quests in the zone first, as always. At this level, also start saving: your mount money should be nearly done, and dungeon blues replace quest greens fast here.</p>
+    <p style="margin-bottom:9px"><b>Bosses — brand new, no official list yet.</b> Blizzard hasn&#x27;t published a boss list for this dungeon, and it&#x27;s new in Forever — nobody has a settled guide yet. Go in with the Combat foundations from General Info (interrupts, aggro, crowd control) and learn it together; that&#x27;s genuinely how the first groups are doing it. Theme to expect: a fortress garrison — expect organised defenders who fight in squads rather than wandering monsters; pull them one squad at a time.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> Organised enemies punish the &#x27;charge in&#x27; habit. Let the tank pull every pack back to safe ground.</p>
+    </div>
+  </details>
+  <details class="g-card" id="uldaman">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Uldaman</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Where.</b> In the Badlands, in an ancient titan vault the dwarves are excavating. There&#x27;s a back entrance in the north of the zone once you know it.</p>
+    <p style="margin-bottom:9px"><b>Levels &amp; size.</b> 41–51, five players, about 1–1.5 hours. The last bosses are much higher level than the first — groups often do it in two visits.</p>
+    <p style="margin-bottom:9px"><b>Before you go.</b> A long quest web (Badlands, Ironforge/Orgrimmar, and a chain that starts inside). Two items combine into the staff that opens the final chamber — the group needs the pieces from mid-bosses, so don&#x27;t leave early.</p>
+    <p style="margin-bottom:9px"><b>Ironaya.</b> A giant stone woman who wakes when you activate her chamber. Slow, huge hits — a pure tank test.</p>
+    <p style="margin-bottom:9px"><b>Archaedas.</b> The final boss, a giant titan keeper. As he loses health he WAKES the statues around the room in waves — kill each wave of statues as it wakes, then back to him. The classic &#x27;adds in phases&#x27; fight.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> The trogg and golem packs hit hard for their level. And keep the staff pieces: leaving without them means no final boss next time either.</p>
+    </div>
+  </details>
+  <details class="g-card" id="zulfarrak">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Zul&#x27;Farrak</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Where.</b> In Tanaris, in the desert — a sand troll city, mostly open-air. Bring sunscreen jokes; everyone makes them.</p>
+    <p style="margin-bottom:9px"><b>Levels &amp; size.</b> 44–54, five players, about an hour. A beloved dungeon with one of the game&#x27;s most famous fights.</p>
+    <p style="margin-bottom:9px"><b>Before you go.</b> Quests from Gadgetzan and Steamwheedle Port. One boss (Gahz&#x27;rilla) needs a special mallet from a quest chain that starts in the Hinterlands — if your group has it, great; if not, skip that boss.</p>
+    <p style="margin-bottom:9px"><b>The pyramid event.</b> Halfway in, you free prisoners at the top of a huge stepped pyramid — then waves of trolls charge UP the steps at you while an executioner boss waits at the bottom. Stay at the top, let them come to you, drink between waves. This fight teaches &#x27;let them come to us&#x27; better than anything.</p>
+    <p style="margin-bottom:9px"><b>Chief Ukorz Sandscalp.</b> The final boss, fought with his witch doctor partner Ruuzlu — kill Ruuzlu first (he heals), then the Chief.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> Sandfury witch doctors turn players into frogs and drop healing totems — kill their totems on sight. Totems are always priority one in troll dungeons.</p>
+    </div>
+  </details>
+  <details class="g-card" id="maraudon">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Maraudon</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Where.</b> In Desolace, in a sacred centaur burial cave. It has two entrances (the &#x27;purple&#x27; and &#x27;orange&#x27; sides) that meet in the middle, plus a waterfall shortcut.</p>
+    <p style="margin-bottom:9px"><b>Levels &amp; size.</b> 46–55, five players, and huge — most groups do one side per visit (about an hour each).</p>
+    <p style="margin-bottom:9px"><b>Before you go.</b> The quest chain inside leads to the Scepter of Celebras, which opens a portal shortcut straight to the inner half. Worth doing once. Bring nature-resistance if you have any — the inner half is poison-heavy.</p>
+    <p style="margin-bottom:9px"><b>Celebras the Cursed.</b> A keeper of the grove mid-dungeon; killing him completes the scepter. He summons plant adds — burn them, then him.</p>
+    <p style="margin-bottom:9px"><b>Princess Theradras.</b> The final boss, an earth princess at the bottom. She fears the group and knocks everyone back — tank her with your back to a wall, and don&#x27;t stand near the edge of her platform.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> The inner caverns&#x27; poison elementals and plants stack nasty damage-over-time effects. Cure poison if your class can.</p>
+    </div>
+  </details>
+  <details class="g-card" id="alcaz-prison">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Alcaz Prison — NEW in Forever</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Where.</b> On Alcaz Island, off the coast of Dustwallow Marsh — a prison island. Getting there is a swim or a careful boat-side run past high-level enemies.</p>
+    <p style="margin-bottom:9px"><b>Levels &amp; size.</b> 48–53, five players. One of Forever&#x27;s new dungeons, filling the gap before the level-60 set.</p>
+    <p style="margin-bottom:9px"><b>Before you go.</b> The island around the entrance is dangerous for its level — travel as a group, not solo. Grab the Dustwallow/Theramore-side quests first.</p>
+    <p style="margin-bottom:9px"><b>Bosses — brand new, no official list yet.</b> Blizzard hasn&#x27;t published a boss list for this dungeon, and it&#x27;s new in Forever — nobody has a settled guide yet. Go in with the Combat foundations from General Info (interrupts, aggro, crowd control) and learn it together; that&#x27;s genuinely how the first groups are doing it. Theme to expect: a prison break in progress — expect wardens, escaped prisoners, and the things the prison was built to hold.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> Prison layouts mean cells and side rooms — clear methodically so a fleeing prisoner doesn&#x27;t open three cells at once.</p>
+    </div>
+  </details>
+    </div>
+  </details>
+  <details class="g-group" id="dung-50-60">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Levels 50–60</span><span class="g-group-names">Sunken Temple · Blackrock Depths · Dire Maul · Blackrock Spire · Blackmaw Hold — NEW in Forever — tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
+  <details class="g-card" id="sunken-temple">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Sunken Temple</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Where.</b> In the Swamp of Sorrows, in a lake — the Temple of Atal&#x27;Hakkar, a troll temple sunk into the water. The real dungeon is the upper levels inside.</p>
+    <p style="margin-bottom:9px"><b>Levels &amp; size.</b> 50–60, five players, 1–1.5 hours. A puzzle-temple: the layout confuses every first-timer, guaranteed.</p>
+    <p style="margin-bottom:9px"><b>Before you go.</b> A multi-zone quest chain (starting far away, in Tanaris and Feralas) explains the temple and unlocks its best quests — do it. Inside, the basement has six statues: your group must activate them in the right order to open the way down. Look up the order before you go, or enjoy experimenting.</p>
+    <p style="margin-bottom:9px"><b>Jammal&#x27;an the Prophet.</b> The troll leader mid-temple. He turns one player into his servant briefly (mind control) — the group just waits it out / crowd-controls the victim, then keeps fighting.</p>
+    <p style="margin-bottom:9px"><b>Shade of Eranikus.</b> The final boss, a ghostly green dragon in the sunken chamber — only summonable once the temple&#x27;s ritual is complete. He summons dragonkin adds and puts the tank to sleep; a long, grand finale fight.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> Undead troll packs in the halls drain stats with curses. And the dragonkin patrols on the balconies respawn — keep moving.</p>
+    </div>
+  </details>
+  <details class="g-card" id="blackrock-depths">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Blackrock Depths</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Where.</b> Inside Blackrock Mountain (between the Burning Steppes and Searing Gorge) — a whole Dark Iron dwarf CITY underground. The biggest dungeon in the game.</p>
+    <p style="margin-bottom:9px"><b>Levels &amp; size.</b> 52–60, five players, and enormous: a full clear takes 3+ hours. Nobody does it in one sitting — it&#x27;s really two dungeons: the Detention Block (lower) and the Upper City (emperor).</p>
+    <p style="margin-bottom:9px"><b>Before you go.</b> Get the Shadowforge Key: its quest chain starts from a ghost you can only talk to while DEAD near the mountain&#x27;s central chamber (die once on purpose nearby — really). The key opens shortcuts that make repeat visits sane. There are 15+ quests; stack them across multiple visits.</p>
+    <p style="margin-bottom:9px"><b>Lord Incendius.</b> A fire elemental on a bridge of lava — the tank keeps him out of the lava; everyone else stays out of his fire nova range or heals through it.</p>
+    <p style="margin-bottom:9px"><b>The Lyceum.</b> A room of endless fast-respawning dwarves where you must light two braziers with torches dropped by special enemies. Constant motion, no stopping — the game&#x27;s first &#x27;keep moving&#x27; room.</p>
+    <p style="margin-bottom:9px"><b>Emperor Dagran Thaurissan.</b> The final boss, in the throne room, with Princess Moira beside him. If you have the quest to save her, DON&#x27;T kill her — keep her alive (she heals him, annoyingly) and burn the Emperor; if not, kill her first. Know which run you&#x27;re doing BEFORE the pull.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> The Grim Guzzler bar halfway through can be crossed peacefully (buy the barman a drink / do a small quest) or as a giant bar fight. Choose deliberately — the fight is fun, the shortcut is faster.</p>
+    </div>
+  </details>
+  <details class="g-card" id="dire-maul">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Dire Maul</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Where.</b> In Feralas — a ruined night elf city with THREE separate wings: East, West, and North, each its own dungeon with its own entrance.</p>
+    <p style="margin-bottom:9px"><b>Levels &amp; size.</b> 55–60, five players, about an hour per wing. Released as the &#x27;catch-up&#x27; dungeon set: its gear is excellent for fresh 60s.</p>
+    <p style="margin-bottom:9px"><b>Before you go.</b> East is the easiest start. West needs the Crescent Key (from East&#x27;s imp-chase boss, Pusillin — chase him through the dungeon as he runs). North has the famous alternative: the TRIBUTE run.</p>
+    <p style="margin-bottom:9px"><b>Alzzin the Wildshaper (East).</b> A satyr who shapeshifts and summons plant adds at the end of a garden courtyard. Kill the adds as they sprout.</p>
+    <p style="margin-bottom:9px"><b>Prince Tortheldrin (West).</b> The final boss of West, guarded by a forcefield: you must deactivate the pylons around the library (each guarded) to drop his shield. His demon advisor Immol&#x27;thar comes first — an eye-beast that beams the group.</p>
+    <p style="margin-bottom:9px"><b>King Gordok (North) &amp; the tribute run.</b> If you kill every North boss, you fight the King with his shaman Cho&#x27;Rush helping. But if you SKIP the other bosses (with tricks: an ogre suit costume, freezing one boss in a trap), the King dies alone and the surviving bosses PAY YOU TRIBUTE — a chest of extra loot. The tribute run is the connoisseur&#x27;s clear.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> Ogre packs in North hit like trucks and the patrols are dense. West is caster-heavy — interrupts matter again.</p>
+    </div>
+  </details>
+  <details class="g-card" id="blackrock-spire">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Blackrock Spire</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Where.</b> Also inside Blackrock Mountain, above Blackrock Depths — the orc and dragonkin fortress. It has two halves: Lower (5 players) and Upper (a 10-player dungeon in the original design).</p>
+    <p style="margin-bottom:9px"><b>Levels &amp; size.</b> 55–60. Lower is a full 5-player dungeon of about 1.5 hours; Upper is the pre-raid gearing step.</p>
+    <p style="margin-bottom:9px"><b>Before you go.</b> Upper&#x27;s door is sealed: the Seal of Ascension ring (a quest chain from Lower&#x27;s bosses) is the key — one person in the group must have it. Lower also holds the famous &#x27;Leeroy&#x27; room (the rookery) — yes, that one. It&#x27;s real, it&#x27;s here, the whelps are exactly as advertised.</p>
+    <p style="margin-bottom:9px"><b>Overlord Wyrmthalak (Lower).</b> The final boss of Lower, a dragonspawn commander who calls ogre and dragonkin guards at health thresholds. Kill the guards as they come.</p>
+    <p style="margin-bottom:9px"><b>General Drakkisath (Upper).</b> The final boss of Upper and of the pre-raid game. He periodically sets one player ablaze (conflagration) — that player must run AWAY from the group until it passes. His two dragonspawn guards die first. Killing him is also part of the Onyxia raid attunement chain.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> Dragonkin in the Spire resist fire and hit hard; the orc packs include healers (kill them first, always).</p>
+    </div>
+  </details>
+  <details class="g-card" id="blackmaw-hold">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Blackmaw Hold — NEW in Forever</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Where.</b> In Azshara, the ruined high elf zone on Kalimdor&#x27;s north-east coast — a hold fastness from Forever&#x27;s new endgame set.</p>
+    <p style="margin-bottom:9px"><b>Levels &amp; size.</b> 55–60, five players. One of the two new high-end dungeons.</p>
+    <p style="margin-bottom:9px"><b>Before you go.</b> Azshara is remote — fly to the nearest point and ride as a group. At this level your group should be in mostly dungeon-blue gear; if you&#x27;re fresh 60s, Dire Maul and Lower Spire gear you up for here.</p>
+    <p style="margin-bottom:9px"><b>Bosses — brand new, no official list yet.</b> Blizzard hasn&#x27;t published a boss list for this dungeon, and it&#x27;s new in Forever — nobody has a settled guide yet. Go in with the Combat foundations from General Info (interrupts, aggro, crowd control) and learn it together; that&#x27;s genuinely how the first groups are doing it. Theme to expect: a fortress hold in a zone of ancient ruins and naga — expect a garrison that defends in depth.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> Endgame Forever dungeons assume you know the fundamentals cold. If a mechanic surprises you, the General Info combat cards are the refresher.</p>
+    </div>
+  </details>
+    </div>
+  </details>
+  <details class="g-group" id="dung-60">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Level 60 — the endgame dungeons</span><span class="g-group-names">Scholomance · Stratholme · Shaper&#x27;s Terrace — NEW in Forever — tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
+  <details class="g-card" id="scholomance">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Scholomance</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Where.</b> In the Western Plaguelands, on the island of Caer Darrow — a school of necromancy in a haunted estate. The door needs the Skeleton Key (a quest chain through both Plaguelands).</p>
+    <p style="margin-bottom:9px"><b>Levels &amp; size.</b> 58–60, five players, about 1.5 hours. One of the two classic endgame dungeons.</p>
+    <p style="margin-bottom:9px"><b>Before you go.</b> Do the Skeleton Key chain first (it starts with quests in the Plaguelands and runs through other dungeons). Bring a group that can handle MANY casters — this place is wall-to-wall necromancers.</p>
+    <p style="margin-bottom:9px"><b>Jandice Barov.</b> A ghost who splits into many copies of herself — the real one takes full damage; kill the fakes quickly and find her again each time she splits.</p>
+    <p style="margin-bottom:9px"><b>Ras Frostwhisper.</b> A lich in the basement (reached via a viewing room key from another boss). He freezes and drains the tank — healers pace their mana; it&#x27;s a marathon, not a sprint.</p>
+    <p style="margin-bottom:9px"><b>Darkmaster Gandling.</b> The final boss, the headmaster. He randomly TELEPORTS one player into a side room full of skeletons — that player must kill them and run back. Nobody is safe standing still; keep the group topped up.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> Students in the big lecture rooms come in huge linked packs. Pull with line-of-sight around doorways, always.</p>
+    </div>
+  </details>
+  <details class="g-card" id="stratholme">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Stratholme</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Where.</b> In the Eastern Plaguelands — the burning city where the plague began. It has two entrances and two halves: the &#x27;Live&#x27; side (Scarlet Crusade humans) and the &#x27;Undead&#x27; side (Scourge), meeting at the end.</p>
+    <p style="margin-bottom:9px"><b>Levels &amp; size.</b> 58–60, five players, about 1.5 hours for a full both-sides clear. The other classic endgame dungeon.</p>
+    <p style="margin-bottom:9px"><b>Before you go.</b> The side gate (Undead side) needs the Key to the City, dropped by the Magistrate inside the Live side — first visits enter through the main gate. Argent Dawn quests (from Light&#x27;s Hope Chapel) stack heavily here — grab them all.</p>
+    <p style="margin-bottom:9px"><b>Balnazzar (Live side).</b> The final boss of the Live side — a demon disguised as the Scarlet commander. He mind-controls players and fears the group; kill his summoned portals&#x27; imps quickly and heal through the chaos.</p>
+    <p style="margin-bottom:9px"><b>Baron Rivendare (Undead side).</b> The true final boss, a death knight on horseback in the slaughterhouse. He summons skeletons in waves and curses the tank — the group&#x27;s full endgame exam: adds, curses, and a hard-hitting boss at once.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> The Eyes of Naxxramas patrol and summon gargoyles if they finish casting — kill them on sight. And in the Undead side, the abominations in the square must be pulled one at a time; two at once ends runs.</p>
+    </div>
+  </details>
+  <details class="g-card" id="shapers-terrace">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Shaper&#x27;s Terrace — NEW in Forever</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Where.</b> In the northern hills of Un&#x27;Goro Crater — a titan terrace, the highest of Forever&#x27;s new dungeons and its level-60 capstone.</p>
+    <p style="margin-bottom:9px"><b>Levels &amp; size.</b> 58–60, five players. The newest endgame dungeon in the game.</p>
+    <p style="margin-bottom:9px"><b>Before you go.</b> BRING POWER CRYSTALS: the coloured crystals gathered all over Un&#x27;Goro Crater (from the pylons quest chain in the zone) are used here. Do the Un&#x27;Goro pylon quests while leveling so you&#x27;re stocked. Otherwise: fresh-60 gear from Dire Maul/Spire first.</p>
+    <p style="margin-bottom:9px"><b>Bosses — brand new, no official list yet.</b> Blizzard hasn&#x27;t published a boss list for this dungeon, and it&#x27;s new in Forever — nobody has a settled guide yet. Go in with the Combat foundations from General Info (interrupts, aggro, crowd control) and learn it together; that&#x27;s genuinely how the first groups are doing it. Theme to expect: titan machinery and the shapers&#x27; experiments — the zone&#x27;s dinosaurs and elementals are the tame part of Un&#x27;Goro by comparison.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> This is the dungeon Blizzard built as the new capstone — expect it to test geared groups. Learn it with your regular group and expect a wipe or two while learning. That&#x27;s normal here.</p>
+    </div>
+  </details>
+    </div>
+  </details>
+
+  <p class="g-foot">Raids (Barrow Deeps, Hyjal Summit, Onyxia's Lair) open December 9, 2026 — they'll get their own section when they're live and learnable. For now: dungeons are the whole group game, and they're enough.</p>
+  <a class="g-back" href="index.html" onclick="if (typeof closeDungeons === 'function') { closeDungeons(); return false; }">← Back to the quiz</a>
+  </div>
 </div>
 <script>
 const QUIZ = [{"q": "Where do you want to stand in a fight?", "options": [{"text": "\u2694\ufe0f Up close, right in the enemy's face", "points": {"Arms": 3, "Fury": 3, "Retribution": 3, "Survival": 3, "Assassination": 3, "Combat": 3, "Subtlety": 3, "Enhancement": 3, "Feral": 3}}, {"text": "\ud83c\udff9 Far away, safe at a distance", "points": {"Beast Mastery": 3, "Marksmanship": 3, "Shadow": 3, "Elemental": 3, "Arcane": 3, "Fire": 3, "Frost": 3, "Affliction": 3, "Demonology": 3, "Destruction": 3, "Balance": 3}}, {"text": "\ud83e\udd37 Either is fine", "points": {"Arms": 1, "Fury": 1, "Retribution": 1, "Beast Mastery": 1, "Marksmanship": 1, "Survival": 1, "Assassination": 1, "Combat": 1, "Subtlety": 1, "Shadow": 1, "Elemental": 1, "Enhancement": 1, "Arcane": 1, "Fire": 1, "Frost": 1, "Affliction": 1, "Demonology": 1, "Destruction": 1, "Balance": 1, "Feral": 1}}]}, {"q": "Do you want a helper fighting with you?", "options": [{"text": "\ud83d\udc3a Yes \u2014 an animal pet", "points": {"Beast Mastery": 5, "Marksmanship": 3, "Survival": 3}}, {"text": "\ud83d\ude08 Yes \u2014 a demon", "points": {"Demonology": 5, "Affliction": 3, "Destruction": 3}}, {"text": "\ud83d\udeb6 No helper \u2014 just me", "points": {"Arms": 2, "Fury": 2, "Retribution": 2, "Marksmanship": 6, "Assassination": 2, "Combat": 2, "Subtlety": 2, "Shadow": 2, "Elemental": 2, "Enhancement": 2, "Arcane": 2, "Fire": 2, "Frost": 2, "Balance": 2, "Feral": 2}}, {"text": "\ud83e\udd37 Don't care", "points": {"Arms": 1, "Fury": 1, "Retribution": 1, "Beast Mastery": 1, "Marksmanship": 1, "Survival": 1, "Assassination": 1, "Combat": 1, "Subtlety": 1, "Shadow": 1, "Elemental": 1, "Enhancement": 1, "Arcane": 1, "Fire": 1, "Frost": 1, "Affliction": 1, "Demonology": 1, "Destruction": 1, "Balance": 1, "Feral": 1}}]}, {"q": "How should your damage feel?", "options": [{"text": "\ud83d\udca8 Fast \u2014 lots of quick hits", "points": {"Fury": 3, "Combat": 3, "Feral": 3, "Enhancement": 3, "Assassination": 3}}, {"text": "\ud83d\udca5 Slow \u2014 a few HUGE hits", "points": {"Arms": 3, "Retribution": 3, "Marksmanship": 3, "Destruction": 3, "Fire": 2}}, {"text": "\ud83e\ude78 Slow drain \u2014 the enemy's health keeps dropping over time", "points": {"Affliction": 3, "Shadow": 3, "Subtlety": 3, "Assassination": 3, "Arms": 3, "Feral": 3}}, {"text": "\u2728 Explosive magic spells", "points": {"Fire": 3, "Elemental": 3, "Destruction": 3, "Arcane": 3, "Balance": 3}}]}, {"q": "Pick the character fantasy you like most:", "options": [{"text": "\ud83d\udee1\ufe0f Holy knight with a big weapon", "points": {"Retribution": 5, "Arms": 1, "Fury": 1}}, {"text": "\ud83d\udde1\ufe0f Sneaky assassin", "points": {"Subtlety": 4, "Assassination": 4, "Combat": 2, "Feral": 2}}, {"text": "\ud83d\udc3b Animals, nature and shapeshifting", "points": {"Feral": 4, "Balance": 4, "Beast Mastery": 2, "Survival": 2}}, {"text": "\ud83d\udc80 Dark magic user", "points": {"Affliction": 3, "Demonology": 3, "Destruction": 3, "Shadow": 4}}, {"text": "\u26a1 Wizard of the elements \u2014 fire, ice, lightning", "points": {"Elemental": 4, "Enhancement": 4, "Arcane": 2, "Fire": 2, "Frost": 2}}, {"text": "\ud83c\udff9 Bow hunter / sniper", "points": {"Beast Mastery": 4, "Marksmanship": 4, "Survival": 4}}, {"text": "\ud83e\ude93 Just me and a huge weapon \u2014 no magic, no sneaking", "points": {"Arms": 5, "Fury": 4}}]}, {"q": "Pick your coolest trick:", "options": [{"text": "\u2744\ufe0f Freeze enemies in place so they can't reach me", "points": {"Frost": 5}}, {"text": "\ud83d\udc9a Heal myself and survive almost anything", "points": {"Retribution": 4, "Shadow": 2}}, {"text": "\ud83d\udc31 Turn into an animal", "points": {"Feral": 5, "Balance": 3}}, {"text": "\ud83e\udea4 Set traps / place totems that help my group", "points": {"Survival": 4, "Elemental": 4, "Enhancement": 2}}, {"text": "\u2620\ufe0f Poisons that keep hurting the enemy", "points": {"Assassination": 5}}, {"text": "\ud83e\ude78 Wounds that keep bleeding", "points": {"Subtlety": 3, "Feral": 3, "Arms": 3}}, {"text": "\ud83d\udd0b Build up power first, then release it all", "points": {"Arcane": 5, "Fire": 2}}, {"text": "\ud83d\ude80 A speed rush \u2014 attack much faster for a while", "points": {"Combat": 5, "Fury": 3, "Enhancement": 3}}]}, {"q": "In a group, do you want an extra job besides damage?", "options": [{"text": "\ud83c\udfaf No \u2014 damage only, keep it simple", "points": {"Beast Mastery": 2, "Marksmanship": 2, "Survival": 2, "Assassination": 2, "Combat": 2, "Subtlety": 2, "Arcane": 2, "Fire": 2, "Frost": 2, "Affliction": 2, "Demonology": 2, "Destruction": 2}}, {"text": "\ud83d\uddff Totems that make my whole group stronger", "points": {"Elemental": 5, "Enhancement": 5}}, {"text": "\ud83d\udc9a My damage heals my group a little", "points": {"Shadow": 5, "Balance": 1}}, {"text": "\ud83d\udee1\ufe0f Heal myself, so nobody has to look after me", "points": {"Retribution": 4}}, {"text": "\ud83d\udc3a My pet takes hits that would have hit my group", "points": {"Beast Mastery": 4, "Demonology": 2, "Survival": 2}}]}, {"q": "What do you want in your hands?", "options": [{"text": "\ud83e\ude93 One huge two-handed weapon", "points": {"Arms": 4, "Retribution": 4}}, {"text": "\u2694\ufe0f Two fast weapons, one in each hand", "points": {"Fury": 4, "Combat": 3, "Survival": 3, "Assassination": 2}}, {"text": "\ud83d\udde1\ufe0f Daggers / claws \u2014 quick and sharp", "points": {"Assassination": 3, "Subtlety": 3, "Feral": 4}}, {"text": "\ud83c\udff9 A bow or a gun", "points": {"Beast Mastery": 4, "Marksmanship": 4}}, {"text": "\ud83d\udd2e Nothing \u2014 spells only", "points": {"Arcane": 3, "Fire": 3, "Frost": 3, "Affliction": 3, "Demonology": 3, "Destruction": 3, "Shadow": 3, "Elemental": 3, "Balance": 3}}]}, {"q": "Last one \u2014 pick a spell flavour (or skip the magic):", "options": [{"text": "\ud83d\udd25 Fire \u2014 huge fireballs", "points": {"Fire": 5, "Destruction": 4, "Elemental": 1}}, {"text": "\u2744\ufe0f Ice \u2014 freeze and slow everything", "points": {"Frost": 5}}, {"text": "\u26a1 Lightning", "points": {"Elemental": 5, "Enhancement": 3}}, {"text": "\ud83d\udc80 Dark \u2014 drain and shadow spells", "points": {"Affliction": 4, "Shadow": 4, "Demonology": 2}}, {"text": "\ud83c\udf19 Nature and stars", "points": {"Balance": 5, "Feral": 1}}, {"text": "\ud83d\udeab I'm not a spell caster", "points": {"Arms": 2, "Fury": 2, "Retribution": 2, "Survival": 2, "Assassination": 2, "Combat": 2, "Subtlety": 2, "Enhancement": 2, "Feral": 2}}, {"text": "\ud83d\udd0b Pure magic power that builds up", "points": {"Arcane": 5}}]}];
@@ -1328,17 +1712,20 @@ function collapseIn(rootSel, except){
 function collapseGuides(except){ collapseIn('#guidesView', except); }
 function collapseGeneral(except){ collapseIn('#generalView', except); }
 function collapseProfessions(except){ collapseIn('#professionsView', except); }
+function collapseDungeons(except){ collapseIn('#dungeonsView', except); }
 function expandGuide(anchor){
   const t = document.getElementById(anchor);
   if (!t) return;
   let root = t;
-  while (root && root.id !== 'guidesView' && root.id !== 'generalView' && root.id !== 'professionsView') root = root.parentElement;
+  while (root && root.id !== 'guidesView' && root.id !== 'generalView' && root.id !== 'professionsView' && root.id !== 'dungeonsView') root = root.parentElement;
   let view = 'guides';
   if (root && root.id === 'generalView') view = 'general';
   else if (root && root.id === 'professionsView') view = 'professions';
+  else if (root && root.id === 'dungeonsView') view = 'dungeons';
   setView(view, false);
   if (view === 'general') collapseGeneral(t);
   else if (view === 'professions') collapseProfessions(t);
+  else if (view === 'dungeons') collapseDungeons(t);
   else collapseGuides(t);
   t.open = true;
   let p = t.parentElement;
@@ -1348,9 +1735,9 @@ function expandGuide(anchor){
 let currentView = 'quiz';
 function setView(v, push){
   currentView = v;
-  const views = { quiz: document.getElementById('quizView'), guides: document.getElementById('guidesView'), general: document.getElementById('generalView'), professions: document.getElementById('professionsView') };
+  const views = { quiz: document.getElementById('quizView'), guides: document.getElementById('guidesView'), general: document.getElementById('generalView'), professions: document.getElementById('professionsView'), dungeons: document.getElementById('dungeonsView') };
   Object.keys(views).forEach(k => { if (views[k]) views[k].classList.toggle('hidden', k !== v); });
-  const tabs = { quiz: document.getElementById('tabQuiz'), guides: document.getElementById('tabGuides'), general: document.getElementById('tabGeneral'), professions: document.getElementById('tabProf') };
+  const tabs = { quiz: document.getElementById('tabQuiz'), guides: document.getElementById('tabGuides'), general: document.getElementById('tabGeneral'), professions: document.getElementById('tabProf'), dungeons: document.getElementById('tabDung') };
   Object.keys(tabs).forEach(k => { if (tabs[k]) tabs[k].classList.toggle('active', k === v); });
   if (push) { try { if (location.hash !== '#' + v) location.hash = v; } catch(e) {} }
 }
@@ -1358,6 +1745,7 @@ function tabGo(v){
   if (v === 'guides') openGuides();
   else if (v === 'general') openGeneral();
   else if (v === 'professions') openProfessions();
+  else if (v === 'dungeons') openDungeons();
   else { setView('quiz', true); window.scrollTo(0, 0); }
 }
 function viewFromHash(){
@@ -1366,6 +1754,7 @@ function viewFromHash(){
     if (h === 'guides') { setView('guides', false); return; }
     if (h === 'general') { setView('general', false); return; }
     if (h === 'professions') { setView('professions', false); return; }
+    if (h === 'dungeons') { setView('dungeons', false); return; }
     if (h === 'quiz') { setView('quiz', false); return; }
     if (h) { const t = document.getElementById(h); if (t && t.tagName === 'DETAILS') { setView('guides', false); expandGuide(h); } }
   } catch(e) {}
@@ -1380,7 +1769,7 @@ function openGuides(anchor){
 const profCountEl = document.getElementById('profCount');
 if (profCountEl && profCountEl.addEventListener) { profCountEl.addEventListener('change', profCountChange); profCountChange(); }
 if (document.querySelectorAll) {
-  [['#guidesView', collapseGuides], ['#generalView', collapseGeneral], ['#professionsView', collapseProfessions]].forEach(([rootSel, collapseFn]) => {
+  [['#guidesView', collapseGuides], ['#generalView', collapseGeneral], ['#professionsView', collapseProfessions], ['#dungeonsView', collapseDungeons]].forEach(([rootSel, collapseFn]) => {
     document.querySelectorAll(rootSel + ' details.g-card > summary').forEach(s => {
       s.addEventListener('click', () => collapseFn(s.parentElement));
     });
@@ -1414,6 +1803,30 @@ function openProfessions(anchor){
 function closeProfessions(){
   setView('quiz', true);
   window.scrollTo(0, 0);
+}
+function openDungeons(anchor){
+  setView('dungeons', true);
+  if (anchor) expandGuide(anchor);
+  else { collapseDungeons(null); window.scrollTo(0, 0); }
+}
+function closeDungeons(){
+  setView('quiz', true);
+  window.scrollTo(0, 0);
+}
+const DUNGEON_INDEX = [{"i": "ragefire-chasm", "n": "Ragefire Chasm", "lo": 13, "hi": 18, "a": "Horde"}, {"i": "hall-of-thanes", "n": "Hall of Thanes", "lo": 13, "hi": 18, "a": "Alliance"}, {"i": "ruins-of-lordaeron", "n": "Ruins of Lordaeron", "lo": 15, "hi": 20, "a": "Horde"}, {"i": "wailing-caverns", "n": "Wailing Caverns", "lo": 15, "hi": 24, "a": "Both"}, {"i": "the-deadmines", "n": "The Deadmines", "lo": 17, "hi": 26, "a": "Alliance"}, {"i": "shadowfang-keep", "n": "Shadowfang Keep", "lo": 22, "hi": 30, "a": "Both"}, {"i": "blackfathom-deeps", "n": "Blackfathom Deeps", "lo": 24, "hi": 32, "a": "Both"}, {"i": "the-stockade", "n": "The Stockade", "lo": 24, "hi": 32, "a": "Alliance"}, {"i": "excavation-site", "n": "Excavation Site", "lo": 24, "hi": 29, "a": "Both"}, {"i": "scarlet-monastery", "n": "Scarlet Monastery", "lo": 26, "hi": 45, "a": "Both"}, {"i": "city-of-dalaran", "n": "City of Dalaran", "lo": 28, "hi": 33, "a": "Both"}, {"i": "gnomeregan", "n": "Gnomeregan", "lo": 29, "hi": 38, "a": "Both"}, {"i": "razorfen-kraul", "n": "Razorfen Kraul", "lo": 29, "hi": 38, "a": "Both"}, {"i": "the-drowned-city", "n": "The Drowned City", "lo": 35, "hi": 40, "a": "Both"}, {"i": "razorfen-downs", "n": "Razorfen Downs", "lo": 37, "hi": 46, "a": "Both"}, {"i": "kroldok-stronghold", "n": "Krol'dok Stronghold", "lo": 40, "hi": 45, "a": "Both"}, {"i": "uldaman", "n": "Uldaman", "lo": 41, "hi": 51, "a": "Both"}, {"i": "zulfarrak", "n": "Zul'Farrak", "lo": 44, "hi": 54, "a": "Both"}, {"i": "maraudon", "n": "Maraudon", "lo": 46, "hi": 55, "a": "Both"}, {"i": "alcaz-prison", "n": "Alcaz Prison", "lo": 48, "hi": 53, "a": "Both"}, {"i": "sunken-temple", "n": "Sunken Temple", "lo": 50, "hi": 60, "a": "Both"}, {"i": "blackrock-depths", "n": "Blackrock Depths", "lo": 52, "hi": 60, "a": "Both"}, {"i": "dire-maul", "n": "Dire Maul", "lo": 55, "hi": 60, "a": "Both"}, {"i": "blackrock-spire", "n": "Blackrock Spire", "lo": 55, "hi": 60, "a": "Both"}, {"i": "blackmaw-hold", "n": "Blackmaw Hold", "lo": 55, "hi": 60, "a": "Both"}, {"i": "scholomance", "n": "Scholomance", "lo": 58, "hi": 60, "a": "Both"}, {"i": "stratholme", "n": "Stratholme", "lo": 58, "hi": 60, "a": "Both"}, {"i": "shapers-terrace", "n": "Shaper's Terrace", "lo": 58, "hi": 60, "a": "Both"}];
+function dungeonCheck(){
+  const lvl = parseInt(document.getElementById('dungLevel').value, 10);
+  const fac = document.getElementById('dungFaction').value;
+  const out = document.getElementById('dungOut');
+  if (!lvl || lvl < 1 || lvl > 60) { out.innerHTML = '<p><b>Type a level from 1 to 60 first</b> — use the lowest level in your group.</p>'; return; }
+  const ready = [], soon = [];
+  DUNGEON_INDEX.forEach(dg => {
+    const cross = dg.a !== 'Both' && fac !== 'Both' && dg.a !== fac;
+    const note = cross ? ' — the other faction’s dungeon: you can travel in, but expect few quests and a dangerous trip' : (dg.a !== 'Both' ? ' — ' + dg.a + ' home dungeon' : '');
+    if (lvl >= dg.lo && lvl <= dg.hi) ready.push('<p><b>' + dg.n + '</b> (' + dg.lo + '–' + dg.hi + ')' + note + ' <a href="#' + dg.i + '" onclick="' + "expandGuide('" + dg.i + "'); return false;" + '">Open its card →</a></p>');
+    else if (lvl === dg.lo - 1 || lvl === dg.lo - 2) soon.push('<p><b>' + dg.n + '</b> — from level ' + dg.lo + note + '</p>');
+  });
+  out.innerHTML = (ready.length ? '<p style="margin-bottom:6px"><b>Ready now:</b></p>' + ready.join('') : '<p><b>No dungeon is in range at level ' + lvl + '</b> — the first dungeons open at 13. Quest until then.</p>') + (soon.length ? '<p style="margin:10px 0 6px"><b>Coming up soon:</b></p>' + soon.join('') : '');
 }
 const PROF_PAIR = { Warrior:['Mining','Blacksmithing'], Paladin:['Mining','Blacksmithing'], Hunter:['Skinning','Leatherworking'], Rogue:['Skinning','Leatherworking'], Priest:['Tailoring','Enchanting'], Shaman:['Skinning','Leatherworking'], Mage:['Tailoring','Enchanting'], Warlock:['Tailoring','Enchanting'], Druid:['Herbalism','Skinning'] };
 function profPick(){
@@ -1564,6 +1977,6 @@ function restart(){ step = 0; answers = []; try { localStorage.removeItem('wowQu
 })();
 viewFromHash();
 </script>
-<p style="text-align:center;color:#8a7a5a;font-size:12px;margin:18px 0 8px">WoW Forever Quiz · build 2026-11-15 · WOWP2C-20261115</p>
+<p style="text-align:center;color:#8a7a5a;font-size:12px;margin:18px 0 8px">WoW Forever Quiz · build 2026-11-15 · WOWP3-20261115</p>
 </body>
 </html>
