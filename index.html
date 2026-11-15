@@ -1231,7 +1231,7 @@
     </div>
   </details>
   <details class="g-group" id="prof-pairs">
-    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Choosing your two</span><span class="g-group-names">The classic pairings — and why they work · Pick my two — the 30-second helper · Playing as a group of 3? Split the jobs — tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Choosing your two</span><span class="g-group-names">The classic pairings — and why they work · Pick my two — the 30-second helper · Playing as a group? Split the jobs — tap to open</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-group-body">
   <details class="g-card" id="prof-matrix">
     <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">The classic pairings — and why they work</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
@@ -1267,24 +1267,37 @@
     </div>
   </details>
   <details class="g-card" id="prof-planner">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Playing as a group of 3? Split the jobs</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Playing as a group? Split the jobs</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
-    <p style="margin-bottom:9px">Pick your three classes and the planner assigns professions so the group covers the important bases without two people wasting slots on the same job.</p>
+    <p style="margin-bottom:9px">A party runs from 2 to 5 players. First pick how many you have — the class boxes pop out to match — then pick everyone's class, and the planner assigns professions so the group covers the important bases without two people wasting slots on the same job.</p>
+    <label for="profCount" style="font-weight:700">How many players?</label>
+    <select id="profCount" class="profSel" onchange="profCountChange()">
+      <option value="" selected disabled>Choose how many players…</option>
+      <option value="2">2 players</option>
+      <option value="3">3 players</option>
+      <option value="4">4 players</option>
+      <option value="5">5 players (full party)</option>
+    </select>
+    <div id="profRow1" style="display:none">
     <label for="profP1" style="font-weight:700">Player 1</label>
-    <select id="profP1" class="profSel">
-      <option>Warrior</option><option>Paladin</option><option>Hunter</option><option>Rogue</option>
-      <option>Priest</option><option>Shaman</option><option>Mage</option><option>Warlock</option><option>Druid</option>
-    </select>
+    <select id="profP1" class="profSel"><option selected>Warrior</option><option>Paladin</option><option>Hunter</option><option>Rogue</option><option>Priest</option><option>Shaman</option><option>Mage</option><option>Warlock</option><option>Druid</option></select>
+    </div>
+    <div id="profRow2" style="display:none">
     <label for="profP2" style="font-weight:700">Player 2</label>
-    <select id="profP2" class="profSel">
-      <option>Warrior</option><option>Paladin</option><option>Hunter</option><option>Rogue</option>
-      <option selected>Priest</option><option>Shaman</option><option>Mage</option><option>Warlock</option><option>Druid</option>
-    </select>
+    <select id="profP2" class="profSel"><option>Warrior</option><option>Paladin</option><option>Hunter</option><option>Rogue</option><option selected>Priest</option><option>Shaman</option><option>Mage</option><option>Warlock</option><option>Druid</option></select>
+    </div>
+    <div id="profRow3" style="display:none">
     <label for="profP3" style="font-weight:700">Player 3</label>
-    <select id="profP3" class="profSel">
-      <option>Warrior</option><option>Paladin</option><option selected>Hunter</option><option>Rogue</option>
-      <option>Priest</option><option>Shaman</option><option>Mage</option><option>Warlock</option><option>Druid</option>
-    </select>
+    <select id="profP3" class="profSel"><option>Warrior</option><option>Paladin</option><option selected>Hunter</option><option>Rogue</option><option>Priest</option><option>Shaman</option><option>Mage</option><option>Warlock</option><option>Druid</option></select>
+    </div>
+    <div id="profRow4" style="display:none">
+    <label for="profP4" style="font-weight:700">Player 4</label>
+    <select id="profP4" class="profSel"><option>Warrior</option><option>Paladin</option><option>Hunter</option><option selected>Rogue</option><option>Priest</option><option>Shaman</option><option>Mage</option><option>Warlock</option><option>Druid</option></select>
+    </div>
+    <div id="profRow5" style="display:none">
+    <label for="profP5" style="font-weight:700">Player 5</label>
+    <select id="profP5" class="profSel"><option>Warrior</option><option>Paladin</option><option>Hunter</option><option>Rogue</option><option>Priest</option><option>Shaman</option><option>Mage</option><option>Warlock</option><option selected>Druid</option></select>
+    </div>
     <button class="profBtn" onclick="profPlan()">Plan our professions →</button>
     <div id="profPlanOut" style="margin-top:12px"></div>
     </div>
@@ -1364,6 +1377,8 @@ function openGuides(anchor){
   if (anchor) expandGuide(anchor);
   else { collapseGuides(null); window.scrollTo(0, 0); }
 }
+const profCountEl = document.getElementById('profCount');
+if (profCountEl && profCountEl.addEventListener) { profCountEl.addEventListener('change', profCountChange); profCountChange(); }
 if (document.querySelectorAll) {
   [['#guidesView', collapseGuides], ['#generalView', collapseGeneral], ['#professionsView', collapseProfessions]].forEach(([rootSel, collapseFn]) => {
     document.querySelectorAll(rootSel + ' details.g-card > summary').forEach(s => {
@@ -1417,8 +1432,14 @@ function profPick(){
   }
   document.getElementById('profPickOut').innerHTML = '<p><b>Your two: ' + pair.join(' + ') + '</b></p><p>' + why + '</p><p>Plus all three secondary professions — Cooking, First Aid, Fishing. They use free slots; take them on day one.</p>';
 }
+function profCountChange(){
+  const n = parseInt(document.getElementById('profCount').value, 10) || 0;
+  for (let i = 1; i <= 5; i++) { const r = document.getElementById('profRow' + i); if (r) r.style.display = i <= n ? '' : 'none'; }
+}
 function profPlan(){
-  const classes = ['profP1','profP2','profP3'].map(id => document.getElementById(id).value);
+  const n = parseInt(document.getElementById('profCount').value, 10) || 0;
+  if (!n) { document.getElementById('profPlanOut').innerHTML = '<p><b>Pick how many players you have first</b> — the class boxes will pop out, then hit this button again.</p>'; return; }
+  const classes = ['profP1','profP2','profP3','profP4','profP5'].slice(0, n).map(id => document.getElementById(id).value);
   const taken = new Set();
   const FALLBACK = ['Alchemy','Herbalism','Mining','Skinning','Enchanting','Engineering','Tailoring','Leatherworking','Blacksmithing'];
   const AREAS = { Alchemy:'Potions & elixirs', Enchanting:'Enchants for everyone’s gear', Blacksmithing:'Plate/mail gear & weapons', Leatherworking:'Leather/mail gear', Tailoring:'Cloth gear & bags', Engineering:'Gadgets & bombs', Herbalism:'Herbs for Alchemy', Mining:'Ore for smiths & engineers', Skinning:'Leather for Leatherworking' };
@@ -1543,6 +1564,6 @@ function restart(){ step = 0; answers = []; try { localStorage.removeItem('wowQu
 })();
 viewFromHash();
 </script>
-<p style="text-align:center;color:#8a7a5a;font-size:12px;margin:18px 0 8px">WoW Forever Quiz · build 2026-11-15 · WOWP2-20261115</p>
+<p style="text-align:center;color:#8a7a5a;font-size:12px;margin:18px 0 8px">WoW Forever Quiz · build 2026-11-15 · WOWP2C-20261115</p>
 </body>
 </html>
