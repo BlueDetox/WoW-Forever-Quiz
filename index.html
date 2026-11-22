@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WoW Forever — Which Damage Character Are You?</title>
+<meta name="description" content="A companion site for brand-new WoW Forever players: a playstyle quiz, starter guides for all 20 damage characters, general info, dungeon and profession guides, and tier lists — in plain language.">
+<meta property="og:title" content="WoW Forever Companion — Which Damage Character Are You?">
+<meta property="og:description" content="Take the 8-question quiz, get your character, then read its starter guide. Plus dungeon guides, profession helpers, and tier lists — written for people who have never played WoW.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bluedetox.github.io/WoW-Forever-Quiz/">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎯%3C/text%3E%3C/svg%3E">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background:#15171c; color:#f2f3f5; font-family:'Segoe UI',system-ui,-apple-system,sans-serif; min-height:100vh; min-height:100dvh; display:flex; flex-direction:column; padding:18px 14px 40px; }
@@ -40,6 +47,7 @@
   .tierA .tierItem { border-left-color:#e8a13a; }
   .tierB .tierItem { border-left-color:#4aa3e0; }
   .tierC .tierItem { border-left-color:#9aa7b1; }
+  #topBtn { position:fixed; right:14px; bottom:14px; z-index:60; background:#ffc137; color:#171a21; border:none; border-radius:999px; padding:10px 16px; font-weight:800; font-size:14px; cursor:pointer; box-shadow:0 2px 10px rgba(0,0,0,.5); display:none; font-family:inherit; }
   .afterStrip { border:2px solid #ffc137; border-radius:12px; padding:12px 14px; margin:14px 0; text-align:left; }
   .afterTitle { font-weight:800; font-size:15px; margin-bottom:6px; color:#eef1f6; }
   .afterBtn { display:block; width:100%; text-align:left; background:#262a33; color:#e8e4da; border:2px solid #3a3f4a; border-radius:9px; padding:11px 12px; font-size:15px; font-weight:700; cursor:pointer; font-family:inherit; margin:6px 0; }
@@ -222,33 +230,33 @@
 
   <div class="g-cls">The 20 damage characters — starter guides</div>
   <div class="g-chips">
-    <a class="g-chip" href="#arms" onclick="if (typeof expandGuide === 'function') { expandGuide('arms'); return false; } var t = document.getElementById('arms'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Warrior — Arms</a>
-    <a class="g-chip" href="#fury" onclick="if (typeof expandGuide === 'function') { expandGuide('fury'); return false; } var t = document.getElementById('fury'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Warrior — Fury</a>
-    <a class="g-chip" href="#retribution" onclick="if (typeof expandGuide === 'function') { expandGuide('retribution'); return false; } var t = document.getElementById('retribution'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Paladin — Retribution</a>
-    <a class="g-chip" href="#beast-mastery" onclick="if (typeof expandGuide === 'function') { expandGuide('beast-mastery'); return false; } var t = document.getElementById('beast-mastery'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Hunter — Beast Mastery</a>
-    <a class="g-chip" href="#marksmanship" onclick="if (typeof expandGuide === 'function') { expandGuide('marksmanship'); return false; } var t = document.getElementById('marksmanship'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Hunter — Marksmanship</a>
-    <a class="g-chip" href="#survival" onclick="if (typeof expandGuide === 'function') { expandGuide('survival'); return false; } var t = document.getElementById('survival'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Hunter — Survival</a>
-    <a class="g-chip" href="#assassination" onclick="if (typeof expandGuide === 'function') { expandGuide('assassination'); return false; } var t = document.getElementById('assassination'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Rogue — Assassination</a>
-    <a class="g-chip" href="#combat" onclick="if (typeof expandGuide === 'function') { expandGuide('combat'); return false; } var t = document.getElementById('combat'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Rogue — Combat</a>
-    <a class="g-chip" href="#subtlety" onclick="if (typeof expandGuide === 'function') { expandGuide('subtlety'); return false; } var t = document.getElementById('subtlety'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Rogue — Subtlety</a>
-    <a class="g-chip" href="#shadow" onclick="if (typeof expandGuide === 'function') { expandGuide('shadow'); return false; } var t = document.getElementById('shadow'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Priest — Shadow</a>
-    <a class="g-chip" href="#elemental" onclick="if (typeof expandGuide === 'function') { expandGuide('elemental'); return false; } var t = document.getElementById('elemental'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Shaman — Elemental</a>
-    <a class="g-chip" href="#enhancement" onclick="if (typeof expandGuide === 'function') { expandGuide('enhancement'); return false; } var t = document.getElementById('enhancement'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Shaman — Enhancement</a>
-    <a class="g-chip" href="#arcane" onclick="if (typeof expandGuide === 'function') { expandGuide('arcane'); return false; } var t = document.getElementById('arcane'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Mage — Arcane</a>
-    <a class="g-chip" href="#fire" onclick="if (typeof expandGuide === 'function') { expandGuide('fire'); return false; } var t = document.getElementById('fire'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Mage — Fire</a>
-    <a class="g-chip" href="#frost" onclick="if (typeof expandGuide === 'function') { expandGuide('frost'); return false; } var t = document.getElementById('frost'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Mage — Frost</a>
-    <a class="g-chip" href="#affliction" onclick="if (typeof expandGuide === 'function') { expandGuide('affliction'); return false; } var t = document.getElementById('affliction'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Warlock — Affliction</a>
-    <a class="g-chip" href="#demonology" onclick="if (typeof expandGuide === 'function') { expandGuide('demonology'); return false; } var t = document.getElementById('demonology'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Warlock — Demonology</a>
-    <a class="g-chip" href="#destruction" onclick="if (typeof expandGuide === 'function') { expandGuide('destruction'); return false; } var t = document.getElementById('destruction'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Warlock — Destruction</a>
-    <a class="g-chip" href="#balance" onclick="if (typeof expandGuide === 'function') { expandGuide('balance'); return false; } var t = document.getElementById('balance'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Druid — Balance</a>
-    <a class="g-chip" href="#feral-cat" onclick="if (typeof expandGuide === 'function') { expandGuide('feral-cat'); return false; } var t = document.getElementById('feral-cat'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Druid — Feral (Cat)</a>
+    <a class="g-chip" style="border-left:3px solid #C79C6E" href="#arms" onclick="if (typeof expandGuide === 'function') { expandGuide('arms'); return false; } var t = document.getElementById('arms'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Warrior — Arms</a>
+    <a class="g-chip" style="border-left:3px solid #C79C6E" href="#fury" onclick="if (typeof expandGuide === 'function') { expandGuide('fury'); return false; } var t = document.getElementById('fury'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Warrior — Fury</a>
+    <a class="g-chip" style="border-left:3px solid #F58CBA" href="#retribution" onclick="if (typeof expandGuide === 'function') { expandGuide('retribution'); return false; } var t = document.getElementById('retribution'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Paladin — Retribution</a>
+    <a class="g-chip" style="border-left:3px solid #ABD473" href="#beast-mastery" onclick="if (typeof expandGuide === 'function') { expandGuide('beast-mastery'); return false; } var t = document.getElementById('beast-mastery'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Hunter — Beast Mastery</a>
+    <a class="g-chip" style="border-left:3px solid #ABD473" href="#marksmanship" onclick="if (typeof expandGuide === 'function') { expandGuide('marksmanship'); return false; } var t = document.getElementById('marksmanship'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Hunter — Marksmanship</a>
+    <a class="g-chip" style="border-left:3px solid #ABD473" href="#survival" onclick="if (typeof expandGuide === 'function') { expandGuide('survival'); return false; } var t = document.getElementById('survival'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Hunter — Survival</a>
+    <a class="g-chip" style="border-left:3px solid #FFF569" href="#assassination" onclick="if (typeof expandGuide === 'function') { expandGuide('assassination'); return false; } var t = document.getElementById('assassination'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Rogue — Assassination</a>
+    <a class="g-chip" style="border-left:3px solid #FFF569" href="#combat" onclick="if (typeof expandGuide === 'function') { expandGuide('combat'); return false; } var t = document.getElementById('combat'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Rogue — Combat</a>
+    <a class="g-chip" style="border-left:3px solid #FFF569" href="#subtlety" onclick="if (typeof expandGuide === 'function') { expandGuide('subtlety'); return false; } var t = document.getElementById('subtlety'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Rogue — Subtlety</a>
+    <a class="g-chip" style="border-left:3px solid #FFFFFF" href="#shadow" onclick="if (typeof expandGuide === 'function') { expandGuide('shadow'); return false; } var t = document.getElementById('shadow'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Priest — Shadow</a>
+    <a class="g-chip" style="border-left:3px solid #2E9BFF" href="#elemental" onclick="if (typeof expandGuide === 'function') { expandGuide('elemental'); return false; } var t = document.getElementById('elemental'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Shaman — Elemental</a>
+    <a class="g-chip" style="border-left:3px solid #2E9BFF" href="#enhancement" onclick="if (typeof expandGuide === 'function') { expandGuide('enhancement'); return false; } var t = document.getElementById('enhancement'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Shaman — Enhancement</a>
+    <a class="g-chip" style="border-left:3px solid #69CCF0" href="#arcane" onclick="if (typeof expandGuide === 'function') { expandGuide('arcane'); return false; } var t = document.getElementById('arcane'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Mage — Arcane</a>
+    <a class="g-chip" style="border-left:3px solid #69CCF0" href="#fire" onclick="if (typeof expandGuide === 'function') { expandGuide('fire'); return false; } var t = document.getElementById('fire'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Mage — Fire</a>
+    <a class="g-chip" style="border-left:3px solid #69CCF0" href="#frost" onclick="if (typeof expandGuide === 'function') { expandGuide('frost'); return false; } var t = document.getElementById('frost'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Mage — Frost</a>
+    <a class="g-chip" style="border-left:3px solid #9482C9" href="#affliction" onclick="if (typeof expandGuide === 'function') { expandGuide('affliction'); return false; } var t = document.getElementById('affliction'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Warlock — Affliction</a>
+    <a class="g-chip" style="border-left:3px solid #9482C9" href="#demonology" onclick="if (typeof expandGuide === 'function') { expandGuide('demonology'); return false; } var t = document.getElementById('demonology'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Warlock — Demonology</a>
+    <a class="g-chip" style="border-left:3px solid #9482C9" href="#destruction" onclick="if (typeof expandGuide === 'function') { expandGuide('destruction'); return false; } var t = document.getElementById('destruction'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Warlock — Destruction</a>
+    <a class="g-chip" style="border-left:3px solid #FF7D0A" href="#balance" onclick="if (typeof expandGuide === 'function') { expandGuide('balance'); return false; } var t = document.getElementById('balance'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Druid — Balance</a>
+    <a class="g-chip" style="border-left:3px solid #FF7D0A" href="#feral-cat" onclick="if (typeof expandGuide === 'function') { expandGuide('feral-cat'); return false; } var t = document.getElementById('feral-cat'); if (t) { t.open = true; var p = t.parentElement; while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } t.scrollIntoView(); } return false;">Druid — Feral (Cat)</a>
   </div>
 
-  <details class="g-group" id="class-warrior">
-    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Warrior</span><span class="g-group-names">Arms · Fury — 2 damage options, tap to open</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-group" id="class-warrior" style="border-left:5px solid #C79C6E">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title" style="color:#C79C6E">Warrior</span><span class="g-group-names">Arms · Fury — 2 damage options, tap to open</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-group-body">
-  <details class="g-card" id="arms">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Warrior — Arms</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">One big two-handed weapon. Slow heavy hits + wounds that bleed over time.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-card" id="arms" style="border-left:4px solid #C79C6E">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title"><span style="color:#C79C6E">Warrior</span> — Arms</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">One big two-handed weapon. Slow heavy hits + wounds that bleed over time.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
@@ -275,8 +283,8 @@
     </ul>
     </div>
   </details>
-  <details class="g-card" id="fury">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Warrior — Fury</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">Two weapons, fast non-stop hits. Spin attack hits enemies around you.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-card" id="fury" style="border-left:4px solid #C79C6E">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title"><span style="color:#C79C6E">Warrior</span> — Fury</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">Two weapons, fast non-stop hits. Spin attack hits enemies around you.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
@@ -305,11 +313,11 @@
   </details>
     </div>
   </details>
-  <details class="g-group" id="class-paladin">
-    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Paladin</span><span class="g-group-names">Retribution — 1 damage option, tap to open</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-group" id="class-paladin" style="border-left:5px solid #F58CBA">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title" style="color:#F58CBA">Paladin</span><span class="g-group-names">Retribution — 1 damage option, tap to open</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-group-body">
-  <details class="g-card" id="retribution">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Paladin — Retribution</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee</span><span class="g-pill">First-timer: Easy</span></span><span class="g-desc">Holy knight, big weapon. Can heal itself + a bubble makes it immune briefly.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-card" id="retribution" style="border-left:4px solid #F58CBA">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title"><span style="color:#F58CBA">Paladin</span> — Retribution</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee</span><span class="g-pill">First-timer: Easy</span></span><span class="g-desc">Holy knight, big weapon. Can heal itself + a bubble makes it immune briefly.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
@@ -339,11 +347,11 @@
   </details>
     </div>
   </details>
-  <details class="g-group" id="class-hunter">
-    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Hunter</span><span class="g-group-names">Beast Mastery · Marksmanship · Survival — 3 damage options, tap to open</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-group" id="class-hunter" style="border-left:5px solid #ABD473">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title" style="color:#ABD473">Hunter</span><span class="g-group-names">Beast Mastery · Marksmanship · Survival — 3 damage options, tap to open</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-group-body">
-  <details class="g-card" id="beast-mastery">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Hunter — Beast Mastery</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged + Pet</span><span class="g-pill">First-timer: Easy</span></span><span class="g-desc">Your pet takes the hits for you while you shoot from far away. Easiest alone.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-card" id="beast-mastery" style="border-left:4px solid #ABD473">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title"><span style="color:#ABD473">Hunter</span> — Beast Mastery</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged + Pet</span><span class="g-pill">First-timer: Easy</span></span><span class="g-desc">Your pet takes the hits for you while you shoot from far away. Easiest alone.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
@@ -371,8 +379,8 @@
     </ul>
     </div>
   </details>
-  <details class="g-card" id="marksmanship">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Hunter — Marksmanship</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill">First-timer: Easy</span></span><span class="g-desc">A sniper. Slow, big shots from far away. Can play with no pet for +20% damage.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-card" id="marksmanship" style="border-left:4px solid #ABD473">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title"><span style="color:#ABD473">Hunter</span> — Marksmanship</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill">First-timer: Easy</span></span><span class="g-desc">A sniper. Slow, big shots from far away. Can play with no pet for +20% damage.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
@@ -399,8 +407,8 @@
     </ul>
     </div>
   </details>
-  <details class="g-card" id="survival">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Hunter — Survival</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee + Pet</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">Fights up close next to its pet. Sets traps that hold or hurt enemies.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-card" id="survival" style="border-left:4px solid #ABD473">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title"><span style="color:#ABD473">Hunter</span> — Survival</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee + Pet</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">Fights up close next to its pet. Sets traps that hold or hurt enemies.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
@@ -428,11 +436,11 @@
   </details>
     </div>
   </details>
-  <details class="g-group" id="class-rogue">
-    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Rogue</span><span class="g-group-names">Assassination · Combat · Subtlety — 3 damage options, tap to open</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-group" id="class-rogue" style="border-left:5px solid #FFF569">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title" style="color:#FFF569">Rogue</span><span class="g-group-names">Assassination · Combat · Subtlety — 3 damage options, tap to open</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-group-body">
-  <details class="g-card" id="assassination">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Rogue — Assassination</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">Stabs with daggers. Poisons keep damaging the enemy over time.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-card" id="assassination" style="border-left:4px solid #FFF569">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title"><span style="color:#FFF569">Rogue</span> — Assassination</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">Stabs with daggers. Poisons keep damaging the enemy over time.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
@@ -458,8 +466,8 @@
     </ul>
     </div>
   </details>
-  <details class="g-card" id="combat">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Rogue — Combat</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">More head-on than other rogues, less sneaking. Steady sword / axe attacks.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-card" id="combat" style="border-left:4px solid #FFF569">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title"><span style="color:#FFF569">Rogue</span> — Combat</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">More head-on than other rogues, less sneaking. Steady sword / axe attacks.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
@@ -486,8 +494,8 @@
     </ul>
     </div>
   </details>
-  <details class="g-card" id="subtlety">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Rogue — Subtlety</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee</span><span class="g-pill hard">First-timer: Harder</span></span><span class="g-desc">Sneaks unseen and strikes from hiding. Wounds keep bleeding over time.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-card" id="subtlety" style="border-left:4px solid #FFF569">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title"><span style="color:#FFF569">Rogue</span> — Subtlety</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee</span><span class="g-pill hard">First-timer: Harder</span></span><span class="g-desc">Sneaks unseen and strikes from hiding. Wounds keep bleeding over time.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
@@ -515,11 +523,11 @@
   </details>
     </div>
   </details>
-  <details class="g-group" id="class-priest">
-    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Priest</span><span class="g-group-names">Shadow — 1 damage option, tap to open</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-group" id="class-priest" style="border-left:5px solid #FFFFFF">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title" style="color:#FFFFFF">Priest</span><span class="g-group-names">Shadow — 1 damage option, tap to open</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-group-body">
-  <details class="g-card" id="shadow">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Priest — Shadow</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">Dark spells hurt over time. Shadow form boosts them, damage heals group a bit.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-card" id="shadow" style="border-left:4px solid #FFFFFF">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title"><span style="color:#FFFFFF">Priest</span> — Shadow</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">Dark spells hurt over time. Shadow form boosts them, damage heals group a bit.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
@@ -549,11 +557,11 @@
   </details>
     </div>
   </details>
-  <details class="g-group" id="class-shaman">
-    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Shaman</span><span class="g-group-names">Elemental · Enhancement — 2 damage options, tap to open</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-group" id="class-shaman" style="border-left:5px solid #2E9BFF">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title" style="color:#2E9BFF">Shaman</span><span class="g-group-names">Elemental · Enhancement — 2 damage options, tap to open</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-group-body">
-  <details class="g-card" id="elemental">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Shaman — Elemental</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill">First-timer: Easy</span></span><span class="g-desc">Lightning from far away + fire that keeps burning. Totems make your group stronger.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-card" id="elemental" style="border-left:4px solid #2E9BFF">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title"><span style="color:#2E9BFF">Shaman</span> — Elemental</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill">First-timer: Easy</span></span><span class="g-desc">Lightning from far away + fire that keeps burning. Totems make your group stronger.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
@@ -579,8 +587,8 @@
     </ul>
     </div>
   </details>
-  <details class="g-card" id="enhancement">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Shaman — Enhancement</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">Weapon can hit extra times for free. Melee hits power up instant lightning.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-card" id="enhancement" style="border-left:4px solid #2E9BFF">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title"><span style="color:#2E9BFF">Shaman</span> — Enhancement</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">Weapon can hit extra times for free. Melee hits power up instant lightning.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
@@ -609,11 +617,11 @@
   </details>
     </div>
   </details>
-  <details class="g-group" id="class-mage">
-    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Mage</span><span class="g-group-names">Arcane · Fire · Frost — 3 damage options, tap to open</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-group" id="class-mage" style="border-left:5px solid #69CCF0">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title" style="color:#69CCF0">Mage</span><span class="g-group-names">Arcane · Fire · Frost — 3 damage options, tap to open</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-group-body">
-  <details class="g-card" id="arcane">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Mage — Arcane</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">Each magic blast makes you stronger, but costs more mana (your spell energy).</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-card" id="arcane" style="border-left:4px solid #69CCF0">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title"><span style="color:#69CCF0">Mage</span> — Arcane</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">Each magic blast makes you stronger, but costs more mana (your spell energy).</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
@@ -638,8 +646,8 @@
     </ul>
     </div>
   </details>
-  <details class="g-card" id="fire">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Mage — Fire</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">Crits (extra-strong hits) speed up your next huge fireball, Pyroblast.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-card" id="fire" style="border-left:4px solid #69CCF0">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title"><span style="color:#69CCF0">Mage</span> — Fire</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">Crits (extra-strong hits) speed up your next huge fireball, Pyroblast.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
@@ -664,8 +672,8 @@
     </ul>
     </div>
   </details>
-  <details class="g-card" id="frost">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Mage — Frost</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill">First-timer: Easy</span></span><span class="g-desc">Freezes enemies in place + slows them. Safest mage, good against groups.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-card" id="frost" style="border-left:4px solid #69CCF0">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title"><span style="color:#69CCF0">Mage</span> — Frost</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill">First-timer: Easy</span></span><span class="g-desc">Freezes enemies in place + slows them. Safest mage, good against groups.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
@@ -693,11 +701,11 @@
   </details>
     </div>
   </details>
-  <details class="g-group" id="class-warlock">
-    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Warlock</span><span class="g-group-names">Affliction · Demonology · Destruction — 3 damage options, tap to open</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-group" id="class-warlock" style="border-left:5px solid #9482C9">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title" style="color:#9482C9">Warlock</span><span class="g-group-names">Affliction · Demonology · Destruction — 3 damage options, tap to open</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-group-body">
-  <details class="g-card" id="affliction">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Warlock — Affliction</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill">First-timer: Easy</span></span><span class="g-desc">Loads enemies with many slow damage spells. Their health drains over time.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-card" id="affliction" style="border-left:4px solid #9482C9">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title"><span style="color:#9482C9">Warlock</span> — Affliction</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill">First-timer: Easy</span></span><span class="g-desc">Loads enemies with many slow damage spells. Their health drains over time.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
@@ -724,8 +732,8 @@
     </ul>
     </div>
   </details>
-  <details class="g-card" id="demonology">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Warlock — Demonology</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged + Pet</span><span class="g-pill">First-timer: Easy</span></span><span class="g-desc">Fights with a demon pet you power up. The demon is a big part of your damage.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-card" id="demonology" style="border-left:4px solid #9482C9">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title"><span style="color:#9482C9">Warlock</span> — Demonology</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged + Pet</span><span class="g-pill">First-timer: Easy</span></span><span class="g-desc">Fights with a demon pet you power up. The demon is a big part of your damage.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
@@ -752,8 +760,8 @@
     </ul>
     </div>
   </details>
-  <details class="g-card" id="destruction">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Warlock — Destruction</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill">First-timer: Easy</span></span><span class="g-desc">Direct fire spells, one big hit at a time. Like an evil fire mage.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-card" id="destruction" style="border-left:4px solid #9482C9">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title"><span style="color:#9482C9">Warlock</span> — Destruction</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill">First-timer: Easy</span></span><span class="g-desc">Direct fire spells, one big hit at a time. Like an evil fire mage.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
@@ -781,11 +789,11 @@
   </details>
     </div>
   </details>
-  <details class="g-group" id="class-druid">
-    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Druid</span><span class="g-group-names">Balance · Feral (Cat) — 2 damage options, tap to open</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-group" id="class-druid" style="border-left:5px solid #FF7D0A">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title" style="color:#FF7D0A">Druid</span><span class="g-group-names">Balance · Feral (Cat) — 2 damage options, tap to open</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-group-body">
-  <details class="g-card" id="balance">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Druid — Balance</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">Moonkin form (big owl). Casts nature + star spells, swapping between them.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-card" id="balance" style="border-left:4px solid #FF7D0A">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title"><span style="color:#FF7D0A">Druid</span> — Balance</span><span style="display:block;margin-top:9px"><span class="g-pill type">Ranged</span><span class="g-pill med">First-timer: Medium</span></span><span class="g-desc">Moonkin form (big owl). Casts nature + star spells, swapping between them.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
@@ -811,8 +819,8 @@
     </ul>
     </div>
   </details>
-  <details class="g-card" id="feral-cat">
-    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Druid — Feral (Cat)</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee</span><span class="g-pill hard">First-timer: Harder</span></span><span class="g-desc">Turns into a cat. Sneaks, hits fast, wounds bleed over time.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
+  <details class="g-card" id="feral-cat" style="border-left:4px solid #FF7D0A">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title"><span style="color:#FF7D0A">Druid</span> — Feral (Cat)</span><span style="display:block;margin-top:9px"><span class="g-pill type">Melee</span><span class="g-pill hard">First-timer: Harder</span></span><span class="g-desc">Turns into a cat. Sneaks, hits fast, wounds bleed over time.</span><span class="g-summary-hint">Tap to open the starter guide</span></span><span class="g-chevron">⌄</span></summary>
     <div class="g-body">
     <h3>Your first buttons — in order</h3>
     <ol>
@@ -844,6 +852,128 @@
 
   <p class="g-foot">First-timer ratings are a recommendation for brand-new players, not a score from the game. Guides are starter-level on purpose: they teach the first buttons and habits, not endgame optimization.</p>
   <a class="g-back" href="index.html" onclick="if (typeof closeGuides === 'function') { closeGuides(); return false; }">← Back to the quiz</a>
+  <h2 class="g-h2" style="margin-top:26px">🛡️ Tank &amp; Healer Mini-Guides</h2>
+  <p class="g-sub">Not everyone has to deal damage. The 8 specs that tank and heal — shorter guides, same plain language. Checked against WoW Forever launch info — Nov 22, 2026.</p>
+  <details class="g-card" id="role-intro">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Tank &amp; healer mini-guides — the other 8 specs</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Why these exist.</b> The quiz finds your damage character — but a group of five is one tank, one healer, and three damage. If you&#x27;d rather hold the enemies or keep everyone alive, these are your 8 options, in a shorter mini-guide format. Every tank and healer below is a different talent tree of a class the quiz already covers.</p>
+    <p style="margin-bottom:9px"><b>Picking a tank.</b> Warrior = the most tanking tools and the classic pick. Paladin = the easiest pack control, and in Forever it finally has a real taunt. Bear Druid = the biggest health pool and the simplest buttons — and the same character can be your cat damage spec.</p>
+    <p style="margin-bottom:9px"><b>Picking a healer.</b> Priest = the most versatile (two different healing styles). Shaman = the group healer, and the toughest in mail armor. Druid = heals over time, and the only healer who can also tank. Paladin = the strongest single-target healer, in plate.</p>
+    <p style="margin-bottom:9px"><b>Dual Specialization.</b> At level 40 you unlock a second talent set you can swap to. That&#x27;s how most players cover these roles: level as damage, keep a tank or healer build as your second set for dungeons.</p>
+    </div>
+  </details>
+  <details class="g-group" id="role-tanks">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Tanks — hold the enemies</span><span class="g-group-names">Warrior — Protection (tank) · Paladin — Protection (tank) · Druid — Feral (Bear) (tank) — tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
+  <details class="g-card" id="prot-warrior">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Warrior — Protection (tank)</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>The job.</b> The classic tank: a shield, heavy plate, and the deepest toolbox for holding enemies&#x27; attention and surviving them.</p>
+    <p style="margin-bottom:9px"><b>Defensive Stance.</b> Your tanking stance — you generate much more threat and take less damage. Tanking happens in this stance.</p>
+    <p style="margin-bottom:9px"><b>Taunt.</b> Forces one enemy to attack you for a few seconds. Your rescue button when something runs at your healer.</p>
+    <p style="margin-bottom:9px"><b>Sunder Armor.</b> Stack this on tough enemies: each stack lowers their armor (so everyone deals more damage) and builds heavy threat for you.</p>
+    <p style="margin-bottom:9px"><b>Shield Block + Revenge.</b> Block an attack and Revenge lights up — a cheap, high-threat hit. This pair is your everyday threat engine.</p>
+    <p style="margin-bottom:9px"><b>Shield Slam.</b> The Protection tree&#x27;s signature hit: big damage, big threat, and it can strip a magic buff off the enemy.</p>
+    <p style="margin-bottom:9px"><b>Good to know.</b> Rage is your fuel and you earn it by being hit — pulling first isn&#x27;t just your job, it&#x27;s how you power up. On gear: Stamina and armor first, and a good shield matters more than a fancy weapon.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> You&#x27;re the most gear-dependent tank. If your shield and armor fall behind your level, no amount of button skill covers it — take the defensive quest rewards.</p>
+    </div>
+  </details>
+  <details class="g-card" id="prot-paladin">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Paladin — Protection (tank)</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>The job.</b> The group-control tank — and the headline Forever change: after years of being the tank without a taunt, Protection Paladin finally has one. A real main tank now.</p>
+    <p style="margin-bottom:9px"><b>Seal of Fury + Righteous Fury.</b> Both learned at level 10 — turn both on. Your swings add Holy damage, and while you hold a shield, every hit also builds a small absorb shield on you. Righteous Fury makes all that Holy damage generate far more threat.</p>
+    <p style="margin-bottom:9px"><b>Judgement — your taunt.</b> With Seal of Fury active, Judgement taunts the target for 3 seconds, from up to 10 yards away. Judgement no longer consumes your Seal, so the taunt is back every few seconds.</p>
+    <p style="margin-bottom:9px"><b>Consecration.</b> From level 20: holy fire on the ground under a pack. This is your glue for holding several enemies at once.</p>
+    <p style="margin-bottom:9px"><b>Holy Shield.</b> A Protection talent that raises your block and hurts attackers when you block — keep it running in every fight.</p>
+    <p style="margin-bottom:9px"><b>Good to know.</b> Blocking restores your mana (Shield Specialization) — as a paladin tank, being hit is literally your fuel supply. Your blessings and auras cover the whole raid in Forever, so groups love having you even beyond your tanking.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> You still have no true interrupt: Hammer of Justice (a stun) is your only way to stop a cast, and it&#x27;s slow to come back. And since Judgement is both damage and taunt, don&#x27;t fire it carelessly the moment before you&#x27;ll need to grab an enemy.</p>
+    </div>
+  </details>
+  <details class="g-card" id="bear">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Druid — Feral (Bear) (tank)</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>The job.</b> Tanking as a bear: no shield, no block — instead a huge health pool and thick armor from Bear Form. The simplest tank buttons in the game.</p>
+    <p style="margin-bottom:9px"><b>Bear Form.</b> Your tank shape: armor and health jump way up. (Dire Bear Form at level 40 is the same idea, bigger.) You do everything below in this form.</p>
+    <p style="margin-bottom:9px"><b>Growl.</b> Your taunt — forces one enemy to attack you. Same rescue job as the warrior&#x27;s.</p>
+    <p style="margin-bottom:9px"><b>Maul.</b> Your main hit: it powers up your next swing for heavy damage and threat. Most of your rage goes here.</p>
+    <p style="margin-bottom:9px"><b>Swipe.</b> Hits up to 3 enemies in front of you — your tool for holding a whole pack at once.</p>
+    <p style="margin-bottom:9px"><b>Demoralizing Roar.</b> Lowers the attack power of every enemy around you. Less damage coming in, for the whole fight — use it on every pack.</p>
+    <p style="margin-bottom:9px"><b>Good to know.</b> Forever&#x27;s launch tuning more than doubled bear threat (the bear threat bonus went from +50% to +115%) — holding packs is far better than old Classic bear. Frenzied Regeneration turns your rage into health when a fight goes bad. On gear: Stamina above everything.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> Your healing and utility spells need you OUT of bear form — shifting out mid-fight to heal usually gets someone killed. Trust your healer, stay bear.</p>
+    </div>
+  </details>
+    </div>
+  </details>
+  <details class="g-group" id="role-healers">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Healers — keep everyone alive</span><span class="g-group-names">Paladin — Holy (healer) · Priest — Discipline (healer) · Priest — Holy (healer) · Shaman — Restoration (healer) · Druid — Restoration (healer) — tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
+  <details class="g-card" id="holy-paladin">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Paladin — Holy (healer)</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>The job.</b> The tank&#x27;s best friend: the strongest single-target healing in the game, delivered from inside plate armor. You keep one person alive through almost anything.</p>
+    <p style="margin-bottom:9px"><b>Flash of Light.</b> Fast and cheap — your everyday heal. Most of your button presses in a dungeon are this.</p>
+    <p style="margin-bottom:9px"><b>Holy Light.</b> The big, slow heal for heavy damage. Use it when Flash of Light can&#x27;t keep up.</p>
+    <p style="margin-bottom:9px"><b>Holy Shock.</b> In Forever it&#x27;s on a 10-second cooldown: an instant heal for emergencies (it can also hurt an enemy). Your only heal with no cast time — save it for the scary moments.</p>
+    <p style="margin-bottom:9px"><b>Blessings.</b> Your group buffs — put the right blessing on each person. In Forever, blessings last an hour, so this is a once-per-run job, not constant upkeep.</p>
+    <p style="margin-bottom:9px"><b>Good to know.</b> You wear plate and can stand near the fight, so you&#x27;re the hardest healer to kill. Healing gear in Forever also gives you some spell damage (a third of your bonus healing), so a Holy paladin can still quest solo — slowly, but safely.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> You have almost no group healing: when everyone takes damage at once, you still heal one person at a time. Triage — tank first, then you, then the rest.</p>
+    </div>
+  </details>
+  <details class="g-card" id="disc-priest">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Priest — Discipline (healer)</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>The job.</b> The shield healer: instead of repairing damage, you prevent it. Absorb shields eat hits before health bars move. The thinking player&#x27;s healer.</p>
+    <p style="margin-bottom:9px"><b>Power Word: Shield.</b> Your signature: an absorb shield on an ally that soaks damage before it lands. Shield the tank before pulls; shield anyone about to take a hit.</p>
+    <p style="margin-bottom:9px"><b>Penance.</b> New in Forever: a channeled spell that fires pulses — healing an ally, or damaging an enemy. Your best single-target heal once you have the talent.</p>
+    <p style="margin-bottom:9px"><b>Flash Heal.</b> Your fast direct heal, for when a shield wasn&#x27;t enough or wasn&#x27;t up.</p>
+    <p style="margin-bottom:9px"><b>Renew.</b> A heal over time — keep it rolling on the tank between shields.</p>
+    <p style="margin-bottom:9px"><b>Good to know.</b> Divine Aegis turns your critical heals into extra absorb shields, so prevention stacks on prevention. One limit to learn: a freshly shielded player carries Weakened Soul and can&#x27;t be shielded again for a few seconds — rotate your shields around the group.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> Shields do nothing if they land after the damage. Discipline is played a few seconds in the future: watch what the enemy is about to do, not what it just did.</p>
+    </div>
+  </details>
+  <details class="g-card" id="holy-priest">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Priest — Holy (healer)</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>The job.</b> The all-rounder healer: the biggest healing toolbox in the game, with an answer for every shape of damage. If you want &#x27;the healer&#x27; in its classic form, this is it.</p>
+    <p style="margin-bottom:9px"><b>Greater Heal.</b> Your big single-target heal — slow, expensive, and exactly what a hurt tank needs.</p>
+    <p style="margin-bottom:9px"><b>Flash Heal.</b> The fast emergency heal. Forever bonus (Holy Binding): Flash Heal on someone else also heals YOU for half as much — healing others keeps you alive too.</p>
+    <p style="margin-bottom:9px"><b>Renew.</b> Heal over time. Keep it on the tank at all times; sprinkle it on anyone taking steady damage.</p>
+    <p style="margin-bottom:9px"><b>Prayer of Mending.</b> Holy&#x27;s new capstone in Forever: put it on an ally, and when they take damage it heals them and jumps to the next hurt teammate. One cast, several heals.</p>
+    <p style="margin-bottom:9px"><b>Prayer of Healing.</b> Your group heal — heals your whole party at once, slowly. For the moments when everything goes wrong together.</p>
+    <p style="margin-bottom:9px"><b>Good to know.</b> Priests are the only class with two full healing styles (Discipline&#x27;s shields and Holy&#x27;s direct healing) — Dual Spec at 40 lets you keep both. On gear: Intellect and Spirit keep your mana going.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> Cloth armor and few escapes: you&#x27;re the squishiest healer. Positioning is your defense — stand at the back, and if something reaches you, run toward your tank.</p>
+    </div>
+  </details>
+  <details class="g-card" id="resto-shaman">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Shaman — Restoration (healer)</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>The job.</b> The group healer: your signature heal bounces between teammates, and your totems quietly power the whole group. Also the toughest healer — mail armor and a shield.</p>
+    <p style="margin-bottom:9px"><b>Chain Heal.</b> Your signature: a heal that jumps to nearby allies, healing several people with one cast. The best group heal in the game when the group stands together.</p>
+    <p style="margin-bottom:9px"><b>Healing Wave.</b> Your big single-target heal for the tank.</p>
+    <p style="margin-bottom:9px"><b>Lesser Healing Wave.</b> The fast, small heal for emergencies.</p>
+    <p style="margin-bottom:9px"><b>Riptide.</b> Restoration&#x27;s 31-point talent in Forever: an instant heal that keeps healing over time — and makes your next Chain Heal on that target stronger. Riptide the tank, then Chain Heal off them.</p>
+    <p style="margin-bottom:9px"><b>Totems.</b> Drop them where the group stands. Mana Tide Totem is the famous one: a mana battery for every caster in your group.</p>
+    <p style="margin-bottom:9px"><b>Good to know.</b> Water Shield keeps your own mana refilling while you heal. And like every Forever healer, your healing gear also grants some spell damage, so questing between dungeons isn&#x27;t painful.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> Totems only help people standing near them — when the group moves, your totems don&#x27;t. Re-dropping them in the right spot is a real part of the job.</p>
+    </div>
+  </details>
+  <details class="g-card" id="resto-druid">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Druid — Restoration (healer)</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>The job.</b> The heal-over-time healer: you cover the group in healing that ticks steadily, before and while damage lands. Calm, planned healing — and the only healer who can also be the tank.</p>
+    <p style="margin-bottom:9px"><b>Rejuvenation.</b> Your main heal over time — instant to cast. Keep it on anyone taking damage; it&#x27;s the heartbeat of the spec.</p>
+    <p style="margin-bottom:9px"><b>Regrowth.</b> A direct heal plus a heal over time in one cast, with a high critical chance. Your mid-size answer.</p>
+    <p style="margin-bottom:9px"><b>Healing Touch.</b> The big, slow heal for heavy damage — your &#x27;someone is about to die&#x27; button among the cast-time heals.</p>
+    <p style="margin-bottom:9px"><b>Swiftmend.</b> A talent: instantly converts your own heal-over-time already on a target into a burst heal. It needs YOUR Rejuvenation or Regrowth ticking on them first — plan one step ahead.</p>
+    <p style="margin-bottom:9px"><b>Wild Growth.</b> Restoration&#x27;s new capstone in Forever: a heal over time on your whole party at once. Your answer to group-wide damage.</p>
+    <p style="margin-bottom:9px"><b>Good to know.</b> Your heals work ahead of time: the winning habit is covering the tank in heals BEFORE the pull starts. And your forms are escape buttons — Travel Form to catch up, Bear Form to survive a mistake.</p>
+    <p style="margin-bottom:9px"><b>Watch out.</b> Heals over time are slow by nature: a teammate at 10% health needs Swiftmend or Healing Touch right now, not another Rejuvenation. Also, your only resurrection is Rebirth — a battle resurrection on a long cooldown — so preventing deaths matters more for you than for other healers.</p>
+    </div>
+  </details>
+    </div>
+  </details>
   </div>
 
   <div id="generalView" class="hidden">
@@ -1345,8 +1475,134 @@
   </details>
     </div>
   </details>
+  <details class="g-group" id="prof-routes">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Leveling routes — 1 to 300</span><span class="g-group-names">How to read these routes · Herbalism route — where to pick, 1–300 · Mining route — where to dig, 1–300 · Skinning route — where to hunt, 1–300 · Alchemy route — what to brew, 1–300 · Blacksmithing route — what to forge, 1–300 · Enchanting route — what to enchant, 1–300 · Engineering route — what to build, 1–300 · Leatherworking route — what to sew, 1–300 · Tailoring route — what to sew, 1–300 · Cooking route — what to cook, 1–300 · First Aid route — bandages (and potions), 1–300 · Fishing route — where to cast, 1–300 — tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
+  <details class="g-card" id="prof-routes-intro">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">How to read these routes</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>The one rule.</b> Craft whatever is ORANGE in your recipe list — orange means a guaranteed skill point. Yellow usually gives one, green sometimes, grey never. Every route below is just &#x27;the cheapest orange thing&#x27; at each step, so if Forever&#x27;s new recipes give you a cheaper orange option, take it — the route still works.</p>
+    <p style="margin-bottom:9px"><b>Gather first, craft second.</b> For crafting professions, gather (or buy) the materials for a whole bracket BEFORE you start crafting it. Nothing wastes gold like crafting in ones and twos.</p>
+    <p style="margin-bottom:9px"><b>Trainers gate you.</b> You can&#x27;t pass 75 / 150 / 225 / 300 without visiting a trainer for the next rank (Apprentice / Journeyman / Expert / Artisan) — and the last two ranks for some professions live with specific trainers out in the world. The route cards flag the special ones.</p>
+    </div>
+  </details>
+  <details class="g-card" id="route-herbalism">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Herbalism route — where to pick, 1–300</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>1–75.</b> Your starting zone plus the next one over: Peacebloom, Silverleaf, Earthroot. Turn on Find Herbs and pick everything while you quest — this bracket levels itself.</p>
+    <p style="margin-bottom:9px"><b>75–150.</b> Hillsbrad Foothills, the Wetlands, and Ashenvale: Briarthorn, Bruiseweed, Kingsblood, Wild Steelbloom. Mageroyal grows near water and ruins.</p>
+    <p style="margin-bottom:9px"><b>150–225.</b> The Hinterlands, Feralas, and Felwood: Fadeleaf, Goldthorn, Khadgar&#x27;s Whisker, then Purple Lotus and Sungrass as you push past 200.</p>
+    <p style="margin-bottom:9px"><b>225–300.</b> Felwood and the Eastern Plaguelands for Sungrass and Plaguebloom, Winterspring for Icecap and Mountain Silversage — the two most valuable herbs in the game. If it glows on your mini-map in a level-55+ zone, pick it.</p>
+    </div>
+  </details>
+  <details class="g-card" id="route-mining">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Mining route — where to dig, 1–300</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>1–75.</b> Copper in any starting zone — Dun Morogh, Durotar, and Elwynn are full of it. Smelt everything; smelting gives skill early on.</p>
+    <p style="margin-bottom:9px"><b>75–150.</b> Tin (smelt Copper + Tin into Bronze for skill, too) in the Wetlands, Ashenvale, and Thousand Needles. Iron starts appearing at the top of this bracket in Hillsbrad and the Badlands edges.</p>
+    <p style="margin-bottom:9px"><b>150–225.</b> Iron in the Badlands and Arathi Highlands, then Mithril in Tanaris, the Hinterlands, and the Searing Gorge. Gold and Truesilver veins are bonuses, not the plan.</p>
+    <p style="margin-bottom:9px"><b>225–300.</b> Thorium: Un&#x27;Goro Crater, Winterspring, the Eastern Plaguelands, and Silithus. Rich Thorium veins carry the last stretch. Keep a route looping a zone&#x27;s edges and caves — veins cluster there.</p>
+    </div>
+  </details>
+  <details class="g-card" id="route-skinning">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Skinning route — where to hunt, 1–300</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>1–75.</b> Skin every beast you kill while questing your starting zones: Light Leather and Ruined Scraps. Skinning levels off your normal leveling — never grind it separately.</p>
+    <p style="margin-bottom:9px"><b>75–150.</b> Medium Leather country: the Wetlands, Hillsbrad, and Ashenvale beasts. Raptors, wolves, and turtles are your best friends.</p>
+    <p style="margin-bottom:9px"><b>150–225.</b> Heavy Leather in the Hinterlands, Feralas, and Tanaris. Thick Leather starts appearing near 225 in Tanaris and the Plaguelands edges.</p>
+    <p style="margin-bottom:9px"><b>225–300.</b> Thick and Rugged Leather: Un&#x27;Goro&#x27;s dinosaurs, Winterspring&#x27;s chimaeras and bears, and the Plaguelands&#x27; plagued beasts. The last points are the slowest — skin while you quest at 60.</p>
+    </div>
+  </details>
+  <details class="g-card" id="route-alchemy">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Alchemy route — what to brew, 1–300</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Forever twist first.</b> In Forever, the standard Healing Potions belong to First Aid — so the classic &#x27;brew healing potions to 150&#x27; route doesn&#x27;t exist here. This route runs on mana potions and elixirs instead.</p>
+    <p style="margin-bottom:9px"><b>1–75.</b> Minor Mana Potions (Mageroyal + Silverleaf) as far as they stay orange, then Elixir of Minor Defense to finish the bracket.</p>
+    <p style="margin-bottom:9px"><b>75–150.</b> Lesser Mana Potions (Mageroyal + Stranglekelp) and Elixirs of Wisdom (Mageroyal + Briarthorn). Stranglekelp grows underwater along coasts — swim for it.</p>
+    <p style="margin-bottom:9px"><b>150–225.</b> Elixir of Agility (Stranglekelp + Goldthorn), then Elixir of Greater Intellect and mana potions of the next size as they turn orange. Goldthorn is the bottleneck herb — farm the Hinterlands.</p>
+    <p style="margin-bottom:9px"><b>225–300.</b> Greater Mana Potions (Khadgar&#x27;s Whisker + Purple Lotus), Elixirs of Greater Agility, and Major Mana Potions at the very top (Dreamfoil country: Felwood, the Plaguelands). Flasks exist at 300 but are raid prep, not a leveling tool.</p>
+    </div>
+  </details>
+  <details class="g-card" id="route-blacksmithing">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Blacksmithing route — what to forge, 1–300</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>Reality check.</b> The most material-hungry route in the game: expect well over a thousand bars across the whole climb. With Mining feeding you it&#x27;s a project; buying the metal makes it a fortune. Stones are your early engine because they&#x27;re cheap.</p>
+    <p style="margin-bottom:9px"><b>1–75.</b> Rough Sharpening Stones, then Rough Grinding Stones and Copper gear pieces as stones turn green.</p>
+    <p style="margin-bottom:9px"><b>75–150.</b> Coarse and Heavy Sharpening/Grinding Stones with Bronze pieces between. Tin supply decides your speed — the Wetlands is your mine.</p>
+    <p style="margin-bottom:9px"><b>150–225.</b> Iron gear and Green Iron pieces early, then Steel and the first Mithril pieces (spurs and bracers are the usual cheap orange crafts) as Mithril flows in from Tanaris.</p>
+    <p style="margin-bottom:9px"><b>225–300.</b> Mithril Spurs and Mithril Coifs first, then Thorium: small pieces like Thorium Bracers — in practice, whatever Thorium craft is orange and cheapest in bars carries this stretch. The Imperial Plate set (learned piece by piece at the top) finishes many smiths&#x27; climbs.</p>
+    </div>
+  </details>
+  <details class="g-card" id="route-enchanting">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Enchanting route — what to enchant, 1–300</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>How this one works.</b> You level two ways: disenchanting magic items for materials, and spending those materials on enchants. Pair with Tailoring (make greens, disenchant them) and the route feeds itself. Keep a cheap &#x27;enchanting dummy&#x27; item — a pair of bracers you re-enchant forever.</p>
+    <p style="margin-bottom:9px"><b>1–75.</b> Runed Copper Rod first (you need it to enchant at all), then Minor Health enchants on your dummy bracers, disenchanting every green you find.</p>
+    <p style="margin-bottom:9px"><b>75–150.</b> Lesser enchants on bracers and cloaks (health, armor, minor stats). Strange Dust is the fuel — it comes from low-level greens, so disenchant everything.</p>
+    <p style="margin-bottom:9px"><b>150–225.</b> The stat enchants begin (Lesser/Greater stats to chest, stamina to bracers). Vision Dust and Dream Dust carry this bracket — mid-level dungeon greens are your supply.</p>
+    <p style="margin-bottom:9px"><b>225–300.</b> Greater enchants with Illusion Dust and Greater Eternal Essences from level-50+ greens and blues. This is the expensive stretch everyone warned you about: budget for it, or level it slowly off dungeon drops.</p>
+    </div>
+  </details>
+  <details class="g-card" id="route-engineering">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Engineering route — what to build, 1–300</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>How this one works.</b> Powders, tubes, and parts: engineering levels on its own components. Almost everything you make along the way is also useful (or sellable to other engineers). Keep your crafts — later recipes eat earlier parts.</p>
+    <p style="margin-bottom:9px"><b>1–75.</b> Rough Blasting Powder, Handfuls of Copper Bolts, Copper Tubes. Copper and Rough Stone only — cheap and fast.</p>
+    <p style="margin-bottom:9px"><b>75–150.</b> Coarse Blasting Powder, Bronze Tubes, and your first real gadgets (target dummies, goggles). Bronze = copper + tin, so your Mining bill doubles here.</p>
+    <p style="margin-bottom:9px"><b>150–225.</b> Heavy Blasting Powder, Gold Power Cores, Mithril Tubes and Casings. Iron, then Mithril, is the cost curve — the Badlands and Tanaris fund it.</p>
+    <p style="margin-bottom:9px"><b>225–300.</b> Mithril Gyro-Shot and Casings into Thorium Widgets and Dense Blasting Powder (Thorium + Dense Stone). The last points usually come from Thorium gear pieces and repair bots at the top.</p>
+    </div>
+  </details>
+  <details class="g-card" id="route-leatherworking">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Leatherworking route — what to sew, 1–300</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>1–75.</b> Light Armor Kits and the simplest Light Leather pieces (gloves, bracers). Cured Light Hides from the trainer round out the bracket.</p>
+    <p style="margin-bottom:9px"><b>75–150.</b> Medium Armor Kits, Embossed Leather pieces, and Cured Medium Hides. Your Skinning should be out-earning this easily.</p>
+    <p style="margin-bottom:9px"><b>150–225.</b> Heavy Armor Kits and Heavy Leather pieces — Nightscape gear (a trainer-taught set) is the classic mid-route because it&#x27;s leather-only, no rare extras.</p>
+    <p style="margin-bottom:9px"><b>225–300.</b> Thick Armor Kits and Wicked Leather pieces, then Rugged Leather gear at the top. The tribal/dragonscale/elemental specializations open at 225 — pick one at 60, not before; the route to 300 is the same either way.</p>
+    </div>
+  </details>
+  <details class="g-card" id="route-tailoring">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Tailoring route — what to sew, 1–300</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>1–75.</b> Bolts of Linen Cloth (making bolts gives skill at the very start), then Linen bags and simple linen pieces. Humanoid enemies are your &#x27;gathering nodes&#x27; — farm quests that target them.</p>
+    <p style="margin-bottom:9px"><b>75–150.</b> Wool: Woolen pieces and the first real bags (Woolen Bags sell at every level). Double-breasted waistcoats and similar wool pieces carry the middle.</p>
+    <p style="margin-bottom:9px"><b>150–225.</b> Silk Cloth from the Scarlet Monastery level range: Silk Headbands and Formal Shirts are the cheap orange staples. Mageweave begins at the top of the bracket.</p>
+    <p style="margin-bottom:9px"><b>225–300.</b> Mageweave bags and gear, then Runecloth: Runecloth Bags and Belts are the standard finish — runecloth drops all over the level-55+ world, and the bags sell forever. Mooncloth (a 4-day cooldown craft at 250+) is money, not a route.</p>
+    </div>
+  </details>
+  <details class="g-card" id="route-cooking">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Cooking route — what to cook, 1–300</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>1–75.</b> Spiced Bread is trainer-taught and nearly free; Charred Wolf Meat and Roasted Boar fill the rest from your questing kills. Learn recipes from trainers AND from quests — cooking hides recipes in both.</p>
+    <p style="margin-bottom:9px"><b>75–150.</b> Crab Cakes and Cooked Crab Claw (Wetlands crabs), Coyote Steak (Westfall), and whatever your current zone&#x27;s meat cooks into — check every new town&#x27;s cooking trainer and innkeeper for recipes; cooking hides them in both places.</p>
+    <p style="margin-bottom:9px"><b>150–225.</b> Soothing Turtle Bisque (a Hillsbrad-side quest recipe), Spider Sausages, and the first fish dishes if you fish. Keep every meat you loot from now on — you&#x27;ll cook all of it.</p>
+    <p style="margin-bottom:9px"><b>225–300.</b> Artisan Cooking needs the Gadgetzan quest chain (the famous Clamlette Surprise errand) — do it at 225. Then Monster Omelets (giant eggs, Tanaris) and Tender Wolf Steaks (Alterac/Felwood wolves) carry you to 300.</p>
+    </div>
+  </details>
+  <details class="g-card" id="route-firstaid">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">First Aid route — bandages (and potions), 1–300</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>The ladder.</b> First Aid is a cloth ladder, in order: Linen Bandages → Heavy Linen → Wool → Heavy Wool → Silk → Heavy Silk → Mageweave → Heavy Mageweave → Runecloth → Heavy Runecloth Bandages. Make the plain version until it turns green, then switch to the Heavy version of the same cloth.</p>
+    <p style="margin-bottom:9px"><b>Forever addition.</b> First Aid also crafts the standard Healing Potions and cures for poison and disease here — worth real skill points in the early brackets and genuinely useful to carry.</p>
+    <p style="margin-bottom:9px"><b>The one quest.</b> At 225 you need the Triage quest for Artisan First Aid (Alliance: Theramore; Horde: Hammerfall in Arathi). It&#x27;s the famous &#x27;save the soldiers in order&#x27; test — heal the most hurt first, and don&#x27;t let anyone die on your watch.</p>
+    <p style="margin-bottom:9px"><b>Supply tip.</b> Your cloth competes with Tailoring if you have both. If you don&#x27;t tailor, buy cloth on the Auction House during the week — prices spike on weekends.</p>
+    </div>
+  </details>
+  <details class="g-card" id="route-fishing">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Fishing route — where to cast, 1–300</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:9px"><b>How this one works.</b> Fishing levels anywhere, but higher zones need higher skill to land fish instead of &#x27;got away&#x27; messages. Lures (+75/+100 skill from vendors and engineers) let you fish above your weight — use them.</p>
+    <p style="margin-bottom:9px"><b>1–75.</b> Any starting-zone water. Brilliant Smallfish country. Buy a Strong Fishing Pole when you can — it adds skill.</p>
+    <p style="margin-bottom:9px"><b>75–150.</b> The Wetlands and Hillsbrad coasts, plus Ashenvale. Bristle Whisker Catfish waters.</p>
+    <p style="margin-bottom:9px"><b>150–225.</b> Stranglethorn Vale and Tanaris coasts, Feralas for inland. Expert Fishing comes from a book sold in Booty Bay (Old Man Heming) — buy it before you cap at 150 and wonder why you stopped gaining.</p>
+    <p style="margin-bottom:9px"><b>225–300.</b> Artisan Fishing is Nat Pagle&#x27;s quest in Dustwallow Marsh (catch four named fish across the world). Then Azshara and Winterspring waters to 300 — slow, calm, and exactly the point of fishing.</p>
+    </div>
+  </details>
+    </div>
+  </details>
 
-  <p class="g-foot">Deliberately not here yet: full 1–300 leveling routes for each profession. Overview first, routes later — ask in Discord if you're stuck mid-level and we'll add yours.</p>
+  <p class="g-foot">Routes added Nov 22, 2026: they follow the classic path through each profession — Forever's 600+ new recipes give extra options along the way, and anything orange in your recipe list is a guaranteed skill point.</p>
   <a class="g-back" href="index.html" onclick="if (typeof closeProfessions === 'function') { closeProfessions(); return false; }">← Back to the quiz</a>
   </div>
 
@@ -1770,35 +2026,35 @@
     <div class="g-body">
     <div class="tierSec tierS">
       <div class="tierHead"><span class="tierLetter">S</span><span class="tierName">S tier — the top</span></div>
-      <p class="tierItem"><b>Beast Mastery Hunter</b> — Your pet holds the enemies; you press a few buttons and stay safe at range. The beginner pick of the whole game. <a href="#beast-mastery" onclick="expandGuide('beast-mastery'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Frost Mage</b> — Slow and freeze everything before it reaches you — the most forgiving caster there is. <a href="#frost" onclick="expandGuide('frost'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Retribution Paladin</b> — Few buttons, self-healing, and an invincibility bubble for when it all goes wrong. <a href="#retribution" onclick="expandGuide('retribution'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#ABD473">Beast Mastery Hunter</b> — Your pet holds the enemies; you press a few buttons and stay safe at range. The beginner pick of the whole game. <a href="#beast-mastery" onclick="expandGuide('beast-mastery'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#69CCF0">Frost Mage</b> — Slow and freeze everything before it reaches you — the most forgiving caster there is. <a href="#frost" onclick="expandGuide('frost'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#F58CBA">Retribution Paladin</b> — Few buttons, self-healing, and an invincibility bubble for when it all goes wrong. <a href="#retribution" onclick="expandGuide('retribution'); return false;">Starter guide →</a></p>
     </div>
     <div class="tierSec tierA">
       <div class="tierHead"><span class="tierLetter">A</span><span class="tierName">A tier — strong</span></div>
-      <p class="tierItem"><b>Demonology Warlock</b> — A powered-up demon does much of the work while you support it. <a href="#demonology" onclick="expandGuide('demonology'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Destruction Warlock</b> — Point, cast one big fire spell, repeat — the simplest warlock. <a href="#destruction" onclick="expandGuide('destruction'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Elemental Shaman</b> — A short, clear spell order, and totems that help just by existing. <a href="#elemental" onclick="expandGuide('elemental'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Marksmanship Hunter</b> — Slow, simple, powerful shots — and the pet is optional. <a href="#marksmanship" onclick="expandGuide('marksmanship'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#9482C9">Demonology Warlock</b> — A powered-up demon does much of the work while you support it. <a href="#demonology" onclick="expandGuide('demonology'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#9482C9">Destruction Warlock</b> — Point, cast one big fire spell, repeat — the simplest warlock. <a href="#destruction" onclick="expandGuide('destruction'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#2E9BFF">Elemental Shaman</b> — A short, clear spell order, and totems that help just by existing. <a href="#elemental" onclick="expandGuide('elemental'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#ABD473">Marksmanship Hunter</b> — Slow, simple, powerful shots — and the pet is optional. <a href="#marksmanship" onclick="expandGuide('marksmanship'); return false;">Starter guide →</a></p>
     </div>
     <div class="tierSec tierB">
       <div class="tierHead"><span class="tierLetter">B</span><span class="tierName">B tier — solid</span></div>
-      <p class="tierItem"><b>Affliction Warlock</b> — Easy to start; the real work is keeping many damage-over-time spells running at once. <a href="#affliction" onclick="expandGuide('affliction'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Arms Warrior</b> — A few big hits to time — plus rage and stance basics to learn. <a href="#arms" onclick="expandGuide('arms'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Fury Warrior</b> — Fast and fun, but you are always pressing something. <a href="#fury" onclick="expandGuide('fury'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Combat Rogue</b> — The most head-on rogue — still has rogue upkeep: poisons and stealth openers. <a href="#combat" onclick="expandGuide('combat'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Enhancement Shaman</b> — Weapon buffs, totems, and melee hits powering spells — several things to juggle. <a href="#enhancement" onclick="expandGuide('enhancement'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Arcane Mage</b> — The blast is simple; the homework is your mana bar, which is the real game. <a href="#arcane" onclick="expandGuide('arcane'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Fire Mage</b> — You play around crit streaks — reactive rather than hard, but busy. <a href="#fire" onclick="expandGuide('fire'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Shadow Priest</b> — Several over-time spells plus a form to stay in — steady once it clicks. <a href="#shadow" onclick="expandGuide('shadow'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Balance Druid</b> — Swapping between two spell types on a rhythm, with shapeshift extras on top. <a href="#balance" onclick="expandGuide('balance'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#9482C9">Affliction Warlock</b> — Easy to start; the real work is keeping many damage-over-time spells running at once. <a href="#affliction" onclick="expandGuide('affliction'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#C79C6E">Arms Warrior</b> — A few big hits to time — plus rage and stance basics to learn. <a href="#arms" onclick="expandGuide('arms'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#C79C6E">Fury Warrior</b> — Fast and fun, but you are always pressing something. <a href="#fury" onclick="expandGuide('fury'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FFF569">Combat Rogue</b> — The most head-on rogue — still has rogue upkeep: poisons and stealth openers. <a href="#combat" onclick="expandGuide('combat'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#2E9BFF">Enhancement Shaman</b> — Weapon buffs, totems, and melee hits powering spells — several things to juggle. <a href="#enhancement" onclick="expandGuide('enhancement'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#69CCF0">Arcane Mage</b> — The blast is simple; the homework is your mana bar, which is the real game. <a href="#arcane" onclick="expandGuide('arcane'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#69CCF0">Fire Mage</b> — You play around crit streaks — reactive rather than hard, but busy. <a href="#fire" onclick="expandGuide('fire'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FFFFFF">Shadow Priest</b> — Several over-time spells plus a form to stay in — steady once it clicks. <a href="#shadow" onclick="expandGuide('shadow'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FF7D0A">Balance Druid</b> — Swapping between two spell types on a rhythm, with shapeshift extras on top. <a href="#balance" onclick="expandGuide('balance'); return false;">Starter guide →</a></p>
     </div>
     <div class="tierSec tierC">
       <div class="tierHead"><span class="tierLetter">C</span><span class="tierName">C tier — the hard road</span></div>
-      <p class="tierItem"><b>Survival Hunter</b> — Melee AND pet AND traps at once — and its top-end damage trick (melee weaving) is the hardest technique in the game right now. <a href="#survival" onclick="expandGuide('survival'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Assassination Rogue</b> — Poisons, bleeds, and energy timing all ticking at the same time. <a href="#assassination" onclick="expandGuide('assassination'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Subtlety Rogue</b> — The stealth-opener puzzle spec — mistakes cost the most here. <a href="#subtlety" onclick="expandGuide('subtlety'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Feral (Cat) Druid</b> — Combo points, bleeds, energy, and bear-form emergencies — the most plates spinning of any spec. <a href="#feral-cat" onclick="expandGuide('feral-cat'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#ABD473">Survival Hunter</b> — Melee AND pet AND traps at once — and its top-end damage trick (melee weaving) is the hardest technique in the game right now. <a href="#survival" onclick="expandGuide('survival'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FFF569">Assassination Rogue</b> — Poisons, bleeds, and energy timing all ticking at the same time. <a href="#assassination" onclick="expandGuide('assassination'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FFF569">Subtlety Rogue</b> — The stealth-opener puzzle spec — mistakes cost the most here. <a href="#subtlety" onclick="expandGuide('subtlety'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FF7D0A">Feral (Cat) Druid</b> — Combo points, bleeds, energy, and bear-form emergencies — the most plates spinning of any spec. <a href="#feral-cat" onclick="expandGuide('feral-cat'); return false;">Starter guide →</a></p>
     </div>
     </div>
   </details>
@@ -1821,35 +2077,35 @@
     <div class="g-body">
     <div class="tierSec tierS">
       <div class="tierHead"><span class="tierLetter">S</span><span class="tierName">S tier — the top</span></div>
-      <p class="tierItem"><b>Beast Mastery Hunter</b> — The leveling king: your pet tanks, you shoot, you almost never stop to rest. <a href="#beast-mastery" onclick="expandGuide('beast-mastery'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Demonology Warlock</b> — A demon tanks while drains and damage-over-time spells keep you near full — near-zero downtime. <a href="#demonology" onclick="expandGuide('demonology'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Affliction Warlock</b> — Put damage-over-time spells on everything and keep walking; the health drains back. <a href="#affliction" onclick="expandGuide('affliction'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#ABD473">Beast Mastery Hunter</b> — The leveling king: your pet tanks, you shoot, you almost never stop to rest. <a href="#beast-mastery" onclick="expandGuide('beast-mastery'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#9482C9">Demonology Warlock</b> — A demon tanks while drains and damage-over-time spells keep you near full — near-zero downtime. <a href="#demonology" onclick="expandGuide('demonology'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#9482C9">Affliction Warlock</b> — Put damage-over-time spells on everything and keep walking; the health drains back. <a href="#affliction" onclick="expandGuide('affliction'); return false;">Starter guide →</a></p>
     </div>
     <div class="tierSec tierA">
       <div class="tierHead"><span class="tierLetter">A</span><span class="tierName">A tier — strong</span></div>
-      <p class="tierItem"><b>Frost Mage</b> — Freezes whole packs and kills them together; conjured food and water erase downtime. The best area-damage leveler. <a href="#frost" onclick="expandGuide('frost'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Retribution Paladin</b> — Self-heals and a bubble turn bad pulls into stories instead of corpse runs. <a href="#retribution" onclick="expandGuide('retribution'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Shadow Priest</b> — Your damage trickle-heals you, and a wand finishes enemies without spending mana. <a href="#shadow" onclick="expandGuide('shadow'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Feral (Cat) Druid</b> — Cat speed, stealth past trouble, bear form when it goes wrong, heals between fights. <a href="#feral-cat" onclick="expandGuide('feral-cat'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Survival Hunter</b> — Same pet advantages, traded for a busier melee style. <a href="#survival" onclick="expandGuide('survival'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Marksmanship Hunter</b> — Kills things before they arrive — slightly more downtime than Beast Mastery, still elite. <a href="#marksmanship" onclick="expandGuide('marksmanship'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#69CCF0">Frost Mage</b> — Freezes whole packs and kills them together; conjured food and water erase downtime. The best area-damage leveler. <a href="#frost" onclick="expandGuide('frost'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#F58CBA">Retribution Paladin</b> — Self-heals and a bubble turn bad pulls into stories instead of corpse runs. <a href="#retribution" onclick="expandGuide('retribution'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FFFFFF">Shadow Priest</b> — Your damage trickle-heals you, and a wand finishes enemies without spending mana. <a href="#shadow" onclick="expandGuide('shadow'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FF7D0A">Feral (Cat) Druid</b> — Cat speed, stealth past trouble, bear form when it goes wrong, heals between fights. <a href="#feral-cat" onclick="expandGuide('feral-cat'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#ABD473">Survival Hunter</b> — Same pet advantages, traded for a busier melee style. <a href="#survival" onclick="expandGuide('survival'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#ABD473">Marksmanship Hunter</b> — Kills things before they arrive — slightly more downtime than Beast Mastery, still elite. <a href="#marksmanship" onclick="expandGuide('marksmanship'); return false;">Starter guide →</a></p>
     </div>
     <div class="tierSec tierB">
       <div class="tierHead"><span class="tierLetter">B</span><span class="tierName">B tier — solid</span></div>
-      <p class="tierItem"><b>Elemental Shaman</b> — Strong spells and a heal button; drinks often, but never helpless. <a href="#elemental" onclick="expandGuide('elemental'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Enhancement Shaman</b> — Fast melee kills with heals between fights; mana is the brake. <a href="#enhancement" onclick="expandGuide('enhancement'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Balance Druid</b> — Solid caster leveling with heals and travel form — a step behind its own cat form. <a href="#balance" onclick="expandGuide('balance'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Destruction Warlock</b> — Kills fast in bursts, then drinks; the other two warlocks just stop less. <a href="#destruction" onclick="expandGuide('destruction'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Fire Mage</b> — Bigger booms than Frost, less control — more deaths, similar speed. <a href="#fire" onclick="expandGuide('fire'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Combat Rogue</b> — Stealth lets you skip what you can&#x27;t kill; no self-heal keeps the pace honest. <a href="#combat" onclick="expandGuide('combat'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#2E9BFF">Elemental Shaman</b> — Strong spells and a heal button; drinks often, but never helpless. <a href="#elemental" onclick="expandGuide('elemental'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#2E9BFF">Enhancement Shaman</b> — Fast melee kills with heals between fights; mana is the brake. <a href="#enhancement" onclick="expandGuide('enhancement'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FF7D0A">Balance Druid</b> — Solid caster leveling with heals and travel form — a step behind its own cat form. <a href="#balance" onclick="expandGuide('balance'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#9482C9">Destruction Warlock</b> — Kills fast in bursts, then drinks; the other two warlocks just stop less. <a href="#destruction" onclick="expandGuide('destruction'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#69CCF0">Fire Mage</b> — Bigger booms than Frost, less control — more deaths, similar speed. <a href="#fire" onclick="expandGuide('fire'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FFF569">Combat Rogue</b> — Stealth lets you skip what you can&#x27;t kill; no self-heal keeps the pace honest. <a href="#combat" onclick="expandGuide('combat'); return false;">Starter guide →</a></p>
     </div>
     <div class="tierSec tierC">
       <div class="tierHead"><span class="tierLetter">C</span><span class="tierName">C tier — the hard road</span></div>
-      <p class="tierItem"><b>Arms Warrior</b> — Almost no self-healing: bandages and food are your healer. The hardest solo road in the game. <a href="#arms" onclick="expandGuide('arms'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Fury Warrior</b> — Same Warrior problem at higher speed — kills faster, rests just as much. <a href="#fury" onclick="expandGuide('fury'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Arcane Mage</b> — Your best spell eats mana by design, so you drink constantly. <a href="#arcane" onclick="expandGuide('arcane'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Assassination Rogue</b> — Poisons need time to work — solo fights end before they pay off. <a href="#assassination" onclick="expandGuide('assassination'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Subtlety Rogue</b> — Built around openers from stealth; leveling is a lot of un-stealthy grinding between them. <a href="#subtlety" onclick="expandGuide('subtlety'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#C79C6E">Arms Warrior</b> — Almost no self-healing: bandages and food are your healer. The hardest solo road in the game. <a href="#arms" onclick="expandGuide('arms'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#C79C6E">Fury Warrior</b> — Same Warrior problem at higher speed — kills faster, rests just as much. <a href="#fury" onclick="expandGuide('fury'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#69CCF0">Arcane Mage</b> — Your best spell eats mana by design, so you drink constantly. <a href="#arcane" onclick="expandGuide('arcane'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FFF569">Assassination Rogue</b> — Poisons need time to work — solo fights end before they pay off. <a href="#assassination" onclick="expandGuide('assassination'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FFF569">Subtlety Rogue</b> — Built around openers from stealth; leveling is a lot of un-stealthy grinding between them. <a href="#subtlety" onclick="expandGuide('subtlety'); return false;">Starter guide →</a></p>
     </div>
     </div>
   </details>
@@ -1872,35 +2128,35 @@
     <div class="g-body">
     <div class="tierSec tierS">
       <div class="tierHead"><span class="tierLetter">S</span><span class="tierName">S tier — the top</span></div>
-      <p class="tierItem"><b>Survival Hunter</b> — The #1 simulated damage spec in the game (1,288–1,355 in MythicSim&#x27;s snapshots) — with a catch: that number needs melee weaving, an expert technique. Played simply, it lands a tier lower. <a href="#survival" onclick="expandGuide('survival'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Retribution Paladin</b> — #2 in the same simulations, and it brings healing and a bubble on the side. The launch surprise. <a href="#retribution" onclick="expandGuide('retribution'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Demonology Warlock</b> — Top of the launch-week expert lists and strong in sims — pet damage scales hard at 60. <a href="#demonology" onclick="expandGuide('demonology'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Fury Warrior</b> — The classic scaling king: the better the gear gets, the harder Fury pulls away. <a href="#fury" onclick="expandGuide('fury'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Fire Mage</b> — Top of several launch lists for raw damage — crits feed bigger crits. <a href="#fire" onclick="expandGuide('fire'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#ABD473">Survival Hunter</b> — The #1 simulated damage spec in the game (1,288–1,355 in MythicSim&#x27;s snapshots) — with a catch: that number needs melee weaving, an expert technique. Played simply, it lands a tier lower. <a href="#survival" onclick="expandGuide('survival'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#F58CBA">Retribution Paladin</b> — #2 in the same simulations, and it brings healing and a bubble on the side. The launch surprise. <a href="#retribution" onclick="expandGuide('retribution'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#9482C9">Demonology Warlock</b> — Top of the launch-week expert lists and strong in sims — pet damage scales hard at 60. <a href="#demonology" onclick="expandGuide('demonology'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#C79C6E">Fury Warrior</b> — The classic scaling king: the better the gear gets, the harder Fury pulls away. <a href="#fury" onclick="expandGuide('fury'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#69CCF0">Fire Mage</b> — Top of several launch lists for raw damage — crits feed bigger crits. <a href="#fire" onclick="expandGuide('fire'); return false;">Starter guide →</a></p>
     </div>
     <div class="tierSec tierA">
       <div class="tierHead"><span class="tierLetter">A</span><span class="tierName">A tier — strong</span></div>
-      <p class="tierItem"><b>Marksmanship Hunter</b> — #2 in the newest simulation snapshot (1,100) — nearly all of Survival&#x27;s damage without the weaving. <a href="#marksmanship" onclick="expandGuide('marksmanship'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Beast Mastery Hunter</b> — Right behind it in sims (1,071) and the most consistent damage here — the pet never has a bad day. <a href="#beast-mastery" onclick="expandGuide('beast-mastery'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Destruction Warlock</b> — Big direct hits, strong on every launch list. <a href="#destruction" onclick="expandGuide('destruction'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Affliction Warlock</b> — Its damage-over-time spells can crit in Forever — on long boss fights that adds up. <a href="#affliction" onclick="expandGuide('affliction'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Assassination Rogue</b> — Quietly top-tier on sustained single-target damage in the raid-focused lists. <a href="#assassination" onclick="expandGuide('assassination'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#ABD473">Marksmanship Hunter</b> — #2 in the newest simulation snapshot (1,100) — nearly all of Survival&#x27;s damage without the weaving. <a href="#marksmanship" onclick="expandGuide('marksmanship'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#ABD473">Beast Mastery Hunter</b> — Right behind it in sims (1,071) and the most consistent damage here — the pet never has a bad day. <a href="#beast-mastery" onclick="expandGuide('beast-mastery'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#9482C9">Destruction Warlock</b> — Big direct hits, strong on every launch list. <a href="#destruction" onclick="expandGuide('destruction'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#9482C9">Affliction Warlock</b> — Its damage-over-time spells can crit in Forever — on long boss fights that adds up. <a href="#affliction" onclick="expandGuide('affliction'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FFF569">Assassination Rogue</b> — Quietly top-tier on sustained single-target damage in the raid-focused lists. <a href="#assassination" onclick="expandGuide('assassination'); return false;">Starter guide →</a></p>
     </div>
     <div class="tierSec tierB">
       <div class="tierHead"><span class="tierLetter">B</span><span class="tierName">B tier — solid</span></div>
-      <p class="tierItem"><b>Enhancement Shaman</b> — The sources fight about this one: #3 in an early sim snapshot, near the bottom in a later one. Truth is probably here — strong, unsettled. <a href="#enhancement" onclick="expandGuide('enhancement'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Elemental Shaman</b> — Same disagreement as Enhancement, one notch lower. Its totems (see the Group usefulness board) are not counted in its damage. <a href="#elemental" onclick="expandGuide('elemental'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Combat Rogue</b> — Steady, reliable melee damage — never the headline, never the problem. <a href="#combat" onclick="expandGuide('combat'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Shadow Priest</b> — Solid damage, and its group healing is counted on the usefulness board, not here. <a href="#shadow" onclick="expandGuide('shadow'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Arcane Mage</b> — Huge bursts while the mana lasts; dungeons have pauses, which saves it. <a href="#arcane" onclick="expandGuide('arcane'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Arms Warrior</b> — One big weapon, honest damage — Fury scales past it at 60. <a href="#arms" onclick="expandGuide('arms'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#2E9BFF">Enhancement Shaman</b> — The sources fight about this one: #3 in an early sim snapshot, near the bottom in a later one. Truth is probably here — strong, unsettled. <a href="#enhancement" onclick="expandGuide('enhancement'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#2E9BFF">Elemental Shaman</b> — Same disagreement as Enhancement, one notch lower. Its totems (see the Group usefulness board) are not counted in its damage. <a href="#elemental" onclick="expandGuide('elemental'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FFF569">Combat Rogue</b> — Steady, reliable melee damage — never the headline, never the problem. <a href="#combat" onclick="expandGuide('combat'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FFFFFF">Shadow Priest</b> — Solid damage, and its group healing is counted on the usefulness board, not here. <a href="#shadow" onclick="expandGuide('shadow'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#69CCF0">Arcane Mage</b> — Huge bursts while the mana lasts; dungeons have pauses, which saves it. <a href="#arcane" onclick="expandGuide('arcane'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#C79C6E">Arms Warrior</b> — One big weapon, honest damage — Fury scales past it at 60. <a href="#arms" onclick="expandGuide('arms'); return false;">Starter guide →</a></p>
     </div>
     <div class="tierSec tierC">
       <div class="tierHead"><span class="tierLetter">C</span><span class="tierName">C tier — the hard road</span></div>
-      <p class="tierItem"><b>Frost Mage</b> — Its damage trails Fire at 60. You bring Frost for control (next board&#x27;s business), not for the meter. <a href="#frost" onclick="expandGuide('frost'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Balance Druid</b> — Launch lists put Druid damage a step behind — the only class with no damage spec in the top bands. <a href="#balance" onclick="expandGuide('balance'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Feral (Cat) Druid</b> — Real damage, but hard to extract (see Easiest board) and still behind the leaders. <a href="#feral-cat" onclick="expandGuide('feral-cat'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Subtlety Rogue</b> — A PvP and opener spec — sustained dungeon damage is its weakest stage. <a href="#subtlety" onclick="expandGuide('subtlety'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#69CCF0">Frost Mage</b> — Its damage trails Fire at 60. You bring Frost for control (next board&#x27;s business), not for the meter. <a href="#frost" onclick="expandGuide('frost'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FF7D0A">Balance Druid</b> — Launch lists put Druid damage a step behind — the only class with no damage spec in the top bands. <a href="#balance" onclick="expandGuide('balance'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FF7D0A">Feral (Cat) Druid</b> — Real damage, but hard to extract (see Easiest board) and still behind the leaders. <a href="#feral-cat" onclick="expandGuide('feral-cat'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FFF569">Subtlety Rogue</b> — A PvP and opener spec — sustained dungeon damage is its weakest stage. <a href="#subtlety" onclick="expandGuide('subtlety'); return false;">Starter guide →</a></p>
     </div>
     </div>
   </details>
@@ -1923,35 +2179,35 @@
     <div class="g-body">
     <div class="tierSec tierS">
       <div class="tierHead"><span class="tierLetter">S</span><span class="tierName">S tier — the top</span></div>
-      <p class="tierItem"><b>Beast Mastery Hunter</b> — A pet that tanks elites while you stand back — the solo blueprint. <a href="#beast-mastery" onclick="expandGuide('beast-mastery'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Demonology Warlock</b> — The best solo caster: a tank demon, fear for the extras, drains for health. <a href="#demonology" onclick="expandGuide('demonology'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Retribution Paladin</b> — Heals, plate armor, and a bubble — outlasts almost anything the open world offers. <a href="#retribution" onclick="expandGuide('retribution'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#ABD473">Beast Mastery Hunter</b> — A pet that tanks elites while you stand back — the solo blueprint. <a href="#beast-mastery" onclick="expandGuide('beast-mastery'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#9482C9">Demonology Warlock</b> — The best solo caster: a tank demon, fear for the extras, drains for health. <a href="#demonology" onclick="expandGuide('demonology'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#F58CBA">Retribution Paladin</b> — Heals, plate armor, and a bubble — outlasts almost anything the open world offers. <a href="#retribution" onclick="expandGuide('retribution'); return false;">Starter guide →</a></p>
     </div>
     <div class="tierSec tierA">
       <div class="tierHead"><span class="tierLetter">A</span><span class="tierName">A tier — strong</span></div>
-      <p class="tierItem"><b>Frost Mage</b> — Elites that can&#x27;t reach you can&#x27;t kill you: freezes, slows, and blink escapes. <a href="#frost" onclick="expandGuide('frost'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Feral (Cat) Druid</b> — Stealth to choose fights, bear to survive them, heals to reset them. <a href="#feral-cat" onclick="expandGuide('feral-cat'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Affliction Warlock</b> — Drain-tanking: your health bar refills while theirs empties. <a href="#affliction" onclick="expandGuide('affliction'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Subtlety Rogue</b> — The pick-your-battles champion: stealth in, strike, vanish out. Solo by ambush. <a href="#subtlety" onclick="expandGuide('subtlety'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#69CCF0">Frost Mage</b> — Elites that can&#x27;t reach you can&#x27;t kill you: freezes, slows, and blink escapes. <a href="#frost" onclick="expandGuide('frost'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FF7D0A">Feral (Cat) Druid</b> — Stealth to choose fights, bear to survive them, heals to reset them. <a href="#feral-cat" onclick="expandGuide('feral-cat'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#9482C9">Affliction Warlock</b> — Drain-tanking: your health bar refills while theirs empties. <a href="#affliction" onclick="expandGuide('affliction'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FFF569">Subtlety Rogue</b> — The pick-your-battles champion: stealth in, strike, vanish out. Solo by ambush. <a href="#subtlety" onclick="expandGuide('subtlety'); return false;">Starter guide →</a></p>
     </div>
     <div class="tierSec tierB">
       <div class="tierHead"><span class="tierLetter">B</span><span class="tierName">B tier — solid</span></div>
-      <p class="tierItem"><b>Marksmanship Hunter</b> — Same pet safety net, one notch less specialized for it. <a href="#marksmanship" onclick="expandGuide('marksmanship'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Survival Hunter</b> — Pet plus melee toughness — handles solo fine, shines elsewhere. <a href="#survival" onclick="expandGuide('survival'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Shadow Priest</b> — Self-healing damage and a fear — steady solo, few fireworks. <a href="#shadow" onclick="expandGuide('shadow'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Balance Druid</b> — Roots, heals, and travel form make a self-sufficient caster. <a href="#balance" onclick="expandGuide('balance'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Elemental Shaman</b> — A heal button and totems cover most solo problems. <a href="#elemental" onclick="expandGuide('elemental'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Enhancement Shaman</b> — Melee with heals — solid, mana-limited. <a href="#enhancement" onclick="expandGuide('enhancement'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Combat Rogue</b> — Vanish resets bad fights; otherwise it solos like a fair fight. <a href="#combat" onclick="expandGuide('combat'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Assassination Rogue</b> — Like Combat, with slower payoffs. <a href="#assassination" onclick="expandGuide('assassination'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Destruction Warlock</b> — Has the warlock toolkit (pet, fear) but bursts instead of sustaining. <a href="#destruction" onclick="expandGuide('destruction'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#ABD473">Marksmanship Hunter</b> — Same pet safety net, one notch less specialized for it. <a href="#marksmanship" onclick="expandGuide('marksmanship'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#ABD473">Survival Hunter</b> — Pet plus melee toughness — handles solo fine, shines elsewhere. <a href="#survival" onclick="expandGuide('survival'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FFFFFF">Shadow Priest</b> — Self-healing damage and a fear — steady solo, few fireworks. <a href="#shadow" onclick="expandGuide('shadow'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FF7D0A">Balance Druid</b> — Roots, heals, and travel form make a self-sufficient caster. <a href="#balance" onclick="expandGuide('balance'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#2E9BFF">Elemental Shaman</b> — A heal button and totems cover most solo problems. <a href="#elemental" onclick="expandGuide('elemental'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#2E9BFF">Enhancement Shaman</b> — Melee with heals — solid, mana-limited. <a href="#enhancement" onclick="expandGuide('enhancement'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FFF569">Combat Rogue</b> — Vanish resets bad fights; otherwise it solos like a fair fight. <a href="#combat" onclick="expandGuide('combat'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FFF569">Assassination Rogue</b> — Like Combat, with slower payoffs. <a href="#assassination" onclick="expandGuide('assassination'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#9482C9">Destruction Warlock</b> — Has the warlock toolkit (pet, fear) but bursts instead of sustaining. <a href="#destruction" onclick="expandGuide('destruction'); return false;">Starter guide →</a></p>
     </div>
     <div class="tierSec tierC">
       <div class="tierHead"><span class="tierLetter">C</span><span class="tierName">C tier — the hard road</span></div>
-      <p class="tierItem"><b>Fire Mage</b> — Glass cannon alone: if the freeze-less fight goes long, you lose. <a href="#fire" onclick="expandGuide('fire'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Arcane Mage</b> — Glass, and thirsty — solo elites outlast your mana. <a href="#arcane" onclick="expandGuide('arcane'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Arms Warrior</b> — No pet, no heal, no escape. Solo elites are a gear check you often fail. <a href="#arms" onclick="expandGuide('arms'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Fury Warrior</b> — Faster than Arms, same missing toolkit. <a href="#fury" onclick="expandGuide('fury'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#69CCF0">Fire Mage</b> — Glass cannon alone: if the freeze-less fight goes long, you lose. <a href="#fire" onclick="expandGuide('fire'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#69CCF0">Arcane Mage</b> — Glass, and thirsty — solo elites outlast your mana. <a href="#arcane" onclick="expandGuide('arcane'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#C79C6E">Arms Warrior</b> — No pet, no heal, no escape. Solo elites are a gear check you often fail. <a href="#arms" onclick="expandGuide('arms'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#C79C6E">Fury Warrior</b> — Faster than Arms, same missing toolkit. <a href="#fury" onclick="expandGuide('fury'); return false;">Starter guide →</a></p>
     </div>
     </div>
   </details>
@@ -1974,35 +2230,35 @@
     <div class="g-body">
     <div class="tierSec tierS">
       <div class="tierHead"><span class="tierLetter">S</span><span class="tierName">S tier — the top</span></div>
-      <p class="tierItem"><b>Elemental Shaman</b> — Totems strengthen the whole group just by being dropped — the quiz&#x27;s &quot;totems&quot; answer, and the most group value any damage spec carries. <a href="#elemental" onclick="expandGuide('elemental'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Shadow Priest</b> — Your damage heals your group a little, constantly, for free — plus a silence for enemy casters. <a href="#shadow" onclick="expandGuide('shadow'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Enhancement Shaman</b> — Windfury Totem: your melee friends&#x27; weapons sometimes hit extra times. Melee groups fight over this slot. <a href="#enhancement" onclick="expandGuide('enhancement'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#2E9BFF">Elemental Shaman</b> — Totems strengthen the whole group just by being dropped — the quiz&#x27;s &quot;totems&quot; answer, and the most group value any damage spec carries. <a href="#elemental" onclick="expandGuide('elemental'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FFFFFF">Shadow Priest</b> — Your damage heals your group a little, constantly, for free — plus a silence for enemy casters. <a href="#shadow" onclick="expandGuide('shadow'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#2E9BFF">Enhancement Shaman</b> — Windfury Totem: your melee friends&#x27; weapons sometimes hit extra times. Melee groups fight over this slot. <a href="#enhancement" onclick="expandGuide('enhancement'); return false;">Starter guide →</a></p>
     </div>
     <div class="tierSec tierA">
       <div class="tierHead"><span class="tierLetter">A</span><span class="tierName">A tier — strong</span></div>
-      <p class="tierItem"><b>Marksmanship Hunter</b> — Trueshot Aura now strengthens the whole group&#x27;s ranged and melee power (a Forever change), plus traps. <a href="#marksmanship" onclick="expandGuide('marksmanship'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Frost Mage</b> — Polymorph plus the best slows and freezes in the game — the control pick. Also: free food, water, and portals home. <a href="#frost" onclick="expandGuide('frost'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Balance Druid</b> — Moonkin aura for caster friends, Innervate (mana for your healer), and a battle resurrection from the class. <a href="#balance" onclick="expandGuide('balance'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Feral (Cat) Druid</b> — Leader of the Pack aura for melee friends — and in an emergency you ARE the backup tank (bear form). <a href="#feral-cat" onclick="expandGuide('feral-cat'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Retribution Paladin</b> — Blessings and auras for the group, real off-healing, and a bubble that saves pulls. <a href="#retribution" onclick="expandGuide('retribution'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#ABD473">Marksmanship Hunter</b> — Trueshot Aura now strengthens the whole group&#x27;s ranged and melee power (a Forever change), plus traps. <a href="#marksmanship" onclick="expandGuide('marksmanship'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#69CCF0">Frost Mage</b> — Polymorph plus the best slows and freezes in the game — the control pick. Also: free food, water, and portals home. <a href="#frost" onclick="expandGuide('frost'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FF7D0A">Balance Druid</b> — Moonkin aura for caster friends, Innervate (mana for your healer), and a battle resurrection from the class. <a href="#balance" onclick="expandGuide('balance'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FF7D0A">Feral (Cat) Druid</b> — Leader of the Pack aura for melee friends — and in an emergency you ARE the backup tank (bear form). <a href="#feral-cat" onclick="expandGuide('feral-cat'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#F58CBA">Retribution Paladin</b> — Blessings and auras for the group, real off-healing, and a bubble that saves pulls. <a href="#retribution" onclick="expandGuide('retribution'); return false;">Starter guide →</a></p>
     </div>
     <div class="tierSec tierB">
       <div class="tierHead"><span class="tierLetter">B</span><span class="tierName">B tier — solid</span></div>
-      <p class="tierItem"><b>Beast Mastery Hunter</b> — Traps for crowd control and a pet that can hold an enemy when the tank is overwhelmed. <a href="#beast-mastery" onclick="expandGuide('beast-mastery'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Survival Hunter</b> — The trap specialist — more and better traps than any other spec. <a href="#survival" onclick="expandGuide('survival'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Demonology Warlock</b> — The full warlock toolkit (soulstone resurrection insurance, healthstones, summoning late friends) plus a group spell-power buff in its tree. <a href="#demonology" onclick="expandGuide('demonology'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Affliction Warlock</b> — The warlock toolkit, with curses that weaken enemies for everyone. <a href="#affliction" onclick="expandGuide('affliction'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Destruction Warlock</b> — The warlock toolkit — the utility is the class&#x27;s, not the spec&#x27;s. <a href="#destruction" onclick="expandGuide('destruction'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Fire Mage</b> — Polymorph, food, water, portals — the mage toolkit, with less control than Frost. <a href="#fire" onclick="expandGuide('fire'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Arcane Mage</b> — The same mage toolkit; its intellect buff helps every caster. <a href="#arcane" onclick="expandGuide('arcane'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Combat Rogue</b> — Kick (a reliable interrupt), Sap, and lockpicking for the group&#x27;s locked chests. <a href="#combat" onclick="expandGuide('combat'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#ABD473">Beast Mastery Hunter</b> — Traps for crowd control and a pet that can hold an enemy when the tank is overwhelmed. <a href="#beast-mastery" onclick="expandGuide('beast-mastery'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#ABD473">Survival Hunter</b> — The trap specialist — more and better traps than any other spec. <a href="#survival" onclick="expandGuide('survival'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#9482C9">Demonology Warlock</b> — The full warlock toolkit (soulstone resurrection insurance, healthstones, summoning late friends) plus a group spell-power buff in its tree. <a href="#demonology" onclick="expandGuide('demonology'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#9482C9">Affliction Warlock</b> — The warlock toolkit, with curses that weaken enemies for everyone. <a href="#affliction" onclick="expandGuide('affliction'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#9482C9">Destruction Warlock</b> — The warlock toolkit — the utility is the class&#x27;s, not the spec&#x27;s. <a href="#destruction" onclick="expandGuide('destruction'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#69CCF0">Fire Mage</b> — Polymorph, food, water, portals — the mage toolkit, with less control than Frost. <a href="#fire" onclick="expandGuide('fire'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#69CCF0">Arcane Mage</b> — The same mage toolkit; its intellect buff helps every caster. <a href="#arcane" onclick="expandGuide('arcane'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FFF569">Combat Rogue</b> — Kick (a reliable interrupt), Sap, and lockpicking for the group&#x27;s locked chests. <a href="#combat" onclick="expandGuide('combat'); return false;">Starter guide →</a></p>
     </div>
     <div class="tierSec tierC">
       <div class="tierHead"><span class="tierLetter">C</span><span class="tierName">C tier — the hard road</span></div>
-      <p class="tierItem"><b>Assassination Rogue</b> — The rogue toolkit, minus Combat&#x27;s staying power — you mostly bring damage. <a href="#assassination" onclick="expandGuide('assassination'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Subtlety Rogue</b> — Like Assassination: stealth tricks help you more than the group. <a href="#subtlety" onclick="expandGuide('subtlety'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Arms Warrior</b> — Battle Shout, and that&#x27;s nearly the list. You bring damage and a body. <a href="#arms" onclick="expandGuide('arms'); return false;">Starter guide →</a></p>
-      <p class="tierItem"><b>Fury Warrior</b> — Same as Arms — the group value is the damage itself. <a href="#fury" onclick="expandGuide('fury'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FFF569">Assassination Rogue</b> — The rogue toolkit, minus Combat&#x27;s staying power — you mostly bring damage. <a href="#assassination" onclick="expandGuide('assassination'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#FFF569">Subtlety Rogue</b> — Like Assassination: stealth tricks help you more than the group. <a href="#subtlety" onclick="expandGuide('subtlety'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#C79C6E">Arms Warrior</b> — Battle Shout, and that&#x27;s nearly the list. You bring damage and a body. <a href="#arms" onclick="expandGuide('arms'); return false;">Starter guide →</a></p>
+      <p class="tierItem"><b style="color:#C79C6E">Fury Warrior</b> — Same as Arms — the group value is the damage itself. <a href="#fury" onclick="expandGuide('fury'); return false;">Starter guide →</a></p>
     </div>
     </div>
   </details>
@@ -2067,6 +2323,7 @@ function expandGuide(anchor){
 let currentView = 'quiz';
 function setView(v, push){
   currentView = v;
+  try { localStorage.setItem('wowLastTabV1', v); } catch(e) {}
   const views = { quiz: document.getElementById('quizView'), guides: document.getElementById('guidesView'), general: document.getElementById('generalView'), professions: document.getElementById('professionsView'), dungeons: document.getElementById('dungeonsView'), tiers: document.getElementById('tiersView'), search: document.getElementById('searchView') };
   Object.keys(views).forEach(k => { if (views[k]) views[k].classList.toggle('hidden', k !== v); });
   const tabs = { quiz: document.getElementById('tabQuiz'), guides: document.getElementById('tabGuides'), general: document.getElementById('tabGeneral'), professions: document.getElementById('tabProf'), dungeons: document.getElementById('tabDung'), tiers: document.getElementById('tabTiers'), search: document.getElementById('tabSearch') };
@@ -2092,6 +2349,7 @@ function viewFromHash(){
     if (h === 'tiers') { setView('tiers', false); return; }
     if (h === 'search') { setView('search', false); return; }
     if (h === 'quiz') { setView('quiz', false); return; }
+    if (!h) { try { const last = localStorage.getItem('wowLastTabV1'); if (last && last !== 'quiz' && document.getElementById(last + 'View')) { setView(last, false); return; } } catch(e) {} }
     if (h) { const t = document.getElementById(h); if (t && t.tagName === 'DETAILS') { setView('guides', false); expandGuide(h); } }
   } catch(e) {}
 }
@@ -2279,6 +2537,7 @@ function whyFor(k){
   if (top.length === 0) return 'No strong single match — small bits of many of your picks.';
   return 'Matched because you picked: <b>' + top.join('</b> • <b>') + '</b>.';
 }
+const CLASS_COLORS = { Warrior:'#C79C6E', Paladin:'#F58CBA', Hunter:'#ABD473', Rogue:'#FFF569', Priest:'#FFFFFF', Shaman:'#2E9BFF', Mage:'#69CCF0', Warlock:'#9482C9', Druid:'#FF7D0A' };
 let step = 0, answers = [], resultTop = null, resultSecond = null;
 function start(){ document.getElementById('startCard').classList.add('hidden'); document.getElementById('quizCard').classList.remove('hidden'); show(); }
 function show(){
@@ -2302,6 +2561,8 @@ function finish(){
   document.getElementById('resultCard').classList.remove('hidden');
   document.getElementById('rCls').textContent = t.cls + ' — damage character';
   document.getElementById('rName').textContent = t.display;
+  document.getElementById('rName').style.color = CLASS_COLORS[t.cls] || '';
+  document.getElementById('rCls').style.color = CLASS_COLORS[t.cls] || '';
   const lvlClass = t.level==='Easy' ? '' : (t.level==='Medium' ? ' med' : ' hard');
   document.getElementById('rPills').innerHTML = '<span class="pill type">' + t.type + '</span><span class="pill' + lvlClass + '">First-timer: ' + t.level + '</span>';
   document.getElementById('rDesc').textContent = t.desc;
@@ -2324,7 +2585,7 @@ function renderAll(score, ranked){
     const inf = INFO[k], p = pctOf(k, score);
     const div = document.createElement('div');
     div.className = 'match' + (i === 0 ? ' top' : '');
-    div.innerHTML = '<div class="matchHead"><div class="matchName"><span class="matchRank">#' + (i+1) + '</span>' + inf.cls + ' — ' + inf.display + '</div><div class="matchPct">' + p + '%</div></div>'
+    div.innerHTML = '<div class="matchHead"><div class="matchName"><span class="matchRank">#' + (i+1) + '</span><span style="color:' + (CLASS_COLORS[inf.cls] || '#eef1f6') + '">' + inf.cls + '</span> — ' + inf.display + '</div><div class="matchPct">' + p + '%</div></div>'
       + '<div class="matchBar"><div style="width:' + p + '%"></div></div>'
       + '<div class="matchMeta">' + inf.type + '  •  First-timer: ' + inf.level + '  •  <a class="rowguide" href="#" data-g="' + slug(inf.display) + '" onclick="openGuides(this.dataset.g); return false;">Starter guide →</a></div>'
       + '<div class="matchDesc">' + inf.desc + '</div>'
@@ -2380,16 +2641,18 @@ function restart(){ step = 0; answers = []; try { localStorage.removeItem('wowQu
   } catch(e) {}
 })();
 viewFromHash();
+window.addEventListener('scroll', function(){ const b = document.getElementById('topBtn'); if (b) b.style.display = window.scrollY > 600 ? 'block' : 'none'; }, { passive: true });
 </script>
 <details class="g-card" style="margin:18px 0 6px">
   <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">About this site — sources & changelog</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
   <div class="g-body">
     <p style="margin-bottom:9px"><b>What this is.</b> A companion site for brand-new WoW Forever players: a playstyle quiz, starter guides for all 20 damage characters, general info, dungeon and profession guides, and tier lists — all checked against launch-era game info and written in plain language.</p>
     <p style="margin-bottom:9px"><b>Sources.</b> Blizzard's official launch notes and dungeon overview; ForeverDB (checked against the launch client); Icy Veins' WoW Forever guides; MythicSim level-60 simulation snapshots (Nov 6 & 14, 2026) for the damage board; launch-week expert lists (Wowhead, Mobalytics, Maxroll, ExpCarry, ConquestCapped). Checked Nov 13–15, 2026. Where sources disagreed, the page says so instead of picking silently.</p>
-    <p style="margin-bottom:9px"><b>Changelog.</b> Nov 13 — quiz and starter guides launch (quiz verified across all 470,400 possible answer combinations). Nov 14 — guides become tap-to-open accordions, grouped by class. Nov 15 — tab bar added; General Info, Professions, Dungeons, and Tier Lists sections; full typo pass; color-badged tier grades; site-wide search.</p>
+    <p style="margin-bottom:9px"><b>Changelog.</b> Nov 13 — quiz and starter guides launch (quiz verified across all 470,400 possible answer combinations). Nov 14 — guides become tap-to-open accordions, grouped by class. Nov 15 — tab bar added; General Info, Professions, Dungeons, and Tier Lists sections; full typo pass; color-badged tier grades; site-wide search. Nov 22 — polish update: Discord preview card, class colors, tank & healer mini-guides, profession leveling routes, tab memory, back-to-top.</p>
     <p><b>Found a mistake?</b> Tell Marv in Discord — fixes ship as a new build, with a new stamp below.</p>
   </div>
 </details>
-<p style="text-align:center;color:#8a7a5a;font-size:12px;margin:18px 0 8px">WoW Forever Quiz · build 2026-11-15 · WOWP5-20261115</p>
+<p style="text-align:center;color:#8a7a5a;font-size:12px;margin:18px 0 8px">WoW Forever Quiz · build 2026-11-22 · WOWP6-20261122</p>
+<button id="topBtn" onclick="window.scrollTo({top:0, behavior:'smooth'})" title="Back to top">↑ Top</button>
 </body>
 </html>
