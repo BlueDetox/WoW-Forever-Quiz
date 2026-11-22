@@ -206,6 +206,7 @@ body.on-talents #topBtn{bottom:170px}
     <button class="tab" id="tabProf" onclick="tabGo('professions')">🛠️ Professions</button>
     <button class="tab" id="tabTiers" onclick="tabGo('tiers')">🏆 Tier Lists</button>
     <button class="tab" id="tabTalents" onclick="tabGo('talents')">🌿 Talents</button>
+    <button class="tab" id="tabNews" onclick="tabGo('news')">🆕 What’s New</button>
     <button class="tab" id="tabSearch" onclick="tabGo('search')">🔍 Search</button>
   </div>
   <div id="quizView">
@@ -1671,7 +1672,7 @@ body.on-talents #topBtn{bottom:170px}
     <p style="margin-bottom:9px"><b>No dungeon finder.</b> There is no automatic queue in Forever. You form a group yourselves (friends, guild, or the LookingForGroup chat channel), then you all TRAVEL to the dungeon&#x27;s entrance and walk in. The trip is part of the game — go together, especially through enemy territory.</p>
     <p style="margin-bottom:9px"><b>Quests are the real reward.</b> Forever deliberately moved dungeon experience INTO the quests: monster XP is the smaller share (a launch hotfix raised it somewhat), quest XP is the big payout. The golden rule: collect ALL of a dungeon&#x27;s quests, run it once, hand them all in. Running a dungeon with no quests is doing it the slow way.</p>
     <p style="margin-bottom:9px"><b>Boss loot got better.</b> In Forever, every dungeon boss drops rare (blue) quality gear, and much of it belongs to sets (like the Defias Leather set in the Deadmines) that give bonuses when you wear several pieces. Dungeon gear is a real gearing path now, not a side trip.</p>
-    <p style="margin-bottom:9px"><b>Stay in the level range.</b> A hotfix rule: if the enemies are grey (far below) ANY group member, the whole party earns no experience from them. Group with people near your level and run dungeons in their range.</p>
+    <p style="margin-bottom:9px"><b>Stay in the level range.</b> A hotfix rule (Nov 13, softened Nov 14): if an enemy is more than 12 levels below any group member, the whole party earns no experience from it. Group with people near your level and run dungeons in their range.</p>
     <p style="margin-bottom:9px"><b>Blueprints.</b> Dungeon bosses can drop Blueprint recipes for crafting professions — one more reason your group&#x27;s crafter wants to come along (see the Professions tab).</p>
     </div>
   </details>
@@ -2462,10 +2463,263 @@ body.on-talents #topBtn{bottom:170px}
 </section>
   </div>
 
+  <div id="newsView" class="hidden">
+  <a class="g-back" href="index.html" onclick="tabGo('quiz'); return false;">← Back to the quiz</a>
+  <h1 class="g-h1">🆕 What's <span class="gold">New</span></h1>
+  <p class="g-sub">WoW Forever changes fast — Blizzard has shipped ten hotfix batches since launch. This tab translates them into plain language: what changed, and what it means for you. Last checked November 22, 2026.</p>
+  <details class="g-card" id="news-intro">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">What's New — how this tab works</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:4px"><b>What this is</b></p>
+    <p style="margin:0 0 9px 14px">• WoW Forever is a living game: Blizzard fixes and adjusts it in small batches called <strong>hotfixes</strong>, every few days. This tab tracks them in plain language, so you can see what changed without reading Blizzard's full technical list.</p>
+    <p style="margin:0 0 9px 14px">• Newest changes are at the top. Start with <strong>Big changes since launch</strong> if you just want the two-minute version.</p>
+    <p style="margin-bottom:4px"><b>How we curate it</b></p>
+    <p style="margin:0 0 9px 14px">• Changes you'll actually feel — your class, dungeons, experience points, loot, professions — get full entries. Tiny bug fixes (one NPC standing in the wrong spot) are squeezed into a single 'Smaller fixes' line per date. Blizzard's complete list is linked on the sources card at the bottom.</p>
+    <p style="margin:0 0 9px 14px">• Last checked: <strong>November 22, 2026</strong> · Latest batch covered: <strong>November 20, 2026</strong>.</p>
+    </div>
+  </details>
+  <details class="g-card" id="news-big">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Big changes since launch — the two-minute catch-up</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:4px"><b>🏰 Dungeons and experience</b></p>
+    <p style="margin:0 0 9px 14px">• <strong>Nov 9:</strong> killing enemies in dungeons gives <strong>50% more experience</strong> than at launch.</p>
+    <p style="margin:0 0 9px 14px">• <strong>Nov 13:</strong> the other side of that coin — if an enemy is far below a group member's level, <strong>nobody in the party gets experience for it</strong>. No more being carried through low dungeons by a high-level friend. (A follow-up report says this was softened on Nov 14: it now only cancels when the higher-level player is more than 12 levels above the enemy.)</p>
+    <p style="margin:0 0 9px 14px">• <strong>Nov 20:</strong> you can now reset and re-enter each dungeon at most <strong>5 times per hour</strong> (was 10) — repeat-farming the same dungeon got slower.</p>
+    <p style="margin-bottom:4px"><b>💰 Money</b></p>
+    <p style="margin:0 0 9px 14px">• <strong>Nov 10:</strong> most quests at <strong>level 48 and higher now also pay gold</strong>. Level 60 quests don't convert experience into gold the way old WoW did — Blizzard removed that on purpose, so there's no reason to save quests until 60.</p>
+    <p style="margin-bottom:4px"><b><span style="color:#2E9BFF"><strong>Shaman</strong></span> — the big class rework</b></p>
+    <p style="margin:0 0 9px 14px">• <strong>Nov 10:</strong> Enhancement Shamans were pushed back toward melee and Windfury (their extra-attack effect) and away from spell-power gear — Stormstrike, Mental Dexterity and Maelstrom Weapon all changed. Full details on the Nov 10 card. Blizzard did it <em>before</em> the raids open so nobody gears up the wrong way.</p>
+    <p style="margin-bottom:4px"><b>🌿 Healing changes</b></p>
+    <p style="margin:0 0 9px 14px">• <strong>Nov 13:</strong> <span style="color:#FF7D0A"><strong>Druid</strong></span> Wild Growth — the group heal — got <strong>twice as strong</strong> from spell power (but can no longer be cast while moving).</p>
+    <p style="margin:0 0 9px 14px">• <strong>Nov 16:</strong> <span style="color:#FFFFFF"><strong>Priest</strong></span> Vampiric Embrace now heals the party for 10% of the Priest's Shadow damage (was 20%), while the Priest's own healing from it doubled — playing alone feels exactly the same.</p>
+    <p style="margin-bottom:4px"><b>🏰 Dungeon difficulty</b></p>
+    <p style="margin:0 0 9px 14px">• <strong>Nov 9:</strong> The Drowned City was toned down (its enemies were hitting about 30% too hard).</p>
+    <p style="margin:0 0 9px 14px">• <strong>Nov 17:</strong> Upper Blackrock Spire went the other way — its enemies are back to full intended strength, so it needs a full, careful group again.</p>
+    <p style="margin:0 0 9px 14px">• <strong>Nov 19:</strong> Vitrix's Poison Shock in Shaper's Terrace deals less damage.</p>
+    <p style="margin-bottom:4px"><b><span style="color:#F58CBA"><strong>Paladin</strong></span> Judgements</b></p>
+    <p style="margin:0 0 9px 14px">• <strong>Nov 11:</strong> Judgement became a ranged attack. <strong>Nov 13:</strong> one exception — Judgement of Command counts as melee again, like it did in old WoW. <strong>Nov 19:</strong> the Retribution two-hander talent was fixed to boost all Holy damage properly.</p>
+    <p style="margin-bottom:4px"><b>🐾 Pets and demons</b></p>
+    <p style="margin:0 0 9px 14px">• <strong>Nov 10:</strong> <span style="color:#ABD473"><strong>Hunter</strong></span> pets were bugged to 150% health — corrected to 115%. <span style="color:#9482C9"><strong>Warlock</strong></span> demons went the other way: about 15% more health, and the Imp hits harder.</p>
+    <p style="margin-bottom:4px"><b>⚠️ One warning</b></p>
+    <p style="margin:0 0 9px 14px">• <strong>Nov 11:</strong> Blizzard's <strong>Item Restoration service is switched off</strong> while they fix a critical bug. Until it's back, be extra careful about deleting or selling anything you care about — there's no undo.</p>
+    <p style="margin-bottom:4px"><b>📅 Coming up</b></p>
+    <p style="margin:0 0 9px 14px">• <strong>Raids open December 9</strong> (Barrow Deeps, Hyjal Summit, Onyxia's Lair). Expect a bigger patch around then — and the Pix Xizzix ring exchange on the Nov 13 card ends when raids open.</p>
+    </div>
+  </details>
+  <details class="g-group" id="news-by-date">
+    <summary class="g-group-summary"><span class="g-summary-main"><span class="g-group-title">Patch notes by date</span><span class="g-group-names">Tap to open — newest first</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-group-body">
+  <details class="g-card" id="news-2026-11-20">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">November 20, 2026 — hotfixes</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:4px"><b>🏰 Dungeons</b></p>
+    <p style="margin:0 0 9px 14px">• You can now reset and enter each dungeon a maximum of <strong>5 times per hour</strong> (was 10).</p>
+    <p style="margin-bottom:4px"><b>🗡️ <span style="color:#FFF569"><strong>Rogue</strong></span> — Combat</b></p>
+    <p style="margin:0 0 9px 14px">• Blade Flurry now correctly makes Shank's damage hit an additional target.</p>
+    <p style="margin-bottom:4px"><b>😈 <span style="color:#9482C9"><strong>Warlock</strong></span> — Demonology</b></p>
+    <p style="margin:0 0 9px 14px">• An exploit is closed: Demonic Aegis effects can no longer be 'snapshotted' into Demon Armor or Demon Skin and kept after removing the talent. Your Demon Armor/Skin now goes away when your talents are unlearned.</p>
+    <p style="margin-bottom:4px"><b>🎒 Items</b></p>
+    <p style="margin:0 0 9px 14px">• Stormshroud Armor (a Rogue set) 3-piece bonus weakened: restoring energy now has a 3% chance (was 4%) and restores 18 energy (was 30).</p>
+    <p style="margin-bottom:4px"><b>🔨 Professions</b></p>
+    <p style="margin:0 0 9px 14px">• The forge and anvil in Summit of Eternity work again for Blacksmithing and smelting.</p>
+    <p style="margin-bottom:4px"><b>Smaller fixes</b></p>
+    <p style="margin:0 0 9px 14px">• The group finder shows all groups again; a trapping pillar in Blackrock Spire is fixed; a Hinterlands quest head now drops for everyone in the group who needs it; several quest and NPC touch-ups.</p>
+    </div>
+  </details>
+  <details class="g-card" id="news-2026-11-19">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">November 19, 2026 — hotfixes</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:4px"><b>⛺ Camping</b></p>
+    <p style="margin:0 0 9px 14px">• The <strong>Seed Hybridizer is back on</strong>. Combining seeds has adjusted values and can now <strong>fail</strong>, and Scarce Herb Seeds can no longer be put into it.</p>
+    <p style="margin-bottom:4px"><b>💛 <span style="color:#F58CBA"><strong>Paladin</strong></span> — Retribution</b></p>
+    <p style="margin:0 0 9px 14px">• Two-Handed Weapon Specialization now correctly increases <strong>all</strong> Holy damage you deal while a two-handed weapon is equipped.</p>
+    <p style="margin-bottom:4px"><b>🏰 Dungeons</b></p>
+    <p style="margin:0 0 9px 14px">• <strong>Shaper's Terrace:</strong> Vitrix's Poison Shock deals less damage.</p>
+    <p style="margin:0 0 9px 14px">• <strong>City of Dalaran:</strong> the Shade of the Archmage no longer despawns the moment the fight starts.</p>
+    <p style="margin-bottom:4px"><b>🦅 Races</b></p>
+    <p style="margin:0 0 9px 14px">• <strong>Skyborne:</strong> the Honored reputation 10% gold discount on riding skills now works as intended.</p>
+    <p style="margin:0 0 9px 14px">• <strong>Tauren:</strong> Cultivation (the herb-gathering racial) succeeds more reliably, including on Purple Lotus.</p>
+    <p style="margin-bottom:4px"><b>🎒 Items</b></p>
+    <p style="margin:0 0 9px 14px">• Motes of Unstable Magic are now soulbound — they can't be traded or sold to other players.</p>
+    <p style="margin-bottom:4px"><b>Smaller fixes</b></p>
+    <p style="margin:0 0 9px 14px">• A Booty Bay quest-giver stops handing out a strange tome; a destroyed quest item in Alterac Mountains can be replaced; a stuck Silithid in Shimmering Flats and a rare-loot bug in Riverglades are fixed.</p>
+    </div>
+  </details>
+  <details class="g-card" id="news-2026-11-17">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">November 17, 2026 — hotfixes</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:4px"><b>🏰 Dungeons</b></p>
+    <p style="margin:0 0 9px 14px">• <strong>Upper Blackrock Spire:</strong> enemy health and damage were much lower than intended and are corrected. Blizzard's note: it again requires a full group of careful players.</p>
+    <p style="margin-bottom:4px"><b>💛 <span style="color:#F58CBA"><strong>Paladin</strong></span> — tanks</b></p>
+    <p style="margin:0 0 9px 14px">• The Soulforge Armor set (the upgraded dungeon set for Paladin tanks) now has <strong>Spell Power instead of Strength</strong>. Blizzard's note: Paladin tanks are being leaned toward Spell Power as their main damage stat — worth knowing before you gear one.</p>
+    <p style="margin-bottom:4px"><b>⛺ Camping</b></p>
+    <p style="margin:0 0 9px 14px">• Cozy Sleeping Bag: you can't sleep in it while mounted anymore; it now shows a Resting aura so you can see when you're in range; and it can be placed in specific spots, like hunter traps.</p>
+    <p style="margin-bottom:4px"><b>⚔️ Player versus Player</b></p>
+    <p style="margin:0 0 9px 14px">• The Battle for Alterac Valley quests now require <strong>level 58</strong> to accept.</p>
+    <p style="margin:0 0 9px 14px">• No more mounting up inside the Warsong Gulch starting rooms.</p>
+    <p style="margin-bottom:4px"><b>🌍 World buffs</b></p>
+    <p style="margin:0 0 9px 14px">• Might of Stormwind and Warchief's Blessing now always cancel on death, and are no longer applied to non-players.</p>
+    <p style="margin-bottom:4px"><b>🔨 Professions</b></p>
+    <p style="margin:0 0 9px 14px">• Blacksmithing: if the quest 'The Old Ways' never gave you the Orcish War Leggings recipe (or you lost it), Sumi in the blacksmithing hut now replaces it. Bronze Mace is now Bind on Equip, which also lets it join the Transmog Collection.</p>
+    <p style="margin-bottom:4px"><b>Smaller fixes</b></p>
+    <p style="margin:0 0 9px 14px">• A <span style="color:#2E9BFF"><strong>Shaman</strong></span> Flurry/Windfury interaction; Shen'dralar quest objectives now share with your party; ignore lists survive logging out; more Fen Creepers in the Wetlands; several quest, herb and skinning fixes.</p>
+    </div>
+  </details>
+  <details class="g-card" id="news-2026-11-16">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">November 16, 2026 — hotfixes</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:4px"><b>🧛 <span style="color:#FFFFFF"><strong>Priest</strong></span> — Shadow</b></p>
+    <p style="margin:0 0 9px 14px">• Vampiric Embrace healing is now based on <strong>10% of the Shadow damage done (was 20%)</strong>, and the Priest receives double healing from it. Blizzard's note: no difference at all when playing solo — it's a group-play rebalance.</p>
+    <p style="margin:0 0 9px 14px">• Dark Inspiration no longer stacks when several Shadow Priests are in the same party.</p>
+    <p style="margin-bottom:4px"><b>🌿 <span style="color:#FF7D0A"><strong>Druid</strong></span></b></p>
+    <p style="margin:0 0 9px 14px">• Wild Growth ranks now go on cooldown properly (they could be chained before).</p>
+    <p style="margin:0 0 9px 14px">• Balance: the Genesis talent now correctly increases Pounce's bleed damage.</p>
+    <p style="margin-bottom:4px"><b>🌀 <span style="color:#2E9BFF"><strong>Shaman</strong></span></b></p>
+    <p style="margin:0 0 9px 14px">• A batch of Windfury Totem fixes: its extra attacks now respect armor, have an internal cooldown, and generate Rage properly; some abilities that wrongly triggered it no longer do.</p>
+    <p style="margin:0 0 9px 14px">• Enhancement: Maelstrom Weapon can no longer benefit two casts at once.</p>
+    <p style="margin-bottom:4px"><b>🗡️ <span style="color:#FFF569"><strong>Rogue</strong></span> and ⚔️ <span style="color:#C79C6E"><strong>Warrior</strong></span></b></p>
+    <p style="margin:0 0 9px 14px">• Rogue poisons can't exceed their maximum rank, and a Shank combo-point bug is fixed.</p>
+    <p style="margin:0 0 9px 14px">• Fury Warrior: Unbridled Wrath, Flurry and Reckless Swings now activate from Cleave and Heroic Strike as they should.</p>
+    <p style="margin-bottom:4px"><b>🎣 Camping</b></p>
+    <p style="margin:0 0 9px 14px">• The Fishing Rack now provides lures for everyone, and Bloated Fish drop more often.</p>
+    <p style="margin-bottom:4px"><b>🏰 Dungeons</b></p>
+    <p style="margin:0 0 9px 14px">• <strong>The Drowned City:</strong> Captain Dreadrise can be stunned now, and his Abyssal Bubble can't block, dodge or parry.</p>
+    <p style="margin:0 0 9px 14px">• <strong>Sunken Temple:</strong> the serpent statues in the Pit of Refuse can't get stuck non-interactive anymore.</p>
+    <p style="margin-bottom:4px"><b>Smaller fixes</b></p>
+    <p style="margin:0 0 9px 14px">• The repeatable quest 'Water Pouch Bounty' no longer grants experience; Blood Red Bandanas drop more often; a few item and quest fixes.</p>
+    </div>
+  </details>
+  <details class="g-card" id="news-2026-11-13">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">November 13, 2026 — hotfixes</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:4px"><b>🏰 Dungeons — the big one</b></p>
+    <p style="margin:0 0 9px 14px">• Killing enemies in a dungeon now awards <strong>zero experience to the whole party if the enemy's level is trivial (grey) to any party member</strong>. Group with people near your level — a high-level friend in the party switches off dungeon XP.</p>
+    <p style="margin:0 0 9px 14px">• <em>Follow-up:</em> the fan site Bind on Forever reports Blizzard softened this on Nov 14 — XP is only cancelled when the higher-level player is <strong>more than 12 levels above the enemy</strong>. Blizzard's own article doesn't list a Nov 14 batch, so treat the exact line as 'about 12 levels' until it's confirmed in-game.</p>
+    <p style="margin-bottom:4px"><b>🌿 <span style="color:#FF7D0A"><strong>Druid</strong></span> — Restoration</b></p>
+    <p style="margin:0 0 9px 14px">• Wild Growth's healing from spell power <strong>doubled: coefficient 3.3% → 6.6%</strong>. The flip side: a bug that let it be cast while moving is fixed — you have to stand still again.</p>
+    <p style="margin-bottom:4px"><b>💛 <span style="color:#F58CBA"><strong>Paladin</strong></span></b></p>
+    <p style="margin:0 0 9px 14px">• <strong>Judgement of Command counts as a melee attack again</strong> and activates on-hit effects. Blizzard's note: every other Judgement stays a ranged attack — Command was always the odd one out, including in old WoW.</p>
+    <p style="margin-bottom:4px"><b>🌀 <span style="color:#2E9BFF"><strong>Shaman</strong></span></b></p>
+    <p style="margin:0 0 9px 14px">• Windfury Totem is now correctly activated by all melee abilities, even ones that don't swing your main-hand weapon. (Off-hand strikes from abilities like Whirlwind still can't trigger it; the main-hand strike can.)</p>
+    <p style="margin-bottom:4px"><b>✨ All classes</b></p>
+    <p style="margin:0 0 9px 14px">• Stun diminishing returns are restored in both directions — repeated stuns on the same target wear off faster, for players and creatures alike. Two bugs had quietly removed this.</p>
+    <p style="margin-bottom:4px"><b>Smaller class fixes — <span style="color:#69CCF0"><strong>Mage</strong></span>, <span style="color:#FFFFFF"><strong>Priest</strong></span>, <span style="color:#9482C9"><strong>Warlock</strong></span>, <span style="color:#C79C6E"><strong>Warrior</strong></span></b></p>
+    <p style="margin:0 0 9px 14px">• Frost Nova breaks from proc damage and Blizzard ticks again; the Quick and the Dead Legacy perk now really reduces Divine Spirit's mana cost; Siphon Life rank 1 can't be cast while silenced; Berserker Rage removes Sap again.</p>
+    <p style="margin-bottom:4px"><b>🎒 Items — a ring swap</b></p>
+    <p style="margin:0 0 9px 14px">• Blessed Band of Light lost its Hit stat; Channeler's Ring gained Spell Power (was Spirit). If you have the Blessed Band, you can exchange it for the Channeler's Ring at Pix Xizzix — <strong>only until raids open, and the swap can't be undone</strong>.</p>
+    <p style="margin-bottom:4px"><b>🎣 Event</b></p>
+    <p style="margin:0 0 9px 14px">• The Stranglethorn Fishing Extravaganza (the weekly fishing tournament) now lets <strong>many more players win</strong> per ruleset.</p>
+    <p style="margin-bottom:4px"><b>Smaller fixes</b></p>
+    <p style="margin:0 0 9px 14px">• Many quest drops now drop for the whole party; Drowned City trash respawns slower (2 hours); dual-spec players' action bar settings stop resetting on logout.</p>
+    </div>
+  </details>
+  <details class="g-card" id="news-2026-11-11">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">November 11, 2026 — hotfixes</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:4px"><b>💛 <span style="color:#F58CBA"><strong>Paladin</strong></span></b></p>
+    <p style="margin:0 0 9px 14px">• <strong>Judgement is now a ranged attack</strong> — it no longer counts as melee for item and effect triggers, and it rolls against your ranged hit chance. (Two days later, Judgement of Command was made the exception — see Nov 13.)</p>
+    <p style="margin:0 0 9px 14px">• Retribution: Unsealed Fury no longer generates echoes from Windfury Totem attacks.</p>
+    <p style="margin-bottom:4px"><b>🛠️ Support</b></p>
+    <p style="margin:0 0 9px 14px">• The <strong>Item Restoration service has been disabled</strong> while Blizzard investigates a critical bug. Deleted something by accident? For now, it can't be restored — be careful.</p>
+    <p style="margin-bottom:4px"><b>🧶 Tailoring — bigger bags</b></p>
+    <p style="margin:0 0 9px 14px">• Five crafted bags were smaller than intended and are fixed: Red Mageweave Bag is now 14 slots, Green Silk Pack and Black Silk Pack 12, Green Woolen Bag and Red Woolen Bag 10. Each costs one more bolt of cloth than before.</p>
+    <p style="margin-bottom:4px"><b>Class fixes — <span style="color:#FF7D0A"><strong>Druid</strong></span>, <span style="color:#ABD473"><strong>Hunter</strong></span>, <span style="color:#FFFFFF"><strong>Priest</strong></span>, <span style="color:#2E9BFF"><strong>Shaman</strong></span></b></p>
+    <p style="margin:0 0 9px 14px">• Feral Druid: Rend and Tear works on Pounce's bleed. Hunter: Volley no longer triggers procs and stops when you move. Priest: Confounding Flash works in Shadowform, and the Twilight Focus talent works in Shadowform too. Shaman: Flametongue Totem rank 2 works again.</p>
+    <p style="margin-bottom:4px"><b>Smaller fixes</b></p>
+    <p style="margin:0 0 9px 14px">• Several Riverglades enemies hit less hard (one ability went from +1000 damage to +50); a few item stats corrected; three stuck quests fixed.</p>
+    </div>
+  </details>
+  <details class="g-card" id="news-2026-11-10">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">November 10, 2026 — the Enhancement rework</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:4px"><b>🌀 <span style="color:#2E9BFF"><strong>Shaman</strong></span> — Enhancement, reworked</b></p>
+    <p style="margin:0 0 9px 14px">• <strong>Stormstrike:</strong> damage reduced to 100% weapon damage (was 150%), cooldown increased to 8 seconds (was 6).</p>
+    <p style="margin:0 0 9px 14px">• <strong>Mental Dexterity:</strong> Intellect converts to Attack Power at 33/66/100% per rank (was 50/100/150%).</p>
+    <p style="margin:0 0 9px 14px">• <strong>Maelstrom Weapon:</strong> now procs 6–10 times per minute depending on rank (was 20), but every stack gives the full 20% cast-time and mana reduction (was 4% per rank, stacking). Its tooltip now shows your real proc chance for your weapon's speed.</p>
+    <p style="margin:0 0 9px 14px">• <strong>Weapon imbues and weapon totems stack now</strong> — Windfury Weapon and Windfury Totem can both be active, and an attack can trigger both.</p>
+    <p style="margin:0 0 9px 14px">• Blizzard's reasoning, in short: beta changes had pushed Enhancement toward spell-power gear and away from Windfury. They reversed that now, before raids open, so nobody wins raid gear that's about to drop in value.</p>
+    <p style="margin-bottom:4px"><b>😈 <span style="color:#9482C9"><strong>Warlock</strong></span> — Affliction, reworked</b></p>
+    <p style="margin:0 0 9px 14px">• <strong>Wrack redesigned:</strong> damage reduced 30%, and it no longer boosts your damage-over-time spells' damage. Instead, while you channel it, your Corruption, Siphon Life and Bane of Agony on the target <strong>tick twice as fast</strong> — and the skipped time is kept even if you stop early.</p>
+    <p style="margin:0 0 9px 14px">• <strong>Soul Siphon:</strong> now counts only Corruption, Siphon Life and Bane of Agony (up to +36%), instead of any Affliction spell.</p>
+    <p style="margin-bottom:4px"><b>😈 <span style="color:#9482C9"><strong>Warlock</strong></span> — demons</b></p>
+    <p style="margin:0 0 9px 14px">• Imp base damage up, and Imp, Voidwalker, Incubus and Succubus all got about <strong>15% more health</strong>.</p>
+    <p style="margin-bottom:4px"><b>🏹 <span style="color:#ABD473"><strong>Hunter</strong></span></b></p>
+    <p style="margin:0 0 9px 14px">• Pets had a bug giving them 150% of their normal health — corrected to <strong>115%</strong>. Your pet will feel a little less immortal; that's intended now.</p>
+    <p style="margin:0 0 9px 14px">• Arcane Shot and Summon Hawk now cost 11% of base mana at every rank (same cost at level 6 and 60, slightly cheaper in between).</p>
+    <p style="margin:0 0 9px 14px">• Beast Mastery: the Hawk pet's melee damage increased by about <strong>80%</strong>.</p>
+    <p style="margin-bottom:4px"><b>💰 Quests pay gold</b></p>
+    <p style="margin:0 0 9px 14px">• Most quests at <strong>level 48 and higher now additionally reward gold</strong>. Blizzard's note: level 60 quests deliberately do <em>not</em> convert experience to gold, so nobody feels forced to save up quests until 60.</p>
+    <p style="margin-bottom:4px"><b>🎒 Items</b></p>
+    <p style="margin:0 0 9px 14px">• All racial vendor mounts are now <strong>Bind on Pickup</strong> — you can't buy a mount to resell or gift anymore.</p>
+    <p style="margin-bottom:4px"><b>🌿 <span style="color:#FF7D0A"><strong>Druid</strong></span></b></p>
+    <p style="margin:0 0 9px 14px">• Omen of Clarity activates properly after swapping specializations; Nature's Swiftness now also makes Wild Growth instant.</p>
+    <p style="margin-bottom:4px"><b>🔨 Professions</b></p>
+    <p style="margin:0 0 9px 14px">• Blacksmithing: Coarse Grinding Stones give skill-ups to 90 (was 75). Cooking: the Journeyman Campfire Kit needs Cooking 90 to place (was 140). Engineering: Iron Grenades sell to vendors for much less. Engineering's raid-era ammo (Swiftstrike Shot, Swiftfeather Arrow) won't be Bind on Pickup when raids unlock — Blizzard flagged it early because it can affect profession choice.</p>
+    <p style="margin-bottom:4px"><b>Smaller fixes</b></p>
+    <p style="margin:0 0 9px 14px">• <span style="color:#C79C6E"><strong>Warrior</strong></span> Arms: Sweeping Strikes no longer loses charges when no second target is hit. Sparklance Wand deals Arcane damage (was Nature). Vendors pay less for some craft-it-once armor. Shatterspear Trolls give no XP — 'they're dancers, not fighters.'</p>
+    </div>
+  </details>
+  <details class="g-card" id="news-2026-11-09">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">November 9, 2026 — hotfixes</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:4px"><b>🏰 Dungeons — more XP</b></p>
+    <p style="margin:0 0 9px 14px">• Experience from <strong>all enemy kills in dungeons increased by 50%</strong>. Dungeons were already the quest-XP route; now the kills themselves pay much better too.</p>
+    <p style="margin-bottom:4px"><b>🏰 The Drowned City — toned down</b></p>
+    <p style="margin:0 0 9px 14px">• Its enemies were dealing about 30% more damage than intended — corrected. The Deathless Marrow fight was also softened: enemy health down 25%, Fireball damage down 25%, Charge damage down 50%, Shield Slam cast half as often.</p>
+    <p style="margin-bottom:4px"><b>🏰 Boss loot fixes</b></p>
+    <p style="margin:0 0 9px 14px">• Shaper's Terrace: Vitrix, Snowtalon and Cinder now drop loot properly (and better skinning materials). Alcaz Prison: Zarla Ober drops loot. Blackrock Depths: the throne room doors open after a wipe, and Heart of the Mountain can be looted more than once.</p>
+    <p style="margin-bottom:4px"><b>🐴 <span style="color:#9482C9"><strong>Warlock</strong></span></b></p>
+    <p style="margin:0 0 9px 14px">• Completing the 'Summon Felsteed' quest now grants the riding skill, as it should — and if you finished it before this fix, summoning your Felsteed once grants it retroactively.</p>
+    <p style="margin-bottom:4px"><b>Smaller fixes</b></p>
+    <p style="margin:0 0 9px 14px">• <span style="color:#69CCF0"><strong>Mage</strong></span> Arcane Concentration proc math corrected; <span style="color:#FFFFFF"><strong>Priest</strong></span> Shadowform survives casting Fear Ward and Power Infusion persists on allies; crowded zones hold fewer players per layer (bigger change on the PvP ruleset); several quest items now drop for the whole party.</p>
+    </div>
+  </details>
+  <details class="g-card" id="news-2026-11-06">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">November 6, 2026 — hotfixes</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:4px"><b>🌿 <span style="color:#FF7D0A"><strong>Druid</strong></span></b></p>
+    <p style="margin:0 0 9px 14px">• Bloom now correctly heals its target. Three tooltip fixes (Bear Form health, Ravage damage, Swiftmend's text) — Blizzard confirms those were display errors only; the actual numbers didn't change.</p>
+    <p style="margin-bottom:4px"><b>😈 <span style="color:#9482C9"><strong>Warlock</strong></span></b></p>
+    <p style="margin:0 0 9px 14px">• Voidwalker base health increased by about 40 at all levels. Soul Siphon no longer incorrectly makes Wrack increase its own damage.</p>
+    <p style="margin-bottom:4px"><b>🔨 Leatherworking</b></p>
+    <p style="margin:0 0 9px 14px">• The Tanning Rack now requires 125 skill (was 140), so it stops blocking patterns that need 125.</p>
+    <p style="margin-bottom:4px"><b>🧝 Night Elf</b></p>
+    <p style="margin:0 0 9px 14px">• Shadowmeld no longer wrongly grants Druids access to Ravage and Pounce while hidden.</p>
+    <p style="margin-bottom:4px"><b>📊 Interface</b></p>
+    <p style="margin:0 0 9px 14px">• The Cooldown Manager now shows the full duration of crowd-control effects, even when diminishing returns or racial reductions shorten them.</p>
+    <p style="margin-bottom:4px"><b>Smaller fixes</b></p>
+    <p style="margin:0 0 9px 14px">• <span style="color:#69CCF0"><strong>Mage</strong></span> Arcane Blast's duration is properly 18 seconds and the phantom 'Research' spell is gone; <span style="color:#FFF569"><strong>Rogue</strong></span> Shank tooltips show ranks and combo points; Maraudon's Zaetar's Spirit spawns again; the Drowned City portal works; the Quick and the Dead Legacy talent works as intended.</p>
+    </div>
+  </details>
+  <details class="g-card" id="news-2026-11-05">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">November 5, 2026 — first hotfixes after launch</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:4px"><b>The launch dust settles</b></p>
+    <p style="margin:0 0 9px 14px">• The game's first hotfix batch, one day after launch (Nov 4), was all small fixes: several enemies respawning at the wrong speed (too fast in Dustwallow Marsh, too slow in Durotar), and a Druid trainer on Zephras Isle who now offers training as expected.</p>
+    <p style="margin:0 0 9px 14px">• Zephras Isle trade vendors sell apprentice tradeskill bags now; Mild Spices sell to vendors for 1 copper (was 2).</p>
+    <p style="margin:0 0 9px 14px">• Battlegrounds: Plainsrunning can no longer be stacked in the preparation phase, and its stacks cancel when you pick up a flag.</p>
+    <p style="margin:0 0 9px 14px">• The escort NPC for 'Escorting Erland' respawns much faster — less standing around waiting your turn.</p>
+    </div>
+  </details>
+    </div>
+  </details>
+  <details class="g-card" id="news-sources">
+    <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">Sources — where this tab comes from</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
+    <div class="g-body">
+    <p style="margin-bottom:4px"><b>Primary source</b></p>
+    <p style="margin:0 0 9px 14px">• Blizzard's official <a href="https://worldofwarcraft.blizzard.com/en-us/news/24315281/wow-forever-hotfixes-november-13-2026" target="_blank" rel="noopener">WoW: Forever Hotfixes</a> article — one living page Blizzard updates with every batch. Every entry on this tab traces back to it; the numbers in brackets ('was 10') are Blizzard's own before-and-after values.</p>
+    <p style="margin-bottom:4px"><b>Cross-checks</b></p>
+    <p style="margin:0 0 9px 14px">• Hardcore Helper's 'Changed since launch' summary, GameLeap's hotfix explainers, and Bind on Forever's data-checked hotfix reports. The one place this tab relies on a cross-check is flagged on its card (the Nov 14 dungeon XP refinement).</p>
+    <p style="margin-bottom:4px"><b>How it stays current</b></p>
+    <p style="margin:0 0 9px 14px">• This tab is checked against Blizzard's article every few days. Last checked: <strong>November 22, 2026</strong>. Found something here that the game disagrees with? Tell Marv — the game wins, and the tab gets fixed.</p>
+    </div>
+  </details>
+  </div>
+
   <div id="searchView" class="hidden">
     <a class="g-back" href="index.html" onclick="if (typeof closeSearch === 'function') { closeSearch(); return false; }">← Back to the quiz</a>
     <h1 class="g-h1">🔍 Search <span class="gold">the whole site</span></h1>
-    <p class="g-sub">Every starter guide, info card, dungeon, profession, and tier board — one box. Type at least 2 letters; tap a result to jump straight to that card.</p>
+    <p class="g-sub">Every starter guide, info card, dungeon, profession, tier board, and patch note — one box. Type at least 2 letters; tap a result to jump straight to that card.</p>
     <input id="searchBox" class="profSel" type="search" placeholder="Try: VanCleef, aggro, alchemy, interrupts…" oninput="runSearch()">
     <div id="searchResults"></div>
     <p class="g-foot">Search checks card titles first, then the full text inside every card — so boss names, glossary words, and topics all work.</p>
@@ -2492,21 +2746,24 @@ function collapseGeneral(except){ collapseIn('#generalView', except); }
 function collapseProfessions(except){ collapseIn('#professionsView', except); }
 function collapseDungeons(except){ collapseIn('#dungeonsView', except); }
 function collapseTiers(except){ collapseIn('#tiersView', except); }
+function collapseNews(except){ collapseIn('#newsView', except); }
 function expandGuide(anchor){
   const t = document.getElementById(anchor);
   if (!t) return;
   let root = t;
-  while (root && root.id !== 'guidesView' && root.id !== 'generalView' && root.id !== 'professionsView' && root.id !== 'dungeonsView' && root.id !== 'tiersView') root = root.parentElement;
+  while (root && root.id !== 'guidesView' && root.id !== 'generalView' && root.id !== 'professionsView' && root.id !== 'dungeonsView' && root.id !== 'tiersView' && root.id !== 'newsView') root = root.parentElement;
   let view = 'guides';
   if (root && root.id === 'generalView') view = 'general';
   else if (root && root.id === 'professionsView') view = 'professions';
   else if (root && root.id === 'dungeonsView') view = 'dungeons';
   else if (root && root.id === 'tiersView') view = 'tiers';
+  else if (root && root.id === 'newsView') view = 'news';
   setView(view, false);
   if (view === 'general') collapseGeneral(t);
   else if (view === 'professions') collapseProfessions(t);
   else if (view === 'dungeons') collapseDungeons(t);
   else if (view === 'tiers') collapseTiers(t);
+  else if (view === 'news') collapseNews(t);
   else collapseGuides(t);
   t.open = true;
   let p = t.parentElement;
@@ -2518,9 +2775,9 @@ function setView(v, push){
   currentView = v;
   if (document.body && document.body.classList) document.body.classList.toggle('on-talents', v === 'talents');
   try { localStorage.setItem('wowLastTabV1', v); } catch(e) {}
-  const views = { quiz: document.getElementById('quizView'), guides: document.getElementById('guidesView'), general: document.getElementById('generalView'), professions: document.getElementById('professionsView'), dungeons: document.getElementById('dungeonsView'), tiers: document.getElementById('tiersView'), talents: document.getElementById('talentsView'), search: document.getElementById('searchView') };
+  const views = { quiz: document.getElementById('quizView'), guides: document.getElementById('guidesView'), general: document.getElementById('generalView'), professions: document.getElementById('professionsView'), dungeons: document.getElementById('dungeonsView'), tiers: document.getElementById('tiersView'), talents: document.getElementById('talentsView'), news: document.getElementById('newsView'), search: document.getElementById('searchView') };
   Object.keys(views).forEach(k => { if (views[k]) views[k].classList.toggle('hidden', k !== v); });
-  const tabs = { quiz: document.getElementById('tabQuiz'), guides: document.getElementById('tabGuides'), general: document.getElementById('tabGeneral'), professions: document.getElementById('tabProf'), dungeons: document.getElementById('tabDung'), tiers: document.getElementById('tabTiers'), talents: document.getElementById('tabTalents'), search: document.getElementById('tabSearch') };
+  const tabs = { quiz: document.getElementById('tabQuiz'), guides: document.getElementById('tabGuides'), general: document.getElementById('tabGeneral'), professions: document.getElementById('tabProf'), dungeons: document.getElementById('tabDung'), tiers: document.getElementById('tabTiers'), talents: document.getElementById('tabTalents'), news: document.getElementById('tabNews'), search: document.getElementById('tabSearch') };
   Object.keys(tabs).forEach(k => { if (tabs[k]) tabs[k].classList.toggle('active', k === v); });
   if (push) { try { if (location.hash !== '#' + v) location.hash = v; } catch(e) {} }
 }
@@ -2531,6 +2788,7 @@ function tabGo(v){
   else if (v === 'dungeons') openDungeons();
   else if (v === 'tiers') openTiers();
   else if (v === 'talents') { setView('talents', true); window.scrollTo(0, 0); }
+  else if (v === 'news') { setView('news', true); collapseNews(null); window.scrollTo(0, 0); }
   else if (v === 'search') openSearch();
   else { setView('quiz', true); window.scrollTo(0, 0); }
 }
@@ -2543,6 +2801,7 @@ function viewFromHash(){
     if (h === 'dungeons') { setView('dungeons', false); return; }
     if (h === 'tiers') { setView('tiers', false); return; }
     if (h === 'talents') { setView('talents', false); return; }
+    if (h === 'news') { setView('news', false); return; }
     if (h.indexOf('talents-') === 0) { const parts = h.split('-'); setView('talents', false); if (parts[1]) tLoadBuild(parts[1], parts.slice(2).join('-')); return; }
     if (h === 'search') { setView('search', false); return; }
     if (h === 'quiz') { setView('quiz', false); return; }
@@ -2560,7 +2819,7 @@ function openGuides(anchor){
 const profCountEl = document.getElementById('profCount');
 if (profCountEl && profCountEl.addEventListener) { profCountEl.addEventListener('change', profCountChange); profCountChange(); }
 if (document.querySelectorAll) {
-  [['#guidesView', collapseGuides], ['#generalView', collapseGeneral], ['#professionsView', collapseProfessions], ['#dungeonsView', collapseDungeons], ['#tiersView', collapseTiers]].forEach(([rootSel, collapseFn]) => {
+  [['#guidesView', collapseGuides], ['#generalView', collapseGeneral], ['#professionsView', collapseProfessions], ['#dungeonsView', collapseDungeons], ['#tiersView', collapseTiers], ['#newsView', collapseNews]].forEach(([rootSel, collapseFn]) => {
     document.querySelectorAll(rootSel + ' details.g-card > summary').forEach(s => {
       s.addEventListener('click', () => collapseFn(s.parentElement));
     });
@@ -2639,7 +2898,7 @@ function firstDungeons(){
   const t = document.getElementById('dung-checker'); if (t) setTimeout(() => t.scrollIntoView(), 30);
 }
 let SEARCH_INDEX = null;
-const SEARCH_SECTIONS = [ ['guidesView', 'Starter Guides'], ['generalView', 'General Info'], ['professionsView', 'Professions'], ['dungeonsView', 'Dungeons'], ['tiersView', 'Tier Lists'] ];
+const SEARCH_SECTIONS = [ ['guidesView', 'Starter Guides'], ['generalView', 'General Info'], ['professionsView', 'Professions'], ['dungeonsView', 'Dungeons'], ['tiersView', 'Tier Lists'], ['newsView', 'What’s New'] ];
 function buildSearchIndex(){
   const idx = [];
   SEARCH_SECTIONS.forEach(pair => {
@@ -2992,13 +3251,13 @@ window.addEventListener('scroll', function(){ const b = document.getElementById(
 <details class="g-card" style="margin:18px 0 6px">
   <summary class="g-summary"><span class="g-summary-main"><span class="g-summary-title">About this site — sources & changelog</span><span class="g-summary-hint">Tap to open</span></span><span class="g-chevron">⌄</span></summary>
   <div class="g-body">
-    <p style="margin-bottom:9px"><b>What this is.</b> A companion site for brand-new WoW Forever players: a playstyle quiz, starter guides for all 20 damage characters, general info, dungeon and profession guides, tier lists, and a talent calculator — all checked against launch-era game info and written in plain language.</p>
-    <p style="margin-bottom:9px"><b>Sources.</b> Blizzard's official launch notes and dungeon overview; ForeverDB (checked against the launch client); Icy Veins' WoW Forever guides and talent calculators; Forever Talents' talent reference (November 3 beta snapshot, cross-checked against Icy Veins); MythicSim level-60 simulation snapshots (Nov 6 & 14, 2026) for the damage board; launch-week expert lists (Wowhead, Mobalytics, Maxroll, ExpCarry, ConquestCapped). Checked Nov 13–22, 2026. Where sources disagreed, the page says so instead of picking silently.</p>
-    <p style="margin-bottom:9px"><b>Changelog.</b> Nov 13 — quiz and starter guides launch (quiz verified across all 470,400 possible answer combinations). Nov 14 — guides become tap-to-open accordions, grouped by class. Nov 15 — tab bar added; General Info, Professions, Dungeons, and Tier Lists sections; full typo pass; color-badged tier grades; site-wide search. Nov 22 — polish update: Discord preview card, class colors, tank & healer mini-guides, profession leveling routes, tab memory, back-to-top; plus full boss guides and a route for every dungeon, with each role's duties (🛡️ tank · 💚 healer · ⚔️ damage) marked under the boss they belong to. Nov 22 (later) — Talents tab: a full talent calculator, Druid first (the other eight classes follow), with shareable build links. Same day — simplified after first use: tap a talent to add a point directly, with points, level and + / − controls in a fixed bar at the bottom of the screen. Same day — mobile hardening for the Talents tab (no iOS long-press callout or double-tap zoom on the tiles), then all nine classes in the calculator: 468 talents total. Same day — the tab bar wraps into full rows on mobile too (no more sideways swiping to reach a tab).</p>
+    <p style="margin-bottom:9px"><b>What this is.</b> A companion site for brand-new WoW Forever players: a playstyle quiz, starter guides for all 20 damage characters, general info, dungeon and profession guides, tier lists, a talent calculator, and a What's New tab tracking Blizzard's hotfixes — all checked against launch-era game info and written in plain language.</p>
+    <p style="margin-bottom:9px"><b>Sources.</b> Blizzard's official launch notes and dungeon overview; ForeverDB (checked against the launch client); Icy Veins' WoW Forever guides and talent calculators; Forever Talents' talent reference (November 3 beta snapshot, cross-checked against Icy Veins); Blizzard's official WoW: Forever Hotfixes article (the What's New tab's source, cross-checked against Hardcore Helper, GameLeap, and Bind on Forever); MythicSim level-60 simulation snapshots (Nov 6 & 14, 2026) for the damage board; launch-week expert lists (Wowhead, Mobalytics, Maxroll, ExpCarry, ConquestCapped). Checked Nov 13–22, 2026. Where sources disagreed, the page says so instead of picking silently.</p>
+    <p style="margin-bottom:9px"><b>Changelog.</b> Nov 13 — quiz and starter guides launch (quiz verified across all 470,400 possible answer combinations). Nov 14 — guides become tap-to-open accordions, grouped by class. Nov 15 — tab bar added; General Info, Professions, Dungeons, and Tier Lists sections; full typo pass; color-badged tier grades; site-wide search. Nov 22 — polish update: Discord preview card, class colors, tank & healer mini-guides, profession leveling routes, tab memory, back-to-top; plus full boss guides and a route for every dungeon, with each role's duties (🛡️ tank · 💚 healer · ⚔️ damage) marked under the boss they belong to. Nov 22 (later) — Talents tab: a full talent calculator, Druid first (the other eight classes follow), with shareable build links. Same day — simplified after first use: tap a talent to add a point directly, with points, level and + / − controls in a fixed bar at the bottom of the screen. Same day — mobile hardening for the Talents tab (no iOS long-press callout or double-tap zoom on the tiles), then all nine classes in the calculator: 468 talents total. Same day — the tab bar wraps into full rows on mobile too (no more sideways swiping to reach a tab). Nov 22 (later still) — What's New tab: all ten of Blizzard's hotfix batches since launch (Nov 5–20) translated into plain language, with a big-changes catch-up card; the tab is re-checked against Blizzard's article every few days. The same pass corrected the dungeon XP rule on the Dungeons tab (Nov 13 rule, softened Nov 14).</p>
     <p><b>Found a mistake?</b> Tell Marv in Discord — fixes ship as a new build, with a new stamp below.</p>
   </div>
 </details>
-<p style="text-align:center;color:#8a7a5a;font-size:12px;margin:18px 0 8px">WoW Forever Quiz · build 2026-11-22 · WOWT5-20261122</p>
+<p style="text-align:center;color:#8a7a5a;font-size:12px;margin:18px 0 8px">WoW Forever Quiz · build 2026-11-22 · WOWN1-20261122</p>
 <button id="topBtn" onclick="window.scrollTo({top:0, behavior:'smooth'})" title="Back to top">↑ Top</button>
 </body>
 </html>
